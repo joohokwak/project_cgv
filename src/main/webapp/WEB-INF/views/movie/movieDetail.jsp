@@ -29,6 +29,7 @@
 			<div id="detailLike">
 				<a href="#">
 					<img alt="" src="/resources/images/movie/heart_black.png">
+					<img alt="reserve_btn" src="/resources/images/movie/reserve_btn.png">
 				</a>
 			</div>
 		</div>

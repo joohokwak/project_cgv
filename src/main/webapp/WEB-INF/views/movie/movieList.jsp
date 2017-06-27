@@ -33,9 +33,12 @@
 							<strong>movie date</strong>
 						</span>
 						
-						<span class="boxLike">
+						<div class="boxLike">
 							<img alt="like" src="/resources/images/movie/heart_black.png" height="30px">
-						</span>
+							<a href="#">
+								<img alt="reserve_btn" src="/resources/images/movie/reserve_btn.png" width="73px">
+							</a>
+						</div>
 					</div>
 				</td>
 				
@@ -58,9 +61,12 @@
 							<strong>movie date</strong>
 						</span>
 						
-						<span class="boxLike">
+						<div class="boxLike">
 							<img alt="like" src="/resources/images/movie/heart_black.png" height="30px">
-						</span>
+							<a href="#">
+								<img alt="reserve_btn" src="/resources/images/movie/reserve_btn.png" width="73px">
+							</a>
+						</div>
 					</div>
 				</td>
 				
@@ -83,9 +89,12 @@
 							<strong>movie date</strong>
 						</span>
 						
-						<span class="boxLike">
+						<div class="boxLike">
 							<img alt="like" src="/resources/images/movie/heart_black.png" height="30px">
-						</span>
+							<a href="#">
+								<img alt="reserve_btn" src="/resources/images/movie/reserve_btn.png" width="73px">
+							</a>
+						</div>
 					</div>
 				</td>
 				
@@ -132,9 +141,12 @@
 							<strong>movie date</strong>
 						</span>
 						
-						<span class="boxLike">
+						<div class="boxLike">
 							<img alt="like" src="/resources/images/movie/heart_black.png" height="30px">
-						</span>
+							<a href="#">
+								<img alt="reserve_btn" src="/resources/images/movie/reserve_btn.png" width="73px">
+							</a>
+						</div>
 					</div>
 				</td>
 				
@@ -157,9 +169,12 @@
 							<strong>movie date</strong>
 						</span>
 						
-						<span class="boxLike">
+						<div class="boxLike">
 							<img alt="like" src="/resources/images/movie/heart_black.png" height="30px">
-						</span>
+							<a href="#">
+								<img alt="reserve_btn" src="/resources/images/movie/reserve_btn.png" width="73px">
+							</a>
+						</div>
 					</div>
 				</td>
 				
@@ -182,9 +197,12 @@
 							<strong>movie date</strong>
 						</span>
 						
-						<span class="boxLike">
+						<div class="boxLike">
 							<img alt="like" src="/resources/images/movie/heart_black.png" height="30px">
-						</span>
+							<a href="#">
+								<img alt="reserve_btn" src="/resources/images/movie/reserve_btn.png" width="73px">
+							</a>
+						</div>
 					</div>
 				</td>
 				
@@ -207,9 +225,12 @@
 							<strong>movie date</strong>
 						</span>
 						
-						<span class="boxLike">
+						<div class="boxLike">
 							<img alt="like" src="/resources/images/movie/heart_black.png" height="30px">
-						</span>
+							<a href="#">
+								<img alt="reserve_btn" src="/resources/images/movie/reserve_btn.png" width="73px">
+							</a>
+						</div>
 					</div>
 				</td>
 			</tr>

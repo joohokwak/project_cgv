@@ -23,7 +23,7 @@
 				</li>
 				
 				<li class="topmenu02">
-					<a href="#">
+					<a href="/member/memberJoin">
 						<img src="/resources/images/header/img_join.jpg">
 					</a>
 				</li>

@@ -16,7 +16,7 @@
 		</tr>
 		
 		<tr>
-			<td style="background: url('resources/images/footer/block2.png'); width: 100%;" height="116"></td>
+			<td style="background: url('/resources/images/footer/block2.png'); width: 100%;" height="116"></td>
 		</tr>
 	</table>
 </div>
