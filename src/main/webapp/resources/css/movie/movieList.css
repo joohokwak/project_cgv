@@ -1,0 +1,121 @@
+@CHARSET "UTF-8";
+
+#movieListWrap {
+	margin: 0 auto;
+	width: 100%;
+	margin-top: 70px;
+}
+
+#movieListTable1 {
+	margin: 0 auto;
+	width: 980px;
+	border-spacing: 0;
+}
+
+.boxImg {
+	position: relative;
+	width: 197px;
+	min-height: 272px;
+	margin-bottom: 10px;
+	margin-top: 30px;
+}
+
+.rankUp {
+	display: block;
+	height: 28px;
+	margin-bottom: 4px;
+	border: 6px solid #000000;
+	background-color: rgb(231, 26, 15);
+	color: #ffffff;
+	font-size: 19px;
+	text-align: center;
+	line-height: 28px;
+}
+
+.rankDown {
+	display: block;
+	height: 28px;
+	margin-bottom: 4px;
+	border: 6px solid #000000;
+	background-color: #333333;
+	color: #ffffff;
+	font-size: 19px;
+	text-align: center;
+	line-height: 28px;
+}
+
+.thumb-image {
+	width: 185px;
+	height: 260px;
+	display: block;
+	position: relative;
+	border: 6px solid #000000;
+}
+
+.thumb-image img {
+	width: 185px;
+	height: 260px;	
+}
+
+.boxContents {
+	width: 197px;
+	height: 93px;
+}
+
+.boxTitle {
+	display: block;	
+	font-size: 15px;
+}
+
+.boxDate {
+	display: block;
+	font-size: 12px;
+}
+
+#chart_ad {
+	width: 199px;
+	height: 424px;
+	width: 189px;
+    height: 414px;
+    padding: 2px;
+    border: 3px solid #070707;
+    background: #212120;
+}
+
+#boxChart {
+    padding: 13px 14px 12px;
+    border: 1px solid #070707;
+    background: #222221;
+}
+
+#chart_ad_desc {
+	width: 160px;
+    margin: 0 auto;
+    padding: 16px 0 0 0;
+    background: #212120;
+}
+
+#chart_ad_desc #span1 {
+	position: relative;
+	top: -3px;
+    font-size: 16px;
+    font-weight: bold;
+    padding-left: 4px;
+    background: #212120;
+    color: white;
+}
+
+#chart_ad_desc #span2 {
+	font-size: 14px;
+    font-weight: bold;
+	background: #212120;
+    color: white;
+}
+
+#chart_ad_desc hr {
+	height: 2px;
+	margin: 3px;
+}
+
+
+

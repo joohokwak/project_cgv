@@ -66,7 +66,7 @@
 				
 				<div id="gnb" style="width: 350px; position: relative; top: -142px; background: rgba(255,255,255,0.1);">
 					<ul style="list-style: none;">
-						<li><a href="#">영화</a></li>
+						<li><a href="movieList">영화</a></li>
 						<li><a href="#">예매</a></li>
 						<li><a href="#">극장</a></li>
 						<li style="margin-right: 0px;"><a href="boardlist">컬쳐</a></li>
