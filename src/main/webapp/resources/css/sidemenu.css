@@ -1,0 +1,37 @@
+@CHARSET "UTF-8";
+
+#sidemenuWrap {
+	width: 116px;
+	height: 642px;
+    padding: 0px;
+    margin: 30px 0px 0px 0px;
+    position: absolute;
+    left: 1460px;
+    top: 170px;
+}
+
+#side_contents_top {
+	width: 103px;
+	height: 554px;
+	border: 3px solid red;
+    border-radius: 10px;
+    padding-top: 3px;
+    background: #fdfcf0;
+}
+
+#btn-top {
+	width: 116px;
+    height: 72px;
+	font-size: 100%;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    word-break: break-all;
+}
+
+#btn-top a {
+    width: 116px;
+    height: 72px;
+    background: url(/resources/images/body/btn_top.png) no-repeat 0 0;
+}
