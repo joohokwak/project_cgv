@@ -39,7 +39,8 @@ create table genre(
 
 create table movie(
 	m_num int primary key auto_increment,
-	m_title varchar(200),
+	m_title1 varchar(200),
+	m_title2 varchar(200),
 	m_producer varchar(100),
 	m_grade varchar(30),
 	m_time int,
