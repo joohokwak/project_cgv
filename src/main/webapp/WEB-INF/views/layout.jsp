@@ -13,7 +13,10 @@
 	</style>
 </head>
 <body>
-	<div style="width: 100%; margin: 0 auto;">
+	<tiles:insertAttribute name="header"/>
+	<tiles:insertAttribute name="body"/>
+	<tiles:insertAttribute name="footer"/>
+	<%-- 	<div style="width: 100%; margin: 0 auto;">
 		<table style="width: 100%; border-spacing: 0;">
 			<tr>
 				<td>
@@ -35,6 +38,6 @@
 				</td>
 			</tr>
 		</table>
-	</div>
+	</div> --%>
 </body>
 </html>

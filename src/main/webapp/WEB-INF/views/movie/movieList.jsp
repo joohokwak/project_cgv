@@ -9,6 +9,7 @@
 	<link rel="stylesheet" style="text/css" href="resources/css/movie/movieList.css">
 </head>
 <body>
+	
 	<div id="movieListWrap">
 		
 <%-- 		<c:forEach var="movie" items="${movieList }"> --%>
@@ -211,6 +212,12 @@
 								
 							</span>
 						</div>
+					</td>
+				</tr>
+				
+				<tr>
+					<td colspan="4">
+						<hr style="width: 935px; background-color: black; height: 3px;">
 					</td>
 				</tr>
 			</table>
