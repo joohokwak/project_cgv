@@ -22,7 +22,7 @@
 		</tr>
 	
 		<tr>
-			<td align="center" style="background: url('/resources/images/body/block.png') no-repeat; background-size: 100% 450px;">
+			<td align="center" style="background: url('/resources/images/body/block.png') repeat-x; background-size: 100% 450px;">
 				<div class="slider-wrapper theme-default" style="width: 980px; background: #fdfcf0; border: none; margin-top: 0;">
 		            <div id="slider" class="nivoSlider" style="height: 450px;">
 						<a href="#"><img alt="" src="/resources/images/body/14955234602430.jpg"></a>
