@@ -1,0 +1,53 @@
+@CHARSET "UTF-8";
+
+#movieDetailWrap {
+	margin: 0 auto;
+	width: 980px;
+	margin-top: 70px;
+}
+
+#detailPoster {
+	float: left;
+	width: 185px;
+	height: 260px;
+}
+
+#detailContents {
+	float: left;
+	width: 763px;
+	height: 273px;
+	margin-left: 30px;
+	position: relative;
+}
+
+#detailTitle {
+	width: 100%;
+	height: 44px;
+	color: #1a1919;
+    font-size: 25px;
+    font-weight: bold;
+    vertical-align: middle;
+}
+
+#detailSpec {
+	position: relative;
+	width: 100%;
+	height: 118px;
+	border-top: 1px solid gray;
+	padding-top: 18px;
+    line-height: 1.6;
+    margin-top: 20px;
+    color: #1a1919;
+    font-weight: bold;
+}
+
+#detailLike {
+	position: relative;
+	width: 100%;
+	height: 35px;
+	margin-top: 22px;
+}
+
+
+
+

@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.project.cgv.service.BoardService;
 
 @Controller
+@RequestMapping("/board/*")
 public class BoardController {
 	
 	@Autowired private BoardService bService;

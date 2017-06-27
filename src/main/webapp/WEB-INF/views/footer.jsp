@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 	<style type="text/css">
 		#footerWrap {
-			margin: 0 auto; width: 100%; height: 259px; border-top: 1px solid gray; margin-top: 20px;
+			clear: both; margin: 0 auto; width: 100%; height: 259px; border-top: 1px solid gray; margin-top: 20px;
 		}
 	</style>
 	

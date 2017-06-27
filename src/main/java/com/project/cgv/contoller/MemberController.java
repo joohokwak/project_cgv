@@ -7,6 +7,7 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import com.project.cgv.service.MemberService;
 
 @Controller
+@RequestMapping("/member/*")
 public class MemberController {
 	
 	@Autowired private MemberService mService;
