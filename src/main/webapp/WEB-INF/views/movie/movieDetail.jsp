@@ -6,6 +6,8 @@
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 	<link rel="stylesheet" type="text/css" href="/resources/css/movie/movieDetail.css">
+	<link href="/resources/css/movie/fotorama.css" rel="stylesheet">
+	<script src="/resources/js/fotorama.js"></script>
 	<script type="text/javascript">
 		var cnt = 0;
 		$(function() {
@@ -85,9 +87,14 @@
 				<h4>스틸컷</h4>
 			</div>
 			
-			<table border="1">
+			<table>
 				<tr>
-					<td></td>
+					<td align="center">
+						<div class="fotorama" data-allowfullscreen="true" data-nav="thumbs">
+							<img alt="" src="/resources/images/movie/poster/79748145622_727.jpg">
+							<img alt="" src="/resources/images/movie/poster/79748145623_727.jpg">
+						</div>
+					</td>
 				</tr>
 			</table>
 		</div>
