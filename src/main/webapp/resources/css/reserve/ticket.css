@@ -71,7 +71,7 @@
 	width: 212px;
     height: 100%;
     padding-right: 2px;
-    background: url(http://img.cgv.co.kr/CGV_RIA/Ticket/image/reservation/tnb/tnb_steps.png) no-repeat 50% 40px;
+    background: url('/resources/images/reserve/tnb_steps.png') no-repeat 50% 40px;
     position: relative;
     color: #cccccc;
 }
@@ -89,7 +89,7 @@
 	float: left;
 	width: 187px;
     height: 100%;
-    background: url(http://img.cgv.co.kr/CGV_RIA/Ticket/image/reservation/tnb/tnb_steps.png) no-repeat 50% -68px;
+    background: url('/resources/images/reserve/tnb_steps.png') no-repeat 50% -68px;
 }
 
 #infoPath {
@@ -106,7 +106,7 @@
     display: inline-block;
     zoom: 1;
     margin-left: 23px;
-    background: url(http://img.cgv.co.kr/CGV_RIA/Ticket/image/reservation/tnb/tnb_steps.png) no-repeat 50% -190px;
+    background: url('/resources/images/reserve/tnb_steps.png') no-repeat 50% -187px;
 }
 
 #path3 {
@@ -115,7 +115,7 @@
     margin-left: 18px;
     display: inline-block;
     zoom: 1;
-    background: url(http://img.cgv.co.kr/CGV_RIA/Ticket/image/reservation/tnb/tnb_steps.png) no-repeat 50% -298px;
+    background: url('/resources/images/reserve/tnb_steps.png') no-repeat 50% -295px;
 }
 
 #step-btn {
@@ -124,9 +124,18 @@
 	float: right;
 	display: inline-block;
 	top: 10px;
-	background: url(http://img.cgv.co.kr/CGV_RIA/Ticket/image/reservation/tnb/tnb_buttons.png) no-repeat 0 -220px;
+	background: url('/resources/images/reserve/tnb_buttons.png') no-repeat 0 -220px;
     overflow: hidden;
     text-indent: -1000px;
     top: 10px;
     right: 0;
+}
+
+#col-head {
+	width: 100%;
+    height: 33px;
+    background-color: #333333;
+    background: url("/resources/images/reserve/titles.png") no-repaet 50% 8px;
+	position: relative;
+    line-height: 33px;
 }

@@ -11,7 +11,9 @@
 	<div id="ticketSelectWrap">
 		<div id="step">
 			<div id="section-movie">
-				
+				<div id="col-head">
+					
+				</div>
 			</div>
 			
 			<div id="section-theater">
