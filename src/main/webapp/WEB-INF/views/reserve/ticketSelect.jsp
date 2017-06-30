@@ -11,21 +11,19 @@
 	<div id="ticketSelectWrap">
 		<div id="step">
 			<div id="section-movie">
-				<div id="col-head">
-					
-				</div>
+				<div class="col-head">영화</div>
 			</div>
 			
 			<div id="section-theater">
-				
+				<div class="col-head">극장</div>
 			</div>
 			
 			<div id="section-date">
-				
+				<div class="col-head">날짜</div>
 			</div>
 			
 			<div id="section-time">
-				
+				<div class="col-head">시간</div>
 			</div>
 		</div>
 	</div>

@@ -3,6 +3,7 @@ package com.project.cgv.contoller;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 
 import com.project.cgv.service.MemberService;
 
@@ -14,7 +15,12 @@ public class MemberController {
 	
 	@RequestMapping("/memberJoin")
 	public String memberJoinForm() {
-		return ".member.joinForm";
+		return ".reserve.member.joinForm";
+	}
+	
+	@RequestMapping(value="/login", method=RequestMethod.GET)
+	public String loginForm() {
+		return ".member.loginForm";
 	}
 	
 }

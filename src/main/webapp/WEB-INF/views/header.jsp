@@ -17,7 +17,7 @@
 		<div id="topmenu">
 			<ul>
 				<li class="topmenu01">
-					<a href="#">
+					<a href="/member/login">
 						<img src="/resources/images/header/img_login.jpg">
 					</a>
 				</li>
