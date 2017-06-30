@@ -15,6 +15,33 @@
 			<div id="tab-menu">
 				<div id="tab-on">로그인</div>
 			</div>
+			
+			<div id="tab-login">
+				<div id="loginIcon">
+					<img alt="loginIcon" src="/resources/images/login/login_icon4_03.png">
+					
+					<p>
+						귀하의 정보보호를 위해 실제 사용자가<br>
+						요청을 보내고 있는지 <br>
+						확인하는 절차를 거치고 있습니다.
+					</p>
+				</div>
+				
+				<div id="loginCheckForm">
+					<form action="#" method="post">
+						<div id="idForm">
+							<input type="text" name="id">
+						</div>
+						<div id="pwForm">
+							<input type="password" name="pass">
+						</div>
+						
+						<div id="loginButton">
+							<input type="submit" value="로그인">
+						</div>
+					</form>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

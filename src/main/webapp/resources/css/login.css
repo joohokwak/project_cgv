@@ -41,3 +41,89 @@
 	top: 2px;
 	line-height: 31px;
 }
+
+#tab-login {
+	width: 541px;
+	height: 298px;
+	display: inline-block;
+	margin: 0 auto;
+	border-bottom: 2px solid gray;
+}
+
+#loginIcon {
+	width: 247px;
+	height: 100%;
+	float: left;
+}
+
+#loginIcon img {
+	position: relative;
+	top: 30%;
+}
+
+#loginIcon p {
+	padding-top: 70px;
+}
+
+#loginCheckForm {
+	position: relative;
+	top: 30%;
+	width: 277px;
+	height: 100%;
+	float: right;
+}
+
+#idForm {
+	width: 265px;
+	height: 33px;
+    background: url('/resources/images/login/sprite_icon.png') 12px -230px no-repeat;
+    border: 2px solid #cccccc;
+}
+
+#pwForm {
+	margin-top: 5px;
+	width: 265px;
+	height: 33px;
+    background: url('/resources/images/login/sprite_icon.png') 12px -261px no-repeat;
+    border: 2px solid #cccccc;
+}
+
+#idForm input[type="text"] {
+	position: relative;
+	height: 20px;
+	top: 5px;
+	border: none;
+	background-color: #fdfcf0;
+}
+
+#pwForm input[type="password"] {
+	position: relative;
+	height: 20px;
+	top: 5px;
+	border: none;
+	background-color: #fdfcf0;
+}
+
+#loginButton {
+    width: 265px;
+    height: 36px;
+    line-height: 37px;
+    left: 0;
+    position: static;
+    margin-top: 10px;
+    padding: 2px;
+    background: #e71a0f;
+    text-align: center;
+}
+
+#loginButton input[type="submit"] {
+	display: block;
+    width: 265px;
+    height: 36px;
+    border: 1px solid #f07469;
+    color: #f2f0e5;
+    font-size: 15px;
+    font-family: 'NanumBarunGothicBold';
+    background: #e71a0f;
+    cursor: pointer;
+}
