@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -7,6 +8,20 @@
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 	<link rel="stylesheet" style="text/css" href="/resources/css/movie/movieList.css">
+	<script type="text/javascript">
+		$(function() {
+			var boxCheck = false;
+			$(".heart-box").click(function(e) {
+				boxCheck = !boxCheck;
+				if(boxCheck) {
+					$(this).css("background", "url(/resources/images/login/sprite_icon.png) -83px -65px no-repeat");
+				}else {
+					$(this).css("background", "url(/resources/images/login/sprite_icon.png) -60px -65px no-repeat");
+				}
+				return false;
+			});
+		});
+	</script>
 </head>
 <body>
 	
@@ -18,6 +33,36 @@
 					<div class="boxImg">
 						<strong class="rankUp">No.1</strong>
 						<a href="movieDetail?m_num=1">
+							<span class="thumb-image">
+								<img alt="" src="/resources/images/movie/poster/79741_185.jpg">
+							</span>
+						</a>
+						<strong id="no1"></strong>
+					</div>
+					
+					<div class="boxContents">
+						<a href="#">
+							<strong class="boxTitle">movie title</strong>
+						</a>
+						
+						<span class="boxDate">
+							<strong>movie date</strong>
+						</span>
+						
+						<div class="boxLike">
+							<a href="#" class="heart-box"></a>
+							<span class="like_count">
+								<fmt:formatNumber value="12345" type="number"/>
+							</span>
+							<a href="#" class="reserve_btn"></a>
+						</div>
+					</div>
+				</td>
+				
+				<td>
+					<div class="boxImg">
+						<strong class="rankUp">No.2</strong>
+						<a href="#">
 							<span class="thumb-image">
 								<img alt="" src="/resources/images/movie/poster/trans.jpg">
 							</span>
@@ -34,38 +79,11 @@
 						</span>
 						
 						<div class="boxLike">
-							<img alt="like" src="/resources/images/movie/heart_black.png" height="30px">
-							<a href="#">
-								<img alt="reserve_btn" src="/resources/images/movie/reserve_btn.png" width="73px">
-							</a>
-						</div>
-					</div>
-				</td>
-				
-				<td>
-					<div class="boxImg">
-						<strong class="rankUp">No.2</strong>
-						<a href="#">
-							<span class="thumb-image">
-								<img alt="" src="/resources/images/no_image.png">
+							<a href="#" class="heart-box"></a>
+							<span class="like_count">
+								<fmt:formatNumber value="12345" type="number"/>
 							</span>
-						</a>
-					</div>
-					
-					<div class="boxContents">
-						<a href="#">
-							<strong class="boxTitle">movie title</strong>
-						</a>
-						
-						<span class="boxDate">
-							<strong>movie date</strong>
-						</span>
-						
-						<div class="boxLike">
-							<img alt="like" src="/resources/images/movie/heart_black.png" height="30px">
-							<a href="#">
-								<img alt="reserve_btn" src="/resources/images/movie/reserve_btn.png" width="73px">
-							</a>
+							<a href="#" class="reserve_btn"></a>
 						</div>
 					</div>
 				</td>
@@ -90,10 +108,11 @@
 						</span>
 						
 						<div class="boxLike">
-							<img alt="like" src="/resources/images/movie/heart_black.png" height="30px">
-							<a href="#">
-								<img alt="reserve_btn" src="/resources/images/movie/reserve_btn.png" width="73px">
-							</a>
+							<a href="#" class="heart-box"></a>
+							<span class="like_count">
+								<fmt:formatNumber value="12345" type="number"/>
+							</span>
+							<a href="#" class="reserve_btn"></a>
 						</div>
 					</div>
 				</td>
@@ -142,10 +161,11 @@
 						</span>
 						
 						<div class="boxLike">
-							<img alt="like" src="/resources/images/movie/heart_black.png" height="30px">
-							<a href="#">
-								<img alt="reserve_btn" src="/resources/images/movie/reserve_btn.png" width="73px">
-							</a>
+							<a href="#" class="heart-box"></a>
+							<span class="like_count">
+								<fmt:formatNumber value="12345" type="number"/>
+							</span>
+							<a href="#" class="reserve_btn"></a>
 						</div>
 					</div>
 				</td>
@@ -170,10 +190,11 @@
 						</span>
 						
 						<div class="boxLike">
-							<img alt="like" src="/resources/images/movie/heart_black.png" height="30px">
-							<a href="#">
-								<img alt="reserve_btn" src="/resources/images/movie/reserve_btn.png" width="73px">
-							</a>
+							<a href="#" class="heart-box"></a>
+							<span class="like_count">
+								<fmt:formatNumber value="12345" type="number"/>
+							</span>
+							<a href="#" class="reserve_btn"></a>
 						</div>
 					</div>
 				</td>
@@ -198,10 +219,11 @@
 						</span>
 						
 						<div class="boxLike">
-							<img alt="like" src="/resources/images/movie/heart_black.png" height="30px">
-							<a href="#">
-								<img alt="reserve_btn" src="/resources/images/movie/reserve_btn.png" width="73px">
-							</a>
+							<a href="#" class="heart-box"></a>
+							<span class="like_count">
+								<fmt:formatNumber value="12345" type="number"/>
+							</span>
+							<a href="#" class="reserve_btn"></a>
 						</div>
 					</div>
 				</td>
@@ -226,10 +248,11 @@
 						</span>
 						
 						<div class="boxLike">
-							<img alt="like" src="/resources/images/movie/heart_black.png" height="30px">
-							<a href="#">
-								<img alt="reserve_btn" src="/resources/images/movie/reserve_btn.png" width="73px">
-							</a>
+							<a href="#" class="heart-box"></a>
+							<span class="like_count">
+								<fmt:formatNumber value="12345" type="number"/>
+							</span>
+							<a href="#" class="reserve_btn"></a>
 						</div>
 					</div>
 				</td>

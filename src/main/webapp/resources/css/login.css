@@ -58,16 +58,16 @@
 
 #loginIcon img {
 	position: relative;
-	top: 30%;
+	top: 22%;
 }
 
 #loginIcon p {
-	padding-top: 70px;
+	padding-top: 58px;
 }
 
 #loginCheckForm {
 	position: relative;
-	top: 30%;
+	top: 22%;
 	width: 277px;
 	height: 100%;
 	float: right;
@@ -126,4 +126,16 @@
     font-family: 'NanumBarunGothicBold';
     background: #e71a0f;
     cursor: pointer;
+    font-weight: bold;
 }
+
+#findIdPw {
+	width: 265px;
+	height: 30px;
+	margin-top: 5px;
+	text-align: right;
+}
+
+
+
+
