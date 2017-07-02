@@ -132,6 +132,7 @@
     text-indent: -1000px;
     top: 10px;
     right: 0;
+    cursor: pointer;
 }
 
 .col-head {
@@ -162,27 +163,14 @@
     margin-left: 7px;
     text-align: center;
     overflow-y: auto;
-    border: 1px soild red;
     font-weight: bold;
 }
 
-#date-dimmed {
-	position: relative;
-	margin-top: 60px;
-	padding-left: 3px;
-	text-align: center;
-	display: table-cell;
-	vertical-align: middle;
+#date_table {
+	width: 100%;
 }
 
-.select-date div {
-	width: 56px;
-	height: 29px;
-	text-align: center;
-	line-height: 29px;
-}
-
-.select-date:hover {
+.select-date {
 	position: relative;
 	background: #333;
     height: 31px;
@@ -192,10 +180,11 @@
     padding: 2px;
 }
 
-.select-date div:HOVER {
+.select-date2 {
 	position: relative;
 	background: #333;
 	border: 1px solid #5c5c5c;
+	color: white;
 }
 
 #month-dimmed {

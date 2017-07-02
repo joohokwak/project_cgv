@@ -7,7 +7,7 @@
 	<!-- reserve -->
 	<definition name=".reserve.ticket.main" template="/WEB-INF/views/reserve/reserve_layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/header.jsp"/>
-		<put-attribute name="body" value="/WEB-INF/views/reserve/ticketSelect.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/reserve/reserveHome.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp"/>
 	</definition>
 	

@@ -54,7 +54,7 @@
 				</li>
 				
 				<li>
-					<a href="/reserve/ticketSelect">
+					<a href="/reserve/reserveHome">
 						<img src="/resources/images/header/img_menu_02.jpg">
 					</a>
 				</li>
