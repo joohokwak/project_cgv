@@ -75,6 +75,12 @@ create table video(
 	foreign key(m_num) references movie(m_num)
 );
 
+create table admin(
+	admin_id varchar(50) primary key,
+	admin_pass varchar(50)
+);
+
+insert into admin values('admin','123');
 
 create table notice(
 	n_num int primary key auto_increment,
@@ -84,4 +90,69 @@ create table notice(
 	n_regdate timestamp default now(),
 	n_hit int default 0
 );
+
+insert into notice values(0,'극장','[CGV용산아이파크몰] 4관 SKYBOX 온라인 예매 이용 제한 안내','내용',now(),0);
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징1','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징2','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징3','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징4','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징5','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징6','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징7','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징8','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징9','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징10','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징11','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징12','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징13','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징14','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징15','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징16','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징17','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징18','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징19','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징20','내용없음');
+
+#은 주석. 지우지 않아도 됨.
+
+#스틸컷 테이블
+create table stealcut(
+ sc_num int primary key auto_increment,
+ m_num int,
+ sc_img varchar(300),
+ foreign key(m_num) references movie(m_num)
+);
+
+#극장 테이블
+create table theater(
+ t_num int primary key auto_increment,
+ t_name varchar(30),
+ t_addr varchar(100),
+ t_tel varchar(20),
+ t_cnt_screen int #상영관 개수
+);
+
+이름, 상영관 개수,
+
+#상영관  
+create table screen(
+ s_num int primary key auto_increment,
+ s_title varchar(20), #상영관의 이름
+ t_num int, #극장fk
+ m_num int, #영화fk
+ s_cnt_seat int, #좌석의 개수
+ foreign key(t_num) references theater(t_num),
+ foreign key(m_num) references movie(m_num)
+);
+
+#좌석
+create table seat(
+ seat_num int primary key auto_increment,
+ s_num int, #상영관 fk
+ seat_name int, #좌석번호 
+ foreign key(s_num) references screen(s_num) 
+);
+
+
+
 
