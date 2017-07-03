@@ -10,6 +10,8 @@
 	<link rel="stylesheet" href="/resources/css/jquery.mCustomScrollbar.css" />
 	<script src="/resources/js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script type="text/javascript">
+		var select_movie_num;
+	
 		$(function() {
 			$("#date-list").mCustomScrollbar({theme:"rounded-dark"});
 			
@@ -45,7 +47,7 @@
 							}
 							
 							$("#date_table").append("<div id='date_year' style='text-align: center; font-size: 14px; font-weight: bold; margin-top: 30px;'>"+ toYear +"</div>");
-							$("#date_table").append("<div id='date_month' style='text-align: center; font-size: 30px; font-weight: bold; color: #666666;'>"+ nextMonth +"</div>");
+							$("#date_table").append("<div id='date_month' style='text-align: center; font-size: 30px; font-weight: bold; color: #666666; margin-bottom: 20px;'>"+ nextMonth +"</div>");
 							nextCheck = 1;
 						}
 					
@@ -59,11 +61,14 @@
 						//날짜 목록 div로 추가하기
 						if(i < index) {
 							if(day[wDay] == '토') {
-								$("#date_table").append("<div class='choice_date' style='cursor:pointer;color:blue;height:31px;line-height: 29px;'><div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
+								$("#date_table").append("<div class='choice_date' style='cursor:pointer;color:blue;height:33px;line-height: 31px; padding:2px;'>"+
+								"<div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
 							}else if(day[wDay] == '일') {
-								$("#date_table").append("<div class='choice_date' style='cursor:pointer;color:red;height:31px;line-height: 29px;'><div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
+								$("#date_table").append("<div class='choice_date' style='cursor:pointer;color:red;height:33px;line-height: 31px; padding:2px;'>"+
+								"<div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
 							}else {
-								$("#date_table").append("<div class='choice_date' style='cursor:pointer;height:31px;line-height: 29px;'><div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
+								$("#date_table").append("<div class='choice_date' style='cursor:pointer;height:33px;line-height: 31px; padding:2px;'>"+
+								"<div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
 							}
 						}
 						
@@ -77,11 +82,14 @@
 						//날짜 목록 div로 추가하기
 						if(i < index) {
 							if(day[wDay] == "토"){
-								$("#date_table").append("<div class='choice_date' style='cursor:pointer;color:blue;height:31px;line-height: 29px;'><div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
+								$("#date_table").append("<div class='choice_date' style='cursor:pointer;color:blue;height:33px;line-height: 31px; padding:2px;'>"+
+								"<div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
 							}else if(day[wDay] == "일") {
-								$("#date_table").append("<div class='choice_date' style='cursor:pointer;color:red;height:31px;line-height: 29px;'><div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
+								$("#date_table").append("<div class='choice_date' style='cursor:pointer;color:red;height:33px;line-height: 31px; padding:2px;'>"+
+								"<div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
 							}else {
-								$("#date_table").append("<div class='choice_date' style='cursor:pointer;height:31px;line-height: 29px;'><div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
+								$("#date_table").append("<div class='choice_date' style='cursor:pointer;height:33px;line-height: 31px; padding:2px;'>"+
+								"<div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
 							}
 						}
 					}
@@ -97,6 +105,35 @@
 				});
 			});// 날짜 end
 			
+			// 영화 선택시
+			$(".col-movie").click(function(e) {
+				$(".col-movie").css("background", "#fdfcf0");
+				$(".col-movie").find(".text").css("color", "#333");
+				$(".col-movie").find(".col-movie2").css("border", "none");
+				
+				$("#infoMovie").css("background", "none");
+				$("#infoMovie").find("table").remove();
+				
+				select_movie_num = $(this).find(".m_num").val();
+				var m_poster = $(this).find(".m_poster").val();
+				var m_title1 = $(this).find(".m_title1").val();
+				var m_grade = $(this).find(".m_grade").val();
+				
+				var table = $("<table style='border-spacing: 0; width: 214px; height: 108px; position: relative; top: -58%;'>");
+				
+				table.append($("<tr>").append("<td width='74px' rowspan='2'><img src='/resources/images/movie/poster/"+m_poster+"' width='74px' height='104px'></td>")
+						.append("<td align='left'><div style='margin-left: 5px; overflow: hidden; font-weight: bold;'>"+m_title1+"</div></td>"));
+				table.append($("<tr><td align='left'><div style='margin-left: 5px; font-weight: bold;'>"+m_grade+"</div></td></tr>"))
+				
+				$("#infoMovie").append(table);
+				
+				$(this).css("background", "#333");
+				$(this).find(".text").css("color", "#fff");
+				
+				$(this).find(".col-movie2").css("border", "1px solid gray");
+				
+			});
+			
 			// 좌석선택 버튼 클릭시
 			$("#step-btn").click(function(e) {
 				$(this).css("background", "url('/resources/images/reserve/tnb_buttons.png') no-repeat -150px -220px")
@@ -109,6 +146,38 @@
 		<div id="step">
 			<div id="section-movie">
 				<div class="col-head">영화</div>
+				<div id="col-head2">
+					&nbsp;&nbsp;예매율순
+					<span></span>
+				</div>
+				<div id="reserve-movie-list">
+					<c:forEach var="movie" items="${movieList }">
+						<div class="col-movie">
+							<input type="hidden" class="m_num" value="${movie.m_num }">
+							<input type="hidden" class="m_poster" value="${movie.m_poster }">
+							<input type="hidden" class="m_title1" value="${movie.m_title1 }">
+							<input type="hidden" class="m_grade" value="${movie.m_grade }">
+							<div class="col-movie2">
+								<c:choose>
+									<c:when test="${movie.m_grade == '12세 이상' }">
+										<div class="icon" style="background: url('/resources/images/reserve/icon_ratings.png') 0px -30px no-repeat;"></div>
+									</c:when>
+									<c:when test="${movie.m_grade == '15세 이상' }">
+										<div class="icon" style="background: url('/resources/images/reserve/icon_ratings.png') 0px -65px no-repeat;"></div>
+									</c:when>
+									<c:when test="${movie.m_grade == '청소년 관람불가' }">
+										<div class="icon" style="background: url('/resources/images/reserve/icon_ratings.png') 0px -100px no-repeat;"></div>
+									</c:when>
+									<c:otherwise>
+										<div class="icon" style="background: url('/resources/images/reserve/icon_ratings.png') 0px 0px no-repeat;"></div>
+									</c:otherwise>
+								</c:choose>
+								
+								<div class="text">${movie.m_title1 }</div>
+							</div>
+						</div>
+					</c:forEach>
+				</div>
 			</div>
 			
 			<div id="section-theater">
@@ -141,7 +210,6 @@
 			</div>
 			
 			<div id="infoTheater">
-				
 				<div class="infoBlock"></div>
 			</div>
 			

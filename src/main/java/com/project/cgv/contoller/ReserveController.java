@@ -3,20 +3,26 @@ package com.project.cgv.contoller;
 import java.util.Calendar;
 import java.util.HashMap;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+
+import com.project.cgv.service.MovieService;
 
 @Controller
 @RequestMapping("/reserve/*")
 public class ReserveController {
 	
-	
+	@Autowired private MovieService mvService;
 	
 	@RequestMapping("/reserveHome")
-	public String ticketSelect(Model model) {
+	public String ticketSelect(Model model, @RequestParam(value="m_num", defaultValue="1") int m_num) {
 		model.addAttribute("imgInfo", "h2_ticket.png");
+		model.addAttribute("movieList", mvService.movieList());
+		model.addAttribute("m_num", m_num);
 		return ".reserve.ticket.main";
 	}
 	

@@ -23,7 +23,7 @@
 	border-left: none;
 	position: relative;
     float: left;
-    margin-left: -1px;
+    margin-left: -0.5px;
     overflow: hidden;
 }
 
@@ -34,18 +34,18 @@
 	border-left: none;
 	position: relative;
     float: left;
-    margin-left: -1px;
+    margin-left: -0.3px;
     overflow: hidden;
 }
 
 #section-time {
-	width: 330px;
+	width: 328px;
 	height: 598px;
 	border: 2px solid #d4d3c9;
 	border-left: none;
 	position: relative;
     float: left;
-    margin-left: -1px;
+    margin-left: -0.5px;
     overflow: hidden;
 }
 
@@ -145,6 +145,7 @@
     font-size: 15px;
     font-weight: bold;
     text-align: center;
+    border: 1px solid #d4d3c9;
 }
 
 #col-body {
@@ -201,7 +202,7 @@
     height: 23px;
     margin-left: 20px;
     margin-top: 19px;
-    border-bottom: solid 2px #cfcdc3;
+    border-bottom: 2px solid #cfcdc3;
 }
 
 .time-option .morning {
@@ -219,6 +220,66 @@
     background: url(/resources/images/login/sprite_icon.png) 0px -193px no-repeat;
 }
 
+#col-head2 {
+	width: 254px;
+	height: 25px;
+	margin: 0 auto;
+	margin-top: 20px;
+	font-size: 13px;
+	font-weight: bold;
+    font-family: '돋움',dotum,Nanum Gothic,sans-serif;
+    border-bottom: 2px solid #d4d3c9;
+}
 
+#col-head2 span {
+	position: relative;
+	display: inline-block;
+	width: 254px;
+	height: 10px;
+	background: url(/resources/images/reserve/sortmenu_btn_on.png) no-repeat 0 100%;
+}
+
+#reserve-movie-list {
+	width: 254px;
+	height: auto;
+	margin: 0 auto;
+	margin-top: 10px;
+}
+
+.col-movie {
+	position: relative;
+	width: 250px;
+	height: 35px;
+	padding: 2px;
+}
+
+.col-movie2 {
+	position: relative;
+	width: 247px;
+	height: 31px;
+	cursor: pointer;
+}
+
+#reserve-movie-list .col-movie .icon {
+	display: table-cell;
+	vertical-align: middle;
+	margin-left: 9px;
+	width: 30px;
+	height: 35px;
+	float: left;
+}
+
+#reserve-movie-list .col-movie .text {
+	top: -22px;
+	width: 205px;
+	height: 35px;
+	line-height: 35px;
+	float: right;
+	color: #333;
+	font-size: 13px;
+	font-weight: bold;
+    font-family: '돋움',dotum,Nanum Gothic,sans-serif;
+    overflow: hidden;
+}
 
 
