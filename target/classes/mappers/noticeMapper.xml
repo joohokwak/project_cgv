@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.cgv.dao.NoticeDao">
+	<select id="selectAll" resultType="HashMap" parameterType="HashMap">
+		select * from notice order by n_num desc limit #{skip},#{qty};
+	</select>
+	
+	<select id="selectOne" parameterType="int" resultType="HashMap">
+		select * from notice where n_num=#{num}
+	</select>
+	
+	<select id="getCount" resultType="int">
+		select count(*) from notice;
+	</select>
+</mapper>

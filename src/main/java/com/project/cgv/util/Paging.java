@@ -10,6 +10,9 @@ public class Paging {
 	private int startPage;
 	private int endPage;
 	
+	private int skip;
+	private int qty;
+
 	public Paging() {}
 	
 	public Paging(int totalCount, int currentPageNumber) {
@@ -20,6 +23,9 @@ public class Paging {
 		
 		startPage = (currentPageNumber - 1) / 10 * 10 + 1;
 		endPage = ((currentPageNumber - 1) / 10 + 1) * 10;
+		
+		skip =  (currentPageNumber-1)*countPerPage;
+		qty = countPerPage;
 	}
 	
 	private void calculatePageTotalCount() {
@@ -42,7 +48,7 @@ public class Paging {
 		return totalCount;
 	}
 	
-	public void setMessageTotalCount(int totalCount) {
+	public void setTotalCount(int totalCount) {
 		this.totalCount = totalCount;
 	}
 	
@@ -72,6 +78,22 @@ public class Paging {
 
 	public void setEndPage(int endPage) {
 		this.endPage = endPage;
+	}
+	
+	public int getSkip() {
+		return skip;
+	}
+
+	public void setSkip(int skip) {
+		this.skip = skip;
+	}
+
+	public int getQty() {
+		return qty;
+	}
+
+	public void setQty(int qty) {
+		this.qty = qty;
 	}
 	
 }

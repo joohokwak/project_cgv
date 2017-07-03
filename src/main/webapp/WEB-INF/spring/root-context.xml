@@ -45,4 +45,11 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="noticeDao">
+		<property name="mapperInterface" value="com.project.cgv.dao.NoticeDao"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
+	
+	
 </beans>
