@@ -6,7 +6,7 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
-	<link rel="stylesheet" href="/resources/css/reserve/ticket.css">
+	<link rel="stylesheet" href="/resources/css/reserve/ticket.css?ver=1">
 	<link rel="stylesheet" href="/resources/css/jquery.mCustomScrollbar.css" />
 	<script src="/resources/js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script type="text/javascript">

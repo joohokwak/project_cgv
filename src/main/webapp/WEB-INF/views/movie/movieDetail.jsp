@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -15,9 +16,23 @@
 				if(cnt % 2 == 0) {
 					$(this).attr("src", "/resources/images/movie/heart_red.png");
 					cnt++;
+					$.ajax({
+						url: "/movie/likeUp?m_num=${m_num}",
+						dataType : "json",
+						success: function(data) {
+							$("#like_point").text(data);
+						}
+					});
 				}else {
 					$(this).attr("src", "/resources/images/movie/heart_black.png");
 					cnt = 0;
+					$.ajax({
+						url: "/movie/likeDown?m_num=${m_num}",
+						dataType : "json",
+						success: function(data) {
+							$("#like_point").text(data);
+						}
+					});
 				}
 			});
 		});
@@ -26,22 +41,22 @@
 <body>
 	<div id="movieDetailWrap">
 		<div id="detailPoster">
-			<img alt="" src="/resources/images/movie/poster/trans.jpg">
+			<img alt="" src="/resources/images/movie/poster/${m_poster }" width="185px" height="260px">
 		</div>
 		
 		<div id="detailContents">
 			<div id="detailTitle">
-				<strong>트랜스 포머 : 최후의 기사</strong>
+				<strong>${m_title1 }</strong>
 				<img alt="playingImg" src="/resources/images/movie/playing.png">
-				<div>Transformers: The Last Knight</div>
+				<div>${m_title2 }</div>
 			</div>
 			
 			<div id="detailSpec">
-				감독:<br>
-				배우:<br>
-				장르:<br>
-				개봉:<br>
-				공식사이트:
+				감독: ${m_producer }<br>
+				배우: <br>
+				장르: ${m_genre }<br>
+				개봉: ${m_start }<br>
+				공식사이트: <a href="http://${m_site }" target="_blank">${m_site }</a>
 			</div>
 			
 			<div id="detailLike">
@@ -49,7 +64,7 @@
 				<a href="#">
 					<img id="reserve_btn" alt="reserve_btn" src="/resources/images/movie/reserve_btn.png">
 				</a>
-				<div id="like_point">11010</div>
+				<div id="like_point">${m_like }</div>
 			</div>
 		</div>
 		
@@ -58,14 +73,7 @@
 		</div>
 		
 		<div id="movieStroy">
-			두 세상의 충돌, 하나만 살아남는다!           
- 
-			옵티머스 프라임은 더 이상 인간의 편이 아니다.
-			트랜스포머의 고향 사이버트론의 재건을 위해 지구에 있는 고대 유물을 찾아나선 옵티머스 프라임은
-			인류와 피할 수 없는 갈등을 빚고, 오랜 동료 범블비와도 치명적인 대결을 해야만 하는데…
-			 
-			영원한 영웅은 없다!
-			하나의 세상이 존재하기 위해선 다른 세상이 멸망해야 한다!
+			${m_content }
 		</div>
 		
 		<div id="trailer">
@@ -73,11 +81,11 @@
 				<h4>트레일러</h4>
 			</div>
 			
-			<table border="1">
+			<table>
 				<tr>
-					<td></td>
-					<td></td>
-					<td></td>
+					<c:forEach var="trailer" items="${trailerList }">
+						<td><iframe width="260" height="160" src="${trailer.v_addr }" frameborder="0" allowfullscreen></iframe></td>
+					</c:forEach>
 				</tr>
 			</table>
 		</div>
@@ -91,8 +99,9 @@
 				<tr>
 					<td align="center">
 						<div class="fotorama" data-allowfullscreen="true" data-nav="thumbs">
-							<img alt="" src="/resources/images/movie/poster/79748145622_727.jpg">
-							<img alt="" src="/resources/images/movie/poster/79748145623_727.jpg">
+							<c:forEach var="steal" items="${stealList }">
+								<img alt="" src="/resources/images/movie/stealcut/${steal.sc_img }">
+							</c:forEach>
 						</div>
 					</td>
 				</tr>

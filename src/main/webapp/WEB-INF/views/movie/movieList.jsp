@@ -10,16 +10,38 @@
 	<link rel="stylesheet" style="text/css" href="/resources/css/movie/movieList.css">
 	<script type="text/javascript">
 		$(function() {
-			var boxCheck = false;
 			$(".heart-box").click(function(e) {
-				boxCheck = !boxCheck;
-				if(boxCheck) {
+				var m_num = $(this).next().val();
+				var hBox = $(this);
+				
+				var flag = Number($(this).attr("data-flag"));
+				
+				if(flag == 0) {
 					$(this).css("background", "url(/resources/images/login/sprite_icon.png) -83px -65px no-repeat");
+					flag++;
+					$.ajax({
+						url: "/movie/likeUp?m_num="+m_num,
+						dataType : "json",
+						success: function(data) {
+							hBox.parent().find(".like_count").text(data);
+						}
+					});
 				}else {
 					$(this).css("background", "url(/resources/images/login/sprite_icon.png) -60px -65px no-repeat");
+					flag=0;
+					$.ajax({
+						url: "/movie/likeDown?m_num="+m_num,
+						dataType : "json",
+						success: function(data) {
+							hBox.parent().find(".like_count").text(data);
+						}
+					});
 				}
+				
+				$(this).attr("data-flag", flag);
 				return false;
 			});
+			
 		});
 	</script>
 </head>
@@ -30,91 +52,106 @@
 		<table id="movieListTable1">
 			<tr>
 				<td>
+				<c:forEach var="movie" items="${mvList }" varStatus="status">
+					<c:if test="${status.index == 0 }">
 					<div class="boxImg">
 						<strong class="rankUp">No.1</strong>
-						<a href="movieDetail?m_num=1">
+						<a href="/movie/movieDetail?m_num=${movie.m_num }">
 							<span class="thumb-image">
-								<img alt="" src="/resources/images/movie/poster/79741_185.jpg">
+								<img alt="" src="/resources/images/movie/poster/${movie.m_poster }">
 							</span>
 						</a>
 						<strong id="no1"></strong>
 					</div>
 					
 					<div class="boxContents">
-						<a href="#">
-							<strong class="boxTitle">movie title</strong>
+						<a href="/movie/movieDetail?m_num=${movie.m_num }">
+							<strong class="boxTitle">${movie.m_title1 }</strong>
 						</a>
 						
 						<span class="boxDate">
-							<strong>movie date</strong>
+							<strong>${movie.m_start } 개봉</strong>
 						</span>
 						
 						<div class="boxLike">
-							<a href="#" class="heart-box"></a>
+							<a href="#" class="heart-box" data-flag="0"></a>
+							<input type="hidden" id="m_num" value="${movie.m_num }">
 							<span class="like_count">
-								<fmt:formatNumber value="12345" type="number"/>
+								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
 							<a href="#" class="reserve_btn"></a>
 						</div>
 					</div>
+					</c:if>
+					</c:forEach>
 				</td>
 				
 				<td>
+					<c:forEach var="movie" items="${mvList }" varStatus="status">
+					<c:if test="${status.index == 1 }">
 					<div class="boxImg">
 						<strong class="rankUp">No.2</strong>
-						<a href="#">
+						<a href="/movie/movieDetail?m_num=${movie.m_num }">
 							<span class="thumb-image">
-								<img alt="" src="/resources/images/movie/poster/trans.jpg">
+								<img alt="" src="/resources/images/movie/poster/${movie.m_poster }">
 							</span>
 						</a>
 					</div>
 					
 					<div class="boxContents">
-						<a href="#">
-							<strong class="boxTitle">movie title</strong>
+						<a href="/movie/movieDetail?m_num=${movie.m_num }">
+							<strong class="boxTitle">${movie.m_title1 }</strong>
 						</a>
 						
 						<span class="boxDate">
-							<strong>movie date</strong>
+							<strong>${movie.m_start } 개봉</strong>
 						</span>
 						
 						<div class="boxLike">
-							<a href="#" class="heart-box"></a>
+							<a href="#" class="heart-box" data-flag="0"></a>
+							<input type="hidden" id="m_num" value="${movie.m_num }">
 							<span class="like_count">
-								<fmt:formatNumber value="12345" type="number"/>
+								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
 							<a href="#" class="reserve_btn"></a>
 						</div>
 					</div>
+					</c:if>
+					</c:forEach>
 				</td>
 				
 				<td>
+					<c:forEach var="movie" items="${mvList }" varStatus="status">
+					<c:if test="${status.index == 2 }">
 					<div class="boxImg">
 						<strong class="rankUp">No.3</strong>
-						<a href="#">
+						<a href="/movie/movieDetail?m_num=${movie.m_num }">
 							<span class="thumb-image">
-								<img alt="" src="/resources/images/no_image.png">
+								<img alt="" src="/resources/images/movie/poster/${movie.m_poster }">
 							</span>
 						</a>
 					</div>
 					
 					<div class="boxContents">
-						<a href="#">
-							<strong class="boxTitle">movie title</strong>
+						<a href="/movie/movieDetail?m_num=${movie.m_num }">
+							<strong class="boxTitle">${movie.m_title1 }</strong>
 						</a>
 						
 						<span class="boxDate">
-							<strong>movie date</strong>
+							<strong>${movie.m_start } 개봉</strong>
 						</span>
 						
 						<div class="boxLike">
-							<a href="#" class="heart-box"></a>
+							<a href="#" class="heart-box" data-flag="0"></a>
+							<input type="hidden" id="m_num" value="${movie.m_num }">
 							<span class="like_count">
-								<fmt:formatNumber value="12345" type="number"/>
+								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
 							<a href="#" class="reserve_btn"></a>
 						</div>
 					</div>
+					</c:if>
+					</c:forEach>
 				</td>
 				
 				<td>
@@ -142,119 +179,139 @@
 			
 			<tr>
 				<td>
+					<c:forEach var="movie" items="${mvList }" varStatus="status">
+					<c:if test="${status.index == 3 }">
 					<div class="boxImg">
 						<strong class="rankDown">No.4</strong>
-						<a href="#">
+						<a href="/movie/movieDetail?m_num=${movie.m_num }">
 							<span class="thumb-image">
-								<img alt="" src="/resources/images/no_image.png">
+								<img alt="" src="/resources/images/movie/poster/${movie.m_poster }">
 							</span>
 						</a>
 					</div>
 					
 					<div class="boxContents">
-						<a href="#">
-							<strong class="boxTitle">movie title</strong>
+						<a href="/movie/movieDetail?m_num=${movie.m_num }">
+							<strong class="boxTitle">${movie.m_title1 }</strong>
 						</a>
 						
 						<span class="boxDate">
-							<strong>movie date</strong>
+							<strong>${movie.m_start } 개봉</strong>
 						</span>
 						
 						<div class="boxLike">
-							<a href="#" class="heart-box"></a>
+							<a href="#" class="heart-box" data-flag="0"></a>
+							<input type="hidden" id="m_num" value="${movie.m_num }">
 							<span class="like_count">
-								<fmt:formatNumber value="12345" type="number"/>
+								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
 							<a href="#" class="reserve_btn"></a>
 						</div>
 					</div>
+					</c:if>
+					</c:forEach>
 				</td>
 				
 				<td>
+					<c:forEach var="movie" items="${mvList }" varStatus="status">
+					<c:if test="${status.index == 4 }">
 					<div class="boxImg">
 						<strong class="rankDown">No.5</strong>
-						<a href="#">
+						<a href="/movie/movieDetail?m_num=${movie.m_num }">
 							<span class="thumb-image">
-								<img alt="" src="/resources/images/no_image.png">
+								<img alt="" src="/resources/images/movie/poster/${movie.m_poster }">
 							</span>
 						</a>
 					</div>
 					
 					<div class="boxContents">
-						<a href="#">
-							<strong class="boxTitle">movie title</strong>
+						<a href="/movie/movieDetail?m_num=${movie.m_num }">
+							<strong class="boxTitle">${movie.m_title1 }</strong>
 						</a>
 						
 						<span class="boxDate">
-							<strong>movie date</strong>
+							<strong>${movie.m_start } 개봉</strong>
 						</span>
 						
 						<div class="boxLike">
-							<a href="#" class="heart-box"></a>
+							<a href="#" class="heart-box" data-flag="0"></a>
+							<input type="hidden" id="m_num" value="${movie.m_num }">
 							<span class="like_count">
-								<fmt:formatNumber value="12345" type="number"/>
+								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
 							<a href="#" class="reserve_btn"></a>
 						</div>
 					</div>
+					</c:if>
+					</c:forEach>
 				</td>
 				
 				<td>
+					<c:forEach var="movie" items="${mvList }" varStatus="status">
+					<c:if test="${status.index == 5 }">
 					<div class="boxImg">
 						<strong class="rankDown">No.6</strong>
-						<a href="#">
+						<a href="/movie/movieDetail?m_num=${movie.m_num }">
 							<span class="thumb-image">
-								<img alt="" src="/resources/images/no_image.png">
+								<img alt="" src="/resources/images/movie/poster/${movie.m_poster }">
 							</span>
 						</a>
 					</div>
 					
 					<div class="boxContents">
-						<a href="#">
-							<strong class="boxTitle">movie title</strong>
+						<a href="/movie/movieDetail?m_num=${movie.m_num }">
+							<strong class="boxTitle">${movie.m_title1 }</strong>
 						</a>
 						
 						<span class="boxDate">
-							<strong>movie date</strong>
+							<strong>${movie.m_start } 개봉</strong>
 						</span>
 						
 						<div class="boxLike">
-							<a href="#" class="heart-box"></a>
+							<a href="#" class="heart-box" data-flag="0"></a>
+							<input type="hidden" id="m_num" value="${movie.m_num }">
 							<span class="like_count">
-								<fmt:formatNumber value="12345" type="number"/>
+								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
 							<a href="#" class="reserve_btn"></a>
 						</div>
 					</div>
+					</c:if>
+					</c:forEach>
 				</td>
 				
 				<td>
+					<c:forEach var="movie" items="${mvList }" varStatus="status">
+					<c:if test="${status.index == 6 }">
 					<div class="boxImg">
 						<strong class="rankDown">No.7</strong>
-						<a href="#">
+						<a href="/movie/movieDetail?m_num=${movie.m_num }">
 							<span class="thumb-image">
-								<img alt="" src="/resources/images/no_image.png">
+								<img alt="" src="/resources/images/movie/poster/${movie.m_poster }">
 							</span>
 						</a>
 					</div>
 					
 					<div class="boxContents">
-						<a href="#">
-							<strong class="boxTitle">movie title</strong>
+						<a href="/movie/movieDetail?m_num=${movie.m_num }">
+							<strong class="boxTitle">${movie.m_title1 }</strong>
 						</a>
 						
 						<span class="boxDate">
-							<strong>movie date</strong>
+							<strong>${movie.m_start } 개봉</strong>
 						</span>
 						
 						<div class="boxLike">
-							<a href="#" class="heart-box"></a>
+							<a href="#" class="heart-box" data-flag="0"></a>
+							<input type="hidden" id="m_num" value="${movie.m_num }">
 							<span class="like_count">
-								<fmt:formatNumber value="12345" type="number"/>
+								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
 							<a href="#" class="reserve_btn"></a>
 						</div>
 					</div>
+					</c:if>
+					</c:forEach>
 				</td>
 			</tr>
 			
@@ -264,7 +321,6 @@
 				</td>
 			</tr>
 		</table>
-		 		
 	</div>
 </body>
 </html>
