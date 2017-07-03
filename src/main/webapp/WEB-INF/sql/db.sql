@@ -82,6 +82,7 @@ create table movie(
 	m_poster varchar(300),
 	m_genre varchar(300)
 );
+
 insert into movie values(0,'박열','Anarchist from Colony','이준익','12세 이상',129,'한국','메가박스(주)플러스엠','2017-06-28','2017-07-13',NULL,0,'"조선인에게는 영웅, 우리한텐 원수로 적당한 놈을 찾아."
 1923년, 관동대지진 이후 퍼진 괴소문으로 6천여 명의 무고한 조선인이 학살된다.
   사건을 은폐하기 위해, 관심을 돌릴 화젯거리가 필요했던 일본내각은
@@ -196,6 +197,38 @@ create table video(
 	foreign key(m_num) references movie(m_num)
 );
 
+insert into video values(0, 'https://www.youtube.com/embed/Q5xATvfTcRg', 1);
+insert into video values(0, 'https://www.youtube.com/embed/N-KYAsc3LCA', 1);
+insert into video values(0, 'https://www.youtube.com/embed/RL-qYJFaF7E', 1);
+
+insert into video values(0, 'https://www.youtube.com/embed/DY5OuHbTpVw', 2);
+insert into video values(0, 'https://www.youtube.com/embed/ABMxxbJ7qxE', 2);
+insert into video values(0, 'https://www.youtube.com/embed/DfZ5aDQ1aA0', 2);
+
+insert into video values(0, 'https://www.youtube.com/embed/UPUEJhhtqno', 3);
+insert into video values(0, 'https://www.youtube.com/embed/qt33oFY7U_g', 3);
+insert into video values(0, 'https://www.youtube.com/embed/_zU3U7E1Odc?list=PLA615D14FD3928289', 3);
+
+insert into video values(0, 'https://www.youtube.com/embed/-YHAdp0oZdo', 4);
+insert into video values(0, 'https://www.youtube.com/embed/Yb0h3ACB3sE', 4);
+insert into video values(0, 'https://www.youtube.com/embed/wzdaYNLeGqQ', 4);
+
+insert into video values(0, 'https://www.youtube.com/embed/Qecjb-xNpCw', 5);
+insert into video values(0, 'https://www.youtube.com/embed/RikkdvCqa8A', 5);
+insert into video values(0, 'https://www.youtube.com/embed/ErN3DPK6FcY', 5);
+
+insert into video values(0, 'https://www.youtube.com/embed/xROIWDtpKdg', 6);
+insert into video values(0, 'https://www.youtube.com/embed/6HifuDzhGro', 6);
+insert into video values(0, 'https://www.youtube.com/embed/ONmzggur5Cw', 6);
+
+insert into video values(0, 'https://www.youtube.com/embed/8Pt-F5my5Gw', 7);
+insert into video values(0, 'https://www.youtube.com/embed/vgYLz5gtOCI', 7);
+insert into video values(0, 'https://www.youtube.com/embed/FcpiKFlTWM8', 7);
+
+insert into video values(0, 'https://www.youtube.com/embed/2Tu2BxKVQss', 8);
+insert into video values(0, 'https://www.youtube.com/embed/RqLFB1nEaGI', 8);
+insert into video values(0, 'https://www.youtube.com/embed/ueURTHEzUbc', 8);
+
 create table admin(
 	admin_id varchar(50) primary key,
 	admin_pass varchar(50)
@@ -238,40 +271,98 @@ insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페�
 
 #스틸컷 테이블
 create table stealcut(
- sc_num int primary key auto_increment,
- m_num int,
- sc_img varchar(300),
- foreign key(m_num) references movie(m_num)
+	sc_num int primary key auto_increment,
+	m_num int,
+	sc_img varchar(300),
+	foreign key(m_num) references movie(m_num)
 );
+
+insert into stealcut values(0, 1, '79741145260_727.jpg');
+insert into stealcut values(0, 1, '79741145262_727.jpg');
+insert into stealcut values(0, 1, '79741145264_727.jpg');
+insert into stealcut values(0, 1, '79741145265_727.jpg');
+insert into stealcut values(0, 1, '79741145266_727.jpg');
+insert into stealcut values(0, 1, '79741145267_727.jpg');
+
+insert into stealcut values(0, 2, '79748145616_727.jpg');
+insert into stealcut values(0, 2, '79748145618_727.jpg');
+insert into stealcut values(0, 2, '79748145619_727.jpg');
+insert into stealcut values(0, 2, '79748145620_727.jpg');
+insert into stealcut values(0, 2, '79748145621_727.jpg');
+insert into stealcut values(0, 2, '79748145622_727.jpg');
+insert into stealcut values(0, 2, '79748145623_727.jpg');
+
+insert into stealcut values(0, 3, '79751145545_727.jpg');
+insert into stealcut values(0, 3, '79751145549_727.jpg');
+insert into stealcut values(0, 3, '79751145552_727.jpg');
+insert into stealcut values(0, 3, '79751145553_727.jpg');
+insert into stealcut values(0, 3, '79751145554_727.jpg');
+
+insert into stealcut values(0, 4, '79733145188_727.jpg');
+insert into stealcut values(0, 4, '79733145438_727.jpg');
+insert into stealcut values(0, 4, '79733145598_727.jpg');
+insert into stealcut values(0, 4, '79733145824_727.jpg');
+insert into stealcut values(0, 4, '79733145871_727.jpg');
+insert into stealcut values(0, 4, '79733145872_727.jpg');
+insert into stealcut values(0, 4, '79733145947_727.jpg');
+
+insert into stealcut values(0, 5, '79739145370_727.jpg');
+insert into stealcut values(0, 5, '79739145372_727.jpg');
+insert into stealcut values(0, 5, '79739145373_727.jpg');
+insert into stealcut values(0, 5, '79739145374_727.jpg');
+insert into stealcut values(0, 5, '79739145375_727.jpg');
+insert into stealcut values(0, 5, '79739145376_727.jpg');
+insert into stealcut values(0, 5, '79739145377_727.jpg');
+
+insert into stealcut values(0, 6, '79637145012_727.jpg');
+insert into stealcut values(0, 6, '79637145014_727.jpg');
+insert into stealcut values(0, 6, '79637145015_727.jpg');
+insert into stealcut values(0, 6, '79637145016_727.jpg');
+insert into stealcut values(0, 6, '79637145017_727.jpg');
+
+insert into stealcut values(0, 7, '79386145149_727.JPG');
+insert into stealcut values(0, 7, '79386145150_727.jpg');
+insert into stealcut values(0, 7, '79386145151_727.JPG');
+insert into stealcut values(0, 7, '79386145152_727.JPG');
+insert into stealcut values(0, 7, '79386145153_727.jpg');
+insert into stealcut values(0, 7, '79386145154_727.JPG');
+
+insert into stealcut values(0, 8, '79625144893_727.jpg');
+insert into stealcut values(0, 8, '79625144894_727.jpg');
+insert into stealcut values(0, 8, '79625144895_727.jpg');
+insert into stealcut values(0, 8, '79625144896_727.jpg');
+insert into stealcut values(0, 8, '79625144897_727.jpg');
+insert into stealcut values(0, 8, '79625144898_727.jpg');
+
 
 #극장 테이블
 create table theater(
- t_num int primary key auto_increment,
- t_name varchar(30),
- t_addr varchar(100),
- t_tel varchar(20),
- t_cnt_screen int #상영관 개수
+	t_num int primary key auto_increment,
+	t_name varchar(30),
+	t_addr varchar(100),
+	t_tel varchar(20),
+	t_cnt_screen int #상영관 개수
 );
 
 #이름, 상영관 개수,
 
 #상영관  
 create table screen(
- s_num int primary key auto_increment,
- s_title varchar(20), #상영관의 이름
- t_num int, #극장fk
- m_num int, #영화fk
- s_cnt_seat int, #좌석의 개수
- foreign key(t_num) references theater(t_num),
- foreign key(m_num) references movie(m_num)
+	s_num int primary key auto_increment,
+	s_title varchar(20), #상영관의 이름
+	t_num int, #극장fk
+	m_num int, #영화fk
+	s_cnt_seat int, #좌석의 개수
+	foreign key(t_num) references theater(t_num),
+	foreign key(m_num) references movie(m_num)
 );
 
 #좌석
 create table seat(
- seat_num int primary key auto_increment,
- s_num int, #상영관 fk
- seat_name int, #좌석번호 
- foreign key(s_num) references screen(s_num) 
+	seat_num int primary key auto_increment,
+	s_num int, #상영관 fk
+	seat_name int, #좌석번호 
+	foreign key(s_num) references screen(s_num) 
 );
 
 
