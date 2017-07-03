@@ -81,8 +81,7 @@ create table movie(
 	m_like int,
 	m_content text,
 	m_poster varchar(300),
-	g_num int,
-	foreign key(g_num) references genre(g_num)
+	m_genre varchar(300)
 ); 
 
 
