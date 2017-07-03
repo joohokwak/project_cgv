@@ -36,6 +36,35 @@ create table genre(
 	g_name varchar(20)
 );
 
+insert into genre values(0, "SF");
+insert into genre values(0, "판타지");
+insert into genre values(0, "전쟁");
+insert into genre values(0, "모험");
+insert into genre values(0, "로맨스");
+insert into genre values(0, "드라마");
+insert into genre values(0, "멜로");
+insert into genre values(0, "액션");
+insert into genre values(0, "서스펜스");
+insert into genre values(0, "스릴러");
+insert into genre values(0, "해양과학");
+insert into genre values(0, "범죄");
+insert into genre values(0, "첩보");
+insert into genre values(0, "로맨틱 코미디");
+insert into genre values(0, "순정");
+insert into genre values(0, "공포");
+insert into genre values(0, "호러");
+insert into genre values(0, "괴기");
+insert into genre values(0, "슬렙스틱 코미디");
+insert into genre values(0, "교육");
+insert into genre values(0, "아동/청소년");
+insert into genre values(0, "스포츠");
+insert into genre values(0, "음악");
+insert into genre values(0, "뮤지컬");
+insert into genre values(0, "심리");
+insert into genre values(0, "에로/성인");
+insert into genre values(0, "서부");
+insert into genre values(0, "갱스터");
+
 
 create table movie(
 	m_num int primary key auto_increment,
