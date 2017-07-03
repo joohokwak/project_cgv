@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
 
 <link rel="stylesheet" href="/resources/css/themes/default/default.css" type="text/css"/>
 <link rel="stylesheet" href="/resources/css/themes/light/light.css" type="text/css"/>
@@ -6,12 +7,41 @@
 <link rel="stylesheet" href="/resources/css/themes/bar/bar.css" type="text/css"/>
 <link rel="stylesheet" href="/resources/css/nivo-slider.css" type="text/css"/>
 <link rel="stylesheet" href="/resources/css/style.css" type="text/css"/>
+<link rel="stylesheet" href="/resources/css/body.css" type="text/css"/>
 
-<style type="text/css">
-	#bodyWrap {
-		margin: 0 auto; width: 100%;
-	}
-</style>
+<script type="text/javascript">
+	$(function() {
+		rolling();
+		
+		// 게시판 뉴스 액션
+		var height = $("#rollingDiv").height();
+		var licnt = $(".ticker li").length;
+		
+		var max = height * licnt;
+		var movecnt = 0;
+		
+		var handler = setInterval(rolling, 3000);
+		
+		function rolling() {
+			movecnt += height;
+			
+			$(".ticker").animate({"top":-movecnt}, 600, function() {
+				if(movecnt >= max) {
+					$(this).css("top", 0);
+					movecnt = 0;
+				}
+			});
+		}
+		
+		$(".ticker").append($(".ticker li").first().clone());
+		
+		$("#autoRollingDiv").hover(function(e) {
+			clearInterval(handler);
+		}, function(e) {
+			handler = setInterval(rolling, 3000);
+		});
+	});
+</script>
 
 <div id="bodyWrap">
 	<table style="width: 100%; border-spacing: 0;">
@@ -43,6 +73,7 @@
 			</td>
 		</tr>
 		
+		<!-- 동영상&포스터 -->
 		<tr>
 			<td align="center">
 				<img alt="selection" src="/resources/images/body/h3_movie_selection.gif">
@@ -59,10 +90,36 @@
 			</td>
 		</tr>
 		
+		<tr height="50px">
+			<td></td>
+		</tr>
+		
+		<!-- 이벤트 -->
 		<tr>
 			<td align="center">
-				<div style="padding-top: 50px;">
+				<div style="width: 980px; height: 50px;">
 					<img alt="selection" src="resources/images/body/h3_event.gif">
+				</div>
+			</td>
+		</tr>
+		
+		<tr height="50px">
+			<td></td>
+		</tr>
+		
+		<!-- 공지사항 -->
+		<tr>
+			<td align="center">
+				<div id="noticeWrap">
+					<h3 id="noticeIcon">공지사항</h3>
+					<div id="rollingDiv">
+						<ul class="ticker">
+							<li>공지1</li>
+							<li>공지2</li>
+							<li>공지3</li>
+							<li>공지4</li>
+						</ul>
+					</div>
 				</div>
 			</td>
 		</tr>
