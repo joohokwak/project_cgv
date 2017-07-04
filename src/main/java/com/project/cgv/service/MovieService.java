@@ -16,5 +16,8 @@ public interface MovieService {
 	
 	// trailer
 	public List<HashMap<String, Object>> trailerList(int m_num);
+	
+	// theater
+	public List<HashMap<String, Object>> theaterList();
 
 }

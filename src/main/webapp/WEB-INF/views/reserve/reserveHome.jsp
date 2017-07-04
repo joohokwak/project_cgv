@@ -14,6 +14,8 @@
 	
 		$(function() {
 			$("#date-list").mCustomScrollbar({theme:"rounded-dark"});
+			$("#reserve-movie-list").mCustomScrollbar({theme:"rounded-dark"});
+			$("#reserve-theater-list").mCustomScrollbar({theme:"rounded-dark"});
 			
 			// 날짜
 			$.getJSON('/reserve/reserve_date', function(date){
@@ -134,6 +136,15 @@
 				
 			});
 			
+			// 극장 선택시
+			$(".col-theater").click(function(e) {
+				$(".col-theater").css("background", "#fdfcf0");
+				$(".col-theater").find(".col-theater2").css({"border": "none", "color" : "#333"});
+				
+				$(this).css({"background": "#333"});
+				$(this).find(".col-theater2").css({"border": "1px solid gray", "color" : "#fff"});
+			});
+			
 			// 좌석선택 버튼 클릭시
 			$("#step-btn").click(function(e) {
 				$(this).css("background", "url('/resources/images/reserve/tnb_buttons.png') no-repeat -150px -220px")
@@ -146,7 +157,7 @@
 		<div id="step">
 			<div id="section-movie">
 				<div class="col-head">영화</div>
-				<div id="col-head2">
+				<div class="col-head2">
 					&nbsp;&nbsp;예매율순
 					<span></span>
 				</div>
@@ -182,6 +193,19 @@
 			
 			<div id="section-theater">
 				<div class="col-head">극장</div>
+				<div class="col-head2">
+					&nbsp;&nbsp;서울전체
+					<span></span>
+				</div>
+				
+				<div id="reserve-theater-list">
+					<c:forEach var="theater" items="${theaterList }">
+						<div class="col-theater">
+							<div class="col-theater2">${theater.t_name }</div>
+						</div>
+					</c:forEach>
+				</div>
+				
 			</div>
 			
 			<div id="section-date">

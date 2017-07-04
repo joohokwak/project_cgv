@@ -38,7 +38,7 @@ CONTENTS:
 
 	.mCSB_container{ /* contains the original content */
 		overflow: hidden;
-		width: 65px;
+		width: 90%;
 		height: auto;
 	}
 

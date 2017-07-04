@@ -50,6 +50,11 @@ public class MovieServiceImpl implements MovieService {
 	public List<HashMap<String, Object>> trailerList(int m_num) {
 		return mvDao.trailerList(m_num);
 	}
+
+	@Override
+	public List<HashMap<String, Object>> theaterList() {
+		return mvDao.theaterList();
+	}
 	
 	
 	

@@ -31,4 +31,8 @@
 	<select id="trailerList" parameterType="int" resultType="hashmap">
 		select * from video where m_num = #{value}
 	</select>
+	
+	<select id="theaterList" resultType="hashmap">
+		select * from theater order by t_name
+	</select>
 </mapper>

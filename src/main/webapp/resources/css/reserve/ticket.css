@@ -24,7 +24,6 @@
 	position: relative;
     float: left;
     margin-left: -0.5px;
-    overflow: hidden;
 }
 
 #section-date {
@@ -220,7 +219,7 @@
     background: url(/resources/images/login/sprite_icon.png) 0px -193px no-repeat;
 }
 
-#col-head2 {
+.col-head2 {
 	width: 254px;
 	height: 25px;
 	margin: 0 auto;
@@ -231,7 +230,7 @@
     border-bottom: 2px solid #d4d3c9;
 }
 
-#col-head2 span {
+.col-head2 span {
 	position: relative;
 	display: inline-block;
 	width: 254px;
@@ -241,21 +240,22 @@
 
 #reserve-movie-list {
 	width: 254px;
-	height: auto;
+	height: 500px;
 	margin: 0 auto;
 	margin-top: 10px;
+	overflow-y: auto;
 }
 
 .col-movie {
 	position: relative;
-	width: 250px;
+	width: 230px;
 	height: 35px;
 	padding: 2px;
 }
 
 .col-movie2 {
 	position: relative;
-	width: 247px;
+	width: 222px;
 	height: 33px;
 	cursor: pointer;
 }
@@ -271,7 +271,7 @@
 
 #reserve-movie-list .col-movie .text {
 	top: -22px;
-	width: 205px;
+	width: 166px;
 	height: 35px;
 	line-height: 35px;
 	float: right;
@@ -281,5 +281,44 @@
     font-family: '돋움',dotum,Nanum Gothic,sans-serif;
     overflow: hidden;
 }
+
+#reserve-theater-list {
+	width: 254px;
+	height: 500px;
+	margin: 0 auto;
+	margin-top: 10px;
+	position: relative;
+	overflow-y: auto;
+}
+
+.col-theater {
+	position: relative;
+	width: 230px;
+	height: 35px;
+	padding: 2px;
+	line-height: 35px;
+}
+
+.col-theater2 {
+	position: relative;
+	width: 214px;
+	height: 33px;
+	cursor: pointer;
+	color: #333;
+	font-size: 13px;
+	font-weight: bold;
+	padding-left: 10px;
+    font-family: '돋움',dotum,Nanum Gothic,sans-serif;
+}
+
+
+
+
+
+
+
+
+
+
 
 

@@ -22,6 +22,7 @@ public class ReserveController {
 	public String ticketSelect(Model model, @RequestParam(value="m_num", defaultValue="1") int m_num) {
 		model.addAttribute("imgInfo", "h2_ticket.png");
 		model.addAttribute("movieList", mvService.movieList());
+		model.addAttribute("theaterList", mvService.theaterList());
 		model.addAttribute("m_num", m_num);
 		return ".reserve.ticket.main";
 	}
