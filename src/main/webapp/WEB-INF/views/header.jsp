@@ -59,14 +59,7 @@
 		<div id="head">
 			<!-- logo 시작 -->
 			<h1>
-			<c:choose>
-				<c:when test="${member.id == 'admin' }">
-					<a href="/admin/main"><img src="/resources/images/header/cgvLogo.png"></a>
-				</c:when>
-				<c:otherwise>
-					<a href="/"><img src="/resources/images/header/cgvLogo.png"></a>
-				</c:otherwise>
-			</c:choose>
+				<a href="/"><img src="/resources/images/header/cgvLogo.png"></a>
 			</h1>
 			<!-- logo 끝 -->
 			<h2>

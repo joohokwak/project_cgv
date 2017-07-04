@@ -9,6 +9,7 @@
 	<definition name=".admin.layout" template="/WEB-INF/views/admin/layout/admin_layout.jsp">
 		<put-attribute name="header" value="/WEB-INF/views/header.jsp"/>
 		<put-attribute name="body" value="/WEB-INF/views/admin/layout/admin_body.jsp"/>
+		<put-attribute name="side" value="/WEB-INF/views/admin/layout/admin_side.jsp"/>
 		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp"/>
 	</definition>
 	

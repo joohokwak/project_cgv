@@ -1,0 +1,44 @@
+@CHARSET "UTF-8";
+
+#sidemenu {
+	width: 230px;
+	height: 900px;
+	background-color: #fdfcf0;
+	list-style: none;
+	margin: 0;
+	padding: 0;
+}
+
+#sidemenu ul {
+	margin-left: 0px;
+	padding-left: 0px;
+}
+
+#sidemenu ul li {
+	margin: 0;
+	list-style: none;
+}
+
+#sidemenu ul li a {
+	background: #fdfcf0;
+	border-bottom: 2px solid #D6D6A8;
+	color: #333;
+	display: block;
+	margin: 0;
+	padding: 20px 40px;
+	text-decoration: none;
+	font-size: 15px;
+	font-weight: bold;
+}
+
+#sidemenu ul li:first-child {
+	border-top: 2px solid #D6D6A8;
+}
+
+#sidemenu a:hover {
+	background: #ff0000 url("/resources/images/admin/tri.jpg") left center no-repeat;
+	color: #fff;
+	padding-top:20px;
+	padding-bottom:20px;
+}
+
