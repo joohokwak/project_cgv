@@ -94,6 +94,19 @@
     background: url('/resources/images/reserve/tnb_steps.png') no-repeat 50% -68px;
 }
 
+#row-theater, #row-date, #row-screen, #row-number {
+	width: 177px;
+	height: 22px;
+	position: relative;
+	top: -50%;
+	overflow: hidden;
+	color: #fff;
+	text-align: left;
+	padding-left: 7px;
+	line-height: 22px;
+	display: none;
+}
+
 #infoPath {
 	float: left;
 	width: 229px;
@@ -310,8 +323,6 @@
 	padding-left: 10px;
     font-family: '돋움',dotum,Nanum Gothic,sans-serif;
 }
-
-
 
 
 
