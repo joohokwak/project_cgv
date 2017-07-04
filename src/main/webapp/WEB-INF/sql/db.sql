@@ -7,8 +7,12 @@ create table member(
 	id varchar(50) primary key,
 	name varchar(50) not null,
 	pass varchar(50) not null,
+	pic varchar(300) default 'no_pic.jpg',
 	email varchar(100) not null
 );
+
+insert into member values('jh', '주호', '1', 'no_pic.jpg', 'jhkwak6089@naver.com');
+insert into member values('admin', '관리자', '1', 'no_pic.jpg', 'admin@naver.com');
 
 create table board(
 	b_num int primary key auto_increment,
@@ -229,12 +233,6 @@ insert into video values(0, 'https://www.youtube.com/embed/2Tu2BxKVQss', 8);
 insert into video values(0, 'https://www.youtube.com/embed/RqLFB1nEaGI', 8);
 insert into video values(0, 'https://www.youtube.com/embed/ueURTHEzUbc', 8);
 
-create table admin(
-	admin_id varchar(50) primary key,
-	admin_pass varchar(50)
-);
-
-insert into admin values('admin','123');
 
 create table notice(
 	n_num int primary key auto_increment,
