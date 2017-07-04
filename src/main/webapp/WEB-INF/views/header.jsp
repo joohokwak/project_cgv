@@ -17,9 +17,19 @@
 		<div id="topmenu">
 			<ul>
 				<li class="topmenu01">
-					<a href="/member/login">
-						<img src="/resources/images/header/img_login.jpg">
-					</a>
+					<c:choose>
+						<c:when test="${not empty member }">
+							<a href="/member/logout">
+								<img src="/resources/images/header/img_logout.jpg">
+							</a>
+						</c:when>
+					
+						<c:otherwise>
+							<a href="/member/login">
+								<img src="/resources/images/header/img_login.jpg">
+							</a>
+						</c:otherwise>
+					</c:choose>
 				</li>
 				
 				<li class="topmenu02">
@@ -29,9 +39,19 @@
 				</li>
 				
 				<li class="topmenu03">
-					<a href="#">
-						<img src="/resources/images/header/img_mycgv.jpg">
-					</a>
+					<c:choose>
+						<c:when test="${member.id == 'admin' }">
+							<a href="/admin/main">
+								<img src="/resources/images/header/img_mycgv.jpg">
+							</a>
+						</c:when>
+						<c:otherwise>
+							<a href="#">
+								<img src="/resources/images/header/img_mycgv.jpg">
+							</a>
+						</c:otherwise>
+					</c:choose>
+				
 				</li>
 			</ul>
 		</div>
@@ -39,7 +59,14 @@
 		<div id="head">
 			<!-- logo 시작 -->
 			<h1>
-				<a href="/"><img src="/resources/images/header/cgvLogo.png"></a>
+			<c:choose>
+				<c:when test="${member.id == 'admin' }">
+					<a href="/admin/main"><img src="/resources/images/header/cgvLogo.png"></a>
+				</c:when>
+				<c:otherwise>
+					<a href="/"><img src="/resources/images/header/cgvLogo.png"></a>
+				</c:otherwise>
+			</c:choose>
 			</h1>
 			<!-- logo 끝 -->
 			<h2>

@@ -28,7 +28,7 @@
 				</div>
 				
 				<div id="loginCheckForm">
-					<form action="#" method="post">
+					<form action="/member/login" method="post">
 						<div id="idForm">
 							<input type="text" name="id">
 						</div>
