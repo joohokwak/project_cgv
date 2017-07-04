@@ -5,14 +5,52 @@
     
 <mapper namespace="com.project.cgv.dao.NoticeDao">
 	<select id="selectAll" resultType="HashMap" parameterType="HashMap">
-		select * from notice order by n_num desc limit #{skip},#{qty};
+		select * from notice order by n_num desc limit #{skip},#{qty}
 	</select>
 	
 	<select id="selectOne" parameterType="int" resultType="HashMap">
 		select * from notice where n_num=#{num}
 	</select>
 	
-	<select id="getCount" resultType="int">
-		select count(*) from notice;
+	<select id="bodyNoticeList" resultType="HashMap">
+		select * from notice order by n_num desc limit 1,5
 	</select>
+	
+	<select id="getCount" resultType="int">
+		select count(*) from notice
+	</select>
+	
+	<insert id="insertNotice" parameterType="HashMap">
+		insert into notice(n_num, n_cate, n_title, n_content) 
+		 values(0,<include refid="category"/>,#{title},#{content})
+	</insert>
+	
+	<update id="updateNotice" parameterType="HashMap">
+		update notice set n_cate=<include refid="category"/>, n_title=#{title}, n_content=#{content}
+		where n_num=#{num}
+	</update>
+	
+	<delete id="deleteNotice" parameterType="int">
+		delete from notice where n_num = #{num} 
+	</delete>	
+	
+	<sql id="category">
+		<choose>
+			<when test="cate == 1">
+				'[시스템점검]'
+			</when>
+			
+			<when test="cate == 2">
+				'[극장]'
+			</when>
+			
+			<when test="cate == 3">
+				'[행사/이벤트]'
+			</when>
+			
+			<when test="cate == 4">
+				'[기타]'
+			</when>
+		</choose>
+	</sql>
 </mapper>

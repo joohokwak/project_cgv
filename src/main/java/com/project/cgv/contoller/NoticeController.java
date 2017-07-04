@@ -18,7 +18,7 @@ public class NoticeController {
 	@Autowired
 	private NoticeService nService;
 	
-	@RequestMapping("/noticeList")
+	@RequestMapping("/list")
 	public String noticeList(Model model,@RequestParam(defaultValue="1")int page) {
 		
 		HashMap<String,Object> viewData = nService.getAllNotice(page);
@@ -28,16 +28,11 @@ public class NoticeController {
 		return ".notice.noticeList";
 	}
 	
-	@RequestMapping("/noticeView")
+	@RequestMapping("/view")
 	public String noticeView(Model model, int num){
 		
 		model.addAttribute("notice",nService.getNoticeByNum(num));
 		
 		return ".notice.noticeView";
-	}
-	
-	@RequestMapping("/noticeInsertForm")
-	public String noticeInsertForm(){
-		return ".admin.notice.noticeForm";
 	}
 }

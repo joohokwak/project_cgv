@@ -15,7 +15,6 @@ public class NoticeServiceImpl implements NoticeService {
 	
 	@Autowired
 	private NoticeDao nDao;
-	
 
 	@Override
 	public HashMap<String, Object> getAllNotice(int page) {
@@ -45,8 +44,50 @@ public class NoticeServiceImpl implements NoticeService {
 
 	@Override
 	public HashMap<String, Object> getNoticeByNum(int num) {
-		System.out.println(nDao.selectOne(num));
 		return nDao.selectOne(num);
+	}
+
+	@Override
+	public boolean addNotice(HashMap<String, Object> params) {
+		
+		HashMap<String,Object> notice = new HashMap<String,Object>();
+		
+		int insert = nDao.insertNotice(params);
+		
+		if(insert == 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean modifyNotice(HashMap<String, Object> params) {
+		
+		int update = nDao.updateNotice(params);
+		
+		if(update == 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean remove(int num) {
+		
+		int delete = nDao.deleteNotice(num);
+		
+		if(delete == 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public List<HashMap<String,Object>> getMainNotice() {
+		return nDao.bodyNoticeList();
 	}
 
 }

@@ -53,6 +53,7 @@
 </style>
 
 <div id="noticeWrap" align="center" >
+	<a href="insertForm" class="btn btn-default">글쓰기</a>
 	<div id="category" align="left">
 		<button type="button" class="btn-cate">전체</button>
 		<button type="button" class="btn-cate">시스템점검</button>

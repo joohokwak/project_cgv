@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt"%>
 
 <link rel="stylesheet" href="/resources/css/themes/default/default.css" type="text/css"/>
 <link rel="stylesheet" href="/resources/css/themes/light/light.css" type="text/css"/>
@@ -114,10 +115,12 @@
 					<h3 id="noticeIcon">공지사항</h3>
 					<div id="rollingDiv">
 						<ul class="ticker">
-							<li>공지1</li>
-							<li>공지2</li>
-							<li>공지3</li>
-							<li>공지4</li>
+							<c:forEach items="${nList}" var="n">
+								<li>
+									<a href="/notice/view?num=${n.n_num}">${n.n_cate} ${n.n_title}</a> 
+									<span style="float: right;"><fmt:formatDate value="${n.n_regdate}"/></span>
+								</li>
+							</c:forEach>
 						</ul>
 					</div>
 				</div>
