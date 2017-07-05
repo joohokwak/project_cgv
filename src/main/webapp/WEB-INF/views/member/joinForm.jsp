@@ -301,6 +301,7 @@
 					<div class="member_data_header">
 						<div class="left">
 							<span>기본정보</span>
+							
 						</div>
 						<div class="right">
 							<a class="check_img"></a>표시는 필수 입력 사항 입니다
