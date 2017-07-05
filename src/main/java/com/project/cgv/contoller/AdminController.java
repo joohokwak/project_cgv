@@ -1,12 +1,16 @@
 package com.project.cgv.contoller;
 
+import java.io.File;
 import java.util.HashMap;
+import java.util.Iterator;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.multipart.MultipartFile;
+import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.cgv.service.NoticeService;
 
@@ -126,15 +130,47 @@ public class AdminController {
 	// Notice end /////////////////////////////////////////////////////////////////////////////////////////
 	
 	// Photo Start ////////////////////////////////////////////////////////////////////////////////////////
-	@RequestMapping("/photo/upload")
+	@RequestMapping("/photo/uploadForm")
 	public String photoUploadForm(){
-		return ".admin.";
+		return ".admin.photoUpload.photoUploadMain";
 	}
 	
-	
-	public String photoUpload(){
-		return "";
-	}
+	@RequestMapping("/photo/upload")
+	public String photoUpload(MultipartHttpServletRequest multipartRequest){
+		
+		
+		
+		Iterator<String> itr =  multipartRequest.getFileNames();
+        
+        String filePath = "C:/test"; //설정파일로 뺀다.
+         
+        while (itr.hasNext()) { //받은 파일들을 모두 돌린다.
+             
+            MultipartFile mpf = multipartRequest.getFile(itr.next());
+            
+            //테스트후 지우자
+            String originFileName = mpf.getOriginalFilename();
+            System.out.println("FILE_INFO: "+originFileName); //받은 파일 리스트 출력'
+            
+            String originalFilename = mpf.getOriginalFilename(); //파일명
+      
+            String fileFullPath = filePath+"/"+originalFilename; //파일 전체 경로
+      
+            try {
+                //파일 저장
+                mpf.transferTo(new File(fileFullPath)); //파일저장 실제로는 service에서 처리
+                 
+                System.out.println("originalFilename => "+originalFilename);
+                System.out.println("fileFullPath => "+fileFullPath);
+      
+            } catch (Exception e) {
+                System.out.println("postTempFile_ERROR======>"+fileFullPath);
+                e.printStackTrace();
+                return "fail";
+            }
+       }//while
+        return "success";
+    }
 	
 	
 	
