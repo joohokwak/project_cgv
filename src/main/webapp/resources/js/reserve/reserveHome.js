@@ -95,7 +95,7 @@ $(function() {
 			$("#infoTheater").css("background", "#1d1d1c");
 			
 			var dayInfo = $(this).attr("data-info");
-			$("#row-date").css("display", "block").html("<span style='display: inline-block; width: 40px;'>일시</span>"+dayInfo);
+			$("#row-date").css("display", "block").html("<span style='display: inline-block; width: 40px;'>일시</span><span>"+dayInfo+"</span>");
 			
 			select_date = dayInfo.split("[")[0];
 			dateChoice();
@@ -143,9 +143,9 @@ $(function() {
 		
 		$("#infoTheater").css("background", "#1d1d1c");
 		
-		var theater_name = $(this).find(".col-theater2").text();
+		var theater_name = $.trim($(this).find(".col-theater2").text());
 		select_theater_num = $(this).find(".t_num").val();
-		$("#row-theater").css("display", "block").html("<span style='display: inline-block; width: 40px;'>극장</span>"+theater_name + ">");
+		$("#row-theater").css("display", "block").html("<span style='display: inline-block; width: 40px;'>극장</span><span>"+theater_name+"&gt;</span>");
 		
 		dateChoice();
 		
@@ -153,14 +153,19 @@ $(function() {
 		$(this).find(".col-theater2").css({"border": "1px solid gray", "color" : "#fff"});
 	});
 	
-	
 	// 좌석선택 버튼 클릭시
 	$("#step-btn").click(function(e) {
-		$(this).css("background", "url('/resources/images/reserve/tnb_buttons.png') no-repeat -150px -220px")
+		if($(this).attr("data-info") == 'check') {
+			// 다음페이지 이동
+			alert("이동");
+		}
 	});
 });
 
 function dateChoice() {
+	$("#step-btn").css({"background": "url('/resources/images/reserve/tnb_buttons.png') no-repeat 0px -220px", "cursor": "auto"});
+	$("#step-btn").attr("data-info", "uncheck");
+	
 	if(select_movie_num != null && select_theater_num != null && select_date != null) {
 		$.ajax({
 			url : "/movie/movieTimeInfo",
@@ -169,14 +174,40 @@ function dateChoice() {
 			dataType : "json",
 			success : function(data) {
 				var str = "";
+				var s_title = null;
+				
 				$(data).each(function(i, element) {
-					//alert(element.mt_time);
-					str +="<span style='border: 1px solid #333; padding: 2px; display: inline-block; width: 50px; height: 20px; font-size: 14px; font-weight: bold; text-align: center;'>"
-						+element.mt_time+"</span><span style='color: green;'>"
+					if(s_title != element.s_title) {
+						s_title = element.s_title;
+						if(i == 0) {
+							str += "<div style='margin-bottom: 10px;'><span style='font-size: 14px; font-weight: bold;'>"+element.s_title+"</span> (총"+element.s_cnt_seat+"석)</div>";
+						}else {
+							str += "<div style='padding-top: 10px; margin-bottom: 10px; border-top: 2px solid #cfcdc3;'><span style='font-size: 14px; font-weight: bold;'>"+element.s_title+"</span> (총"+element.s_cnt_seat+"석)</div>";
+						}
+					}
+						
+					str += "<span class='timeChoice' style='border: 1px solid #cfcdc3; padding: 2px; display: inline-block; width: 50px; height: 21px; font-size: 14px;"+
+						" font-weight: bold; text-align: center; cursor: pointer; margin-bottom: 15px;'>"+
+						"<span data-screen='"+element.s_title+"' style='display: inline-block; width: 48px; height: 18px;'>"+element.mt_time+"</span></span><span style='color: green;'>"
 						+element.s_cnt_seat+"석</span>";
+					
 				});
 				
 				$("#movieTimeTable").html(str);
+				
+				$(".timeChoice").click(function(e) {
+					$(".timeChoice").css({background: "#fdfcf0"});
+					$(".timeChoice").children().css({border: "none", color: "#333"});
+					
+					var screenInfo = $(this).children().attr("data-screen");
+					$("#row-screen").css("display", "block").html("<span style='display: inline-block; width: 40px;'>상영관</span><span>"+screenInfo+"</span>");
+					
+					$(this).css({background: "#333"});
+					$(this).children().css({border: "1px solid gray", color: "#fff"});
+					
+					$("#step-btn").css({"background": "url('/resources/images/reserve/tnb_buttons.png') no-repeat -150px -220px", "cursor": "pointer"});
+					$("#step-btn").attr("data-info", "check");
+				});
 			}
 		});
 	}

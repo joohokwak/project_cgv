@@ -392,8 +392,9 @@ create table screen(
 	foreign key(m_num) references movie(m_num)
 );
 
-insert into screen values (0, '2층 1관', 1, 1, 146);
-insert into screen values (0, '3층 3관', 1, 2, 150);
+insert into screen values (0, '1관 2층', 1, 1, 146);
+insert into screen values (0, '4관 3층', 1, 1, 122);
+insert into screen values (0, '3관 3층', 1, 2, 150);
 
 #상영정보
 create table movieTime(
@@ -405,8 +406,12 @@ create table movieTime(
 );
 
 insert into movieTime values(0, '2017-07-15', '17:30', 1);
+insert into movieTime values(0, '2017-07-15', '19:30', 1);
+insert into movieTime values(0, '2017-07-15', '09:30', 1);
 insert into movieTime values(0, '2017-07-15', '13:00', 1);
+
 insert into movieTime values(0, '2017-07-16', '12:00', 2);
+insert into movieTime values(0, '2017-07-15', '12:00', 3);
 
 
 #좌석
