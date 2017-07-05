@@ -12,7 +12,7 @@
 
     $(function(){
     	 var objDragAndDrop = $(".dragAndDropDiv");
-    	 
+         
          $(document).on("dragenter",".dragAndDropDiv",function(e){
              e.stopPropagation();
              e.preventDefault();
@@ -28,13 +28,7 @@
              $(this).css('border', '2px dotted #0B85A1');
              e.preventDefault();
              var files = e.originalEvent.dataTransfer.files;
-             
-             for (var i = 0; i < files.length; i++) 
-             {
-             	var status = new createStatusbar(obj); //Using this we can set progress.
-             }
-          	 
-             //var opt = handleFileUpload(files,objDragAndDrop);
+             var opt = handleFileUpload(files,objDragAndDrop);
          });
           
          $(document).on('dragenter', function (e){
@@ -114,6 +108,10 @@
           
          function sendFileToServer(formData,status)
          {
+        	 //xhr : formData는 console.log로 확인이 안돼서 사용하는 놈.
+        	 
+        	 
+        	 formData.append('myId', "으하하하하하하");
              var uploadURL = "/admin/photo/upload"; //Upload URL
              var extraData ={}; //Extra Data.
              var jqXHR=$.ajax({
@@ -135,8 +133,8 @@
                  },
                  url: uploadURL,
                  type: "POST",
-                 contentType:false,
-                 processData: false,
+                 contentType:false,//file전송시 필수
+                 processData: false,//file전송시 필수
                  cache: false,
                  data: formData,
                  success: function(data){
@@ -154,15 +152,28 @@
 <body>
 <!-- 
 	영화 포스터, 배우 얼굴, 스틸컷
-	카테고리를 라디오박스로 선택하자.
+	옵션을 버튼으로 선택하자.
+
+	버튼을 클릭하면
+	필요한 정보를 List로 받아옴(ajax)
+	
+	파일을 드롭했을 때 유효성 체크를 하고 이상이 없으면
+	옵션, List에서 선택된 정보, 파일들을 보내줌.
  -->
  
 <div id="uploadWrap">
 	<div id="otpGroup">
-		<input type="radio" name="opt" value="poster">
-		<input type="radio" name="opt" value="actor">
-		<input type="radio" name="opt" value="stealcut">
+		<input type="radio" name="opt" value="poster">영화
+		<input type="radio" name="opt" value="actor">배우
+		<input type="radio" name="opt" value="stealcut">스틸컷
 	</div>
+	
+	<!-- opt선택하면 여기에 필요 정보가 나온다. -->
+	<div id="infoList"></div>
+	
+	
+	
+	
 	
 	<div id="fileUpload" class="dragAndDropDiv">Drag & Drop Files Here</div>
 </div>

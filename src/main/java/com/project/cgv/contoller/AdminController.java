@@ -1,16 +1,21 @@
 package com.project.cgv.contoller;
 
 import java.io.File;
+import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
+
+import javax.servlet.http.HttpServletRequest;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
 
 import com.project.cgv.service.NoticeService;
 
@@ -135,27 +140,37 @@ public class AdminController {
 		return ".admin.photoUpload.photoUploadMain";
 	}
 	
+	
 	@RequestMapping("/photo/upload")
+	@ResponseBody
 	public String photoUpload(MultipartHttpServletRequest multipartRequest){
 		
-		
+		String str = multipartRequest.getParameterMap().get("myId")[0];
+		//System.out.println(str);
 		
 		Iterator<String> itr =  multipartRequest.getFileNames();
         
-        String filePath = "C:/test"; //설정파일로 뺀다.
+        String filePath = "C:/test";
          
         while (itr.hasNext()) { //받은 파일들을 모두 돌린다.
-             
             MultipartFile mpf = multipartRequest.getFile(itr.next());
             
             //테스트후 지우자
             String originFileName = mpf.getOriginalFilename();
             System.out.println("FILE_INFO: "+originFileName); //받은 파일 리스트 출력'
-            
             String originalFilename = mpf.getOriginalFilename(); //파일명
-      
             String fileFullPath = filePath+"/"+originalFilename; //파일 전체 경로
-      
+            
+            /*
+             	가져와야할 정보
+              	영화 포스터
+              	  - 영화 등록 번호
+              	배우 얼굴
+              	  - 배우 번호
+              	스틸컷
+              	  - 영화 등록 번호 
+             */
+            
             try {
                 //파일 저장
                 mpf.transferTo(new File(fileFullPath)); //파일저장 실제로는 service에서 처리
