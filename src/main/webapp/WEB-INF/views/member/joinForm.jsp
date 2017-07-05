@@ -312,7 +312,8 @@
 								<td class="member_data_td1">
 									<a class="check_img"></a>이름
 								</td>
-								<td>
+								<td align="left">
+									<input type="text"  style="width: 200px; height: 25px; padding-left: 10px;">
 								</td>
 							</tr>
 							<tr>
