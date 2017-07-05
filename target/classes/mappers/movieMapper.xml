@@ -24,15 +24,29 @@
 		select m_like from movie where m_num = #{value}
 	</select>
 	
+	
+	
+	<!-- stealcut -->
 	<select id="stealcutList" parameterType="int" resultType="hashmap">
 		select * from stealcut where m_num = #{value}
 	</select>
 	
+	
+	<!-- video -->
 	<select id="trailerList" parameterType="int" resultType="hashmap">
 		select * from video where m_num = #{value}
 	</select>
 	
+	
+	<!-- theater -->
 	<select id="theaterList" resultType="hashmap">
 		select * from theater order by t_name
+	</select>
+	
+	
+	<!-- movieTime -->
+	<select id="movieTimeInfo" parameterType="hashmap" resultType="hashmap">
+		select s.*, t.mt_num, t.mt_time, t.mt_date from screen s join movieTime t  
+		using(s_num) where s.t_num=#{t_num} and s.m_num=#{m_num} and t.mt_date=#{mt_date}
 	</select>
 </mapper>

@@ -1,5 +1,8 @@
 package com.project.cgv.contoller;
 
+import java.util.HashMap;
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -47,6 +50,13 @@ public class MovieController {
 		mvService.likeDown(m_num);
 		
 		return mvService.likeUpResult(m_num);
+	}
+	
+	@ResponseBody
+	@RequestMapping("/movieTimeInfo")
+	public List<HashMap<String, Object>> movieTimeInfo(@RequestParam HashMap<String, Object> params) {
+		List<HashMap<String, Object>> result = mvService.movieTimeInfo(params);
+		return result;
 	}
 	
 }

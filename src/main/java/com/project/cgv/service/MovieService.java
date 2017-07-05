@@ -19,5 +19,8 @@ public interface MovieService {
 	
 	// theater
 	public List<HashMap<String, Object>> theaterList();
+	
+	// movieTime
+	public List<HashMap<String, Object>> movieTimeInfo(HashMap<String, Object> params);
 
 }

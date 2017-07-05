@@ -60,7 +60,10 @@
 				<div id="reserve-theater-list">
 					<c:forEach var="theater" items="${theaterList }">
 						<div class="col-theater">
-							<div class="col-theater2">${theater.t_name }</div>
+							<div class="col-theater2">
+								${theater.t_name }
+								<input type="hidden" class="t_num" value="${theater.t_num }">
+							</div>
 						</div>
 					</c:forEach>
 				</div>
@@ -81,6 +84,8 @@
 				<div class="time-option">
 					<span class="morning">조조</span><span class="night">심야</span>
 				</div>
+				
+				<div id="movieTimeTable"></div>
 			</div>
 		</div>
 	</div>

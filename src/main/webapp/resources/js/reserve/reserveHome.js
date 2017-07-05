@@ -1,4 +1,6 @@
-var select_movie_num;
+var select_movie_num = null;
+var select_theater_num = null;
+var select_date = null;
 	
 $(function() {
 	$("#date-list").mCustomScrollbar({theme:"rounded-dark"});
@@ -51,13 +53,13 @@ $(function() {
 				//날짜 목록 div로 추가하기
 				if(i < index) {
 					if(day[wDay] == '토') {
-						$("#date_table").append("<div class='choice_date' data-info='"+toYear+". "+nextMonth+". "+OverDate+"["+day[wDay]+"]' style='cursor:pointer;color:blue;height:33px;line-height: 31px; padding:2px;'>"+
+						$("#date_table").append("<div class='choice_date' data-info='"+toYear+"."+nextMonth+"."+OverDate+"["+day[wDay]+"]' style='cursor:pointer;color:blue;height:33px;line-height: 31px; padding:2px;'>"+
 						"<div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
 					}else if(day[wDay] == '일') {
-						$("#date_table").append("<div class='choice_date' data-info='"+toYear+". "+nextMonth+". "+OverDate+"["+day[wDay]+"]' style='cursor:pointer;color:red;height:33px;line-height: 31px; padding:2px;'>"+
+						$("#date_table").append("<div class='choice_date' data-info='"+toYear+"."+nextMonth+"."+OverDate+"["+day[wDay]+"]' style='cursor:pointer;color:red;height:33px;line-height: 31px; padding:2px;'>"+
 						"<div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
 					}else {
-						$("#date_table").append("<div class='choice_date' data-info='"+toYear+". "+nextMonth+". "+OverDate+"["+day[wDay]+"]' style='cursor:pointer;height:33px;line-height: 31px; padding:2px;'>"+
+						$("#date_table").append("<div class='choice_date' data-info='"+toYear+"."+nextMonth+"."+OverDate+"["+day[wDay]+"]' style='cursor:pointer;height:33px;line-height: 31px; padding:2px;'>"+
 						"<div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
 					}
 				}
@@ -72,13 +74,13 @@ $(function() {
 				//날짜 목록 div로 추가하기
 				if(i < index) {
 					if(day[wDay] == "토"){
-						$("#date_table").append("<div class='choice_date' data-info='"+toYear+". "+toMonth+". "+wDate+"["+day[wDay]+"]' style='cursor:pointer;color:blue;height:33px;line-height: 31px; padding:2px;'>"+
+						$("#date_table").append("<div class='choice_date' data-info='"+toYear+"."+toMonth+"."+wDate+"["+day[wDay]+"]' style='cursor:pointer;color:blue;height:33px;line-height: 31px; padding:2px;'>"+
 						"<div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
 					}else if(day[wDay] == "일") {
-						$("#date_table").append("<div class='choice_date' data-info='"+toYear+". "+toMonth+". "+wDate+"["+day[wDay]+"]' style='cursor:pointer;color:red;height:33px;line-height: 31px; padding:2px;'>"+
+						$("#date_table").append("<div class='choice_date' data-info='"+toYear+"."+toMonth+"."+wDate+"["+day[wDay]+"]' style='cursor:pointer;color:red;height:33px;line-height: 31px; padding:2px;'>"+
 						"<div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
 					}else {
-						$("#date_table").append("<div class='choice_date' data-info='"+toYear+". "+toMonth+". "+wDate+"["+day[wDay]+"]' style='cursor:pointer;height:33px;line-height: 31px; padding:2px;'>"+
+						$("#date_table").append("<div class='choice_date' data-info='"+toYear+"."+toMonth+"."+wDate+"["+day[wDay]+"]' style='cursor:pointer;height:33px;line-height: 31px; padding:2px;'>"+
 						"<div id='day' style='font-family: Verdana; font-size:14px;'>"+day[wDay]+"&nbsp;"+w_d+"</div></div>");
 					}
 				}
@@ -92,8 +94,11 @@ $(function() {
 			
 			$("#infoTheater").css("background", "#1d1d1c");
 			
-			dayInfo = $(this).attr("data-info");
+			var dayInfo = $(this).attr("data-info");
 			$("#row-date").css("display", "block").html("<span style='display: inline-block; width: 40px;'>일시</span>"+dayInfo);
+			
+			select_date = dayInfo.split("[")[0];
+			dateChoice();
 			
 			$(this).addClass("select-date");
 			$(this).children().addClass("select-date2");
@@ -122,6 +127,8 @@ $(function() {
 		
 		$("#infoMovie").append(table);
 		
+		dateChoice();
+		
 		$(this).css("background", "#333");
 		$(this).find(".text").css("color", "#fff");
 		
@@ -136,9 +143,11 @@ $(function() {
 		
 		$("#infoTheater").css("background", "#1d1d1c");
 		
-		theater_name = $(this).find(".col-theater2").text();
+		var theater_name = $(this).find(".col-theater2").text();
+		select_theater_num = $(this).find(".t_num").val();
 		$("#row-theater").css("display", "block").html("<span style='display: inline-block; width: 40px;'>극장</span>"+theater_name + ">");
 		
+		dateChoice();
 		
 		$(this).css({"background": "#333"});
 		$(this).find(".col-theater2").css({"border": "1px solid gray", "color" : "#fff"});
@@ -150,3 +159,25 @@ $(function() {
 		$(this).css("background", "url('/resources/images/reserve/tnb_buttons.png') no-repeat -150px -220px")
 	});
 });
+
+function dateChoice() {
+	if(select_movie_num != null && select_theater_num != null && select_date != null) {
+		$.ajax({
+			url : "/movie/movieTimeInfo",
+			type : "post",
+			data : {"m_num" : select_movie_num, "t_num" : select_theater_num, "mt_date" : select_date},
+			dataType : "json",
+			success : function(data) {
+				var str = "";
+				$(data).each(function(i, element) {
+					//alert(element.mt_time);
+					str +="<span style='border: 1px solid #333; padding: 2px; display: inline-block; width: 50px; height: 20px; font-size: 14px; font-weight: bold; text-align: center;'>"
+						+element.mt_time+"</span><span style='color: green;'>"
+						+element.s_cnt_seat+"석</span>";
+				});
+				
+				$("#movieTimeTable").html(str);
+			}
+		});
+	}
+}

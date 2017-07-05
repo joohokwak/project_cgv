@@ -392,6 +392,23 @@ create table screen(
 	foreign key(m_num) references movie(m_num)
 );
 
+insert into screen values (0, '2층 1관', 1, 1, 146);
+insert into screen values (0, '3층 3관', 1, 2, 150);
+
+#상영정보
+create table movieTime(
+	mt_num int primary key auto_increment,
+	mt_date date,
+	mt_time varchar(20),
+	s_num int,
+	foreign key(s_num) references screen(s_num)
+);
+
+insert into movieTime values(0, '2017-07-15', '17:30', 1);
+insert into movieTime values(0, '2017-07-15', '13:00', 1);
+insert into movieTime values(0, '2017-07-16', '12:00', 2);
+
+
 #좌석
 create table seat(
 	seat_num int primary key auto_increment,
