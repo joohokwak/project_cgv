@@ -5,11 +5,13 @@ import java.util.List;
 
 public interface MovieDao {
 
+	// movie
 	public List<HashMap<String, Object>> movieList();
 	public HashMap<String, Object> movieDetail(int m_num);
 	public void likeUp(int m_num);
 	public int likeUpResult(int m_num);
 	public void likeDown(int m_num);
+	public String movieEndTime(HashMap<String, Object> params);
 	
 	// stealcut
 	public List<HashMap<String, Object>> stealcutList(int m_num);

@@ -66,6 +66,12 @@ public class ReserveController {
 		model.addAttribute("screenInfo", params.get("screenInfo"));
 		model.addAttribute("timeInfo", params.get("timeInfo"));
 		
+		HashMap<String, Object> mte = new HashMap<String, Object>();
+		mte.put("movieStartTime", params.get("timeInfo"));
+		mte.put("m_num", Integer.parseInt((String)params.get("movieInfo")));
+		// 선택 영화의 종료시간
+		model.addAttribute("movieEndTime", mvService.movieEndTime(mte));
+		
 		return ".reserve.reserve.reserveChoice";
 	}
 	

@@ -4,6 +4,7 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.project.cgv.dao.MovieDao">
+	<!-- movie -->
 	<select id="movieList" resultType="hashmap">
 		select * from movie order by m_like desc
 	</select>
@@ -22,6 +23,10 @@
 	
 	<select id="likeUpResult" parameterType="int" resultType="int">
 		select m_like from movie where m_num = #{value}
+	</select>
+	
+	<select id="movieEndTime" parameterType="hashmap" resultType="String">
+		select date_format(date_add(time(#{movieStartTime}), interval m_time minute), '%H:%i') from movie where m_num=#{m_num}
 	</select>
 	
 	

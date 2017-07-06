@@ -1,0 +1,127 @@
+@CHARSET "UTF-8";
+
+#reserve_Choice_wrap {
+	width: 996px;
+	height: 530px;
+	margin: 0 auto;
+	margin-top: 60px;
+	border: 1px solid red;
+}
+
+#tnb-container {
+	width: 100%;
+    min-width: 996px;
+    height: 128px;
+    background-color: #1d1d1c;
+}
+
+#tnb-area{
+	width: 995px;
+	height: 107px;
+	padding: 10px 0;
+    position: relative;
+	margin: 0 auto;
+}
+
+#btn-left {
+	display: inline-block;
+	width: 106px;
+	height: 108px;
+	background: url(/resources/images/reserve/tnb_buttons.png) no-repeat;
+    background-position: 0 0;
+    float: left;
+    margin-right: 24px;
+}
+
+#tnb-movie-step {
+	float: left;
+	width: 74px;
+    height: 108px;
+    padding-right: 2px;
+    position: relative;
+    color: #cccccc;
+    line-height: 108px;
+}
+
+#tnb-movie-step2 {
+	float: left;
+	width: 130;
+    height: 108px;
+    position: relative;
+    background: url(/resources/images/reserve/split.png) no-repeat right;
+    color: #cccccc;
+    font-size: 12px;
+}
+
+#tnb-movie-step2 div {
+	width: 120px;
+	height: 52px;
+	line-height: 52px;
+	margin-left: 9px;
+	font-weight: bold;
+	overflow: hidden;
+}
+
+#tnb-theater-step {
+	width: 187px;
+	height: 108px;
+	float: left;
+	padding-right: 2px;
+    background: url(/resources/images/reserve/split.png) no-repeat right;
+    position: relative;
+    color: #cccccc;
+    font-size: 12px;
+}
+
+#tnb-theater-step div {
+	width: 180px;
+	height: 25px;
+	font-weight: bold;
+	line-height: 25px;
+	padding-left: 7px;
+}
+
+#tnb-theater-step span {
+	display: inline-block;
+	width: 45px;
+	font-weight: normal;
+}
+
+#tnb-placeholder {
+	float: left;
+	width: 168px;
+    height: 108px;
+    background: url('/resources/images/reserve/tnb_steps.png') no-repeat 50% -180px;
+}
+
+#lineBlock {
+	position: relative;
+	width: 5px;
+	height: 108px;
+	float: right;
+	background: url(/resources/images/reserve/split.png) no-repeat right;
+}
+
+#paymentInfo {
+	width: 165px;
+	height: 108px;
+	float: left;
+	right: 110px;
+}
+
+#btn_right {
+	width: 106px;
+	height: 108px;
+	background: url(/resources/images/reserve/tnb_buttons.png) no-repeat;
+    background-position: 0 -330px;
+    float: right;
+}
+
+
+
+
+
+
+
+
+
