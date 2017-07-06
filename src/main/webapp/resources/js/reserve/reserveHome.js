@@ -88,6 +88,7 @@ $(function() {
 			}
 		}
 		
+		
 		// 날짜 선택시
 		$(".choice_date").click(function(e) {
 			$(".choice_date").removeClass("select-date");
@@ -105,6 +106,7 @@ $(function() {
 			$(this).children().addClass("select-date2");
 		});
 	});// 날짜 end
+	
 	
 	// 영화 선택시
 	$(".col-movie").click(function(e) {
@@ -137,6 +139,7 @@ $(function() {
 		
 	});
 	
+	
 	// 극장 선택시
 	$(".col-theater").click(function(e) {
 		$(".col-theater").css("background", "#fdfcf0");
@@ -153,6 +156,7 @@ $(function() {
 		$(this).css({"background": "#333"});
 		$(this).find(".col-theater2").css({"border": "1px solid gray", "color" : "#fff"});
 	});
+	
 	
 	// 로그인창 닫기 버튼
 	$("#btn_close_x").click(function(e) {
@@ -178,6 +182,7 @@ $(function() {
 			});
 		}
 	});
+	
 	
 	// 좌석선택 버튼 클릭시
 	$("#step-btn").click(function(e) {
