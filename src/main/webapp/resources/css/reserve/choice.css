@@ -5,7 +5,99 @@
 	height: 530px;
 	margin: 0 auto;
 	margin-top: 60px;
-	border: 1px solid red;
+	border: 2px solid #666;
+}
+
+#col-head {
+	width: 996px;
+	height: 33px;
+	line-height: 33px;
+    text-align: center;
+	background: #333333 url('/resources/images/reserve/titles.png');
+    background-repeat: no-repeat;
+    background-position: 50% 26.5%;
+}
+
+#a_count_type {
+	margin-top: 20px;
+	margin-left: 20px;
+}
+
+#a_count_type img, #b_count_type img {
+	margin-right: 5px;
+}
+
+#b_count_type {
+	margin-top: 10px;
+	margin-left: 20px;
+}
+
+#seat_type {
+	margin-top: 10px;
+	margin-left: 50px;
+}
+
+.typeSpan {
+	display: inline-block;
+	width: 50px;
+}
+
+#personWrap {
+	width: 996px;
+	height: 120px;
+}
+
+#section-numberofpeople {
+	width: 433px;
+	height: 116px;
+	float: left;
+	margin-top: 5px;
+	border-right: 1px solid #d4d3c9;
+	border-bottom: 2px solid #d4d3c9;
+}
+
+#section-screenInfo {
+	width: 555px;
+	height: 116px;
+	float: right;
+	margin-top: 5px;
+	border-bottom: 2px solid #d4d3c9;
+}
+
+#col-screen-step {
+	width: 450px;
+	height: 80px;
+	margin: 17px 0px 0px 40px;
+}
+
+#col-screen-step p:nth-child(2) {
+	font-weight: bold;
+	font-family: Helvetica Neue,Helvetica,Arial,sans-serif;
+    font-size: 1.9em;
+}
+
+#screenDiv {
+	clear: both;
+	width: 866px;
+	height: 335px;
+	margin: 20px auto;
+	padding-top: 20px;
+	text-align: center;
+}
+
+#screenDiv img {
+	margin-right: 2px;
+	margin-bottom: 10px;
+}
+
+#seat {
+	margin: 0 auto;
+	margin-top: 25px;
+	width: 525px;
+	height: 200px;
+	text-align: left;
+	padding: 20px;
+	overflow: auto;
 }
 
 #tnb-container {
@@ -112,9 +204,9 @@
 #btn_right {
 	width: 106px;
 	height: 108px;
-	background: url(/resources/images/reserve/tnb_buttons.png) no-repeat;
-    background-position: 0 -330px;
+	background: url(/resources/images/reserve/tnb_buttons.png) no-repeat 0 -330px;
     float: right;
+    cursor: default;
 }
 
 

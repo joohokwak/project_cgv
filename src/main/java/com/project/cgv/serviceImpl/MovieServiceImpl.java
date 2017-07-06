@@ -70,6 +70,16 @@ public class MovieServiceImpl implements MovieService {
 	public String movieEndTime(HashMap<String, Object> params) {
 		return mvDao.movieEndTime(params);
 	}
+
+	@Override
+	public HashMap<String, Object> getScreen(int s_num) {
+		return mvDao.getScreen(s_num);
+	}
+
+	@Override
+	public List<HashMap<String, Object>> seatList(int s_num) {
+		return mvDao.seatList(s_num);
+	}
 	
 	
 	

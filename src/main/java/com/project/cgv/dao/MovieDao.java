@@ -23,7 +23,13 @@ public interface MovieDao {
 	public List<HashMap<String, Object>> theaterList();
 	public HashMap<String, Object> getTheater(int t_num);
 	
+	// screen
+	public HashMap<String, Object> getScreen(int s_num);
+	
 	// movieTime
 	public List<HashMap<String, Object>> movieTimeInfo(HashMap<String, Object> params);
+	
+	// seat
+	public List<HashMap<String, Object>> seatList(int s_num);
 	
 }

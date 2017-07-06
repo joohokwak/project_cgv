@@ -53,9 +53,22 @@
 	</select>
 	
 	
+	<!-- screen -->
+	<select id="getScreen" parameterType="int" resultType="hashmap">
+		select * from screen where s_num = #{value}
+	</select>
+	
+	
 	<!-- movieTime -->
 	<select id="movieTimeInfo" parameterType="hashmap" resultType="hashmap">
 		select s.*, t.mt_num, t.mt_time, t.mt_date from screen s join movieTime t  
 		using(s_num) where s.t_num=#{t_num} and s.m_num=#{m_num} and t.mt_date=#{mt_date}
 	</select>
+	
+	
+	<!-- seat -->
+	<select id="seatList" parameterType="int" resultType="hashmap">
+		select * from seat where s_num = #{value}
+	</select>
+	
 </mapper>

@@ -149,8 +149,8 @@
 	<form id="reserveChoiceForm" action="/reserve/reserveChoice" method="post">
 		<input type="hidden" id="movieInfo" name="movieInfo">
 		<input type="hidden" id="theaterInfo" name="theaterInfo">
-		<input type="hidden" id="dateInfo" name="dateInfo">
 		<input type="hidden" id="screenInfo" name="screenInfo">
+		<input type="hidden" id="dateInfo" name="dateInfo">
 		<input type="hidden" id="timeInfo" name="timeInfo">
 	</form>
 </body>

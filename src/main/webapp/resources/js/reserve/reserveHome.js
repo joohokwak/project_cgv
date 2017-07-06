@@ -236,7 +236,7 @@ function dateChoice() {
 						
 					str += "<span class='timeChoice' style='border: 1px solid #cfcdc3; padding: 2px; display: inline-block; width: 50px; height: 21px; font-size: 14px;"+
 						" font-weight: bold; text-align: center; cursor: pointer; margin-bottom: 15px;'>"+
-						"<span data-screen='"+element.s_title+"' style='display: inline-block; width: 48px; height: 19px;'>"+element.mt_time+"</span></span><span style='color: green;'>"
+						"<span data-screen='"+element.s_title+"' data-screenNum='"+element.s_num+"' style='display: inline-block; width: 48px; height: 19px;'>"+element.mt_time+"</span></span><span style='color: green;'>"
 						+element.s_cnt_seat+"석</span>";
 					
 				});
@@ -260,7 +260,7 @@ function dateChoice() {
 					$("#movieInfo").val(select_movie_num);
 					$("#theaterInfo").val(select_theater_num);
 					$("#dateInfo").val(dayInfo);
-					$("#screenInfo").val(screenInfo);
+					$("#screenInfo").val($(this).children().attr("data-screenNum"));
 					$("#timeInfo").val($(this).find(":first-child").text());
 				});
 			}

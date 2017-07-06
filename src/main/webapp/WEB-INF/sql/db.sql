@@ -418,10 +418,39 @@ insert into movieTime values(0, '2017-07-15', '12:00', 2);
 create table seat(
 	seat_num int primary key auto_increment,
 	s_num int, #상영관 fk
-	seat_name int, #좌석번호 
+	seat_status varchar(10), #좌석번호 
 	foreign key(s_num) references screen(s_num) 
 );
 
+create table reserve(
+	rv_num int primary key auto_increment,
+	rv_theater varchar(40),
+	rv_screen varchar(40),
+	rv_date varchar(30),
+	rv_time varchar(20),
+	rv_people varchar(50),
+	rv_pay int,
+	rv_seat varchar(100),
+	id varchar(50),
+	m_num int ,
+	t_num int,
+	s_num int,
+	foreign key(id) references member(id),
+	foreign key(m_num) references movie(m_num),
+	foreign key(t_num) references theater(t_num),
+	foreign key(s_num) references screen(s_num)
+);
+
+create table movie_re(
+	mr_no int primary key auto_increment,
+	mr_img varchar(300),
+	mr_nick varchar(30),
+	mr_content varchar(3000),
+	mr_score int,
+	mr_regdate timestamp,
+	m_num int,
+	foreign key(m_num) references movie(m_num)
+);
 
 
 
