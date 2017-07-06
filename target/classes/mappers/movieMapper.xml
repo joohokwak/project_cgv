@@ -43,6 +43,10 @@
 		select * from theater order by t_name
 	</select>
 	
+	<select id="getTheater" parameterType="int" resultType="hashmap">
+		select * from theater where t_num = #{value}
+	</select>
+	
 	
 	<!-- movieTime -->
 	<select id="movieTimeInfo" parameterType="hashmap" resultType="hashmap">

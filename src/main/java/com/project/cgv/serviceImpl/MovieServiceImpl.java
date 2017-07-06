@@ -60,6 +60,11 @@ public class MovieServiceImpl implements MovieService {
 	public List<HashMap<String, Object>> movieTimeInfo(HashMap<String, Object> params) {
 		return mvDao.movieTimeInfo(params);
 	}
+
+	@Override
+	public HashMap<String, Object> getTheater(int t_num) {
+		return mvDao.getTheater(t_num);
+	}
 	
 	
 	

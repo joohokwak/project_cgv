@@ -119,5 +119,39 @@
 			</div>
 		</div>
 	</div>
+	
+	<!-- 로그인 창 -->
+	<div id="loginDiv">
+		<div id="login_hd">
+			<div id="login_title">CGV 회원 로그인</div>
+			<a id="btn_close_x">닫기</a>
+		</div>
+		
+		<div id="login_bd">
+			<div id="login_bd_form">
+				<div id="login_wrap_id">
+					<input type="text" id="loginDivId" tabindex="1">
+				</div>
+				
+				<div id="login_wrap_pw">
+					<input type="password" id="loginDivPw" tabindex="2">
+				</div>
+				
+				<div id="login_wrap_btn">
+					<button id="login_bd_btn" tabindex="3">로그인</button>
+				</div>
+			</div>
+		</div>
+	</div>
+	
+	
+	<!-- 좌석 선택 페이지로 넘겨줄 데이터 -->
+	<form id="reserveChoiceForm" action="/reserve/reserveChoice" method="post">
+		<input type="hidden" id="movieInfo" name="movieInfo">
+		<input type="hidden" id="theaterInfo" name="theaterInfo">
+		<input type="hidden" id="dateInfo" name="dateInfo">
+		<input type="hidden" id="screenInfo" name="screenInfo">
+		<input type="hidden" id="timeInfo" name="timeInfo">
+	</form>
 </body>
 </html>

@@ -58,4 +58,15 @@ public class ReserveController {
 		return map;
 	}
 	
+	@RequestMapping("/reserveChoice")
+	public String reserveChoiceForm(@RequestParam HashMap<String, Object> params, Model model) {
+		model.addAttribute("movieInfo", mvService.movieDetail(Integer.parseInt((String)params.get("movieInfo"))));
+		model.addAttribute("theaterInfo", mvService.getTheater(Integer.parseInt((String)params.get("theaterInfo"))));
+		model.addAttribute("dateInfo", params.get("dateInfo"));
+		model.addAttribute("screenInfo", params.get("screenInfo"));
+		model.addAttribute("timeInfo", params.get("timeInfo"));
+		
+		return ".reserve.reserve.reserveChoice";
+	}
+	
 }

@@ -330,6 +330,120 @@
 	margin-top: 10px;
 }
 
+#loginDiv {
+	display: none;
+	position: absolute;
+	width: 462px;
+	height: 324px;
+	border: 5px solid #333;
+	top: 200px;
+	left: 35%;
+	z-index: 20000;
+}
+
+#login_hd {
+	width: 462px;
+	height: 51px;
+	background: #333;
+	border-bottom: 5px solid #333;
+}
+
+#login_title {
+	width: 440px;
+	height: 35px;
+	color: #f2f0e5;
+    padding-top: 14px;
+    padding-left: 20px;
+	font-family: Nanum Gothic, 나눔고딕, Apple SD Gothic Neo, AppleGothic, 돋움, dotum, Sans-serif;
+    font-size: 22px;
+    font-weight: bold;
+    line-height: 22px;
+    letter-spacing: -1px;
+	border: 1px solid gray;
+}
+
+#btn_close_x {
+    display: block;
+    position: relative;
+    float: right;
+    top: -34px;
+    right: 20px;
+    width: 18px;
+    height: 18px;
+    background: url(/resources/images/reserve/btn_close_x.png) no-repeat;
+    overflow: hidden;
+    cursor: pointer;
+    text-indent: -1000px;
+}
+
+#login_bd {
+	width: 310px;
+	height: 226px;
+    padding-bottom: 40px;
+    padding-left: 75px;
+    padding-right: 75px;
+    background: #f6f6f4;
+}
+
+#login_bd_form {
+	width: 266px;
+	height: 133px;
+	margin: 0 auto;
+	position: relative;
+	padding-top: 50px;
+}
+
+#login_wrap_id {
+    width: 212px;
+    border: 2px solid #b5b5b5;
+    margin-bottom: 5px;
+    padding: 8px 10px 8px 40px;
+    background: url("/resources/images/reserve/login_icon_id.png") no-repeat left center;
+}
+
+#login_wrap_id input[type='text'] {
+	width: 212px;
+	height: 21px;
+	border: none;
+	background: #f6f6f4;
+}
+
+#login_wrap_pw {
+	width: 212px;
+    border: 2px solid #b5b5b5 !important;
+    padding-bottom: 7px;
+    margin-bottom: 5px;
+    padding: 8px 10px 8px 40px;
+    background: url("/resources/images/reserve/login_icon_pw.png") no-repeat left center;
+}
+
+#login_wrap_pw input[type='password'] {
+	width: 212px;
+	height: 21px;
+	border: none;
+	background: #f6f6f4;
+}
+
+#login_wrap_btn {
+	width: 262px;
+	height: 42px;
+    background: #e71a0f;
+    padding: 2px;
+}
+
+#login_bd_btn {
+	width: 262px;
+    background: #e71a0f;
+    color: #f2f0e5;
+    height: 42px;
+    line-height: 37px;
+    font-size: 15px;
+    font-weight: bold;
+    font-family: 'NanumBarunGothicBold', 'Nanum Gothic', 'Dotum';
+    border: 1px solid white;
+    cursor: pointer;
+}
+
 
 
 

@@ -1,7 +1,8 @@
 var select_movie_num = null;
 var select_theater_num = null;
 var select_date = null;
-	
+var dayInfo = null;
+
 $(function() {
 	$("#date-list").mCustomScrollbar({theme:"rounded-dark"});
 	$("#reserve-movie-list").mCustomScrollbar({theme:"rounded-dark"});
@@ -94,7 +95,7 @@ $(function() {
 			
 			$("#infoTheater").css("background", "#1d1d1c");
 			
-			var dayInfo = $(this).attr("data-info");
+			dayInfo = $(this).attr("data-info");
 			$("#row-date").css("display", "block").html("<span style='display: inline-block; width: 40px;'>일시</span><span>"+dayInfo+"</span>");
 			
 			select_date = dayInfo.split("[")[0];
@@ -153,11 +154,53 @@ $(function() {
 		$(this).find(".col-theater2").css({"border": "1px solid gray", "color" : "#fff"});
 	});
 	
+	// 로그인창 닫기 버튼
+	$("#btn_close_x").click(function(e) {
+		$("#loginDiv").css({display: "none"});
+		$("#ticketSelectWrap").prop('disabled', false).css({"pointer-events": "auto", opacity: "1"});
+	});
+	
+	$("#login_bd_btn").click(function(e) {
+		var divId = $.trim($("#loginDivId").val());
+		var divPw = $.trim($("#loginDivPw").val());
+		
+		if(divId.length > 0 && divPw.length >0) {
+			$.ajax({
+				url : "/member/reserveLogin",
+				type : "post",
+				data : {"id": divId, "pass":divPw},
+				dataType : "json",
+				success: function(data) {
+					if(data.result == 'success') {
+						$("#reserveChoiceForm").submit();
+					}
+				}
+			});
+		}
+	});
+	
 	// 좌석선택 버튼 클릭시
 	$("#step-btn").click(function(e) {
 		if($(this).attr("data-info") == 'check') {
-			// 다음페이지 이동
-			alert("이동");
+			
+			// 로그인체크
+			$.ajax({
+				url : "/member/loginCheck",
+				dataType : "text",
+				success : function(data) {
+					if(data == 'login') {
+						// 좌석선택창으로 이동
+						$("#reserveChoiceForm").submit();
+						
+					} else {
+						// 로그인 창 띄우기
+						$("html, body").stop().animate({scrollTop : '0'});
+						$("#loginDiv").css({display: "block"});
+						$("#ticketSelectWrap").prop('disabled', true).css({"pointer-events": "none", opacity: "0.5"});
+					}
+				}
+			});
+			
 		}
 	});
 });
@@ -188,7 +231,7 @@ function dateChoice() {
 						
 					str += "<span class='timeChoice' style='border: 1px solid #cfcdc3; padding: 2px; display: inline-block; width: 50px; height: 21px; font-size: 14px;"+
 						" font-weight: bold; text-align: center; cursor: pointer; margin-bottom: 15px;'>"+
-						"<span data-screen='"+element.s_title+"' style='display: inline-block; width: 48px; height: 18px;'>"+element.mt_time+"</span></span><span style='color: green;'>"
+						"<span data-screen='"+element.s_title+"' style='display: inline-block; width: 48px; height: 19px;'>"+element.mt_time+"</span></span><span style='color: green;'>"
 						+element.s_cnt_seat+"석</span>";
 					
 				});
@@ -197,16 +240,23 @@ function dateChoice() {
 				
 				$(".timeChoice").click(function(e) {
 					$(".timeChoice").css({background: "#fdfcf0"});
-					$(".timeChoice").children().css({border: "none", color: "#333"});
+					$(".timeChoice").find(":first-child").css({border: "none", color: "#333"});
 					
 					var screenInfo = $(this).children().attr("data-screen");
 					$("#row-screen").css("display", "block").html("<span style='display: inline-block; width: 40px;'>상영관</span><span>"+screenInfo+"</span>");
 					
-					$(this).css({background: "#333"});
-					$(this).children().css({border: "1px solid gray", color: "#fff"});
+					$(this).css({background: "#333", border: "1px solid gray"});
+					$(this).find(":first-child").css({border: "1px solid gray", color: "#fff"});
 					
 					$("#step-btn").css({"background": "url('/resources/images/reserve/tnb_buttons.png') no-repeat -150px -220px", "cursor": "pointer"});
 					$("#step-btn").attr("data-info", "check");
+					
+					// 선택된 정보들을 form에 담기
+					$("#movieInfo").val(select_movie_num);
+					$("#theaterInfo").val(select_theater_num);
+					$("#dateInfo").val(dayInfo);
+					$("#screenInfo").val(screenInfo);
+					$("#timeInfo").val($(this).find(":first-child").text());
 				});
 			}
 		});

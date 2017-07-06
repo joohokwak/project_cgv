@@ -410,8 +410,8 @@ insert into movieTime values(0, '2017-07-15', '19:30', 1);
 insert into movieTime values(0, '2017-07-15', '09:30', 1);
 insert into movieTime values(0, '2017-07-15', '13:00', 1);
 
-insert into movieTime values(0, '2017-07-16', '12:00', 2);
-insert into movieTime values(0, '2017-07-15', '12:00', 3);
+insert into movieTime values(0, '2017-07-16', '12:00', 3);
+insert into movieTime values(0, '2017-07-15', '12:00', 2);
 
 
 #좌석
