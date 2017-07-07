@@ -30,6 +30,7 @@ public interface MovieDao {
 	public List<HashMap<String, Object>> movieTimeInfo(HashMap<String, Object> params);
 	
 	// seat
-	public List<HashMap<String, Object>> seatList(int s_num);
+	public List<HashMap<String, Object>> seatList(HashMap<String, Object> params);
+	
 	
 }
