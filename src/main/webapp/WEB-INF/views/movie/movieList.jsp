@@ -79,7 +79,7 @@
 							<span class="like_count">
 								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
-							<a href="#" class="reserve_btn"></a>
+							<a href="/reserve/reserveHome" class="reserve_btn"></a>
 						</div>
 					</div>
 					</c:if>
@@ -113,7 +113,7 @@
 							<span class="like_count">
 								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
-							<a href="#" class="reserve_btn"></a>
+							<a href="/reserve/reserveHome" class="reserve_btn"></a>
 						</div>
 					</div>
 					</c:if>
@@ -147,7 +147,7 @@
 							<span class="like_count">
 								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
-							<a href="#" class="reserve_btn"></a>
+							<a href="/reserve/reserveHome" class="reserve_btn"></a>
 						</div>
 					</div>
 					</c:if>
@@ -205,7 +205,7 @@
 							<span class="like_count">
 								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
-							<a href="#" class="reserve_btn"></a>
+							<a href="/reserve/reserveHome" class="reserve_btn"></a>
 						</div>
 					</div>
 					</c:if>
@@ -239,7 +239,7 @@
 							<span class="like_count">
 								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
-							<a href="#" class="reserve_btn"></a>
+							<a href="/reserve/reserveHome" class="reserve_btn"></a>
 						</div>
 					</div>
 					</c:if>
@@ -273,7 +273,7 @@
 							<span class="like_count">
 								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
-							<a href="#" class="reserve_btn"></a>
+							<a href="/reserve/reserveHome" class="reserve_btn"></a>
 						</div>
 					</div>
 					</c:if>
@@ -307,7 +307,7 @@
 							<span class="like_count">
 								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
-							<a href="#" class="reserve_btn"></a>
+							<a href="/reserve/reserveHome" class="reserve_btn"></a>
 						</div>
 					</div>
 					</c:if>

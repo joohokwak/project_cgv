@@ -61,7 +61,7 @@
 			
 			<div id="detailLike">
 				<img id="like" alt="" src="/resources/images/movie/heart_black.png">
-				<a href="#">
+				<a href="/reserve/reserveHome">
 					<img id="reserve_btn" alt="reserve_btn" src="/resources/images/movie/reserve_btn.png">
 				</a>
 				<div id="like_point">${m_like }</div>

@@ -1,0 +1,39 @@
+@CHARSET "UTF-8";
+
+#reservePayWrap {
+	width: 980px;
+	height: 600px;
+	border: 5px solid #333;
+	margin: 0 auto;
+	margin-top: 50px;
+}
+
+#pay-header {
+	width: 977px;
+	height: 53px;
+	background: #333;
+	padding: 2px;
+}
+
+#pay-title {
+	height: 47px;
+	line-height: 47px;
+	background: #333;
+	color: white;
+	border: 1px solid white;
+	font-size: 17px;
+	font-weight: bold;
+	padding-left: 30px;
+}
+
+#pay-movieInfo {
+	width: 900px;
+	height: 200px;
+	border: 1px solid blue;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+
+
+

@@ -5,18 +5,19 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+	<link rel="stylesheet" href="/resources/css/reserve/pay.css?ver=1">
 </head>
 <body>
-	${rv_theater }<br>
-	${rv_screen }<br>
-	${rv_date }<br>
-	${rv_time }<br>
-	${rv_people }<br>
-	${rv_pay }<br>
-	${rv_seat }<br>
-	${movie }<br>
-	${theater }<br>
-	${screen }
+	
+	<div id="reservePayWrap">
+		<div id="pay-header">
+			<div id="pay-title">예매내역 확인</div>
+		</div>
+		
+		<div id="pay-movieInfo">
+			<img alt="" src="/resources/images/movie/poster/${movie.m_poster }" height="160px">
+		</div>
+	</div>
 	
 	
 </body>
