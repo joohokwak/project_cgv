@@ -7,4 +7,8 @@
 	<select id="getMember" parameterType="String" resultType="hashmap">
 		select * from member where id = #{id}
 	</select>
+	
+	<insert id="setMember" parameterType="hashmap">
+		insert into member(id,pass,name,email,birth,phone) value(#{id},#{pass},#{name},#{email},#{birth},#{phone})
+	</insert>
 </mapper>

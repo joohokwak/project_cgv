@@ -32,27 +32,34 @@
 					</c:choose>
 				</li>
 				
-				<li class="topmenu02">
-					<a href="/member/memberJoin">
-						<img src="/resources/images/header/img_join.jpg">
-					</a>
-				</li>
-				
-				<li class="topmenu03">
-					<c:choose>
-						<c:when test="${member.id == 'admin' }">
-							<a href="/admin/main">
-								<img src="/resources/images/header/img_mycgv.jpg">
+				<c:choose>
+					<c:when test="${empty member }">
+						<li class="topmenu02">
+							<a href="/member/memberJoin">
+								<img src="/resources/images/header/img_join.jpg">
 							</a>
-						</c:when>
-						<c:otherwise>
-							<a href="#">
-								<img src="/resources/images/header/img_mycgv.jpg">
-							</a>
-						</c:otherwise>
-					</c:choose>
+						</li>
+					</c:when>
+					
+					<c:otherwise>
+						<li class="topmenu03">
+							<c:choose>
+								<c:when test="${member.id == 'admin' }">
+									<a href="/admin/main">
+										<img src="/resources/images/header/img_mycgv.jpg">
+									</a>
+								</c:when>
+								<c:otherwise>
+									<a href="/member/mycgv">
+										<img src="/resources/images/header/img_mycgv.jpg">
+									</a>
+								</c:otherwise>
+							</c:choose>
+						
+						</li>
+					</c:otherwise>
+				</c:choose>
 				
-				</li>
 			</ul>
 		</div>
 		<!-- topmenu 끝 -->

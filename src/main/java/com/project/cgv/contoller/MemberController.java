@@ -6,10 +6,12 @@ import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.cgv.service.MemberService;
 
@@ -22,6 +24,20 @@ public class MemberController {
 	@RequestMapping("/memberJoin")
 	public String memberJoinForm() {
 		return ".reserve.member.joinForm";
+	}
+	
+	@RequestMapping("/memberJoinsubmit")
+	public ModelAndView memberJoin(@RequestParam HashMap<String, Object> params){
+		ModelAndView mv = new ModelAndView();
+		mv.setViewName( mService.setMember(params));
+		mv.addObject(params);
+		return mv;
+	}
+
+	@ResponseBody
+	@RequestMapping(value="/idCheck", method=RequestMethod.POST )
+	public int idcheck(@RequestParam("id") String id){
+		return mService.idCheck(id);
 	}
 	
 	@RequestMapping(value="/login", method=RequestMethod.GET)
@@ -73,6 +89,12 @@ public class MemberController {
 		}
 		
 		return result;
+	}
+	
+	@RequestMapping("/mycgv")
+	public String myCGV(Model model) {
+		model.addAttribute("imgInfo", "h2_mycgv.png");
+		return ".reserve.member.myCGV";
 	}
 	
 	

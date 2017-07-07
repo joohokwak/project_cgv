@@ -1,0 +1,221 @@
+@CHARSET "UTF-8";
+
+.joinFormWrap {
+	margin: 0 auto;
+	width: 980px;
+	margin-top: 50px;
+	text-align: center;
+	background-color: white;
+}
+
+.join_header>div {
+	display: inline-block;
+	margin: 0 auto;
+}
+
+.join_header>div>h1 {
+	font-size: 40px;
+}
+
+.join_body_area {
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.step_join {
+	display: inline-block;
+	text-align: center;
+	width: 100%;
+	margin: 0 auto;
+}
+
+.step_join>div {
+	display: inline-block;
+	height: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.step_join>div>.step1 {
+	float: left;
+	margin: 0;
+}
+
+.step_join>div>.step2 {
+	float: left;
+	margin: 0;
+}
+
+.step_join>div>.step1>div>a {
+	display: inline-block;
+	background: url(/resources/images/join/bg_member.png) no-repeat;
+	width: 70px;
+	height: 70px;
+	overflow: hidden;
+	background-position: -300px -70px;
+}
+
+.step_join>div>.step2>div>a {
+	display: inline-block;
+	background: url(/resources/images/join/bg_member.png) no-repeat;
+	width: 70px;
+	height: 70px;
+	overflow: hidden;
+	background-position: -400px 0px;
+}
+
+.step_join>div>.step1>div>span {
+	color: rgb(238, 105, 0);
+}
+
+.step_join>div>a {
+	display: table-cell;
+	font-weight: bold;
+	vertical-align: bottom;
+	transition: opacity .4s;
+}
+
+.step_line {
+	float: left;
+	width: 50px;
+	height: 50px;
+	text-align: center;
+	margin: 10px;
+}
+
+.step_line hr {
+	position: relative;
+	width: 100%;
+	top: 33%;
+}
+
+.member_data>form>table {
+	width: 100%;
+	border-spacing: 0;
+	font-size: 20px;
+	border-top: 1px solid #222;
+}
+
+.member_data_td1 {
+	width: 30%;
+	background-color: rgb(248, 248, 248);
+	text-align: left;
+}
+
+.member_data>form>table td {
+	border-bottom: 1px solid #ddd;
+	padding: 10px;
+	padding-left: 20px;
+}
+
+.check_img {
+	display: inline-block;
+	position: relative;
+	top: 5px;
+	width: 20px;
+	height: 20px;
+	background: url(/resources/images/join/ico_mandatory.png) no-repeat;
+}
+
+.member_data_header {
+	display: inline-block;
+	width: 100%;
+	margin: 0 auto;
+	text-align: center;
+}
+
+.member_data_header>div.left {
+	float: left;
+	font-size: 30px;
+	font-weight: lighter;
+}
+
+.member_data_header>div.right {
+	float: right;
+	font-size: 15px;
+}
+
+.birthday select {
+	margin-right: 10px;
+	padding: .5em;
+}
+
+.member_data_phon input {
+	width: 100px;
+	padding: 5px;
+	padding-left: 10px;
+}
+
+.member_data_email input {
+	width: 100px;
+	padding: 6px;
+	padding-left: 10px;
+}
+
+.member_data_email select {
+	width: 120px;
+	padding: .5em .5em;
+	font-family: inherit;
+	background:
+		url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg)
+		no-repeat 95% 50%;
+	border: 1px solid #999;
+	border-radius: 0px; /* iOS 둥근모서리 제거 */
+	-webkit-appearance: none; /* 네이티브 외형 감추기 */
+	-moz-appearance: none;
+	appearance: none;
+}
+
+.id_check_btn {
+	background-color: #333;
+	border: none;
+	border-radius: 3px;
+	color: white;
+	padding: 5px 10px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+}
+
+.submit_btn {
+	background-color: #333;
+	border: none;
+	border-radius: 3px;
+	color: white;
+	padding: 10px 40px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+}
+
+.c_btn {
+	background-color: #fff;
+	border: 1px solid black;
+	border-radius: 3px;
+	color: black;
+	padding: 10px 40px;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 15px;
+}
+
+.submit_wrap {
+	margin: 10px;
+	padding: 20px;
+	padding-bottom: 50px;
+}
+
+.member_join_notice {
+	font-size: 15px;
+	text-align: left;
+	padding: 20px;
+	background-color: rgb(248, 248, 248);
+}
+
+.member_join_notice p {
+	margin: 10px;
+}

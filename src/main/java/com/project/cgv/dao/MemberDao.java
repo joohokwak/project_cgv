@@ -6,4 +6,5 @@ public interface MemberDao {
 	
 	public HashMap<String, Object> getMember(String id);
 	
+	public void setMember(HashMap<String, Object> params);
 }

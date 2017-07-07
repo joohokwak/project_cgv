@@ -11,6 +11,7 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.cgv.service.MovieService;
 
@@ -61,7 +62,7 @@ public class ReserveController {
 	}
 	
 	/**
-	 * @param params
+	 * @param params 
 	 * @param model
 	 * @return
 	 */
@@ -100,7 +101,11 @@ public class ReserveController {
 		model.addAttribute("seatABC", seatABC);
 		
 		// 상영관의 좌석이 예약 되었는지 확인
-		List<HashMap<String, Object>> seatList = mvService.seatList(s_num);
+		HashMap<String, Object> seatInfo = new HashMap<String, Object>();
+		seatInfo.put("mt_time", params.get("timeInfo"));
+		seatInfo.put("mt_date", params.get("mtDateInfo"));
+		seatInfo.put("s_num", s_num);
+		List<HashMap<String, Object>> seatList = mvService.seatList(seatInfo);
 		
 		// 예매가 완료된 시트의 상태값을 얻어서 담을 리스트
 		List<String> seat = new ArrayList<String>();
@@ -115,8 +120,23 @@ public class ReserveController {
 			model.addAttribute("seatList", seat);
 		}
 		
-		
 		return ".reserve.reserve.reserveChoice";
+	}
+	
+	@RequestMapping("/selectPay")
+	public ModelAndView selectPay(@RequestParam HashMap<String, Object> params) {
+		ModelAndView mv = new ModelAndView(".reserve.reserve.reservePay");
+		mv.addAllObjects(params);
+		
+		int m_num = Integer.parseInt((String)params.get("m_num"));
+		int t_num = Integer.parseInt((String)params.get("t_num"));
+		int s_num = Integer.parseInt((String)params.get("s_num"));
+		
+		mv.addObject("movie", mvService.movieDetail(m_num));
+		mv.addObject("screen", mvService.getScreen(s_num));
+		mv.addObject("theater", mvService.getTheater(t_num));
+		
+		return mv;
 	}
 	
 }

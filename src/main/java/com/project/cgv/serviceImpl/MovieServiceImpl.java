@@ -77,8 +77,8 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public List<HashMap<String, Object>> seatList(int s_num) {
-		return mvDao.seatList(s_num);
+	public List<HashMap<String, Object>> seatList(HashMap<String, Object> params) {
+		return mvDao.seatList(params);
 	}
 	
 	

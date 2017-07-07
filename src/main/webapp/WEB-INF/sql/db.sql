@@ -8,11 +8,13 @@ create table member(
 	name varchar(50) not null,
 	pass varchar(50) not null,
 	pic varchar(300) default 'no_pic.jpg',
-	email varchar(100) not null
+	email varchar(100) not null,
+	birth varchar(20) not null,
+	phone varchar(15) not null
 );
 
-insert into member values('jh', '주호', '1', 'no_pic.jpg', 'jhkwak6089@naver.com');
-insert into member values('admin', '관리자', '1', 'no_pic.jpg', 'admin@naver.com');
+insert into member values('jh', '주호', '1', 'no_pic.jpg', 'jhkwak6089@naver.com', '2017.07.01', '010-1234-1234');
+insert into member values('admin', '관리자', '1', 'no_pic.jpg', 'admin@naver.com', '2017.07.01', '010-1234-1234');
 
 create table board(
 	b_num int primary key auto_increment,
@@ -418,9 +420,16 @@ insert into movieTime values(0, '2017-07-15', '12:00', 2);
 create table seat(
 	seat_num int primary key auto_increment,
 	s_num int, #상영관 fk
+	mt_num int,
 	seat_status varchar(10), #좌석번호 
-	foreign key(s_num) references screen(s_num) 
+	foreign key(s_num) references screen(s_num), 
+	foreign key(mt_num) references movieTime(mt_num)
 );
+
+insert into seat values(0, 1, 1, 'E10');
+insert into seat values(0, 1, 2, 'E11');
+insert into seat values(0, 1, 2, 'E12');
+
 
 create table reserve(
 	rv_num int primary key auto_increment,
@@ -429,7 +438,7 @@ create table reserve(
 	rv_date varchar(30),
 	rv_time varchar(20),
 	rv_people varchar(50),
-	rv_pay int,
+	rv_pay varchar(20),
 	rv_seat varchar(100),
 	id varchar(50),
 	m_num int ,
