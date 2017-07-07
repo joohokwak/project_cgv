@@ -37,10 +37,12 @@
 	</select>
 	
 	
+	
 	<!-- video -->
 	<select id="trailerList" parameterType="int" resultType="hashmap">
 		select * from video where m_num = #{value}
 	</select>
+	
 	
 	
 	<!-- theater -->
@@ -51,6 +53,7 @@
 	<select id="getTheater" parameterType="int" resultType="hashmap">
 		select * from theater where t_num = #{value}
 	</select>
+	
 	
 	
 	<!-- screen -->
@@ -66,9 +69,19 @@
 	</select>
 	
 	
+	
 	<!-- seat -->
-	<select id="seatList" parameterType="int" resultType="hashmap">
-		select * from seat where s_num = #{value}
+	<select id="seatList" parameterType="hashmap" resultType="hashmap">
+		select distinct seat_status 
+			from seat join movietime
+				using(s_num) 
+				where seat.s_num=#{s_num} 
+				and seat.mt_num=
+					(select mt_num 
+						from movietime 
+							where mt_time=#{mt_time} 
+								and mt_date=#{mt_date} 
+								and s_num=#{s_num});
 	</select>
 	
 </mapper>
