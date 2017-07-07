@@ -224,7 +224,7 @@ function dateChoice() {
 				var str = "";
 				var s_title = null;
 				
-				$(data).each(function(i, element) {
+				$(data.result1).each(function(i, element) {
 					if(s_title != element.s_title) {
 						s_title = element.s_title;
 						if(i == 0) {
@@ -233,11 +233,23 @@ function dateChoice() {
 							str += "<div style='padding-top: 10px; margin-bottom: 10px; border-top: 2px solid #cfcdc3;'><span style='font-size: 14px; font-weight: bold;'>"+element.s_title+"</span> (총"+element.s_cnt_seat+"석)</div>";
 						}
 					}
+					
+					var timeInfo = null;
+					
+					$(data.result2).each(function(j, elt) {
+						if(element.mt_time == elt.mt_time) {
+							timeInfo = element.s_cnt_seat - elt.tgs;
+						}
+					});
+					
+					if(timeInfo == null) {
+						timeInfo = element.s_cnt_seat;
+					}
 						
 					str += "<span class='timeChoice' style='border: 1px solid #cfcdc3; padding: 2px; display: inline-block; width: 50px; height: 21px; font-size: 14px;"+
 						" font-weight: bold; text-align: center; cursor: pointer; margin-bottom: 15px;'>"+
 						"<span data-screen='"+element.s_title+"' data-screenNum='"+element.s_num+"' style='display: inline-block; width: 48px; height: 19px;'>"+element.mt_time+"</span></span><span style='color: green;'>"
-						+element.s_cnt_seat+"석</span>";
+						+timeInfo+"석</span>";
 					
 				});
 				
@@ -267,5 +279,21 @@ function dateChoice() {
 				
 			}
 		});
+	}
+}
+
+
+function m_numMove(m, p, t, g) {
+	if(m != 0) {
+		select_movie_num = m;
+		$("#infoMovie").css("background", "none");
+		
+		var table = $("<table style='border-spacing: 0; width: 214px; height: 108px; position: relative; top: -58%;'>");
+		
+		table.append($("<tr>").append("<td width='74px' rowspan='2'><img src='/resources/images/movie/poster/"+p+"' width='74px' height='104px'></td>")
+				.append("<td align='left'><div style='margin-left: 5px; overflow: hidden; font-weight: bold;'>"+t+"</div></td>"));
+		table.append($("<tr><td align='left'><div style='margin-left: 5px; font-weight: bold;'>"+g+"</div></td></tr>"))
+		
+		$("#infoMovie").append(table);
 	}
 }

@@ -41,6 +41,7 @@
 				</div>
 				
 				<div id="seat_type">
+					<span class="typeSpan">묶음선택</span>
 					<label>
 						<input type="radio" name="seattype" value="st_img1" disabled="disabled"/>
 						<img id="st_img1" src="/resources/images/reserve/reserve_img/seat_1.jpg"/>
@@ -271,6 +272,7 @@
 		<input type="hidden" id="rv_screen" name="rv_screen" value="${screenInfo.s_title }">
 		<input type="hidden" id="rv_date" name="rv_date" value="${dateInfo }">
 		<input type="hidden" id="rv_time" name="rv_time" value="${timeInfo }">
+		<input type="hidden" id="rv_endtime" name="rv_endtime" value="${movieEndTime }">
 		<input type="hidden" id="rv_people" name="rv_people">
 		<input type="hidden" id="rv_pay" name="rv_pay">
 		<input type="hidden" id="rv_seat" name="rv_seat">

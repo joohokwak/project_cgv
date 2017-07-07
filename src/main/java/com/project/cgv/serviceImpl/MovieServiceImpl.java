@@ -80,6 +80,55 @@ public class MovieServiceImpl implements MovieService {
 	public List<HashMap<String, Object>> seatList(HashMap<String, Object> params) {
 		return mvDao.seatList(params);
 	}
+
+	@Override
+	public List<HashMap<String, Object>> timeGroupSeat(String mt_date) {
+		return mvDao.timeGroupSeat(mt_date);
+	}
+
+	@Override
+	public int reserveSign(HashMap<String, Object> params) {
+		
+		int s_num = Integer.parseInt((String)params.get("s_num"));
+		String seat = (String)params.get("rv_seat");
+		String dateStr = (String)params.get("rv_date");
+		String timeStr = (String)params.get("rv_time");
+		
+		String date = dateStr.substring(0, dateStr.length()-3);
+		String time = timeStr.split("~")[0];
+		
+		HashMap<String, Object> mtnum = new HashMap<String, Object>();
+		mtnum.put("s_num", s_num);
+		mtnum.put("mt_date", date);
+		mtnum.put("mt_time", time);
+		
+		int mt_num = mtNumSearch(mtnum);
+		
+		seat = seat.trim();
+		
+		String[] s = seat.split(", ");
+		
+		for(int i = 0; i < s.length; i++) {
+			HashMap<String, Object> seatin = new HashMap<String, Object>();
+			seatin.put("s_num", s_num);
+			seatin.put("mt_num", mt_num);
+			seatin.put("seat_status", s[i]);
+			
+			mvDao.seatInsert(seatin);
+		}
+		
+		return mvDao.reserveSign(params);
+	}
+
+	@Override
+	public int mtNumSearch(HashMap<String, Object> params) {
+		return mvDao.mtNumSearch(params);
+	}
+
+	@Override
+	public void seatInsert(HashMap<String, Object> params) {
+		mvDao.seatInsert(params);
+	}
 	
 	
 	

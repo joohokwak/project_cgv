@@ -54,8 +54,15 @@ public class MovieController {
 	
 	@ResponseBody
 	@RequestMapping("/movieTimeInfo")
-	public List<HashMap<String, Object>> movieTimeInfo(@RequestParam HashMap<String, Object> params) {
-		List<HashMap<String, Object>> result = mvService.movieTimeInfo(params);
+	public HashMap<String, Object> movieTimeInfo(@RequestParam HashMap<String, Object> params) {
+		
+		HashMap<String, Object> result = new HashMap<String, Object>();
+		List<HashMap<String, Object>> result1 = mvService.movieTimeInfo(params);
+		List<HashMap<String, Object>> result2 = mvService.timeGroupSeat((String)params.get("mt_date"));
+		
+		result.put("result1", result1);
+		result.put("result2", result2);
+		
 		return result;
 	}
 	

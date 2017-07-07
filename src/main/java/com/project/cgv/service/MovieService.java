@@ -28,9 +28,14 @@ public interface MovieService {
 	
 	// movieTime
 	public List<HashMap<String, Object>> movieTimeInfo(HashMap<String, Object> params);
+	public List<HashMap<String, Object>> timeGroupSeat(String mt_date);
+	public int mtNumSearch(HashMap<String, Object> params);
 	
 	// seat
+	public void seatInsert(HashMap<String, Object> params);
 	public List<HashMap<String, Object>> seatList(HashMap<String, Object> params);
 	
+	// reserve
+	public int reserveSign(HashMap<String, Object> params);
 
 }

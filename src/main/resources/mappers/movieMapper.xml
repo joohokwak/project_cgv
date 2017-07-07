@@ -72,9 +72,25 @@
 				order by t.s_num, t.mt_time, t.mt_date
 	</select>
 	
+	<select id="timeGroupSeat" parameterType="String" resultType="hashmap">
+		select mt_time, count(*) as tgs 
+			from movietime m join seat s 
+			using(mt_num) 
+			where mt_date = #{value} 
+			group by mt_time
+	</select>
+	
+	<select id="mtNumSearch" parameterType="hashmap" resultType="int">
+		select mt_num from movietime where mt_time=#{mt_time} and mt_date=#{mt_date} and s_num=#{s_num}
+	</select>
+	
 	
 	
 	<!-- seat -->
+	<insert id="seatInsert" parameterType="hashmap">
+		insert into seat values(0, #{s_num}, #{mt_num}, #{seat_status})
+	</insert>
+	
 	<select id="seatList" parameterType="hashmap" resultType="hashmap">
 		select distinct seat_status 
 			from seat join movietime
@@ -87,5 +103,12 @@
 								and mt_date=#{mt_date} 
 								and s_num=#{s_num});
 	</select>
+	
+	
+	
+	<!-- reserve -->
+	<insert id="reserveSign" parameterType="hashmap">
+		insert into reserve values(0, #{rv_theater}, #{rv_screen}, #{rv_date}, #{rv_time}, #{rv_people}, #{rv_pay}, #{rv_seat}, #{id}, #{m_num}, #{t_num}, #{s_num})
+	</insert>
 	
 </mapper>

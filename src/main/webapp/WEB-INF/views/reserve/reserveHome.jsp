@@ -10,6 +10,11 @@
 	<link rel="stylesheet" href="/resources/css/jquery.mCustomScrollbar.css" />
 	<script src="/resources/js/jquery.mCustomScrollbar.concat.min.js"></script>
 	<script type="text/javascript" src="/resources/js/reserve/reserveHome.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			m_numMove("${m_num }", "${m_poster}", "${m_title1}", "${m_grade}");
+		});
+	</script>
 </head>
 <body>
 	<div id="ticketSelectWrap">
@@ -22,30 +27,60 @@
 				</div>
 				<div id="reserve-movie-list">
 					<c:forEach var="movie" items="${movieList }">
-						<div class="col-movie">
-							<input type="hidden" class="m_num" value="${movie.m_num }">
-							<input type="hidden" class="m_poster" value="${movie.m_poster }">
-							<input type="hidden" class="m_title1" value="${movie.m_title1 }">
-							<input type="hidden" class="m_grade" value="${movie.m_grade }">
-							<div class="col-movie2">
-								<c:choose>
-									<c:when test="${movie.m_grade == '12세 이상' }">
-										<div class="icon" style="background: url('/resources/images/reserve/icon_ratings.png') 0px -30px no-repeat;"></div>
-									</c:when>
-									<c:when test="${movie.m_grade == '15세 이상' }">
-										<div class="icon" style="background: url('/resources/images/reserve/icon_ratings.png') 0px -65px no-repeat;"></div>
-									</c:when>
-									<c:when test="${movie.m_grade == '청소년 관람불가' }">
-										<div class="icon" style="background: url('/resources/images/reserve/icon_ratings.png') 0px -100px no-repeat;"></div>
-									</c:when>
-									<c:otherwise>
-										<div class="icon" style="background: url('/resources/images/reserve/icon_ratings.png') 0px 0px no-repeat;"></div>
-									</c:otherwise>
-								</c:choose>
-								
-								<div class="text">${movie.m_title1 }</div>
-							</div>
-						</div>
+						<c:choose>
+							<c:when test="${movie.m_num == m_num }">
+								<div class="col-movie" style="background: #333; ">
+									<input type="hidden" class="m_num" value="${movie.m_num }">
+									<input type="hidden" class="m_poster" value="${movie.m_poster }">
+									<input type="hidden" class="m_title1" value="${movie.m_title1 }">
+									<input type="hidden" class="m_grade" value="${movie.m_grade }">
+									<div class="col-movie2" style="border: 1px solid gray;">
+										<c:choose>
+											<c:when test="${movie.m_grade == '12세 이상' }">
+												<div class="icon" style="background: url('/resources/images/reserve/icon_ratings.png') 0px -30px no-repeat;"></div>
+											</c:when>
+											<c:when test="${movie.m_grade == '15세 이상' }">
+												<div class="icon" style="background: url('/resources/images/reserve/icon_ratings.png') 0px -65px no-repeat;"></div>
+											</c:when>
+											<c:when test="${movie.m_grade == '청소년 관람불가' }">
+												<div class="icon" style="background: url('/resources/images/reserve/icon_ratings.png') 0px -100px no-repeat;"></div>
+											</c:when>
+											<c:otherwise>
+												<div class="icon" style="background: url('/resources/images/reserve/icon_ratings.png') 0px 0px no-repeat;"></div>
+											</c:otherwise>
+										</c:choose>
+										
+										<div class="text" style="color: #fff;">${movie.m_title1 }</div>
+									</div>
+								</div>
+							</c:when>
+							<c:otherwise>
+								<div class="col-movie">
+									<input type="hidden" class="m_num" value="${movie.m_num }">
+									<input type="hidden" class="m_poster" value="${movie.m_poster }">
+									<input type="hidden" class="m_title1" value="${movie.m_title1 }">
+									<input type="hidden" class="m_grade" value="${movie.m_grade }">
+									<div class="col-movie2">
+										<c:choose>
+											<c:when test="${movie.m_grade == '12세 이상' }">
+												<div class="icon" style="background: url('/resources/images/reserve/icon_ratings.png') 0px -30px no-repeat;"></div>
+											</c:when>
+											<c:when test="${movie.m_grade == '15세 이상' }">
+												<div class="icon" style="background: url('/resources/images/reserve/icon_ratings.png') 0px -65px no-repeat;"></div>
+											</c:when>
+											<c:when test="${movie.m_grade == '청소년 관람불가' }">
+												<div class="icon" style="background: url('/resources/images/reserve/icon_ratings.png') 0px -100px no-repeat;"></div>
+											</c:when>
+											<c:otherwise>
+												<div class="icon" style="background: url('/resources/images/reserve/icon_ratings.png') 0px 0px no-repeat;"></div>
+											</c:otherwise>
+										</c:choose>
+										
+										<div class="text">${movie.m_title1 }</div>
+									</div>
+								</div>
+							</c:otherwise>
+						</c:choose>
 					</c:forEach>
 				</div>
 			</div>
