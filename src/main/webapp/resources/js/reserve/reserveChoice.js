@@ -47,11 +47,6 @@ $(function() {
 			
 			sum = (prev_a_img * 9000) + (prev_b_img * 8000); // 일반인과 청소년 수에 따라 금액 계산
 			
-			// 예매금액 담기
-			
-			
-			
-			
 			
 		},"mouseover" : function(e) { // 마우스가 올라왔을때 커서를 포인트로
 			$(this).css("cursor", "pointer");
@@ -71,11 +66,12 @@ $(function() {
 		});
 	});
 	
+	
 	// 결재 버튼 눌렀을때
 	$("#btn_right").click(function(e) {
 		if($(this).css("cursor") == "pointer"){
-			// 예약 및 결재 실행
-			alert("실행");
+			// 결재선택 실행
+			$("#reserveInfoForm").submit();
 		}
 	});
 	
@@ -94,6 +90,9 @@ function ticketSeatInfo(){
 	}
 	
 	tt = str;
+	
+	$("#rv_people").val(tt);
+	
 }
 
 //좌석에 마우스 올렸을때
@@ -359,6 +358,9 @@ function bottomSeat(cs){
 	payInfo += "</div>";
 	
 	$("#paymentInfo").html(payInfo);
+	
+	$("#rv_pay").val(sum.format());
+	$("#rv_seat").val(text);
 //	alert("seatInfo : " + text);
 	
 }
