@@ -260,9 +260,11 @@ function dateChoice() {
 					$("#movieInfo").val(select_movie_num);
 					$("#theaterInfo").val(select_theater_num);
 					$("#dateInfo").val(dayInfo);
+					$("#mtDateInfo").val(select_date);
 					$("#screenInfo").val($(this).children().attr("data-screenNum"));
 					$("#timeInfo").val($(this).find(":first-child").text());
 				});
+				
 			}
 		});
 	}
