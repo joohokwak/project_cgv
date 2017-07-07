@@ -304,6 +304,7 @@ function countSeatClick(choiceImg){
 }
 
 
+
 //하단에 좌석 정보 출력
 function bottomSeat(cs){
 	cs=cs.split(",");

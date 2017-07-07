@@ -263,5 +263,21 @@
 			<a href="#" id="btn_right"></a>
 		</div>
 	</div>
+	
+	
+	<!-- 예매정보를 담을 폼 -->
+	<form action="/reserve/selectPay" id="reserveInfoForm" method="post">
+		<input type="hidden" id="rv_theater" name="rv_theater" value="${theaterInfo.t_name }">
+		<input type="hidden" id="rv_screen" name="rv_screen" value="${screenInfo.s_title }">
+		<input type="hidden" id="rv_date" name="rv_date" value="${dateInfo }">
+		<input type="hidden" id="rv_time" name="rv_time" value="${timeInfo }">
+		<input type="hidden" id="rv_people" name="rv_people">
+		<input type="hidden" id="rv_pay" name="rv_pay">
+		<input type="hidden" id="rv_seat" name="rv_seat">
+		<input type="hidden" id="m_num" name="m_num" value="${movieInfo.m_num }">
+		<input type="hidden" id="t_num" name="t_num" value="${theaterInfo.t_num }">
+		<input type="hidden" id="s_num" name="s_num" value="${screenInfo.s_num }">
+	</form>
+	
 </body>
 </html>
