@@ -8,6 +8,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+	<link rel="stylesheet" href="/resources/css/jquery.mCustomScrollbar.css" />
+	<script src="/resources/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
 	<link rel="stylesheet" href="/resources/css/reserve/choice.css">
 	<script type="text/javascript" src="/resources/js/reserve/reserveChoice.js"></script>
 	

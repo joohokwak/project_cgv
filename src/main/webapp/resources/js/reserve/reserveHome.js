@@ -164,6 +164,14 @@ $(function() {
 		$("#ticketSelectWrap").prop('disabled', false).css({"pointer-events": "auto", opacity: "1"});
 	});
 	
+	// 비밀번호창에서 엔터키 적용
+	$("#loginDivPw").keyup(function(e) {
+		if(e.keyCode == 13) {
+			$("#login_bd_btn").click();
+		}
+	});
+	
+	// 로그인 버튼 클릭
 	$("#login_bd_btn").click(function(e) {
 		var divId = $.trim($("#loginDivId").val());
 		var divPw = $.trim($("#loginDivPw").val());
@@ -177,6 +185,14 @@ $(function() {
 				success: function(data) {
 					if(data.result == 'success') {
 						$("#reserveChoiceForm").submit();
+					}else {
+						$.alert({
+							title: '',
+						    content: '<font color="#333"><b>아이디 또는 비밀번호를 확인하세요</b></font>',
+						    boxWidth: '300px',
+						    useBootstrap: false,
+						    type: 'red'
+						});
 					}
 				}
 			});
@@ -210,6 +226,7 @@ $(function() {
 	});
 });
 
+// 영화, 극장, 날짜가 모두 선택 되었을때 시간 가져오는 메서드
 function dateChoice() {
 	$("#step-btn").css({"background": "url('/resources/images/reserve/tnb_buttons.png') no-repeat 0px -220px", "cursor": "auto"});
 	$("#step-btn").attr("data-info", "uncheck");
@@ -245,36 +262,70 @@ function dateChoice() {
 					if(timeInfo == null) {
 						timeInfo = element.s_cnt_seat;
 					}
-						
-					str += "<span class='timeChoice' style='border: 1px solid #cfcdc3; padding: 2px; display: inline-block; width: 50px; height: 21px; font-size: 14px;"+
-						" font-weight: bold; text-align: center; cursor: pointer; margin-bottom: 15px;'>"+
-						"<span data-screen='"+element.s_title+"' data-screenNum='"+element.s_num+"' style='display: inline-block; width: 48px; height: 19px;'>"+element.mt_time+"</span></span><span style='color: green;'>"
-						+timeInfo+"석</span>";
+					
+					var d = new Date();
+					
+					var curDay = d.getDate();
+					var curHour = d.getHours();
+					var curMin = d.getMinutes();
+					
+					var deHour = element.mt_time.split(":")[0];
+					var deMin = element.mt_time.split(":")[1];
+					
+					if(Number(curDay) == Number(select_date.split(".")[2])) {
+						if(curHour == deHour) {
+							if((curMin - deMin) > 10) {
+								str += "<span class='timeChoice' style='border: 1px solid #cfcdc3; padding: 2px; display: inline-block; width: 50px; height: 21px; font-size: 14px;"+
+									" font-weight: bold; text-align: center; cursor: pointer; margin-bottom: 15px;'>"+
+									"<span data-screen='"+element.s_title+"' data-screenNum='"+element.s_num+"' style='display: inline-block; width: 48px; height: 19px; text-decoration: line-through; cursor: auto;'>"+element.mt_time+"</span></span><span style='color: green;'>"
+									+"완료</span>";
+							}
+						}else if(curHour - deHour > 0) {
+							str += "<span class='timeChoice' style='border: 1px solid #cfcdc3; padding: 2px; display: inline-block; width: 50px; height: 21px; font-size: 14px; text-decoration: line-through; cursor: auto;"+
+								" font-weight: bold; text-align: center; cursor: pointer; margin-bottom: 15px;'>"+
+								"<span data-screen='"+element.s_title+"' data-screenNum='"+element.s_num+"' style='display: inline-block; width: 48px; height: 19px; text-decoration: line-through; cursor: auto;'>"+element.mt_time+"</span></span><span style='color: green;'>"
+								+"완료</span>";
+						}else {
+							str += "<span class='timeChoice' style='border: 1px solid #cfcdc3; padding: 2px; display: inline-block; width: 50px; height: 21px; font-size: 14px;"+
+								" font-weight: bold; text-align: center; cursor: pointer; margin-bottom: 15px;'>"+
+								"<span data-screen='"+element.s_title+"' data-screenNum='"+element.s_num+"' style='display: inline-block; width: 48px; height: 19px;'>"+element.mt_time+"</span></span><span style='color: green;'>"
+								+timeInfo+"석</span>";
+						}
+					}else {
+						str += "<span class='timeChoice' style='border: 1px solid #cfcdc3; padding: 2px; display: inline-block; width: 50px; height: 21px; font-size: 14px;"+
+							" font-weight: bold; text-align: center; cursor: pointer; margin-bottom: 15px;'>"+
+							"<span data-screen='"+element.s_title+"' data-screenNum='"+element.s_num+"' style='display: inline-block; width: 48px; height: 19px;'>"+element.mt_time+"</span></span><span style='color: green;'>"
+							+timeInfo+"석</span>";
+					}
 					
 				});
 				
 				$("#movieTimeTable").html(str);
+				$("#movieTimeTable").mCustomScrollbar({theme:"rounded-dark"});
 				
 				$(".timeChoice").click(function(e) {
-					$(".timeChoice").css({background: "#fdfcf0"});
-					$(".timeChoice").find(":first-child").css({border: "none", color: "#333"});
 					
-					var screenInfo = $(this).children().attr("data-screen");
-					$("#row-screen").css("display", "block").html("<span style='display: inline-block; width: 40px;'>상영관</span><span>"+screenInfo+"</span>");
-					
-					$(this).css({background: "#333", border: "1px solid gray"});
-					$(this).find(":first-child").css({border: "1px solid gray", color: "#fff"});
-					
-					$("#step-btn").css({"background": "url('/resources/images/reserve/tnb_buttons.png') no-repeat -150px -220px", "cursor": "pointer"});
-					$("#step-btn").attr("data-info", "check");
-					
-					// 선택된 정보들을 form에 담기
-					$("#movieInfo").val(select_movie_num);
-					$("#theaterInfo").val(select_theater_num);
-					$("#dateInfo").val(dayInfo);
-					$("#mtDateInfo").val(select_date);
-					$("#screenInfo").val($(this).children().attr("data-screenNum"));
-					$("#timeInfo").val($(this).find(":first-child").text());
+					if($(this).find("span:first").css("cursor") == "pointer") {
+						$(".timeChoice").css({background: "#fdfcf0"});
+						$(".timeChoice").find(":first-child").css({border: "none", color: "#333"});
+						
+						var screenInfo = $(this).children().attr("data-screen");
+						$("#row-screen").css("display", "block").html("<span style='display: inline-block; width: 40px;'>상영관</span><span>"+screenInfo+"</span>");
+						
+						$(this).css({background: "#333", border: "1px solid gray"});
+						$(this).find(":first-child").css({border: "1px solid gray", color: "#fff"});
+						
+						$("#step-btn").css({"background": "url('/resources/images/reserve/tnb_buttons.png') no-repeat -150px -220px", "cursor": "pointer"});
+						$("#step-btn").attr("data-info", "check");
+						
+						// 선택된 정보들을 form에 담기
+						$("#movieInfo").val(select_movie_num);
+						$("#theaterInfo").val(select_theater_num);
+						$("#dateInfo").val(dayInfo);
+						$("#mtDateInfo").val(select_date);
+						$("#screenInfo").val($(this).children().attr("data-screenNum"));
+						$("#timeInfo").val($(this).find(":first-child").text());
+					}
 				});
 				
 			}
@@ -283,6 +334,7 @@ function dateChoice() {
 }
 
 
+// 영화 정보가 넘어 왔을 때 선택 되어 있도록
 function m_numMove(m, p, t, g) {
 	if(m != 0) {
 		select_movie_num = m;

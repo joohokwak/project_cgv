@@ -92,16 +92,18 @@
 	</insert>
 	
 	<select id="seatList" parameterType="hashmap" resultType="hashmap">
-		select distinct seat_status 
+		select seat_status 
 			from seat join movietime
-				using(s_num) 
-				where seat.s_num=#{s_num} 
-				and seat.mt_num=
+				on seat.s_num = movietime.s_num 
+			where seat.s_num=#{s_num} 
+				and seat.mt_num= 
 					(select mt_num 
 						from movietime 
-							where mt_time=#{mt_time} 
-								and mt_date=#{mt_date} 
-								and s_num=#{s_num});
+						where mt_time=#{mt_time} 
+							and mt_date=#{mt_date} 
+							and s_num=#{s_num} 
+						group by movietime.mt_time, movietime.mt_date, movietime.s_num) 
+			group by seat_status
 	</select>
 	
 	

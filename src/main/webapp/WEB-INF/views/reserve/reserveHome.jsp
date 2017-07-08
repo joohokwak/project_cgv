@@ -9,6 +9,8 @@
 	<link rel="stylesheet" href="/resources/css/reserve/ticket.css?ver=1">
 	<link rel="stylesheet" href="/resources/css/jquery.mCustomScrollbar.css" />
 	<script src="/resources/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
 	<script type="text/javascript" src="/resources/js/reserve/reserveHome.js"></script>
 	<script type="text/javascript">
 		$(function() {

@@ -397,6 +397,7 @@ create table screen(
 insert into screen values (0, '1관 2층', 1, 1, 146);
 insert into screen values (0, '4관 3층', 1, 1, 122);
 insert into screen values (0, '3관 3층', 1, 2, 150);
+insert into screen values (0, '7관 8층', 5, 4, 200);
 
 #상영정보
 create table movieTime(
@@ -414,6 +415,9 @@ insert into movieTime values(0, '2017-07-15', '13:00', 1);
 
 insert into movieTime values(0, '2017-07-16', '12:00', 3);
 insert into movieTime values(0, '2017-07-15', '12:00', 2);
+
+insert into movieTime values(0, '2017-07-22', '13:00', 4);
+
 
 
 #좌석
@@ -462,7 +466,18 @@ create table movie_re(
 );
 
 
-
+select seat_status 
+	from seat join movietime
+		on seat.s_num = movietime.s_num 
+		where seat.s_num=1  
+		and seat.mt_num= 
+			(select mt_num 
+				from movietime 
+					where mt_time='17:30' 
+						and mt_date='2017.7.15' 
+						and s_num=1
+						group by movietime.mt_time, movietime.mt_date, movietime.s_num) 
+		group by seat_status
 
 
 

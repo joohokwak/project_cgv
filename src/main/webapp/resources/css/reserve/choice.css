@@ -79,8 +79,8 @@
 #screenDiv {
 	clear: both;
 	width: 866px;
-	height: 335px;
-	margin: 20px auto;
+	height: 340px;
+	margin: 15px auto;
 	padding-top: 20px;
 	text-align: center;
 }
@@ -93,10 +93,10 @@
 #seat {
 	margin: 0 auto;
 	margin-top: 25px;
-	width: 525px;
-	height: 200px;
+	width: 567px;
+	height: 220px;
 	text-align: left;
-	padding: 20px;
+	padding: 20px 0px 0px 25px;
 	overflow: auto;
 }
 
