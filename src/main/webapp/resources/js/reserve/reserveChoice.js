@@ -373,7 +373,7 @@ function bottomSeat(cs){
 	
 	$("#paymentInfo").html(payInfo);
 	
-	$("#rv_pay").val(sum.format());
+	$("#rv_pay").val(sum);
 	$("#rv_seat").val(text);
 //	alert("seatInfo : " + text);
 	

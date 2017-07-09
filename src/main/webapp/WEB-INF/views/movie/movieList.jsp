@@ -16,6 +16,12 @@
 		
 		<table id="movieListTable1">
 			<tr>
+				<td align="left" colspan="4">
+					<hr style="width: 930px; background-color: black; height: 3px; margin-left: 0px;">
+				</td>
+			</tr>
+			
+			<tr>
 				<td>
 				<c:forEach var="movie" items="${mvList }" varStatus="status">
 					<c:if test="${status.index == 0 }">
@@ -283,9 +289,16 @@
 			<tr>
 				<td align="left" colspan="4">
 					<hr style="width: 930px; background-color: black; height: 3px; margin-left: 0px;">
+					
+					<div style="margin: 40px 0px;">
+						<a href="http://phototicket.cgv.co.kr/Phototicket/Html/main.aspx" target="_blank">
+							<img alt="phototicket" src="/resources/images/movie/phototicket_978_223.jpg" width="932px">
+						</a>
+					</div>
 				</td>
 			</tr>
 		</table>
+		
 	</div>
 </body>
 </html>

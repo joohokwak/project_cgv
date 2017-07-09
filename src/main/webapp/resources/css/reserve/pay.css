@@ -119,7 +119,7 @@
 	font-weight: bold;
 }
 
-#pay-payResult span:nth-child(2) {
+#pay-payResult span:nth-child(2) span {
 	display: inline-block;
 	position: relative;
 	top: 2px;
@@ -175,6 +175,33 @@
 	border-radius: 7px;
 }
 
+#myPoint {
+	font-size: 14px;
+	font-weight: bold;
+	color: rgb(231, 26, 15);
+}
 
+#pointBtn {
+	width: 100px;
+	height: 28px;
+	padding: 2px;
+	position: relative;
+	float: right;
+	top: 30px;
+	background-color: rgb(231, 26, 15);
+	border-radius: 7px;
+}
+
+#pointBtn div {
+	border: 1px solid #e6e4d9;
+	height: 26px;
+	text-align: center;
+	line-height: 26px;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	border-radius: 7px;
+	cursor: pointer;
+}
 
 

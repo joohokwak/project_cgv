@@ -466,18 +466,6 @@ create table movie_re(
 );
 
 
-select seat_status 
-	from seat join movietime
-		on seat.s_num = movietime.s_num 
-		where seat.s_num=1  
-		and seat.mt_num= 
-			(select mt_num 
-				from movietime 
-					where mt_time='17:30' 
-						and mt_date='2017.7.15' 
-						and s_num=1
-						group by movietime.mt_time, movietime.mt_date, movietime.s_num) 
-		group by seat_status
 
 
 

@@ -100,6 +100,52 @@
 	overflow: auto;
 }
 
+#entrance {
+	width: 23px;
+	height: 23px;
+	position: relative;
+	top: -260px;
+	left: 100px;
+	background: url(/resources/images/reserve/reserve_img/seat_icons_new.png) -75px -50px no-repeat;
+}
+
+#reserve-info-icon {
+	width: 105px;
+	height: 50px;
+	position: relative;
+	top: -250px;
+	left: 750px;
+}
+
+#ri_icon1, #ri_icon2 {
+	width: 100px;
+	height: 20px;
+	line-height: 20px;
+	text-align: left;
+	padding: 4px;
+}
+
+
+#ri_icon1 span {
+	width: 15px;
+	height: 16px;
+	display: inline-block;
+	background: url(/resources/images/reserve/reserve_img/seat_icons_new.png) 0px 0px no-repeat;
+}
+
+#ri_icon2 span {
+	width: 15px;
+	height: 16px;
+	display: inline-block;
+	background: #bbb url(/resources/images/reserve/reserve_img/seat_icons_new.png) -25px 0px no-repeat;
+}
+
+#reserve-info-icon b {
+	margin-left: 10px;
+	position: relative;
+	top: -4px;
+}
+
 #tnb-container {
 	width: 100%;
     min-width: 996px;

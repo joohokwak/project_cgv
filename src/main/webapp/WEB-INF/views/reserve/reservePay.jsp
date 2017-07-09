@@ -1,4 +1,5 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,6 +12,56 @@
 			$("#pay-footer-btn").click(function(e) {
 				$("#reserveSign").submit();
 			});
+			
+			
+			$("#pointBtn").click(function(e) {
+				var rv_pay = parseInt("${rv_pay}");
+				var mypoint = parseInt($("#myPoint").find("#memberPoint").val());
+				
+				var result_pay9 = 0;
+				var mypoint2 = 0;
+				
+				if(mypoint > 0) {
+					
+					if(mypoint > rv_pay) {
+						mypoint2 = mypoint - rv_pay;
+						$("#myPoint").text(mypoint2.format());
+					}else {
+						mypoint2 = rv_pay - rv_pay;
+						$("#myPoint").text(mypoint2.format());
+						result_pay9 = rv_pay - mypoint;
+					}
+				}
+				
+				// 내 포인트 업데이트 하기
+				
+				
+				
+				
+				$("#resultPay").text(result_pay9.format());
+			});
+			
+			
+			// 숫자에 콤마 찍기 위한 프로타입 변경
+			Number.prototype.format = function(){
+			    if(this==0) return 0;
+			 
+			    var reg = /(^[+-]?\d+)(\d{3})/;
+			    var n = (this + '');
+			 
+			    while (reg.test(n)) n = n.replace(reg, '$1' + ',' + '$2');
+			 
+			    return n;
+			};
+			 
+			// 문자열 타입에서 쓸 수 있도록 format() 함수 추가
+			String.prototype.format = function(){
+			    var num = parseFloat(this);
+			    if( isNaN(num) ) return "0";
+			 
+			    return num.format();
+			};
+			
 		});
 	</script>
 </head>
@@ -66,11 +117,25 @@
 			<div id="pay-content">
 				<div id="pay-point">
 					<span>내 포인트 : </span>
+					<span id="myPoint">
+						<fmt:formatNumber value="19000" type="number"/>
+						<input type="hidden" id="memberPoint" value="19000">
+					</span>
+					
+					<div id="pointBtn">
+						<div>
+							포인트 사용
+						</div>
+					</div>
 				</div>
 				
 				<div id="pay-payResult">
 					<span>결재금액 : </span>
-					<span>${rv_pay } </span>원
+					<span>
+						<fmt:formatNumber var="resultPay" value="${rv_pay }" type="number"/>
+						<input type="hidden" id="rv_pay" value="${rv_pay }"> 
+						<span id="resultPay">${resultPay }</span>
+					</span>원
 				</div>
 			</div>
 		</div>

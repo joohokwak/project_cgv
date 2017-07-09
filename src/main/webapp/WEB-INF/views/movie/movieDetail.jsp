@@ -9,37 +9,12 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/movie/movieDetail.css">
 	<link href="/resources/css/movie/fotorama.css" rel="stylesheet">
 	<script src="/resources/js/fotorama.js"></script>
-	<script type="text/javascript">
-		var cnt = 0;
-		$(function() {
-			$("#like").click(function(e) {
-				if(cnt % 2 == 0) {
-					$(this).attr("src", "/resources/images/movie/heart_red.png");
-					cnt++;
-					$.ajax({
-						url: "/movie/likeUp?m_num=${m_num}",
-						dataType : "json",
-						success: function(data) {
-							$("#like_point").text(data);
-						}
-					});
-				}else {
-					$(this).attr("src", "/resources/images/movie/heart_black.png");
-					cnt = 0;
-					$.ajax({
-						url: "/movie/likeDown?m_num=${m_num}",
-						dataType : "json",
-						success: function(data) {
-							$("#like_point").text(data);
-						}
-					});
-				}
-			});
-		});
-	</script>
+	<script type="text/javascript" src="/resources/js/movie/movieDetail.js"></script>	
 </head>
 <body>
 	<div id="movieDetailWrap">
+		<hr style="width: 930px; background-color: black; height: 3px; margin-left: 0px; margin-bottom: 30px;">
+	
 		<div id="detailPoster">
 			<img alt="" src="/resources/images/movie/poster/${m_poster }" width="185px" height="260px">
 		</div>
@@ -61,6 +36,7 @@
 			
 			<div id="detailLike">
 				<img id="like" alt="" src="/resources/images/movie/heart_black.png">
+				<input type="hidden" id="like_num" value="${m_num }">
 				<a href="/reserve/reserveHome?m_num=${m_num }">
 					<img id="reserve_btn" alt="reserve_btn" src="/resources/images/movie/reserve_btn.png">
 				</a>
@@ -107,6 +83,8 @@
 				</tr>
 			</table>
 		</div>
+		
+		<hr style="width: 930px; background-color: black; height: 3px; margin: 50px 0px;">
 	</div>
 </body>
 </html>
