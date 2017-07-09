@@ -408,13 +408,13 @@ create table movieTime(
 	foreign key(s_num) references screen(s_num)
 );
 
-insert into movieTime values(0, '2017-07-15', '17:30', 1);
-insert into movieTime values(0, '2017-07-15', '19:30', 1);
-insert into movieTime values(0, '2017-07-15', '09:30', 1);
-insert into movieTime values(0, '2017-07-15', '13:00', 1);
+insert into movieTime values(0, '2017-07-21', '17:30', 1);
+insert into movieTime values(0, '2017-07-21', '19:30', 1);
+insert into movieTime values(0, '2017-07-21', '09:30', 1);
+insert into movieTime values(0, '2017-07-21', '13:00', 1);
 
-insert into movieTime values(0, '2017-07-16', '12:00', 3);
-insert into movieTime values(0, '2017-07-15', '12:00', 2);
+insert into movieTime values(0, '2017-07-22', '12:00', 3);
+insert into movieTime values(0, '2017-07-21', '12:00', 2);
 
 insert into movieTime values(0, '2017-07-22', '13:00', 4);
 
