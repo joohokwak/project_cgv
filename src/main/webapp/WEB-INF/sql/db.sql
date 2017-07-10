@@ -10,7 +10,13 @@ create table member(
 	pic varchar(300) default 'no_pic.jpg',
 	email varchar(100) not null,
 	birth varchar(20) not null,
-	phone varchar(15) not null
+	phone varchar(15) not null,
+	point int default 0,
+	f1 varchar(30),
+	f2 varchar(30),
+	f3 varchar(30),
+	f4 varchar(30),
+	f5 varchar(30)
 );
 
 insert into member values('jh', '주호', '1', 'no_pic.jpg', 'jhkwak6089@naver.com', '2017.07.01', '010-1234-1234');
