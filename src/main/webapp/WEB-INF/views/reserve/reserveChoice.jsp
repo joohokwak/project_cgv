@@ -253,7 +253,7 @@
 	<!-- 하단 시커먼 바~ -->
 	<div id="tnb-container">
 		<div id="tnb-area">
-			<a href="#" id="btn-left"></a>
+			<a id="btn-left"></a>
 			
 			<div id="tnb-movie-step">
 				<img alt="movie poster" src="/resources/images/movie/poster/${movieInfo.m_poster }" width="74px" height="104px">

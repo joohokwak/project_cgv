@@ -49,4 +49,8 @@ public interface MovieDao {
 	public List<HashMap<String,Object>> searchMovieList(HashMap<String,Object> option);
 	public int getMovieCount();
 	
+	
+	// movie_re
+	public int mrInsert(HashMap<String, Object> params);
+	
 }

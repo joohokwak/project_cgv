@@ -455,14 +455,15 @@ create table reserve(
 );
 
 create table movie_re(
-	mr_no int primary key auto_increment,
+	mr_num int primary key auto_increment,
 	mr_img varchar(300),
-	mr_nick varchar(30),
-	mr_content varchar(3000),
+	id varchar(30),
+	mr_content varchar(350),
 	mr_score int,
 	mr_regdate timestamp,
 	m_num int,
-	foreign key(m_num) references movie(m_num)
+	foreign key(m_num) references movie(m_num),
+	foreign key(id) references member(id)
 );
 
 

@@ -91,7 +91,7 @@
 		<!-- 한줄평 -->
 		<div id="movie-reply">
 			<div id="movie-reply-title">한줄평</div>
-			<div id="movie-reply-byte">0/100</div>
+			<div id="movie-reply-byte">0/150</div>
 			<div id="movie-reply-body">
 				<div id="movie-reply-iamge">
 					<img alt="myImage" src="/resources/images/join/no_pic.png" width="75px">
@@ -99,14 +99,14 @@
 				<div id="movie-reply-content">
 					<div id="reply-content-star">
 						<div id="rateYo"></div>
-						<div id="rateNumer"></div>
+						<div id="rateNumer">0점</div>
 						<div id="rateContent">평점을 입력해주세요</div>
 					</div>
 					<div id="reply-content-content">
-						<form action="/movie/mrInsert" method="post">
+						<form action="/movie/mrInsert" method="post" id="mrInsert">
 							<textarea style="width: 464px; height: 74px;" name="mr_content" placeholder="로그인 후 이용 가능한 서비스 입니다."></textarea>
 							<input type="hidden" name="mr_img" value="${member.pic }">
-							<input type="hidden" name="mr_nick" value="${member.name }">
+							<input type="hidden" name="id" value="${member.id }">
 							<input type="hidden" name="mr_score" id="mr_score">
 							<input type="hidden" name="m_num" value="${m_num }">
 						</form>

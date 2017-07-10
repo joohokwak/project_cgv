@@ -39,6 +39,22 @@ $(function() {
 		$("#rateContent").text(rateText);
     });
 	
+	// 글자수 바이트로 체크
+	$("textarea[name='mr_content']").keyup(function(e) {
+		var mr_content =  $(this).val();
+		var byteLength = calByte.getByteLength(mr_content);
+		
+		$(this).val(calByte.cutByteLength(mr_content, 150));		
+		
+		$("#movie-reply-byte").text(byteLength + "/150");
+		
+	});
+	
+	// 리플 등록 버튼 클릭
+	$("#reply-content-btn").click(function(e) {
+		$("#mrInsert").submit();
+	});
+	
 	$("#like").click(function(e) {
 		if(cnt == 0) {
 			$(this).attr("src", "/resources/images/movie/heart_red.png");
@@ -63,3 +79,61 @@ $(function() {
 		}
 	});
 });
+
+
+var calByte = {
+	getByteLength : function(s) {
+
+		if (s == null || s.length == 0) {
+			return 0;
+		}
+		var size = 0;
+
+		for ( var i = 0; i < s.length; i++) {
+			size += this.charByteSize(s.charAt(i));
+		}
+
+		return size;
+	},
+		
+	cutByteLength : function(s, len) {
+
+		if (s == null || s.length == 0) {
+			return "";
+		}
+		var size = 0;
+		var rIndex = s.length;
+
+		for ( var i = 0; i < s.length; i++) {
+			size += this.charByteSize(s.charAt(i));
+			if( size == len ) {
+				rIndex = i + 1;
+				break;
+			} else if( size > len ) {
+				rIndex = i;
+				break;
+			}
+		}
+
+		return s.substring(0, rIndex);
+	},
+
+	charByteSize : function(ch) {
+
+		if (ch == null || ch.length == 0) {
+			return 0;
+		}
+
+		var charCode = ch.charCodeAt(0);
+
+		if (charCode <= 0x00007F) {
+			return 1;
+		} else if (charCode <= 0x0007FF) {
+			return 2;
+		} else if (charCode <= 0x00FFFF) {
+			return 3;
+		} else {
+			return 4;
+		}
+	}
+};

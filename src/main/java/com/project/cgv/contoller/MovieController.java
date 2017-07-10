@@ -68,8 +68,8 @@ public class MovieController {
 	
 	@RequestMapping("/mrInsert")
 	public String mrInsert(@RequestParam HashMap<String, Object> params) {
-		
-		return "";
+		mvService.mrInsert(params);
+		return "redirect:/movie/movieDetail?m_num="+params.get("m_num");
 	}
 	
 }

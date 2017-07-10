@@ -154,4 +154,9 @@
 	</select>
 	
 	
+	<!-- movie_re -->
+	<insert id="mrInsert" parameterType="hashmap">
+		insert into movie_re(mr_img, id, mr_content, mr_score, m_num) values(#{mr_img}, #{id}, #{mr_content}, #{mr_score}, #{m_num})
+	</insert>
+	
 </mapper>

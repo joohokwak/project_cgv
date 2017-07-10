@@ -45,5 +45,9 @@ public interface MovieService {
 	public boolean addMovie(HashMap<String,Object> params);
 	
 	public HashMap<String,Object> showSearchResult(int page, HashMap<String,Object> option);
+	
+	
+	// movie_re
+	public int mrInsert(HashMap<String, Object> params);
 
 }
