@@ -66,4 +66,10 @@ public class MovieController {
 		return result;
 	}
 	
+	@RequestMapping("/mrInsert")
+	public String mrInsert(@RequestParam HashMap<String, Object> params) {
+		
+		return "";
+	}
+	
 }

@@ -314,6 +314,9 @@ function countSeatClick(choiceImg){
 			}
 		}
 	}
+	
+	// 뒤로가기(예매)
+	
 }
 
 

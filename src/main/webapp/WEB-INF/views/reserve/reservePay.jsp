@@ -33,11 +33,6 @@
 					}
 				}
 				
-				// 내 포인트 업데이트 하기
-				
-				
-				
-				
 				$("#resultPay").text(result_pay9.format());
 			});
 			
