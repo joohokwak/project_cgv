@@ -19,8 +19,8 @@ create table member(
 	f5 varchar(30)
 );
 
-insert into member values('jh', '주호', '1', 'no_pic.jpg', 'jhkwak6089@naver.com', '2017.07.01', '010-1234-1234');
-insert into member values('admin', '관리자', '1', 'no_pic.jpg', 'admin@naver.com', '2017.07.01', '010-1234-1234');
+insert into member values('jh', '주호', '1', 'no_pic.jpg', 'jhkwak6089@naver.com', '2017.07.01', '010-1234-1234', 0, '','','','','');
+insert into member values('admin', '관리자', '1', 'no_pic.jpg', 'admin@naver.com', '2017.07.01', '010-1234-1234', 0, '','','','','');
 
 create table board(
 	b_num int primary key auto_increment,
