@@ -189,6 +189,11 @@ public class MovieServiceImpl implements MovieService {
 	public int mrInsert(HashMap<String, Object> params) {
 		return mvDao.mrInsert(params);
 	}
+
+	@Override
+	public List<HashMap<String, Object>> mrList(int m_num) {
+		return mvDao.mrList(m_num);
+	}
 	
 	
 }

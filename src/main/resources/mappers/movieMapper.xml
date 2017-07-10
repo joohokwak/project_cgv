@@ -159,4 +159,8 @@
 		insert into movie_re(mr_img, id, mr_content, mr_score, m_num) values(#{mr_img}, #{id}, #{mr_content}, #{mr_score}, #{m_num})
 	</insert>
 	
+	<select id="mrList" parameterType="int" resultType="hashmap">
+		select * from movie_re where m_num = #{value}
+	</select>
+	
 </mapper>

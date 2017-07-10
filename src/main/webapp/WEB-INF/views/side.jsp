@@ -7,6 +7,10 @@
 	
 	$(function() {
 		setInterval(quick, 10);
+		
+		$("#side-btn-top").click(function(e) {
+			$("html, body").stop().animate({scrollTop : '0'});
+		});
 	});
 	
 	function quick() {
@@ -41,7 +45,7 @@
 	</div>
 	
 	<div id="btn-top">
-		<a href="#" onclick="scrollTo(0,0); return false;">
+		<a id="side-btn-top">
 			<img alt="btn-top" src="/resources/images/body/btn_top.png">
 		</a>
 	</div>

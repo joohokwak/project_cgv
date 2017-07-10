@@ -14,7 +14,7 @@ $(function() {
          var rating = data.rating;
          $("#rateNumer").text(rating*2+"점").css({color: "#333"});
          // 점수 세팅하기
-         $("#mr_score").val(rating);
+         $("#mr_score").val(rating*2);
          
          var rateText = "평점을 입력해주세요";
  		
@@ -137,3 +137,5 @@ var calByte = {
 		}
 	}
 };
+
+

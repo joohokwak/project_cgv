@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -32,6 +33,7 @@ public class MovieController {
 		mv.addObject("imgInfo", "h2_movie.png");
 		mv.addObject("stealList", mvService.stealcutList(m_num));
 		mv.addObject("trailerList", mvService.trailerList(m_num));
+		mv.addObject("mrList", mvService.mrList(m_num));
 		mv.addAllObjects(mvService.movieDetail(m_num));
 		return mv;
 	}
@@ -69,7 +71,7 @@ public class MovieController {
 	@RequestMapping("/mrInsert")
 	public String mrInsert(@RequestParam HashMap<String, Object> params) {
 		mvService.mrInsert(params);
-		return "redirect:/movie/movieDetail?m_num="+params.get("m_num");
+		return "redirect:/movie/movieDetail?m_num="+params.get("m_num")+"#reply-content-content";
 	}
 	
 }

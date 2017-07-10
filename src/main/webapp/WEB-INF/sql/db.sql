@@ -7,7 +7,7 @@ create table member(
 	id varchar(50) primary key,
 	name varchar(50) not null,
 	pass varchar(50) not null,
-	pic varchar(300) default 'no_pic.jpg',
+	pic varchar(300) default 'no_pic.png',
 	email varchar(100) not null,
 	birth varchar(20) not null,
 	phone varchar(15) not null,
@@ -19,8 +19,8 @@ create table member(
 	f5 varchar(30)
 );
 
-insert into member values('jh', '주호', '1', 'no_pic.jpg', 'jhkwak6089@naver.com', '2017.07.01', '010-1234-1234', 0, '','','','','');
-insert into member values('admin', '관리자', '1', 'no_pic.jpg', 'admin@naver.com', '2017.07.01', '010-1234-1234', 0, '','','','','');
+insert into member values('jh', '주호', '1', 'no_pic.png', 'jhkwak6089@naver.com', '2017.07.01', '010-1234-1234', 0, '','','','','');
+insert into member values('admin', '관리자', '1', 'no_pic.png', 'admin@naver.com', '2017.07.01', '010-1234-1234', 0, '','','','','');
 
 create table board(
 	b_num int primary key auto_increment,
@@ -465,7 +465,7 @@ create table movie_re(
 	mr_img varchar(300),
 	id varchar(30),
 	mr_content varchar(350),
-	mr_score int,
+	mr_score double,
 	mr_regdate timestamp,
 	m_num int,
 	foreign key(m_num) references movie(m_num),

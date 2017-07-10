@@ -1,5 +1,6 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8" pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <!DOCTYPE html>
 <html>
 <head>
@@ -11,7 +12,16 @@
 	<script src="/resources/js/fotorama.js"></script>
 	<script src="/resources/js/jquery.rateyo.js"></script>
 	<link rel="stylesheet" href="/resources/css/jquery.rateyo.css">
-	<script type="text/javascript" src="/resources/js/movie/movieDetail.js"></script>	
+	<script type="text/javascript" src="/resources/js/movie/movieDetail.js"></script>
+	<script type="text/javascript">
+		$(function() {
+			var reCheck = "${reCheck}";
+			
+			if(Number(reCheck) == 1) {
+				pageScroll();
+			}
+		});
+	</script>
 </head>
 <body>
 	<div id="movieDetailWrap">
@@ -94,7 +104,7 @@
 			<div id="movie-reply-byte">0/150</div>
 			<div id="movie-reply-body">
 				<div id="movie-reply-iamge">
-					<img alt="myImage" src="/resources/images/join/no_pic.png" width="75px">
+					<img alt="myImage" src="/resources/images/join/no_pic.png" width="75px" height="75px">
 				</div>
 				<div id="movie-reply-content">
 					<div id="reply-content-star">
@@ -104,7 +114,7 @@
 					</div>
 					<div id="reply-content-content">
 						<form action="/movie/mrInsert" method="post" id="mrInsert">
-							<textarea style="width: 464px; height: 74px;" name="mr_content" placeholder="로그인 후 이용 가능한 서비스 입니다."></textarea>
+							<textarea name="mr_content" placeholder="로그인 후 이용 가능한 서비스 입니다." style="width: 464px; height: 74px;"></textarea>
 							<input type="hidden" name="mr_img" value="${member.pic }">
 							<input type="hidden" name="id" value="${member.id }">
 							<input type="hidden" name="mr_score" id="mr_score">
@@ -114,6 +124,51 @@
 					<div id="reply-content-btn">등록</div>
 				</div>
 			</div>
+		</div>
+		
+		<!-- 목록 -->
+		<div id="movie-reply-mrList">
+			<c:forEach var="mr" items="${mrList }" varStatus="st">
+				<div class="mr-box">
+					<img class="mr-img" alt="userImage" src="/resources/images/join/${mr.mr_img }">
+					
+					<div class="mr_userInfo">
+						<span>${mr.id }</span>
+						<span><fmt:formatDate value="${mr.mr_regdate }" pattern="yy.MM.dd"/></span>
+						
+						<span class="rateYo${st.count }"></span>
+						<script src="/resources/js/jquery.rateyo.js"></script>
+						<script type="text/javascript">
+							$(function() {
+								var cc = $(".rateYo${st.count}");
+								cc.rateYo({"rating" : "${mr.mr_score}"/2});
+								//cc.rateYo("option", "starWidth", "20px");
+								cc.rateYo("option", "readOnly", true);
+								cc.rateYo("option", "spacing", "-0px");
+								
+							});
+						</script>
+					</div>
+					
+					<div class="mr_contentInfo">
+						${mr.mr_content }
+					</div>
+					
+					<c:choose>
+						<c:when test="${member.id == mr.id }">
+							<div class="mr_btn1">
+								삭제
+							</div>
+						</c:when>
+						<c:otherwise>
+							<div class="mr_btn2">
+								삭제
+							</div>
+						</c:otherwise>
+					</c:choose>
+					
+				</div>
+			</c:forEach>
 		</div>
 	</div>
 </body>
