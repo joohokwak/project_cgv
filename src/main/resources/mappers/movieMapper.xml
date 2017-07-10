@@ -106,11 +106,52 @@
 			group by seat_status
 	</select>
 	
-	
-	
 	<!-- reserve -->
 	<insert id="reserveSign" parameterType="hashmap">
 		insert into reserve values(0, #{rv_theater}, #{rv_screen}, #{rv_date}, #{rv_time}, #{rv_people}, #{rv_pay}, #{rv_seat}, #{id}, #{m_num}, #{t_num}, #{s_num})
 	</insert>
+	
+	<!-- genreList -->
+	<select id="getGenreList" resultType="HashMap">
+		select * from genre
+	</select>
+	
+	<!-- insertData -->
+	<insert id="insertMovie" parameterType="HashMap">
+		insert into movie 
+			values(0, #{title_kor}, #{title_eng},
+		 		#{producer}, #{grade}, #{time}, 
+		 			#{made}, #{company}, #{start}, 
+		 				#{end}, <include refid="site"/>, 0, #{content}, 'no-image.jpg', #{genre})
+	</insert>
+	
+	<sql id="site">
+		<choose>
+			<when test="site == null">
+				null
+			</when>
+			<otherwise>
+				#{site}
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<!-- update poster -->
+	<update id="updatePoster" parameterType="HashMap">
+		update movie set m_poster=#{poster} where m_num=#{num}
+	</update>
+	
+	<delete id="deleteMovie" parameterType="int">
+		delete from movie where m_num=#{num}
+	</delete>
+	
+	<select id="searchMovieList" parameterType="HashMap" resultType="HashMap">
+		select * from movie order by m_num limit #{skip},#{qty}
+	</select>
+	
+	<select id="getMovieCount" resultType="int">
+		select count(*) from movie; 
+	</select>
+	
 	
 </mapper>

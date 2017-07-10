@@ -8,6 +8,7 @@ import org.springframework.stereotype.Service;
 
 import com.project.cgv.dao.MovieDao;
 import com.project.cgv.service.MovieService;
+import com.project.cgv.util.Paging;
 
 @Service
 public class MovieServiceImpl implements MovieService {
@@ -130,6 +131,59 @@ public class MovieServiceImpl implements MovieService {
 		mvDao.seatInsert(params);
 	}
 	
+	@Override
+	public List<HashMap<String, Object>> showGenreList() {
+		return mvDao.getGenreList();
+	}
+
+	@Override
+	public boolean addMovie(HashMap<String, Object> params) {
+		
+		if((String)params.get("site") == ""){
+			params.put("site", null);
+		}
+		
+		int result = mvDao.insertMovie(params);
+		
+		if(result == 1){
+			System.out.println("성공");
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public HashMap<String, Object> showSearchResult(int page, HashMap<String, Object> option) {
+		
+		
+		HashMap<String,Object> result = new HashMap<String,Object>();
+		
+		//paging 
+		int totalCount = mvDao.getMovieCount();
+		System.out.println("total Count : " + totalCount);
+		int currentPageNumber = page;
+				
+		Paging p = new Paging(totalCount,currentPageNumber);
+		
+		result.put("current", currentPageNumber);
+		result.put("start", p.getStartPage());
+		result.put("end", p.getEndPage());
+		result.put("last", p.getPageTotalCount());
+		
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("skip", p.getSkip());
+		params.put("qty", p.getQty());
+		params.put("keyword", option.get("keyword"));
+		params.put("value", option.get("value"));
+		
+		
+		List<HashMap<String, Object>> mList = mvDao.searchMovieList(params);
+		result.put("mList", mList);
+		
+		return result;
+		
+	}
 	
 	
 }
