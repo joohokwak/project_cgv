@@ -97,5 +97,11 @@ public class MemberController {
 		return ".reserve.member.myCGV";
 	}
 	
+	@RequestMapping("/memberUpdatePop")
+	public String popup() {
+		return "/member/memberUpdatePop";
+	}
+	
+	
 	
 }

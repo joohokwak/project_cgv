@@ -1,0 +1,127 @@
+@CHARSET "UTF-8";
+.myCGVFormWrap{
+	width: 980px;
+	margin: 0 auto;
+	background-color: #fdfcf0;
+}
+.myCGVheard{
+	display: inline-block;
+	background: url(/resources/images/myCGV/myCGVheaderBG.gif) no-repeat;
+	width: 100%;
+	height: 450px;
+}
+.member_img{
+	background: url(/resources/images/join/no_pic.png) no-repeat;
+	background-size: 135px 135px;
+	display: inline-block;
+    position: relative;
+    left: 70px;
+    top: 50px;
+    width: 135px;
+    height: 135px;
+}
+.member_context_wrap{
+	float: right;
+	width: 600px;
+	height: 140px;
+	position: relative;
+	top: 55px;
+	margin-right: 70px;
+}
+.name_text{
+	border-bottom: 2px solid #8c7651;
+	padding-bottom: 10px;
+}
+.name_span{
+	font-size: 29px;
+	font-weight: bold;
+	color: #342929;
+    font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;
+}
+.id_span{
+	font-size: 15px;
+	color: #342929;
+    font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;
+}
+.point_text{
+	padding-top: 20px;
+}
+.point_span{
+	font-size: 20px;
+	font-weight: bold;
+	color: #342929;
+    font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;
+}
+.favoriteTheaters{
+	width: 800px;
+	height: 100px;
+	position: relative;
+	top: 150px;
+	left: 100px;
+}
+.theaters{
+	margin: 5px;
+	float: left;
+    width: 109px;
+    height: 41px;
+	padding: 2px;
+    border: 2px solid #7b6746;
+}
+.theaters_in{
+	border: 2px dashed #7b6746;
+	height: 37px;
+}
+.favoriteTheaters_update{
+	margin: 5px;
+	float: left;
+    width: 109px;
+    height: 47px;
+    border: 2px solid #7b6746;
+	
+	background-image: url(/resources/images/myCGV/theater_btn_img.png);
+    background-position-x: 86px;
+    background-position-y: 14px;
+    background-size: initial;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: rgb(59, 52, 37);
+}
+.favoriteTheaters_update > span{
+	display: inline-block;
+	text-align: left;
+	font-size: 10px;
+	color: #dac190;
+	font-weight: bold;
+	position: relative;
+	left: -7px;
+	cursor: pointer;
+}
+.myCGVbody{
+	clear: both;
+	display: inline-block;
+	width: 100%;
+	height: 500px;
+	border: 1px solid red;
+}
+.member_data_update_btn{
+	border: none;
+	position: relative;
+	top: 10px;
+	left: 50px;
+	width: 22px;
+    height: 24px;
+    zoom: 1;
+	background-image: url(/resources/images/movie/sprite_btn.png);
+    background-position-x: 0px;
+    background-position-y: -218px;
+    background-size: initial;
+    background-repeat-x: no-repeat;
+    background-repeat-y: no-repeat;
+    background-attachment: initial;
+    background-origin: initial;
+    background-clip: initial;
+    background-color: initial;
+}
