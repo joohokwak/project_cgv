@@ -8,48 +8,19 @@
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 	<link rel="stylesheet" style="text/css" href="/resources/css/movie/movieList.css">
-	<script type="text/javascript">
-		$(function() {
-			$(".heart-box").click(function(e) {
-				var m_num = $(this).next().val();
-				var hBox = $(this);
-				
-				var flag = Number($(this).attr("data-flag"));
-				
-				if(flag == 0) {
-					$(this).css("background", "url(/resources/images/login/sprite_icon.png) -83px -65px no-repeat");
-					flag++;
-					$.ajax({
-						url: "/movie/likeUp?m_num="+m_num,
-						dataType : "json",
-						success: function(data) {
-							hBox.parent().find(".like_count").text(data);
-						}
-					});
-				}else {
-					$(this).css("background", "url(/resources/images/login/sprite_icon.png) -60px -65px no-repeat");
-					flag=0;
-					$.ajax({
-						url: "/movie/likeDown?m_num="+m_num,
-						dataType : "json",
-						success: function(data) {
-							hBox.parent().find(".like_count").text(data);
-						}
-					});
-				}
-				
-				$(this).attr("data-flag", flag);
-				return false;
-			});
-			
-		});
-	</script>
+	<script type="text/javascript" src="/resources/js/movie/movieList.js"></script>
 </head>
 <body>
 	
 	<div id="movieListWrap">
 		
 		<table id="movieListTable1">
+			<tr>
+				<td align="left" colspan="4">
+					<hr style="width: 930px; background-color: black; height: 3px; margin-left: 0px;">
+				</td>
+			</tr>
+			
 			<tr>
 				<td>
 				<c:forEach var="movie" items="${mvList }" varStatus="status">
@@ -79,7 +50,7 @@
 							<span class="like_count">
 								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
-							<a href="#" class="reserve_btn"></a>
+							<a href="/reserve/reserveHome?m_num=${movie.m_num }" class="reserve_btn"></a>
 						</div>
 					</div>
 					</c:if>
@@ -113,7 +84,7 @@
 							<span class="like_count">
 								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
-							<a href="#" class="reserve_btn"></a>
+							<a href="/reserve/reserveHome?m_num=${movie.m_num }" class="reserve_btn"></a>
 						</div>
 					</div>
 					</c:if>
@@ -147,7 +118,7 @@
 							<span class="like_count">
 								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
-							<a href="#" class="reserve_btn"></a>
+							<a href="/reserve/reserveHome?m_num=${movie.m_num }" class="reserve_btn"></a>
 						</div>
 					</div>
 					</c:if>
@@ -205,7 +176,7 @@
 							<span class="like_count">
 								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
-							<a href="#" class="reserve_btn"></a>
+							<a href="/reserve/reserveHome?m_num=${movie.m_num }" class="reserve_btn"></a>
 						</div>
 					</div>
 					</c:if>
@@ -239,7 +210,7 @@
 							<span class="like_count">
 								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
-							<a href="#" class="reserve_btn"></a>
+							<a href="/reserve/reserveHome?m_num=${movie.m_num }" class="reserve_btn"></a>
 						</div>
 					</div>
 					</c:if>
@@ -273,7 +244,7 @@
 							<span class="like_count">
 								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
-							<a href="#" class="reserve_btn"></a>
+							<a href="/reserve/reserveHome?m_num=${movie.m_num }" class="reserve_btn"></a>
 						</div>
 					</div>
 					</c:if>
@@ -307,7 +278,7 @@
 							<span class="like_count">
 								<fmt:formatNumber value="${movie.m_like }" type="number"/>
 							</span>
-							<a href="#" class="reserve_btn"></a>
+							<a href="/reserve/reserveHome?m_num=${movie.m_num }" class="reserve_btn"></a>
 						</div>
 					</div>
 					</c:if>
@@ -318,9 +289,16 @@
 			<tr>
 				<td align="left" colspan="4">
 					<hr style="width: 930px; background-color: black; height: 3px; margin-left: 0px;">
+					
+					<div style="margin: 40px 0px;">
+						<a href="http://phototicket.cgv.co.kr/Phototicket/Html/main.aspx" target="_blank">
+							<img alt="phototicket" src="/resources/images/movie/phototicket_978_223.jpg" width="932px">
+						</a>
+					</div>
 				</td>
 			</tr>
 		</table>
+		
 	</div>
 </body>
 </html>

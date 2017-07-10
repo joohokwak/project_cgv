@@ -8,6 +8,10 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+	<link rel="stylesheet" href="/resources/css/jquery.mCustomScrollbar.css" />
+	<script src="/resources/js/jquery.mCustomScrollbar.concat.min.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
 	<link rel="stylesheet" href="/resources/css/reserve/choice.css">
 	<script type="text/javascript" src="/resources/js/reserve/reserveChoice.js"></script>
 	
@@ -41,6 +45,7 @@
 				</div>
 				
 				<div id="seat_type">
+					<span class="typeSpan">묶음선택</span>
 					<label>
 						<input type="radio" name="seattype" value="st_img1" disabled="disabled"/>
 						<img id="st_img1" src="/resources/images/reserve/reserve_img/seat_1.jpg"/>
@@ -69,165 +74,177 @@
 
 			<%-- 좌석 --%>
 			<div id="seat">
-			<c:set var="seatABC" value="${seatABC }"/>
-			<fmt:parseNumber var="check" type="number" value="${(screenInfo.s_cnt_seat/22) }" integerOnly="true"/>
-			<c:choose>
-				<c:when test="${(screenInfo.s_cnt_seat%22) != 0 }"> <%-- 총좌석을 22로 나눈 나머지가 0이 아니라면 --%>
-					<c:set var="check" value="${check+1 }"/>
-					<c:forEach var="i" begin="1" end="${(screenInfo.s_cnt_seat/22)+1 }">
-						<img src="${seatABC[i-1] }"/>
-						<c:choose>
-							<c:when test="${i==check }">
-								<c:forEach var="j" begin="1" end="${screenInfo.s_cnt_seat%22 }">
-									<c:if test="${j==5||j==19 }">
-										&nbsp;&nbsp;
-									</c:if>
-									<c:set var="stNum" value="${i+64 }:${j}"/>
-									<c:set var="img_src" value="/resources/images/reserve/reserve_img/${j }.jpg"/>
-									<c:choose>
-										<c:when test="${empty seatList }">
-											<img src="${img_src }" id="${i+64 }:${j}" name="seatImg" onclick="countSeatClick(this);"
-												style="cursor:pointer;" onmouseover="seatOver(this);" onmouseout="seatOut(this);"/>
-										</c:when>
-										<c:otherwise>
-											<c:forEach var="list" items="${seatList }">
+				<c:set var="seatABC" value="${seatABC }"/>
+				<fmt:parseNumber var="check" type="number" value="${(screenInfo.s_cnt_seat/22) }" integerOnly="true"/>
+				<c:choose>
+					<c:when test="${(screenInfo.s_cnt_seat%22) != 0 }"> <%-- 총좌석을 22로 나눈 나머지가 0이 아니라면 --%>
+						<c:set var="check" value="${check+1 }"/>
+						<c:forEach var="i" begin="1" end="${(screenInfo.s_cnt_seat/22)+1 }">
+							<img src="${seatABC[i-1] }"/>
+							<c:choose>
+								<c:when test="${i==check }">
+									<c:forEach var="j" begin="1" end="${screenInfo.s_cnt_seat%22 }">
+										<c:if test="${j==5||j==19 }">
+											&nbsp;&nbsp;
+										</c:if>
+										<c:set var="stNum" value="${i+64 }:${j}"/>
+										<c:set var="img_src" value="/resources/images/reserve/reserve_img/${j }.jpg"/>
+										<c:choose>
+											<c:when test="${empty seatList }">
+												<img src="${img_src }" id="${i+64 }:${j}" name="seatImg" onclick="countSeatClick(this);"
+													style="cursor:pointer;" onmouseover="seatOver(this);" onmouseout="seatOut(this);"/>
+											</c:when>
+											<c:otherwise>
+												<c:forEach var="list" items="${seatList }">
+													<c:choose>
+														<c:when test="${stNum==list }">
+															<c:set var="img_src" value="/resources/images/reserve/reserve_img/seat_false.jpg"/>
+														</c:when>
+													</c:choose>
+												</c:forEach>
 												<c:choose>
-													<c:when test="${stNum==list }">
-														<c:set var="img_src" value="/resources/images/reserve/reserve_img/seat_false.jpg"/>
+													<c:when test="${img_src=='/resources/images/reserve/reserve_img/seat_false.jpg' }">
+														<img src="${img_src }" id="${i+64 }:${j}" name="seatImg"/>
 													</c:when>
+													<c:otherwise>
+														<img src="${img_src }" id="${i+64 }:${j}" name="seatImg" onclick="countSeatClick(this);"
+																   style="cursor:pointer;" onmouseover="seatOver(this);" onmouseout="seatOut(this);"/>
+													</c:otherwise>
 												</c:choose>
-											</c:forEach>
-											<c:choose>
-												<c:when test="${img_src=='/resources/images/reserve/reserve_img/seat_false.jpg' }">
-													<img src="${img_src }" id="${i+64 }:${j}" name="seatImg"/>
-												</c:when>
-												<c:otherwise>
-													<img src="${img_src }" id="${i+64 }:${j}" name="seatImg" onclick="countSeatClick(this);"
-															   style="cursor:pointer;" onmouseover="seatOver(this);" onmouseout="seatOut(this);"/>
-												</c:otherwise>
-											</c:choose>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-							</c:when>
-							
-							<c:otherwise>
-								<c:forEach var="j" begin="1" end="22">
-									<c:if test="${j==5||j==19 }">
-										&nbsp;&nbsp;
-									</c:if>
-									<c:set var="stNum" value="${i+64 }:${j}"/>
-									<c:set var="img_src" value="/resources/images/reserve/reserve_img/${j }.jpg"/>
-									<c:choose>
-										<c:when test="${empty seatList }">
-											<img src="${img_src }" id="${i+64 }:${j}" name="seatImg"
-												 onclick="countSeatClick(this);"
-												style="cursor:pointer;" onmouseover="seatOver(this);" onmouseout="seatOut(this);"/>
-										</c:when>
-										<c:otherwise>
-											<c:forEach var="list" items="${seatList }">
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</c:when>
+								
+								<c:otherwise>
+									<c:forEach var="j" begin="1" end="22">
+										<c:if test="${j==5||j==19 }">
+											&nbsp;&nbsp;
+										</c:if>
+										<c:set var="stNum" value="${i+64 }:${j}"/>
+										<c:set var="img_src" value="/resources/images/reserve/reserve_img/${j }.jpg"/>
+										<c:choose>
+											<c:when test="${empty seatList }">
+												<img src="${img_src }" id="${i+64 }:${j}" name="seatImg"
+													 onclick="countSeatClick(this);"
+													style="cursor:pointer;" onmouseover="seatOver(this);" onmouseout="seatOut(this);"/>
+											</c:when>
+											<c:otherwise>
+												<c:forEach var="list" items="${seatList }">
+													<c:choose>
+														<c:when test="${stNum==list }">
+															<c:set var="img_src" value="/resources/images/reserve/reserve_img/seat_false.jpg"/>
+														</c:when>
+													</c:choose>
+												</c:forEach>
 												<c:choose>
-													<c:when test="${stNum==list }">
-														<c:set var="img_src" value="/resources/images/reserve/reserve_img/seat_false.jpg"/>
+													<c:when test="${img_src=='/resources/images/reserve/reserve_img/seat_false.jpg' }">
+														<img src="${img_src }" id="${i+64 }:${j}" name="seatImg"/>
 													</c:when>
+													<c:otherwise>
+														<img src="${img_src }" id="${i+64 }:${j}" name="seatImg" onclick="countSeatClick(this);"
+																   style="cursor:pointer;" onmouseover="seatOver(this);" onmouseout="seatOut(this);"/>
+													</c:otherwise>
 												</c:choose>
-											</c:forEach>
-											<c:choose>
-												<c:when test="${img_src=='/resources/images/reserve/reserve_img/seat_false.jpg' }">
-													<img src="${img_src }" id="${i+64 }:${j}" name="seatImg"/>
-												</c:when>
-												<c:otherwise>
-													<img src="${img_src }" id="${i+64 }:${j}" name="seatImg" onclick="countSeatClick(this);"
-															   style="cursor:pointer;" onmouseover="seatOver(this);" onmouseout="seatOut(this);"/>
-												</c:otherwise>
-											</c:choose>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-							</c:otherwise>
-						</c:choose>
-						<br/>
-					</c:forEach>
-				</c:when>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+							<br/>
+						</c:forEach>
+					</c:when>
+					
+					<c:otherwise> <%-- 총 좌석을 나눈 나머지가 0이라면 --%>
+						<c:forEach var="i" begin="1" end="${screenInfo.s_cnt_seat/22 }">
+							<img src="${seatABC[i-1] }"/>
+							<c:choose>
+								<c:when test="${i==check+1 }">
+									<c:forEach var="j" begin="1" end="${screenInfo.s_cnt_seat%22 }">
+										<c:if test="${j==5||j==19 }">
+											&nbsp;&nbsp;
+										</c:if>
+										<c:set var="stNum" value="${i+64 }:${j}"/>
+										<c:set var="img_src" value="/resources/images/reserve/reserve_img/${j }.jpg"/>
+										<c:choose>
+											<c:when test="${empty seatList }">
+												<img src="${img_src }" id="${i+64 }:${j}" name="seatImg" onclick="countSeatClick(this);"
+													style="cursor:pointer;" onmouseover="seatOver(this);" onmouseout="seatOut(this);"/>
+											</c:when>
+											<c:otherwise>
+												<c:forEach var="list" items="${seatList }">
+													<c:choose>
+														<c:when test="${stNum==list }">
+															<c:set var="img_src" value="/resources/images/reserve/reserve_img/seat_false.jpg"/>
+														</c:when>
+													</c:choose>
+												</c:forEach>
+												<c:choose>
+													<c:when test="${img_src=='/resources/images/reserve/reserve_img/seat_false.jpg' }">
+														<img src="${img_src }" id="${i+64 }:${j}" name="seatImg"/>
+													</c:when>
+													<c:otherwise>
+														<img src="${img_src }" id="${i+64 }:${j}" name="seatImg" onclick="countSeatClick(this);"
+																   style="cursor:pointer;" onmouseover="seatOver(this);" onmouseout="seatOut(this);"/>
+													</c:otherwise>
+												</c:choose>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</c:when>
+								<c:otherwise>
+									<c:forEach var="j" begin="1" end="22">
+										<c:if test="${j==5||j==19 }">
+											&nbsp;&nbsp;
+										</c:if>
+										<c:set var="stNum" value="${i+64 }:${j}"/>
+										<c:set var="img_src" value="/resources/images/reserve/reserve_img/${j }.jpg"/>
+										<c:choose>
+											<c:when test="${empty seatList }">
+												<img src="${img_src }" id="${i+64 }:${j}" name="seatImg"
+													 onclick="countSeatClick(this);"
+													style="cursor:pointer;" onmouseover="seatOver(this);" onmouseout="seatOut(this);"/>
+											</c:when>
+											<c:otherwise>
+												<c:forEach var="list" items="${seatList }">
+													<c:choose>
+														<c:when test="${stNum==list }">
+															<c:set var="img_src" value="/resources/images/reserve/reserve_img/seat_false.jpg"/>
+														</c:when>
+													</c:choose>
+												</c:forEach>
+												<c:choose>
+													<c:when test="${img_src=='/resources/images/reserve/reserve_img/seat_false.jpg' }">
+														<img src="${img_src }" id="${i+64 }:${j}" name="seatImg"/>
+													</c:when>
+													<c:otherwise>
+														<img src="${img_src }" id="${i+64 }:${j}" name="seatImg"
+																	onclick="countSeatClick(this);"
+																   style="cursor:pointer;" onmouseover="seatOver(this);" onmouseout="seatOut(this);"/>
+													</c:otherwise>
+												</c:choose>
+											</c:otherwise>
+										</c:choose>
+									</c:forEach>
+								</c:otherwise>
+							</c:choose>
+							<br/>
+						</c:forEach>
+					</c:otherwise>
+				</c:choose>
+			</div>
+			
+			<div id="entrance"></div>
+			
+			<div id="reserve-info-icon">
+				<div id="ri_icon1">
+					<span></span><b>선택</b>
+				</div>
 				
-				<c:otherwise> <%-- 총 좌석을 나눈 나머지가 0이라면 --%>
-					<c:forEach var="i" begin="1" end="${screenInfo.s_cnt_seat/22 }">
-						<img src="${seatABC[i-1] }"/>
-						<c:choose>
-							<c:when test="${i==check+1 }">
-								<c:forEach var="j" begin="1" end="${screenInfo.s_cnt_seat%22 }">
-									<c:if test="${j==5||j==19 }">
-										&nbsp;&nbsp;
-									</c:if>
-									<c:set var="stNum" value="${i+64 }:${j}"/>
-									<c:set var="img_src" value="/resources/images/reserve/reserve_img/${j }.jpg"/>
-									<c:choose>
-										<c:when test="${empty seatList }">
-											<img src="${img_src }" id="${i+64 }:${j}" name="seatImg" onclick="countSeatClick(this);"
-												style="cursor:pointer;" onmouseover="seatOver(this);" onmouseout="seatOut(this);"/>
-										</c:when>
-										<c:otherwise>
-											<c:forEach var="list" items="${seatList }">
-												<c:choose>
-													<c:when test="${stNum==list }">
-														<c:set var="img_src" value="/resources/images/reserve/reserve_img/seat_false.jpg"/>
-													</c:when>
-												</c:choose>
-											</c:forEach>
-											<c:choose>
-												<c:when test="${img_src=='/resources/images/reserve/reserve_img/seat_false.jpg' }">
-													<img src="${img_src }" id="${i+64 }:${j}" name="seatImg"/>
-												</c:when>
-												<c:otherwise>
-													<img src="${img_src }" id="${i+64 }:${j}" name="seatImg" onclick="countSeatClick(this);"
-															   style="cursor:pointer;" onmouseover="seatOver(this);" onmouseout="seatOut(this);"/>
-												</c:otherwise>
-											</c:choose>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-							</c:when>
-							<c:otherwise>
-								<c:forEach var="j" begin="1" end="22">
-									<c:if test="${j==5||j==19 }">
-										&nbsp;&nbsp;
-									</c:if>
-									<c:set var="stNum" value="${i+64 }:${j}"/>
-									<c:set var="img_src" value="/resources/images/reserve/reserve_img/${j }.jpg"/>
-									<c:choose>
-										<c:when test="${empty seatList }">
-											<img src="${img_src }" id="${i+64 }:${j}" name="seatImg"
-												 onclick="countSeatClick(this);"
-												style="cursor:pointer;" onmouseover="seatOver(this);" onmouseout="seatOut(this);"/>
-										</c:when>
-										<c:otherwise>
-											<c:forEach var="list" items="${seatList }">
-												<c:choose>
-													<c:when test="${stNum==list }">
-														<c:set var="img_src" value="/resources/images/reserve/reserve_img/seat_false.jpg"/>
-													</c:when>
-												</c:choose>
-											</c:forEach>
-											<c:choose>
-												<c:when test="${img_src=='/resources/images/reserve/reserve_img/seat_false.jpg' }">
-													<img src="${img_src }" id="${i+64 }:${j}" name="seatImg"/>
-												</c:when>
-												<c:otherwise>
-													<img src="${img_src }" id="${i+64 }:${j}" name="seatImg"
-																onclick="countSeatClick(this);"
-															   style="cursor:pointer;" onmouseover="seatOver(this);" onmouseout="seatOut(this);"/>
-												</c:otherwise>
-											</c:choose>
-										</c:otherwise>
-									</c:choose>
-								</c:forEach>
-							</c:otherwise>
-						</c:choose>
-						<br/>
-					</c:forEach>
-				</c:otherwise>
-			</c:choose>
-		</div>
+				<div id="ri_icon2">
+					<span></span><b>예매완료</b>
+				</div>
+			</div>
 		</div>
 		
 	</div>
@@ -236,7 +253,7 @@
 	<!-- 하단 시커먼 바~ -->
 	<div id="tnb-container">
 		<div id="tnb-area">
-			<a href="#" id="btn-left"></a>
+			<a id="btn-left"></a>
 			
 			<div id="tnb-movie-step">
 				<img alt="movie poster" src="/resources/images/movie/poster/${movieInfo.m_poster }" width="74px" height="104px">
@@ -271,6 +288,7 @@
 		<input type="hidden" id="rv_screen" name="rv_screen" value="${screenInfo.s_title }">
 		<input type="hidden" id="rv_date" name="rv_date" value="${dateInfo }">
 		<input type="hidden" id="rv_time" name="rv_time" value="${timeInfo }">
+		<input type="hidden" id="rv_endtime" name="rv_endtime" value="${movieEndTime }">
 		<input type="hidden" id="rv_people" name="rv_people">
 		<input type="hidden" id="rv_pay" name="rv_pay">
 		<input type="hidden" id="rv_seat" name="rv_seat">

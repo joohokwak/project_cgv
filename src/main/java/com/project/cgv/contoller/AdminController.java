@@ -1,13 +1,14 @@
 package com.project.cgv.contoller;
 
 import java.io.File;
-import java.util.Enumeration;
 import java.util.HashMap;
 import java.util.Iterator;
-
-import javax.servlet.http.HttpServletRequest;
+import java.util.List;
+import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -15,8 +16,8 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
-import org.springframework.web.multipart.support.DefaultMultipartHttpServletRequest;
 
+import com.project.cgv.service.MovieService;
 import com.project.cgv.service.NoticeService;
 
 @Controller
@@ -25,28 +26,29 @@ public class AdminController {
 	
 	//member, board, notice, movie, actor 관리하는 controller
 	
+	//notice
 	@Autowired
 	private NoticeService nService;
+
+	//movie
+	@Autowired
+	private MovieService mService;
+	
 	
 	@RequestMapping("/main")//.admin.layout.body
-	public String mainForm(){
+	public String showMainForm(){
 		return ".admin.layout.admin_body";
+	}
+	
+	@RequestMapping("/result")
+	public String getResult(){
+		return ".admin.result.showResult";
 	}
 	
 	// Notice Start ///////////////////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping("/notice/insertForm")
-	public String noticeInsertForm(){
-		return ".admin.notice.noticeInsertForm";
-	}
-	
-	@RequestMapping("/notice/result")
-	public String noticeResult(){
-		return ".admin.notice.noticeResult";
-	}
-	
 	@RequestMapping("/notice/list")
-	public String noticeList(Model model, @RequestParam(defaultValue="1")int page){
+	public String showNoticeList(Model model, @RequestParam(defaultValue="1")int page){
 		
 		HashMap<String,Object> viewData = nService.getAllNotice(page);
 		
@@ -56,15 +58,20 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/notice/view")
-	public String noticeView(Model model, int num){
+	public String showNoticeView(Model model, int num){
 		
 		model.addAttribute("notice",nService.getNoticeByNum(num));
 		
 		return ".admin.notice.noticeView";
 	}
 	
+	@RequestMapping("/notice/insertForm")
+	public String showNoticeInsertForm(){
+		return ".admin.notice.noticeInsertForm";
+	}
+	
 	@RequestMapping("/notice/insert")
-	public String noticeInsert(Model model,@RequestParam HashMap<String,Object> params){
+	public String insertNotice(Model model,@RequestParam HashMap<String,Object> params){
 		boolean result = nService.addNotice(params);
 		
 		String msg = "";
@@ -81,17 +88,17 @@ public class AdminController {
 		model.addAttribute("msg",msg);
 		model.addAttribute("loc",loc);
 		
-		return "forward:result";
+		return "forward:../result";
 	}
 	
 	@RequestMapping("/notice/updateForm")
-	public String noticeUpdateForm(Model model, int num){
+	public String showNoticeUpdateForm(Model model, int num){
 		model.addAttribute("notice",nService.getNoticeByNum(num));
 		return ".admin.notice.noticeUpdateForm";
 	}
 	
 	@RequestMapping("/notice/update")
-	public String noticeUpdate(Model model, @RequestParam HashMap<String,Object> params){
+	public String updateNotice(Model model, @RequestParam HashMap<String,Object> params){
 		
 		boolean result = nService.addNotice(params);
 		String msg = "";
@@ -112,7 +119,7 @@ public class AdminController {
 	}
 	
 	@RequestMapping("/notice/delete")
-	public String noticeDelete(Model model, int num){
+	public String deleteNotice(Model model, int num){
 		
 		boolean result = nService.remove(num);
 		String msg = "";
@@ -134,19 +141,42 @@ public class AdminController {
 	
 	// Notice end /////////////////////////////////////////////////////////////////////////////////////////
 	
+	
 	// Photo Start ////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping("/photo/infoList")
+	@ResponseBody
+	public ResponseEntity<List<HashMap<String,Object>>> showInfoList(@RequestParam HashMap<String,Object> params){
+		
+		ResponseEntity<List<HashMap<String, Object>>> entity = null;
+		
+		String opt = (String) params.get("opt");
+		
+		try{
+			if(opt.equals("actorBtn")){
+				entity = new ResponseEntity<List<HashMap<String,Object>>>(HttpStatus.OK);
+			}else{
+				entity = new ResponseEntity<List<HashMap<String,Object>>>(mService.movieList(),HttpStatus.OK);
+			}
+		}catch (Exception e) {
+			entity = new ResponseEntity<List<HashMap<String,Object>>>(HttpStatus.BAD_REQUEST);
+		}
+		return entity;
+	}
+	
+	
 	@RequestMapping("/photo/uploadForm")
-	public String photoUploadForm(){
+	public String showPhotoUploadForm(){
 		return ".admin.photoUpload.photoUploadMain";
 	}
 	
 	
 	@RequestMapping("/photo/upload")
 	@ResponseBody
-	public String photoUpload(MultipartHttpServletRequest multipartRequest){
+	public String uploadPhoto(MultipartHttpServletRequest multipartRequest){
 		
-		String str = multipartRequest.getParameterMap().get("myId")[0];
-		//System.out.println(str);
+		String option = multipartRequest.getParameterMap().get("option")[0]; // 버튼
+		String num = multipartRequest.getParameterMap().get("num")[0]; // 선택된 아이템
 		
 		Iterator<String> itr =  multipartRequest.getFileNames();
         
@@ -157,26 +187,14 @@ public class AdminController {
             
             //테스트후 지우자
             String originFileName = mpf.getOriginalFilename();
-            System.out.println("FILE_INFO: "+originFileName); //받은 파일 리스트 출력'
-            String originalFilename = mpf.getOriginalFilename(); //파일명
-            String fileFullPath = filePath+"/"+originalFilename; //파일 전체 경로
+            System.out.println("FILE_INFO: "+originFileName); //받은 파일 리스트 출력
             
-            /*
-             	가져와야할 정보
-              	영화 포스터
-              	  - 영화 등록 번호
-              	배우 얼굴
-              	  - 배우 번호
-              	스틸컷
-              	  - 영화 등록 번호 
-             */
+            String saveFileName = makeFileName(originFileName);
+            String fileFullPath = filePath+"/"+saveFileName; //파일 전체 경로
             
             try {
                 //파일 저장
-                mpf.transferTo(new File(fileFullPath)); //파일저장 실제로는 service에서 처리
-                 
-                System.out.println("originalFilename => "+originalFilename);
-                System.out.println("fileFullPath => "+fileFullPath);
+                mpf.transferTo(new File(fileFullPath));
       
             } catch (Exception e) {
                 System.out.println("postTempFile_ERROR======>"+fileFullPath);
@@ -187,11 +205,114 @@ public class AdminController {
         return "success";
     }
 	
-	
-	
-	
-	
+	//파일이름, 실제 데이터
+	private String makeFileName(String originalName){
+		//파일 이름이 겹치지 않도록 UUID를 이용.
+		
+		UUID uid = UUID.randomUUID();
+		String savedName = uid.toString() + "_" + originalName;
+		return savedName;
+	}
 	// Photo End //////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	// Movie Start //////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping("/movie/list")
+	public String showMovieList(Model model, @RequestParam(defaultValue="1") int page, @RequestParam(required=false)HashMap<String, Object> option){
+		
+		HashMap<String,Object> viewData = mService.showSearchResult(page, option);
+		
+		model.addAttribute("viewData",viewData);
+		System.out.println(viewData.get("mList"));
+		
+		return ".admin.movie.movieList";
+	}
+	
+	@RequestMapping("/movie/insertForm")
+	public String showMovieInsertForm(Model model){
+		
+		model.addAttribute("gList",mService.showGenreList());
+		System.out.println(mService.showGenreList());
+		
+		return ".admin.movie.movieInsertForm";
+	}
+	
+	@RequestMapping("/movie/insert")
+	public String insertMovie(Model model, @RequestParam HashMap<String,Object> params){
+		
+		boolean result = mService.addMovie(params);
+		
+		String msg = "";
+		String loc = "";
+		
+		if(result){
+			msg="정상적으로 등록되었습니다.";
+			loc="/admin/main";
+		}else{
+			msg="실패하였습니다.";
+			loc="javascript:history.back()";
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "forward:/admin/result";
+	}
+	
+	@RequestMapping("/movie/updateForm")
+	public String showMovieUpdateForm(Model model, int num){
+		
+		model.addAttribute("movie",mService.movieDetail(num));
+		
+		return ".admin.movie.movieUpdateForm";
+	}
+	
+	@RequestMapping("/movie/update")
+	public String updateMovie(Model model, @RequestParam HashMap<String,Object> params){
+		
+		boolean result = false;
+		
+		String msg = "";
+		String loc = "";
+		
+		if(result){
+			msg="정상적으로 등록되었습니다.";
+			loc="/admin/layout/main";
+		}else{
+			msg="실패하였습니다.";
+			loc="javascript:history.back()";
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "forward:result";
+	}
+	
+	@RequestMapping("/movie/delete")
+	public String deleteMovie(Model model, int num){
+
+		boolean result = false;
+		
+		String msg = "";
+		String loc = "";
+		
+		if(result){
+			msg="정상적으로 등록되었습니다.";
+			loc="/admin/layout/main";
+		}else{
+			msg="실패하였습니다.";
+			loc="javascript:history.back()";
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "forward:result";
+	}
+	// Movie End //////////////////////////////////////////////////////////////////////////////////////////	
+	
 	
 	
 }////////////////////////////////////////

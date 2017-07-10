@@ -10,6 +10,14 @@ var tt = ""; 			//초기화했을때 인원에 대한 정보를 담아둘 변수
 var sum = 0; 			//총액을 담을 변수
 
 $(function() {
+	
+	$("#seat").mCustomScrollbar({theme:"rounded-dark"});
+	
+	// 뒤로가기(예매)
+	$("#btn-left").click(function(e) {
+		history.back();
+	});
+	
 	$(".ct").on( // 일반인 / 청소년 인원수 클릭시 이미지 변화
 		{"click" : function(e) {
 			var i = $(this).attr("id").split("_")[1];
@@ -270,34 +278,44 @@ function countSeatClick(choiceImg){
 				}
 				bottomSeat(choice_seat);
 			}else{
-				if(confirm("기존에 선택하신 좌석을 취소하고 새로 선택 하시겠습니까?")==true){
-					choice_seat+=ready_seat+",";
-					//기존에 선택한 좌석 초기화
-					var seat=choice_seat.split(",");
-					for(var i=0;i<seat.length;i++){
-						var n=parseInt(seat[i].split(":")[0]);
-						var num=parseInt(seat[i].split(":")[1]);
-						$(seatImg[((n-65)*22)+(num-1)]).attr("src","/resources/images/reserve/reserve_img/"+num+".jpg");
-						$(seatImg[((n-65)*22)+(num-1)]).attr("onmouseover","seatOver(this);");
-						$(seatImg[((n-65)*22)+(num-1)]).attr("onmouseout","seatOut(this);");
-					}
-					
-					//새로 선택한 좌석 선택하기
-					var newSeat=ready_seat.split(",");
-					for(var i=0;i<newSeat.length;i++){
-						var n=parseInt(newSeat[i].split(":")[0]);
-						var num=parseInt(newSeat[i].split(":")[1]);
-						$(seatImg[((n-65)*22)+(num-1)]).attr("src","/resources/images/reserve/reserve_choice/r"+num+".jpg");
-						$(seatImg[((n-65)*22)+(num-1)]).removeAttr("onmouseover");
-						$(seatImg[((n-65)*22)+(num-1)]).removeAttr("onmouseout");
-					}
-					
-					choice_seat=ready_seat+",";
-					check_count=seatCount;
-					bottomSeat(choice_seat);
-				}else{
-					return;
-				}
+				$.confirm({
+				    title: '',
+				    content: '<font color="#333"><b>기존에 선택하신 좌석을 취소하고<br> 새로 선택 하시겠습니까?</b></font>',
+				    boxWidth: '300px',
+				    useBootstrap: false,
+				    type: 'red',
+				    buttons: {
+				        yes: function () {
+				        	choice_seat+=ready_seat+",";
+							//기존에 선택한 좌석 초기화
+							var seat=choice_seat.split(",");
+							for(var i=0;i<seat.length;i++){
+								var n=parseInt(seat[i].split(":")[0]);
+								var num=parseInt(seat[i].split(":")[1]);
+								$(seatImg[((n-65)*22)+(num-1)]).attr("src","/resources/images/reserve/reserve_img/"+num+".jpg");
+								$(seatImg[((n-65)*22)+(num-1)]).attr("onmouseover","seatOver(this);");
+								$(seatImg[((n-65)*22)+(num-1)]).attr("onmouseout","seatOut(this);");
+							}
+							
+							//새로 선택한 좌석 선택하기
+							var newSeat=ready_seat.split(",");
+							for(var i=0;i<newSeat.length;i++){
+								var n=parseInt(newSeat[i].split(":")[0]);
+								var num=parseInt(newSeat[i].split(":")[1]);
+								$(seatImg[((n-65)*22)+(num-1)]).attr("src","/resources/images/reserve/reserve_choice/r"+num+".jpg");
+								$(seatImg[((n-65)*22)+(num-1)]).removeAttr("onmouseover");
+								$(seatImg[((n-65)*22)+(num-1)]).removeAttr("onmouseout");
+							}
+							
+							choice_seat=ready_seat+",";
+							check_count=seatCount;
+							bottomSeat(choice_seat);
+				        },
+				        cancel: function () {
+				            
+				        }
+				    }
+				});
 			}
 		}
 	}
@@ -360,7 +378,7 @@ function bottomSeat(cs){
 	
 	$("#paymentInfo").html(payInfo);
 	
-	$("#rv_pay").val(sum.format());
+	$("#rv_pay").val(sum);
 	$("#rv_seat").val(text);
 //	alert("seatInfo : " + text);
 	

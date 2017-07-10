@@ -19,21 +19,21 @@
 		left: 432px;
 	}
 	
-	table{
+	.notice-table{
 		width: 800px;
 		margin: 20px;
 		padding: 20px;
 		border-collapse: collapse;
 	}
 	
-	th{
+	.notice-table th{
 		border-top: 1px solid #e1dfd5;
 		border-bottom: 1px solid #e1dfd5;
 		background-color: #edebe1;
 		height: 37px;
 	}
 	
-	td{
+	.notice-table td{
 		height: 46px;
 		text-align: center;
 	}
@@ -53,13 +53,14 @@
 </style>
 
 <div id="noticeWrap" align="center" >
+	<a href="/admin/notice/insertForm" class="btn btn-default">글쓰기</a>
 	<div id="category" align="left">
 		<button type="button" class="btn-cate">전체</button>
 		<button type="button" class="btn-cate">시스템점검</button>
 		<button type="button" class="btn-cate">극장</button>
 		<button type="button" class="btn-cate">기타</button>
 	</div>
-	<table>
+	<table class="notice-table">
 		<tr>
 			<th style="width: 34px">번호</th>
 			<th style="width: 76px">구분</th>

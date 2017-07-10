@@ -14,7 +14,7 @@
 		<li><a href="/admin/main">관리자 홈으로</a></li>	
 		<li><a href="#">회원 관리</a></li>
 		<li><a href="#">게시판 관리</a></li>
-		<li><a href="/notice/list">공지사항 관리</a></li>
+		<li><a href="/admin/notice/list">공지사항 관리</a></li>
 		<li><a href="#">영화관 관리</a></li>
 		<li><a href="#">상영관 관리</a></li>
 		<li><a href="#">영화 관리</a></li>

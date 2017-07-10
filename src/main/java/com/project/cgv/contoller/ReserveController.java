@@ -22,12 +22,16 @@ public class ReserveController {
 	@Autowired private MovieService mvService;
 	
 	@RequestMapping("/reserveHome")
-	public String ticketSelect(Model model, @RequestParam(value="m_num", defaultValue="1") int m_num) {
-		model.addAttribute("imgInfo", "h2_ticket.png");
-		model.addAttribute("movieList", mvService.movieList());
-		model.addAttribute("theaterList", mvService.theaterList());
-		model.addAttribute("m_num", m_num);
-		return ".reserve.ticket.main";
+	public ModelAndView ticketSelect(@RequestParam(value="m_num", defaultValue="0") int m_num) {
+		ModelAndView mv = new ModelAndView(".reserve.ticket.main");
+		mv.addObject("imgInfo", "h2_ticket.png");
+		mv.addObject("movieList", mvService.movieList());
+		mv.addObject("theaterList", mvService.theaterList());
+		if(m_num != 0) {
+			mv.addAllObjects(mvService.movieDetail(m_num));
+		}
+		
+		return mv;
 	}
 	
 	@ResponseBody
@@ -137,6 +141,12 @@ public class ReserveController {
 		mv.addObject("theater", mvService.getTheater(t_num));
 		
 		return mv;
+	}
+	
+	@RequestMapping("/reserveSign")
+	public String reserveSign(@RequestParam HashMap<String, Object> params) {
+		mvService.reserveSign(params);
+		return "redirect:/";
 	}
 	
 }

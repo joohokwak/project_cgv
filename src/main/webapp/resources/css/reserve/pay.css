@@ -1,0 +1,207 @@
+@CHARSET "UTF-8";
+
+#reservePayWrap {
+	width: 980px;
+	height: 600px;
+	border: 5px solid #333;
+	margin: 0 auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+}
+
+#pay-header {
+	width: 977px;
+	height: 53px;
+	background: #333;
+	padding: 2px;
+}
+
+#pay-title {
+	height: 47px;
+	line-height: 47px;
+	background: #333;
+	color: white;
+	border: 1px solid white;
+	font-size: 17px;
+	font-weight: bold;
+	padding-left: 30px;
+}
+
+#pay-movieInfo {
+	width: 900px;
+	height: 200px;
+	margin: 0 auto;
+	margin-top: 40px;
+}
+
+#pay-reserveInfo {
+	position: relative;
+	width: 429px;
+	height: 40px;
+	line-height: 40px;
+	border-top: 2px solid #ccc;
+	border-right: 2px solid #ccc;
+	border-bottom: 2px solid #ccc;
+	float: left;
+	font-weight: bold;
+	padding-left: 20px;
+}
+
+#pay-payInfo {
+	position: relative;
+	width: 429px;
+	height: 40px;
+	line-height: 40px;
+	border-top: 2px solid #ccc;
+	border-bottom: 2px solid #ccc;
+	float: right;
+	font-weight: bold;
+	padding-left: 20px;
+}
+
+#pay-img {
+	position: relative;
+	width: 449px;
+	height: 170px;
+	border-right: 2px solid #ccc;
+	border-bottom: 2px solid #ccc;
+	float: left;
+	padding: 20px 0px;
+}
+
+#pay-detailInfo {
+	width: 270px;
+	height: 165px;
+	float: right;
+	margin-right: 30px;
+}
+
+.pay-detailInfo2 {
+	font-weight: bold;
+}
+
+#pay-detailInfo table {
+	width: 100%;
+	height: 93%;
+	border-spacing: 0;
+}
+
+#pay-content {
+	position: relative;
+	width: 449px;
+	height: 170px;
+	border-bottom: 2px solid #ccc;
+	float: right;
+	padding: 20px 0px;
+}
+
+#pay-point {
+	width: 360px;
+	height: 60px;
+	margin: auto;
+	padding: 10px 0px 0px 20px;
+}
+
+#pay-payResult {
+	width: 360px;
+	height: 40px;
+	border-top: 1px solid #ccc;
+	margin: auto;
+	margin-top: 20px;
+	padding: 15px 0px 0px 20px;
+}
+
+#pay-payResult span:nth-child(1) {
+	display: inline-block;
+	width: 60px;
+	height: 20px;
+	line-height: 20px;
+	font-weight: bold;
+}
+
+#pay-payResult span:nth-child(2) span {
+	display: inline-block;
+	position: relative;
+	top: 2px;
+	height: 20px;
+	font-size: 16px;
+	font-weight: bold;
+	color: rgb(231, 26, 15);
+	margin-right: 3px;
+}
+
+#pay-body {
+	clear: both;
+	width: 900px;
+	height: 90px;
+	border-bottom: 2px solid #ccc;
+	margin: 0 auto;
+	padding: 20px 0px;
+	line-height: 25px;
+}
+
+#pay-body ul li {
+	list-style: disc;
+}
+
+#pay-footer {
+	width: 900px;
+	height: 60px;
+	margin: 0 auto;
+	margin-top: 20px;
+}
+
+#pay-footer-wrap {
+	width: 150px;
+	height: 45px;
+	margin: 0 auto;
+	padding: 2px;
+	background-color: rgb(231, 26, 15);
+	border-radius: 7px;
+}
+
+#pay-footer-btn {
+	width: 146px;
+	height: 43px;
+	line-height: 43px;
+	margin: 0 auto;
+	border: 1px solid white;
+	background-color: rgb(231, 26, 15);
+	text-align: center;
+	color: white;
+	font-size: 15px;
+	font-weight: bold;
+	cursor: pointer;
+	border-radius: 7px;
+}
+
+#myPoint {
+	font-size: 14px;
+	font-weight: bold;
+	color: rgb(231, 26, 15);
+}
+
+#pointBtn {
+	width: 100px;
+	height: 28px;
+	padding: 2px;
+	position: relative;
+	float: right;
+	top: 30px;
+	background-color: rgb(231, 26, 15);
+	border-radius: 7px;
+}
+
+#pointBtn div {
+	border: 1px solid #e6e4d9;
+	height: 26px;
+	text-align: center;
+	line-height: 26px;
+	color: white;
+	font-size: 14px;
+	font-weight: bold;
+	border-radius: 7px;
+	cursor: pointer;
+}
+
+

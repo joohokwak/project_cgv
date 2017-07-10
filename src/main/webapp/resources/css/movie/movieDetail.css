@@ -41,7 +41,7 @@
 
 #detailSpec {
 	position: relative;
-	width: 100%;
+	width: 715px;
 	height: 118px;
 	border-top: 1px solid gray;
 	padding-top: 18px;
@@ -148,5 +148,108 @@
 	width: 727px; 
 	height: 405px;
 }
+
+#movie-reply {
+	width: 932px;
+	height: 190px;
+	border-bottom: 1px solid gray;
+}
+
+#movie-reply-title {
+	height: 30px;
+	line-height: 30px;
+	font-size: 17px;
+	font-weight: bold;
+	padding: 10px 0px 10px 20px;
+}
+
+#movie-reply-byte {
+	text-align: right;
+	font-size: 15px;
+}
+
+#movie-reply-body {
+	height: 80px;
+}
+
+#movie-reply-iamge {
+	display: inline-block;
+	position: relative;
+	width: 150px;
+	height: 80px;
+	line-height: 80px;
+	float: left;
+	text-align: center;
+}
+
+#movie-reply-content {
+	display: inline-block;
+	position: relative;
+	width: 770px;
+	height: 80px;
+	float: right;
+	border: 1px solid gray;
+}
+
+#reply-content-star {
+	display: inline-block;
+	position: relative;
+	float: left;
+	width: 200px;
+	height: 80px;
+}
+
+#reply-content-content {
+	display: inline-block;
+	position: relative;
+	float: left;
+	width: 470px;
+	height: 80px;
+	border-left: 1px solid gray;
+	border-right: 1px solid gray;
+}
+
+#reply-content-btn {
+	display: inline-block;
+	position: relative;
+	float: right;
+	width: 98px;
+	height: 80px;
+	line-height: 80px;
+	background-color: #eee;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	cursor: pointer;
+}
+
+#rateYo {
+	position: relative;
+	top: 10px;
+	float: left;
+}
+
+#rateNumer {
+	float: right;
+	position: relative;
+	top: 20px;
+	font-size: 12px;
+}
+
+#rateContent {
+	clear: both;
+	width: 180px;
+	height: 25px;
+	line-height: 25px;
+	position: relative;
+	top: 19px;
+	margin: 0 auto;
+	text-align: center;
+}
+
+
+
+
+
 
 

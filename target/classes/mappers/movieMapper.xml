@@ -64,24 +64,99 @@
 	
 	<!-- movieTime -->
 	<select id="movieTimeInfo" parameterType="hashmap" resultType="hashmap">
-		select s.*, t.mt_num, t.mt_time, t.mt_date from screen s join movieTime t  
-		using(s_num) where s.t_num=#{t_num} and s.m_num=#{m_num} and t.mt_date=#{mt_date}
+		select s.*, t.mt_num, t.mt_time, t.mt_date 
+			from screen s join movieTime t  
+				using(s_num) 
+				where s.t_num=#{t_num} 
+					and s.m_num=#{m_num} and t.mt_date=#{mt_date} 
+				order by t.s_num, t.mt_time, t.mt_date
+	</select>
+	
+	<select id="timeGroupSeat" parameterType="String" resultType="hashmap">
+		select mt_time, count(*) as tgs 
+			from movietime m join seat s 
+			using(mt_num) 
+			where mt_date = #{value} 
+			group by mt_time
+	</select>
+	
+	<select id="mtNumSearch" parameterType="hashmap" resultType="int">
+		select mt_num from movietime where mt_time=#{mt_time} and mt_date=#{mt_date} and s_num=#{s_num}
 	</select>
 	
 	
 	
 	<!-- seat -->
+	<insert id="seatInsert" parameterType="hashmap">
+		insert into seat values(0, #{s_num}, #{mt_num}, #{seat_status})
+	</insert>
+	
 	<select id="seatList" parameterType="hashmap" resultType="hashmap">
-		select distinct seat_status 
+		select seat_status 
 			from seat join movietime
-				using(s_num) 
-				where seat.s_num=#{s_num} 
-				and seat.mt_num=
+				on seat.s_num = movietime.s_num 
+			where seat.s_num=#{s_num} 
+				and seat.mt_num= 
 					(select mt_num 
 						from movietime 
-							where mt_time=#{mt_time} 
-								and mt_date=#{mt_date} 
-								and s_num=#{s_num});
+						where mt_time=#{mt_time} 
+							and mt_date=#{mt_date} 
+							and s_num=#{s_num} 
+						group by movietime.mt_time, movietime.mt_date, movietime.s_num) 
+			group by seat_status
 	</select>
+	
+	<!-- reserve -->
+	<insert id="reserveSign" parameterType="hashmap">
+		insert into reserve values(0, #{rv_theater}, #{rv_screen}, #{rv_date}, #{rv_time}, #{rv_people}, #{rv_pay}, #{rv_seat}, #{id}, #{m_num}, #{t_num}, #{s_num})
+	</insert>
+	
+	<!-- genreList -->
+	<select id="getGenreList" resultType="HashMap">
+		select * from genre
+	</select>
+	
+	<!-- insertData -->
+	<insert id="insertMovie" parameterType="HashMap">
+		insert into movie 
+			values(0, #{title_kor}, #{title_eng},
+		 		#{producer}, #{grade}, #{time}, 
+		 			#{made}, #{company}, #{start}, 
+		 				#{end}, <include refid="site"/>, 0, #{content}, 'no-image.jpg', #{genre})
+	</insert>
+	
+	<sql id="site">
+		<choose>
+			<when test="site == null">
+				null
+			</when>
+			<otherwise>
+				#{site}
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<!-- update poster -->
+	<update id="updatePoster" parameterType="HashMap">
+		update movie set m_poster=#{poster} where m_num=#{num}
+	</update>
+	
+	<delete id="deleteMovie" parameterType="int">
+		delete from movie where m_num=#{num}
+	</delete>
+	
+	<select id="searchMovieList" parameterType="HashMap" resultType="HashMap">
+		select * from movie order by m_num limit #{skip},#{qty}
+	</select>
+	
+	<select id="getMovieCount" resultType="int">
+		select count(*) from movie; 
+	</select>
+	
+	
+	<!-- movie_re -->
+	<insert id="mrInsert" parameterType="hashmap">
+		insert into movie_re(mr_img, id, mr_content, mr_score, m_num) values(#{mr_img}, #{id}, #{mr_content}, #{mr_score}, #{m_num})
+	</insert>
 	
 </mapper>

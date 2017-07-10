@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface MovieService {
 	
-	// movie
+	// movie 
 	public List<HashMap<String, Object>> movieList();
 	public HashMap<String, Object> movieDetail(int m_num);
 	public void likeUp(int m_num);
@@ -28,9 +28,26 @@ public interface MovieService {
 	
 	// movieTime
 	public List<HashMap<String, Object>> movieTimeInfo(HashMap<String, Object> params);
+	public List<HashMap<String, Object>> timeGroupSeat(String mt_date);
+	public int mtNumSearch(HashMap<String, Object> params);
 	
 	// seat
+	public void seatInsert(HashMap<String, Object> params);
 	public List<HashMap<String, Object>> seatList(HashMap<String, Object> params);
 	
+	// reserve
+	public int reserveSign(HashMap<String, Object> params);
+	
+
+	//genre
+	public List<HashMap<String,Object>> showGenreList();
+	
+	public boolean addMovie(HashMap<String,Object> params);
+	
+	public HashMap<String,Object> showSearchResult(int page, HashMap<String,Object> option);
+	
+	
+	// movie_re
+	public int mrInsert(HashMap<String, Object> params);
 
 }
