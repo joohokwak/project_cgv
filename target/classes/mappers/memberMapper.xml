@@ -11,4 +11,8 @@
 	<insert id="setMember" parameterType="hashmap">
 		insert into member(id,pass,name,email,birth,phone) value(#{id},#{pass},#{name},#{email},#{birth},#{phone})
 	</insert>
+	
+	<update id="savePoint" parameterType="hashmap">
+		update member set point = point + #{point} where id = #{id}
+	</update>
 </mapper>

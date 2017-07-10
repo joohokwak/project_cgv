@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.cgv.service.MemberService;
 import com.project.cgv.service.MovieService;
 
 @Controller
@@ -20,6 +21,7 @@ import com.project.cgv.service.MovieService;
 public class MovieController {
 	
 	@Autowired private MovieService mvService;
+	@Autowired private MemberService mService;
 	
 	@RequestMapping("/movieList")
 	public ModelAndView movieList() {
@@ -76,7 +78,15 @@ public class MovieController {
 		params.put("mr_img",  member.get("pic"));
 		params.put("id",  member.get("id"));
 		
-		mvService.mrInsert(params);
+		int result = mvService.mrInsert(params);
+		
+		if(result > 0) {
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("id", member.get("id"));
+			map.put("point", 10);
+			mService.savePoint(map);
+		}
+		
 		return "redirect:/movie/movieDetail?m_num="+params.get("m_num")+"#reply-content-content";
 	}
 	

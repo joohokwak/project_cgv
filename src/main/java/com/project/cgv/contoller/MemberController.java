@@ -92,8 +92,12 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/mycgv")
-	public String myCGV(Model model) {
+	public String myCGV(Model model, HttpSession session) {
 		model.addAttribute("imgInfo", "h2_mycgv.png");
+		
+		HashMap<String, Object> member = (HashMap<String, Object>)session.getAttribute("member");
+		model.addAllAttributes(mService.getMember((String)member.get("id")));
+		
 		return ".reserve.member.myCGV";
 	}
 	

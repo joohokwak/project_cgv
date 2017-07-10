@@ -34,6 +34,7 @@
 				}
 				
 				$("#resultPay").text(result_pay9.format());
+				$("#rv_pay").val(result_pay9);
 			});
 			
 			
@@ -113,8 +114,8 @@
 				<div id="pay-point">
 					<span>내 포인트 : </span>
 					<span id="myPoint">
-						<fmt:formatNumber value="19000" type="number"/>
-						<input type="hidden" id="memberPoint" value="19000">
+						<fmt:formatNumber value="${point }" type="number"/>
+						<input type="hidden" id="memberPoint" value="${point }">
 					</span>
 					
 					<div id="pointBtn">
@@ -160,7 +161,7 @@
 		<input type="hidden" name="rv_date" value="${rv_date }">
 		<input type="hidden" name="rv_time" value="${rv_time } ~ ${rv_endtime }">
 		<input type="hidden" name="rv_people" value="${rv_people }">
-		<input type="hidden" name="rv_pay" value="${rv_pay }">
+		<input type="hidden" name="rv_pay" id="rv_pay" value="${rv_pay }">
 		<input type="hidden" name="rv_seat" value="${rv_seat }">
 		<input type="hidden" name="id" value="${member.id }">
 		<input type="hidden" name="m_num" value="${m_num }">

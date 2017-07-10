@@ -26,7 +26,7 @@ $(function(){
 						<button class="member_data_update_btn"></button>
 					</div>
 					<div class="point_text">
-						<span class="point_span">고객님의 사용가능 포인트는  <strong class="member_point">${member.point } point</strong> 입니다</span>
+						<span class="point_span">고객님의 사용가능 포인트는  <strong class="member_point">${point } point</strong> 입니다</span>
 					</div>
 				</div>
 				<div class="favoriteTheaters">

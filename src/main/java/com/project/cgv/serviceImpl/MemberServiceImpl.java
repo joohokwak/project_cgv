@@ -56,12 +56,22 @@ public class MemberServiceImpl implements MemberService {
 
 	@Override
 	public int idCheck(String id) {
-		HashMap<String, Object> member=mDao.getMember(id);
+		HashMap<String, Object> member = getMember(id);
 		if(member != null){
 			return 1;
 		}else{
 			return 0;
 		}
+	}
+
+	@Override
+	public void savePoint(HashMap<String, Object> params) {
+		mDao.savePoint(params);
+	}
+
+	@Override
+	public HashMap<String, Object> getMember(String id) {
+		return mDao.getMember(id);
 	}
 	
 }

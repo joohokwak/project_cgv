@@ -5,6 +5,8 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -13,6 +15,7 @@ import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
+import com.project.cgv.service.MemberService;
 import com.project.cgv.service.MovieService;
 
 @Controller
@@ -20,6 +23,7 @@ import com.project.cgv.service.MovieService;
 public class ReserveController {
 	
 	@Autowired private MovieService mvService;
+	@Autowired private MemberService mService;
 	
 	@RequestMapping("/reserveHome")
 	public ModelAndView ticketSelect(@RequestParam(value="m_num", defaultValue="0") int m_num) {
@@ -128,7 +132,7 @@ public class ReserveController {
 	}
 	
 	@RequestMapping("/selectPay")
-	public ModelAndView selectPay(@RequestParam HashMap<String, Object> params) {
+	public ModelAndView selectPay(@RequestParam HashMap<String, Object> params, HttpSession session) {
 		ModelAndView mv = new ModelAndView(".reserve.reserve.reservePay");
 		mv.addAllObjects(params);
 		
@@ -140,12 +144,26 @@ public class ReserveController {
 		mv.addObject("screen", mvService.getScreen(s_num));
 		mv.addObject("theater", mvService.getTheater(t_num));
 		
+		HashMap<String, Object> member = (HashMap<String, Object>)session.getAttribute("member");
+		mv.addAllObjects(mService.getMember((String)member.get("id")));
+		
 		return mv;
 	}
 	
 	@RequestMapping("/reserveSign")
 	public String reserveSign(@RequestParam HashMap<String, Object> params) {
-		mvService.reserveSign(params);
+		int rv_pay = Integer.parseInt((String)params.get("rv_pay"));
+		String id = (String)params.get("id");
+		int result = mvService.reserveSign(params);
+		
+		if(result > 0) {
+			double savePoint = rv_pay * 0.02;
+			HashMap<String, Object> map = new HashMap<String, Object>();
+			map.put("id", id);
+			map.put("point", savePoint);
+			mService.savePoint(map);
+		}
+		
 		return "redirect:/";
 	}
 	
