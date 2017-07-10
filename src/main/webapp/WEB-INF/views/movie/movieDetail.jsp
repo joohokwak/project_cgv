@@ -9,6 +9,8 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/movie/movieDetail.css">
 	<link href="/resources/css/movie/fotorama.css" rel="stylesheet">
 	<script src="/resources/js/fotorama.js"></script>
+	<script src="/resources/js/jquery.rateyo.js"></script>
+	<link rel="stylesheet" href="/resources/css/jquery.rateyo.css">
 	<script type="text/javascript" src="/resources/js/movie/movieDetail.js"></script>	
 </head>
 <body>
@@ -84,7 +86,35 @@
 			</table>
 		</div>
 		
-		<hr style="width: 930px; background-color: black; height: 3px; margin: 50px 0px;">
+		<hr style="width: 930px; background-color: black; height: 3px; margin: 50px 0px 30px 0px;">
+			
+		<!-- 한줄평 -->
+		<div id="movie-reply">
+			<div id="movie-reply-title">한줄평</div>
+			<div id="movie-reply-byte">0/100</div>
+			<div id="movie-reply-body">
+				<div id="movie-reply-iamge">
+					<img alt="myImage" src="/resources/images/join/no_pic.png" width="75px">
+				</div>
+				<div id="movie-reply-content">
+					<div id="reply-content-star">
+						<div id="rateYo"></div>
+						<div id="rateNumer"></div>
+						<div id="rateContent">평점을 입력해주세요</div>
+					</div>
+					<div id="reply-content-content">
+						<form action="/movie/mrInsert" method="post">
+							<textarea style="width: 464px; height: 74px;" name="mr_content" placeholder="로그인 후 이용 가능한 서비스 입니다."></textarea>
+							<input type="hidden" name="mr_img" value="${member.pic }">
+							<input type="hidden" name="mr_nick" value="${member.name }">
+							<input type="hidden" name="mr_score" id="mr_score">
+							<input type="hidden" name="m_num" value="${m_num }">
+						</form>
+					</div>
+					<div id="reply-content-btn">등록</div>
+				</div>
+			</div>
+		</div>
 	</div>
 </body>
 </html>
