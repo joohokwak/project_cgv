@@ -7,6 +7,29 @@
 <title>Insert title here</title>
 <!-- jQuery library -->
 <link rel="stylesheet" type="text/css" href="/resources/css/photo/photo.css" />
+<style type="text/css">
+	#otpGroup{
+		border: 1px solid black;
+		width: 200px;
+		height: 100px;
+		padding: 20px;
+	}
+	
+	#infoList{
+		border: 1px solid black;
+		width: 500px;
+		min-height: 200px;
+		margin: 10px;
+		padding: 10px;
+	}
+
+	.info{
+		border: 1px solid black;
+		margin: 10px;
+		padding: 10px; 
+		height:50px;
+	}
+</style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
 
@@ -27,8 +50,13 @@
          $(document).on("drop",".dragAndDropDiv",function(e){
              $(this).css('border', '2px dotted #0B85A1');
              e.preventDefault();
-             var files = e.originalEvent.dataTransfer.files;
-             var opt = handleFileUpload(files,objDragAndDrop);
+             if($("#option").val() == "" || $("#num").val() == ""){
+        		 alert("옵션을 선택하세요!");
+        		 return false;
+        	 }else{
+        		 var files = e.originalEvent.dataTransfer.files;
+                 var opt = handleFileUpload(files,objDragAndDrop);
+        	 }
          });
           
          $(document).on('dragenter', function (e){
@@ -49,9 +77,11 @@
           
          function handleFileUpload(files,obj)
          {
+        	
             $("#fileUpload").nextAll().remove();
             for (var i = 0; i < files.length; i++) 
             {
+            	alert("진입?")
                  var fd = new FormData();
                  fd.append('file', files[i]);
                  var status = new createStatusbar(obj); //Using this we can set progress.
@@ -109,9 +139,8 @@
          function sendFileToServer(formData,status)
          {
         	 //xhr : formData는 console.log로 확인이 안돼서 사용하는 놈.
-        	 
-        	 
-        	 formData.append('myId', "으하하하하하하");
+        	 formData.append('option',$("#option").val());
+        	 formData.append('num',$("#num").val());
              var uploadURL = "/admin/photo/upload"; //Upload URL
              var extraData ={}; //Extra Data.
              var jqXHR=$.ajax({
@@ -144,7 +173,45 @@
              }); 
              status.setAbort(jqXHR);
          }    	
-    });
+         
+         $("#otpGroup button").click(function(){
+        	$("#option").val($(this).text());
+        	$("#num").val("");
+        	var opt = $(this).attr("id");
+        	var list = $("#infoList");
+        	list.html("");
+        	$.ajax({
+        		url : "/admin/photo/infoList",
+        		type : "post",
+        		data : {
+        			opt : opt
+        		},
+        		dataType : "json",
+        		success : function(data){
+        			
+        			//table을 그리자
+					$(data).each(function(){
+						var infoDiv = $("<div>");
+        				infoDiv.attr("class","info").data("num",this.m_num);
+						infoDiv.text(this.m_title1);
+						infoDiv.appendTo("#infoList");
+					});
+					$(".info").click(function(e) {
+						$("#num").val($(this).data("num"));
+					});
+        		}
+        	});
+         });
+         
+         function check(){
+        	 if($("#option").val() == "" || $("#num").val() == ""){
+        		 alert("옵션을 선택하세요!");
+        		 return false;
+        	 }else{
+	        	 return;
+        	 }
+         }
+    });///////////////////////////////////
 </script>
 
 
@@ -160,21 +227,23 @@
 	파일을 드롭했을 때 유효성 체크를 하고 이상이 없으면
 	옵션, List에서 선택된 정보, 파일들을 보내줌.
  -->
+
+<form id="f">
+	<input type="text" id="option" name="option">
+	<input type="text" id="num" name="num">
+</form>
  
 <div id="uploadWrap">
 	<div id="otpGroup">
-		<input type="radio" name="opt" value="poster">영화
-		<input type="radio" name="opt" value="actor">배우
-		<input type="radio" name="opt" value="stealcut">스틸컷
+		<button type="button" id="movieBtn">영화</button>
+		<button type="button" id="actorBtn">배우</button>
+		<button type="button" id="stealBtn">스틸컷</button>
 	</div>
 	
 	<!-- opt선택하면 여기에 필요 정보가 나온다. -->
-	<div id="infoList"></div>
-	
-	
-	
-	
-	
+	<div id="infoList" style="border: 1px solid black;"></div>
+	<button type="button" id="test">테스트</button>
+
 	<div id="fileUpload" class="dragAndDropDiv">Drag & Drop Files Here</div>
 </div>
 

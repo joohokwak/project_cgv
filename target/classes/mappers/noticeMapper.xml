@@ -37,19 +37,19 @@
 	<sql id="category">
 		<choose>
 			<when test="cate == 1">
-				'[시스템점검]'
+				'시스템점검'
 			</when>
 			
 			<when test="cate == 2">
-				'[극장]'
+				'극장'
 			</when>
 			
 			<when test="cate == 3">
-				'[행사/이벤트]'
+				'행사/이벤트'
 			</when>
 			
 			<when test="cate == 4">
-				'[기타]'
+				'기타'
 			</when>
 		</choose>
 	</sql>

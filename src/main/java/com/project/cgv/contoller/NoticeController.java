@@ -25,7 +25,7 @@ public class NoticeController {
 		
 		model.addAttribute("viewData",viewData);
 		
-		return ".admin.notice.noticeList";
+		return ".notice.noticeList";
 	}
 	
 	@RequestMapping("/view")
@@ -33,6 +33,6 @@ public class NoticeController {
 		
 		model.addAttribute("notice",nService.getNoticeByNum(num));
 		
-		return ".admin.notice.noticeView";
+		return ".notice.noticeView";
 	}
 }

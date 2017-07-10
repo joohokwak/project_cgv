@@ -3,15 +3,12 @@
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
 <style type="text/css">
 
-	*{
-		color: #666666;
-	}
-
 	#viewWrap{
 		margin: 0 auto; width: 100%; min-height: 600px;	
+		color: #666666;
 	}
 	
-	table{
+	.notice-table{
 		width: 800px;
 		margin: 20px;
 		border-collapse: collapse;
@@ -32,7 +29,7 @@
 </style>
 
 <div id="viewWrap" align="center">
-		<table>
+		<table class=".notice-table">
 		<tr id="title">
 			<td style="width: 34px">${notice.n_num}</td>
 			<td style="width: 76px">${notice.n_cate}</td>
