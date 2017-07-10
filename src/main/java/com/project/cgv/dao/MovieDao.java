@@ -5,7 +5,7 @@ import java.util.List;
 
 public interface MovieDao {
 
-	// movie
+	// movie 
 	public List<HashMap<String, Object>> movieList();
 	public HashMap<String, Object> movieDetail(int m_num);
 	public void likeUp(int m_num);
@@ -37,5 +37,16 @@ public interface MovieDao {
 	
 	// reserve
 	public int reserveSign(HashMap<String, Object> params);
+	
+	//genre
+	public List<HashMap<String, Object>> getGenreList();
+	
+	public int insertMovie(HashMap<String,Object> params);
+	public int updateMovie(HashMap<String,Object> params);
+	public int updatePoster(HashMap<String,Object> params);
+	public int deleteMovie(int num);
+	
+	public List<HashMap<String,Object>> searchMovieList(HashMap<String,Object> option);
+	public int getMovieCount();
 	
 }
