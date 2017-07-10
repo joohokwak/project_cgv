@@ -160,7 +160,11 @@
 	</insert>
 	
 	<select id="mrList" parameterType="int" resultType="hashmap">
-		select * from movie_re where m_num = #{value}
+		select * from movie_re where m_num = #{value} order by mr_num desc
 	</select>
+	
+	<delete id="mrDelete" parameterType="int">
+		delete from movie_re where mr_num = #{value}
+	</delete>
 	
 </mapper>

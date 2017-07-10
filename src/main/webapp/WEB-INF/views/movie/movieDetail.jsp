@@ -10,6 +10,9 @@
 	<link rel="stylesheet" type="text/css" href="/resources/css/movie/movieDetail.css">
 	<link href="/resources/css/movie/fotorama.css" rel="stylesheet">
 	<script src="/resources/js/fotorama.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 	<script src="/resources/js/jquery.rateyo.js"></script>
 	<link rel="stylesheet" href="/resources/css/jquery.rateyo.css">
 	<script type="text/javascript" src="/resources/js/movie/movieDetail.js"></script>
@@ -115,8 +118,6 @@
 					<div id="reply-content-content">
 						<form action="/movie/mrInsert" method="post" id="mrInsert">
 							<textarea name="mr_content" placeholder="로그인 후 이용 가능한 서비스 입니다." style="width: 464px; height: 74px;"></textarea>
-							<input type="hidden" name="mr_img" value="${member.pic }">
-							<input type="hidden" name="id" value="${member.id }">
 							<input type="hidden" name="mr_score" id="mr_score">
 							<input type="hidden" name="m_num" value="${m_num }">
 						</form>
@@ -155,20 +156,46 @@
 					</div>
 					
 					<c:choose>
-						<c:when test="${member.id == mr.id }">
-							<div class="mr_btn1">
+						<c:when test="${member.id == mr.id or member.id == 'admin' }">
+							<div class="mr_btn1" data-mnum="${m_num }">
 								삭제
+								<input type="hidden" id="mr_num" value="${mr.mr_num }">
 							</div>
 						</c:when>
 						<c:otherwise>
 							<div class="mr_btn2">
-								삭제
+								${mr.mr_score}점
 							</div>
 						</c:otherwise>
 					</c:choose>
-					
 				</div>
 			</c:forEach>
+		</div>
+	</div>
+	
+	
+	
+	<!-- 로그인 창 -->
+	<div id="loginDiv">
+		<div id="login_hd">
+			<div id="login_title">CGV 회원 로그인</div>
+			<a id="btn_close_x">닫기</a>
+		</div>
+		
+		<div id="login_bd">
+			<div id="login_bd_form">
+				<div id="login_wrap_id">
+					<input type="text" id="loginDivId" tabindex="1">
+				</div>
+				
+				<div id="login_wrap_pw">
+					<input type="password" id="loginDivPw" tabindex="2">
+				</div>
+				
+				<div id="login_wrap_btn">
+					<button id="login_bd_btn" tabindex="3">로그인</button>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>

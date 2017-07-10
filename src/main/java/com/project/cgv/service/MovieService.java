@@ -50,5 +50,6 @@ public interface MovieService {
 	// movie_re
 	public int mrInsert(HashMap<String, Object> params);
 	public List<HashMap<String, Object>> mrList(int m_num);
+	public int mrDelete(int mr_num);
 
 }

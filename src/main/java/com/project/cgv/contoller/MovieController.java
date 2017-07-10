@@ -3,6 +3,8 @@ package com.project.cgv.contoller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -69,9 +71,19 @@ public class MovieController {
 	}
 	
 	@RequestMapping("/mrInsert")
-	public String mrInsert(@RequestParam HashMap<String, Object> params) {
+	public String mrInsert(@RequestParam HashMap<String, Object> params, HttpSession session) {
+		HashMap<String, Object> member = (HashMap<String, Object>) session.getAttribute("member");
+		params.put("mr_img",  member.get("pic"));
+		params.put("id",  member.get("id"));
+		
 		mvService.mrInsert(params);
 		return "redirect:/movie/movieDetail?m_num="+params.get("m_num")+"#reply-content-content";
+	}
+	
+	@RequestMapping("/mrDelete")
+	public String mrDelete(int m_num, int mr_num) {
+		mvService.mrDelete(mr_num);
+		return "redirect:/movie/movieDetail?m_num="+m_num+"#reply-content-content";
 	}
 	
 }

@@ -194,6 +194,11 @@ public class MovieServiceImpl implements MovieService {
 	public List<HashMap<String, Object>> mrList(int m_num) {
 		return mvDao.mrList(m_num);
 	}
+
+	@Override
+	public int mrDelete(int mr_num) {
+		return mvDao.mrDelete(mr_num);
+	}
 	
 	
 }

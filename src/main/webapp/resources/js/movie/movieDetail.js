@@ -2,6 +2,7 @@
 $(function() {
 	
 	var cnt = 0;
+	var rating = 0;
 	
 	var $rateYo = $("#rateYo").rateYo();
 	
@@ -11,7 +12,7 @@ $(function() {
 	});
 	
 	$("#rateYo").rateYo().on("rateyo.change", function (e, data) {
-         var rating = data.rating;
+         rating = data.rating;
          $("#rateNumer").text(rating*2+"점").css({color: "#333"});
          // 점수 세팅하기
          $("#mr_score").val(rating*2);
@@ -52,7 +53,32 @@ $(function() {
 	
 	// 리플 등록 버튼 클릭
 	$("#reply-content-btn").click(function(e) {
-		$("#mrInsert").submit();
+		var mr_content = $.trim($("textarea[name='mr_content']").val());
+		if(rating > 0 && mr_content.length > 0) {
+			$.ajax({
+				url: "/member/loginCheck",
+				type: "post",
+				dataType: "text",
+				success: function(data) {
+					if(data == "login") {
+						$("#mrInsert").submit();
+					}else if(data == "unlogin") {
+						$("html, body").stop().animate({scrollTop : '1200px'});
+						$("#loginDiv").css({display: "block"});
+						$("#movieDetailWrap").prop('disabled', true).css({"pointer-events": "none", opacity: "0.5"});
+					}
+				}
+			});
+		}else {
+			$.alert({
+				title: '',
+			    content: '<font color="#333"><b>평점과 내용을 모두 입력 해주세요</b></font>',
+			    boxWidth: '400px',
+			    useBootstrap: false,
+			    type: 'red'
+			});
+		}
+		
 	});
 	
 	$("#like").click(function(e) {
@@ -78,6 +104,72 @@ $(function() {
 			});
 		}
 	});
+	
+	// 로그인창 닫기 버튼
+	$("#btn_close_x").click(function(e) {
+		$("#loginDiv").css({display: "none"});
+		$("#movieDetailWrap").prop('disabled', false).css({"pointer-events": "auto", opacity: "1"});
+	});
+	
+	// 비밀번호창에서 엔터키 적용
+	$("#loginDivPw").keyup(function(e) {
+		if(e.keyCode == 13) {
+			$("#login_bd_btn").click();
+		}
+	});
+	
+	// 로그인 버튼 클릭
+	$("#login_bd_btn").click(function(e) {
+		var divId = $.trim($("#loginDivId").val());
+		var divPw = $.trim($("#loginDivPw").val());
+		
+		if(divId.length > 0 && divPw.length >0) {
+			$.ajax({
+				url : "/member/reserveLogin",
+				type : "post",
+				data : {"id": divId, "pass":divPw},
+				dataType : "json",
+				success: function(data) {
+					if(data.result == 'success') {
+						$("#mrInsert").submit();
+					}else {
+						$.alert({
+							title: '',
+						    content: '<font color="#333"><b>아이디 또는 비밀번호를 확인하세요</b></font>',
+						    boxWidth: '300px',
+						    useBootstrap: false,
+						    type: 'red'
+						});
+					}
+				}
+			});
+		}
+	});
+	
+	// 삭제 버튼
+	$(".mr_btn1").click(function(e) {
+		var m_num = $(this).attr("data-mnum");
+		var mr_num = $(this).find("#mr_num").val();
+		
+		$.confirm({
+		    title: '한줄평 삭제!',
+		    content: '해당 평을 삭제 하시겠습니까?',
+		    boxWidth: '300px',
+		    useBootstrap: false,
+		    type: 'red',
+		    icon: 'icon-remove',
+		    buttons: {
+		        삭제: function () {
+		            location.href="/movie/mrDelete?m_num="+m_num+"&mr_num="+mr_num;
+		        },
+		        취소: function () {
+		            
+		        }
+		    }
+		});
+		
+	});
+	
 });
 
 

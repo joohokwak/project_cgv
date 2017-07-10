@@ -13,11 +13,6 @@ $(function() {
 	
 	$("#seat").mCustomScrollbar({theme:"rounded-dark"});
 	
-	// 뒤로가기(예매)
-	$("#btn-left").click(function(e) {
-		history.back();
-	});
-	
 	$(".ct").on( // 일반인 / 청소년 인원수 클릭시 이미지 변화
 		{"click" : function(e) {
 			var i = $(this).attr("id").split("_")[1];
