@@ -39,11 +39,8 @@
 		});
 		
 		function initMap(myLoc) {
-		    //var myLatLng = {lat: 37.570399, lng: 126.983088};
-		    
 		    var myLatLng = myLoc;
 		    
-		    // Create a map object and specify the DOM element for display.
 		    var map = new google.maps.Map(document.getElementById('map'), {
 		      center: myLatLng,
 		      scrollwheel: false,
