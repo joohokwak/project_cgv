@@ -187,10 +187,11 @@
 }
 
 #map {
-	width: 980px;
+	width: 976px;
 	height: 460px;
 	margin: 0 auto;
 	margin-bottom: 50px;
+	border: 2px solid #333;
 }
 
 
