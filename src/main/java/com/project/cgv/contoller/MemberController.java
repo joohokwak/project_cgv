@@ -107,8 +107,10 @@ public class MemberController {
 	}
 	
 	@RequestMapping("/favoriteTheaterPop")
-	public String fPopup(Model model, @RequestParam("id") String id) {
-		model.addAttribute(mService.getMember(id));
+	public String fPopup(Model model,HttpSession session) {
+		HashMap<String, Object> member = (HashMap<String, Object>)session.getAttribute("member");
+		String id = (String)member.get("id");
+		model.addAllAttributes(mService.getMember(id));
 		return "/member/favoriteTheaterPop";
 	}
 	

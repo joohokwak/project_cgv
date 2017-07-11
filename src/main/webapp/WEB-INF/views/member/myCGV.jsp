@@ -11,15 +11,15 @@
 $(function(){
 	$(".member_data_update_btn").click(function() {
 		window.open("/member/memberUpdatePop", "새창", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
-	})
+	});
 });
 $(function(){
 	$(".favoriteTheaters_update").click(function() {
 		window.open("/member/favoriteTheaterPop", "새창", "width=700, height=530, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
-	})
+	});
 	$(".theaters_in").click(function() {
 		window.open("/member/favoriteTheaterPop", "새창", "width=700, height=530, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
-	})
+	});
 });
 </script>
 </head>
@@ -38,35 +38,38 @@ $(function(){
 					</div>
 				</div>
 				<div class="favoriteTheaters">
-					<div class="theaters">
+				<ul>
+					<li class="theaters">
 						<div class="theaters_in">
 							
 						</div>					
-					</div>
-					<div class="theaters">
+					</li>
+					<li class="theaters">
 						<div class="theaters_in">
 							
 						</div>		
-					</div>
-					<div class="theaters">
+					</li>
+					<li class="theaters">
 						<div class="theaters_in">
 							
 						</div>		
-					</div>
-					<div class="theaters">
+					</li>
+					<li class="theaters">
 						<div class="theaters_in">
 							
 						</div>		
-					</div>
-					<div class="theaters">
+					</li>
+					<li class="theaters">
 						<div class="theaters_in">
 							
 						</div>		
-					</div>
+					</li>
 					<button class="favoriteTheaters_update">
 						<span>자주가는 CGV<br>설정하기</span>
 					</button>
+				</ul>
 				</div>
+				
 		</div>
 		<div class="myCGVbody">
 			<div>

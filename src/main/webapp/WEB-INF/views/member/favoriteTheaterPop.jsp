@@ -36,7 +36,7 @@
 			</div>
 			<div class=select_choice>
 				<div class="choice_theater">
-				<span>${member.name } 님이 자주가는 CGV</span>
+				<span>${member.name }( ${id } ) 님이 자주가는 CGV</span>
 					<ul>
 						<li class="none">
 							<div class="box-polaroid">
