@@ -193,20 +193,23 @@ insert into movie values(0,'하루','A Day','조선호','15세 이상',90,'한�
 
 create table actor(
 	a_num int primary key auto_increment,
-	a_name varchar(50),
+	a_kor_name varchar(50),
+	a_eng_name varchar(50),
 	a_birth varchar(20),
 	a_nation varchar(50),
-	a_img varchar(300),
-	m_num int,
-	foreign key(m_num) references movie(m_num)
+	a_job varchar(50),
+	a_edulev varchar(100), #학력
+	a_site varchar(300),
+	a_img varchar(300)
 );
 
-
-create table video(
-	v_num int primary key auto_increment,
-	v_addr varchar(300),
-	m_num int,
-	foreign key(m_num) references movie(m_num)
+#movie와 actor를 연결하는 테이블
+create table management(
+	mg_num int primary key auto_increment,
+	a_num int not null,
+	m_num int not null,
+	foreign key(a_num) references actor(a_num),
+	foreign key(m_num) references movie(m_num)	
 );
 
 insert into video values(0, 'https://www.youtube.com/embed/Q5xATvfTcRg', 1);
