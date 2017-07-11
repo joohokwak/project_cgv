@@ -362,9 +362,9 @@ create table theater(
 	t_img varchar(100)
 );
 
-insert into theater values(0, 'CGV강남', '서울특별시 강남구 역삼동 814-6 스타플렉스', '서울특별시 강남구 강남대로 438 (역삼동)', '1544-1122', 874, 'CGVgangbyeon.jpg');
+insert into theater values(0, 'CGV강남', '서울특별시 강남구 역삼동 814-6 스타플렉스', '서울특별시 강남구 강남대로 438 (역삼동)', '1544-1122', 874, 'CGVgangnam.jpg');
 insert into theater values(0, 'CGV강동', '서울특별시 강동구 성내동 549-1 씨네월드', '서울특별시 강동구 성내로 48 (성내동)', '1544-1122', 1617, 'noimage_final.jpg');
-insert into theater values(0, 'CGV강변', '서울특별시 광진구 구의동 546-4 테크노마트 10층', '서울특별시 광진구 광나루로56길 85 (구의동)', '1544-1122', 1663, 'CGVgangnam.jpg');
+insert into theater values(0, 'CGV강변', '서울특별시 광진구 구의동 546-4 테크노마트 10층', '서울특별시 광진구 광나루로56길 85 (구의동)', '1544-1122', 1663, 'CGVgangbyeon.jpg');
 insert into theater values(0, 'CGV구로', '서울특별시 구로구 구로5동 573번지 AK플라자(구 애경백화점) 5층', '서울특별시 구로구 구로중앙로 152 (구로동)', '1544-1122', 1900, 'noimage_final.jpg');
 insert into theater values(0, 'CGV군자', '서울특별시 광진구 군자동 477-12', '서울특별시 광진구 능동로 289 (군자동)', '1544-1122', 1197, 'CGVgunja.jpg');
 

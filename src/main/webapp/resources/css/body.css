@@ -1,7 +1,8 @@
 @CHARSET "UTF-8";
 
 #bodyWrap {
-	margin: 0 auto; width: 100%;
+	margin: 0 auto;
+	width: 100%;
 }
 
 #noticeWrap {
@@ -12,12 +13,20 @@
 
 #rollingDiv {
 	display: inline-block;
-	width: 860px; height: 35px; overflow: hidden; text-align: left;
-	line-height: 6px; font-size: 20px; font-weight: bold; color: white;
+	width: 860px;
+	height: 35px;
+	overflow: hidden;
+	text-align: left;
+	line-height: 6px;
+	font-size: 20px;
+	font-weight: bold;
+	color: white;
 }
 
 .ticker {
-	height: auto; position: relative; list-style: none;
+	height: auto;
+	position: relative;
+	list-style: none;
 }
 
 .ticker li {
@@ -28,11 +37,12 @@
 	display: inline-block;
 	position: relative;
 	height: 35px;
-    margin: 0 15px 0 0;
-    padding: 0 0 0 26px;
-    background: url(/resources/images/notice/ico_notice.png) no-repeat 1px 50%;
-    color: #333;
-    font-size: 15px;
-    line-height: 35px;
-    top: -13px;
+	margin: 0 15px 0 0;
+	padding: 0 0 0 26px;
+	background: url(/resources/images/notice/ico_notice.png) no-repeat 1px
+		50%;
+	color: #333;
+	font-size: 15px;
+	line-height: 35px;
+	top: -13px;
 }

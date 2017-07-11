@@ -1,0 +1,197 @@
+@CHARSET "UTF-8";
+
+#theater-hd {
+	width: 100%;
+	height: 450px;
+	margin-top: 20px;
+	background: url('/resources/images/body/block.png') repeat-x;
+}
+
+#theater-selector {
+    position: relative;
+    width: 874px;
+    height: 382px;
+    padding: 68px 53px 0;
+	margin: 0 auto;
+	overflow: hidden;
+	background: url('/resources/images/theater/bg_showtimes_favorite.gif') no-repeat 0 0;
+}
+
+.sect-favorite {
+	position: relative;
+    width: 676px;
+    height: 49px;
+    padding-left: 198px;
+}
+
+.sect-favorite h4 {
+	position: absolute;
+    top: 14px;
+    left: 33px;
+    padding: 0;
+    font: 0/0 a;
+    zoom: 1;
+}
+
+#favoriteTheaters {
+	font-size: 100%;
+	list-style: none;
+    margin: 0;
+    padding: 0;
+    border: 0;
+    vertical-align: baseline;
+    word-break: break-all;
+}
+
+#favoriteTheaters li:first-child {
+	margin-left: 0;
+}
+
+#favoriteTheaters li {
+	float: left;
+	width: 109px;
+	height: 41px;
+    margin: 0;
+    margin-left: 2px;
+    padding: 2px;
+    border: 2px solid #6e6c6d;
+    font-size: 100%;
+    vertical-align: baseline;
+    word-break: break-all;
+    display: list-item;
+}
+
+.sect-favorite li > a {
+    position: relative;
+    display: block;
+    width: 107px;
+    height: 39px;
+    border: 1px solid #6e6c6d;
+    color: #fff;
+    font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;
+    font-size: 11px;
+    line-height: 39px;
+    text-align: center;
+    content: '';
+}
+
+#btn_set_my_favorite {
+    overflow: hidden;
+    position: absolute;
+    top: 0;
+    left: 794px;
+    width: 49px;
+    height: 49px;
+    background: #636162 url(/resources/images/theater/btn_plus.gif) 0 0 no-repeat;
+    border: 2px solid #6e6c6d;
+    line-height: 49px;
+    text-indent: 100%;
+    white-space: nowrap;
+    text-align: center;
+    cursor: pointer;
+}
+
+.sect-city {
+	height: 49px;
+    margin-top: 24px;
+    border-top: 2px solid #727171;
+    border-bottom: 2px solid #727171;
+    text-align: center;
+}
+
+.sect-city span {
+	padding: 0 19px;
+    color: #dbdbdb;
+    font-size: 14px;
+    line-height: 49px;
+    text-align: center;
+}
+
+.sect-area {
+	position: relative;
+    width: 872px;
+    height: auto;
+}
+
+.sect-area ul {
+	height: 185px;
+	margin-left: 0px;
+}
+
+.sect-area ul li {
+	position: relative;
+	width: 128px;
+	height: 33px;
+	line-height: 33px;
+	margin: 3px 5px 5px 0px;
+	padding-left: 5px;
+	display: list-item;
+	float: left;
+	font-weight: bold;
+	overflow: hidden;
+}
+
+.sect-area ul li a {
+	color: #ddd;
+}
+
+.sect-area ul li:HOVER {
+	background: url(/resources/images/theater/sprite_bar_on.png) no-repeat 0 -80px;
+    color: #fff;
+}
+
+#theaterLogoImg {
+	width: 100%;
+}
+
+#img-sect1 {
+	width: 980px;
+	height: 41px;
+	margin: 30px auto;
+	background: url(/resources/images/bg_h3_line.jpg) repeat-x 0 50%;
+	text-align: center;
+    line-height: 41px;
+}
+
+#img-sect1 img {
+    padding: 0 8px;
+    background-color: #fdfcf0;
+}
+
+.img-sect2 {
+	width: 980px;
+	margin: 0 auto;
+}
+
+.box-contents {
+	position: relative;
+	top: -90px;
+    left: 0;
+    bottom: 0;
+    width: 920px;
+    height: 50px;
+    padding: 20px 30px;
+    background: url(/resources/images/theater/bg_dim80.png) 0 0 repeat;
+    color: #fdfcf0;
+}
+
+.box-addr {
+	float: left;
+	line-height: 25px;
+}
+
+.box-Info {
+	display: inline-block;
+	margin-left: 50px;
+	line-height: 25px;
+}
+
+#map {
+	width: 980px;
+	height: 460px;
+	margin: 0 auto;
+}
+
+
+
+

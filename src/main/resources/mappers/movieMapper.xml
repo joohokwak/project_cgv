@@ -54,7 +54,7 @@
 		select * from theater where t_num = #{value}
 	</select>
 	
-	
+
 	
 	<!-- screen -->
 	<select id="getScreen" parameterType="int" resultType="hashmap">

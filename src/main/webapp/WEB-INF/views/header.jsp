@@ -87,7 +87,7 @@
 				</li>
 				
 				<li>
-					<a href="#">
+					<a href="/movie/theaterHome">
 						<img src="/resources/images/header/img_menu_03.jpg">
 					</a>
 				</li>
