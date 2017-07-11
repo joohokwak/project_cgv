@@ -12,11 +12,13 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
+import com.project.cgv.service.ActorService;
 import com.project.cgv.service.MovieService;
 import com.project.cgv.service.NoticeService;
 
@@ -34,6 +36,10 @@ public class AdminController {
 	@Autowired
 	private MovieService mService;
 	
+	//actor
+	@Autowired
+	private ActorService aService;
+	
 	
 	@RequestMapping("/main")//.admin.layout.body
 	public String showMainForm(){
@@ -48,7 +54,7 @@ public class AdminController {
 	// Notice Start ///////////////////////////////////////////////////////////////////////////////////
 	
 	@RequestMapping("/notice/list")
-	public String showNoticeList(Model model, @RequestParam(defaultValue="1")int page){
+	public String showNoticeListForm(Model model, @RequestParam(defaultValue="1")int page){
 		
 		HashMap<String,Object> viewData = nService.getAllNotice(page);
 		
@@ -219,7 +225,7 @@ public class AdminController {
 	// Movie Start //////////////////////////////////////////////////////////////////////////////////////////
 	
 	@RequestMapping("/movie/list")
-	public String showMovieList(Model model, @RequestParam(defaultValue="1") int page, @RequestParam(required=false)HashMap<String, Object> option){
+	public String showMovieListForm(Model model, @RequestParam(defaultValue="1") int page, @RequestParam(required=false)HashMap<String, Object> option){
 		
 		HashMap<String,Object> viewData = mService.showSearchResult(page, option);
 		
@@ -233,7 +239,6 @@ public class AdminController {
 	public String showMovieInsertForm(Model model){
 		
 		model.addAttribute("gList",mService.showGenreList());
-		System.out.println(mService.showGenreList());
 		
 		return ".admin.movie.movieInsertForm";
 	}
@@ -263,6 +268,7 @@ public class AdminController {
 	@RequestMapping("/movie/updateForm")
 	public String showMovieUpdateForm(Model model, int num){
 		
+		model.addAttribute("gList",mService.showGenreList());
 		model.addAttribute("movie",mService.movieDetail(num));
 		
 		return ".admin.movie.movieUpdateForm";
@@ -271,14 +277,14 @@ public class AdminController {
 	@RequestMapping("/movie/update")
 	public String updateMovie(Model model, @RequestParam HashMap<String,Object> params){
 		
-		boolean result = false;
+		boolean result = mService.modifyMovie(params);
 		
 		String msg = "";
 		String loc = "";
 		
 		if(result){
-			msg="정상적으로 등록되었습니다.";
-			loc="/admin/layout/main";
+			msg="정상적으로 수정되었습니다.";
+			loc="/admin/main";
 		}else{
 			msg="실패하였습니다.";
 			loc="javascript:history.back()";
@@ -287,20 +293,38 @@ public class AdminController {
 		model.addAttribute("msg",msg);
 		model.addAttribute("loc",loc);
 		
-		return "forward:result";
+		return "forward:/admin/result";
 	}
 	
-	@RequestMapping("/movie/delete")
-	public String deleteMovie(Model model, int num){
+	// Movie End //////////////////////////////////////////////////////////////////////////////////////////
 
-		boolean result = false;
+	// Actor Start //////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value="/actor/list", method = RequestMethod.GET)
+	public String showActorListForm(Model model, @RequestParam(defaultValue="1")int page){
+		
+		HashMap<String,Object> viewData = aService.showActorList(page);
+		model.addAttribute("viewData",viewData);
+
+		return ".admin.actor.actorList";
+	}
+	
+	@RequestMapping(value="/actor/insert", method = RequestMethod.GET)
+	public String insertActorForm(){
+		return ".admin.actor.actorInsertForm";
+	}
+	
+	@RequestMapping(value="/actor/insert", method = RequestMethod.POST)
+	public String insertActor(Model model, @RequestParam HashMap<String,Object> params){
+		
+		boolean result = aService.addActor(params);
 		
 		String msg = "";
 		String loc = "";
 		
 		if(result){
 			msg="정상적으로 등록되었습니다.";
-			loc="/admin/layout/main";
+			loc="/admin/actor/list";
 		}else{
 			msg="실패하였습니다.";
 			loc="javascript:history.back()";
@@ -309,9 +333,58 @@ public class AdminController {
 		model.addAttribute("msg",msg);
 		model.addAttribute("loc",loc);
 		
-		return "forward:result";
+		return "forward:/admin/result";
 	}
-	// Movie End //////////////////////////////////////////////////////////////////////////////////////////	
+	
+	@RequestMapping(value="/actor/update", method = RequestMethod.GET)
+	public String updateActorForm(Model model, int num){
+		model.addAttribute("actor",aService.showActor(num));
+		return ".admin.actor.actorUpdateForm";
+	}
+	
+	@RequestMapping(value="/actor/update", method = RequestMethod.POST)
+	public String updateActor(Model model, @RequestParam HashMap<String,Object> params){
+		boolean result = aService.modifyActor(params);
+		
+		String msg = "";
+		String loc = "";
+		
+		if(result){
+			msg="정상적으로 수정되었습니다.";
+			loc="/admin/actor/list";
+		}else{
+			msg="실패하였습니다.";
+			loc="javascript:history.back()";
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "forward:/admin/result";
+	}
+	
+	@RequestMapping(value="/actor/delete", method = RequestMethod.GET)
+	public String deleteActor(Model model, int num){
+		boolean result = aService.removeActor(num);
+		
+		String msg = "";
+		String loc = "";
+		
+		if(result){
+			msg="정상적으로 삭제되었습니다.";
+			loc="/admin/actor/list";
+		}else{
+			msg="실패하였습니다.";
+			loc="javascript:history.back()";
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "forward:/admin/result";
+	}
+	// Actor End //////////////////////////////////////////////////////////////////////////////////////////
+	// Manage Start //////////////////////////////////////////////////////////////////////////////////////////
 	
 	
 	
