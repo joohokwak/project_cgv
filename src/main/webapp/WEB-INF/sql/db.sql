@@ -348,17 +348,18 @@ create table theater(
 	t_addr1 varchar(100),
 	t_addr2 varchar(100),
 	t_tel varchar(20),
-	t_cnt_screen int #상영관 개수
+	t_cnt_screen int #상영관 개수,
+	t_img varchar(100)
 );
 
-insert into theater values(0, 'CGV강남', '서울특별시 강남구 역삼동 814-6 스타플렉스', '서울특별시 강남구 강남대로 438 (역삼동)', '1544-1122', 874);
-insert into theater values(0, 'CGV강동', '서울특별시 강동구 성내동 549-1 씨네월드', '서울특별시 강동구 성내로 48 (성내동)', '1544-1122', 1617);
-insert into theater values(0, 'CGV강변', '서울특별시 광진구 구의동 546-4 테크노마트 10층', '서울특별시 광진구 광나루로56길 85 (구의동)', '1544-1122', 1663);
-insert into theater values(0, 'CGV구로', '서울특별시 구로구 구로5동 573번지 AK플라자(구 애경백화점) 5층', '서울특별시 구로구 구로중앙로 152 (구로동)', '1544-1122', 1900);
-insert into theater values(0, 'CGV군자', '서울특별시 광진구 군자동 477-12', '서울특별시 광진구 능동로 289 (군자동)', '1544-1122', 1197);
+insert into theater values(0, 'CGV강남', '서울특별시 강남구 역삼동 814-6 스타플렉스', '서울특별시 강남구 강남대로 438 (역삼동)', '1544-1122', 874, 'CGVgangbyeon.jpg');
+insert into theater values(0, 'CGV강동', '서울특별시 강동구 성내동 549-1 씨네월드', '서울특별시 강동구 성내로 48 (성내동)', '1544-1122', 1617, 'noimage_final.jpg');
+insert into theater values(0, 'CGV강변', '서울특별시 광진구 구의동 546-4 테크노마트 10층', '서울특별시 광진구 광나루로56길 85 (구의동)', '1544-1122', 1663, 'CGVgangnam.jpg');
+insert into theater values(0, 'CGV구로', '서울특별시 구로구 구로5동 573번지 AK플라자(구 애경백화점) 5층', '서울특별시 구로구 구로중앙로 152 (구로동)', '1544-1122', 1900, 'noimage_final.jpg');
+insert into theater values(0, 'CGV군자', '서울특별시 광진구 군자동 477-12', '서울특별시 광진구 능동로 289 (군자동)', '1544-1122', 1197, 'CGVgunja.jpg');
 
-insert into theater values(0, 'CGV대학로', '서울특별시 종로구 명륜2가 41-9', '서울 종로구 대명길 (명륜동)', '1544-1122', 1184);
-insert into theater values(0, 'CGV명동', '서울특별시 중구 명동2가 83-5번지 눈스퀘어 8층', '서울특별시 중구 명동길 14 (명동)', '1544-1122', 736);
+insert into theater values(0, 'CGV대학로', '서울특별시 종로구 명륜2가 41-9', '서울 종로구 대명길 (명륜동)', '1544-1122', 1184, 'daehakro.jpg');
+insert into theater values(0, 'CGV명동', '서울특별시 중구 명동2가 83-5번지 눈스퀘어 8층', '서울특별시 중구 명동길 14 (명동)', '1544-1122', 736, '');
 insert into theater values(0, 'CGV명동역 씨네라이브러리', '서울특별시 중구 충무로2가 65-9 하이해리엇 10,11층', '서울특별시 중구 퇴계로 123 (명동)', '1544-1122', 694);
 insert into theater values(0, 'CGV목동', '서울특별시 양천구 목동 916번지 현대백화점 지하2층', '서울특별시 양천구 목동로 257, 지하2층(목동)', '1544-1122', 1372);
 insert into theater values(0, 'CGV미아', '서울특별시 강북구 미아동 35-4 트레지오 쇼핑몰 9층', '서울특별시 강북구 도봉로 34, 9층(미아동)', '1544-1122', 721);
