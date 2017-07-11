@@ -13,4 +13,6 @@ public interface MemberService {
 	public void savePoint(HashMap<String, Object> params);
 	
 	public HashMap<String, Object> getMember(String id);
+	
+	public void updateFtheater(HashMap<String, Object> params);
 }

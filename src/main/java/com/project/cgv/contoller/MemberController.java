@@ -106,6 +106,10 @@ public class MemberController {
 		return "/member/memberUpdatePop";
 	}
 	
-	
+	@RequestMapping("/favoriteTheaterPop")
+	public String fPopup(Model model, @RequestParam("id") String id) {
+		model.addAttribute(mService.getMember(id));
+		return "/member/favoriteTheaterPop";
+	}
 	
 }

@@ -73,5 +73,12 @@ public class MemberServiceImpl implements MemberService {
 	public HashMap<String, Object> getMember(String id) {
 		return mDao.getMember(id);
 	}
+
+	@Override
+	public void updateFtheater(HashMap<String, Object> params) {
+		mDao.updateFTheater(params);
+	}
+	
+	
 	
 }

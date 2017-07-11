@@ -9,4 +9,6 @@ public interface MemberDao {
 	public void setMember(HashMap<String, Object> params);
 	
 	public void savePoint(HashMap<String, Object> params);
+	
+	public void updateFTheater(HashMap<String, Object> params);
 }
