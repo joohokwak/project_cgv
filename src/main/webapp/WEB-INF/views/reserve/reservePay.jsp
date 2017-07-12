@@ -6,6 +6,8 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
 	<link rel="stylesheet" href="/resources/css/reserve/pay.css?ver=1">
 	<script type="text/javascript">
 		$(function() {
@@ -21,8 +23,8 @@
 				var result_pay9 = 0;
 				var mypoint2 = 0;
 				
-				if(mypoint > 0) {
-					
+				
+				if(mypoint > 2000) {
 					if(mypoint > rv_pay) {
 						mypoint2 = mypoint - rv_pay;
 						$("#myPoint").text(mypoint2.format());
@@ -31,10 +33,19 @@
 						$("#myPoint").text(mypoint2.format());
 						result_pay9 = rv_pay - mypoint;
 					}
+					
+					$("#resultPay").text(result_pay9.format());
+					$("#rv_pay").val(result_pay9);
+				}else {
+					$.alert({
+						title: '',
+					    content: '<font color="#333"><b>2000 포인트 이상 사용 가능합니다.</b></font>',
+					    boxWidth: '300px',
+					    useBootstrap: false,
+					    type: 'red'
+					});
 				}
 				
-				$("#resultPay").text(result_pay9.format());
-				$("#rv_pay").val(result_pay9);
 			});
 			
 			
