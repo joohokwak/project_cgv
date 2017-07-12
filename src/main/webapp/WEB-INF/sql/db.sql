@@ -200,8 +200,14 @@ create table actor(
 	a_job varchar(50),
 	a_edulev varchar(100), #학력
 	a_site varchar(300),
-	a_img varchar(300)
+	a_img varchar(300),
+	a_biography text
 );
+
+insert into actor values(0,'이제훈','Lee Je-hun','1984-07-04','한국','영화배우','한국예술종합학교 연극원','http://esaram.co.kr/saram/star/pro_11.htm','lee_je_hun.jpg','<약탈자들>에서 주인공 상태의 고등학교 시절로, <친구사이?> 석이로 연기력을 인정받은 신예. SBS 드라마 <세자매>에서 막내아들 역으로 인지도를 높였고, 최근 영화 <김종욱 찾기>에서 임수정을 돕는 조감독 역으로 출연해 밝은 이미지를 선사해주었고, 전국 2만 여명의 관객을 동원한 영화 <파수꾼>을 통해 “신선한 발견”이라는 극찬을 받으며 요즘 가장 떠오르는 신인으로 주목 받고 있다. 2011년에는 영화<고지전>에 출연하면서 더 많은 인지도를 높이게 되었으며 2012년에는 SBS드라마 <패션왕>에서 인상적인 연기를 펼치며 본격적으로 드라마에도 진출하기 시작했다. 매력적인 외모와 뛰어난 연기력으로 훈남배우로 떠오르고 있으며, 다음 작품이 항상 기대되는 실력파 배우로도 인정받고 있다.');
+insert into actor(a_num,a_kor_name,a_eng_name,a_birth,a_nation,a_img) value(0,'김인우','Kim Inu','1969-02-20','일본','kim_inu.jpg');
+insert into actor(a_num,a_kor_name,a_eng_name,a_birth,a_nation,a_img) value(0,'최희서','Choi Huiseo','1987-01-07','한국','choi_hui_seo.jpg.jpg');
+insert into actor(a_num,a_kor_name,a_eng_name,a_birth,a_nation,a_site,a_img,a_biography) value(0,'마크 월버그','Mark Wahlberg','1971-06-05','미국','http://www.markwahlberg.com','choi_hui_seo.jpg.jpg','1971년 메사추세스 도체스터 출생으로 월버그는 힙합 아티스트로 경력을 시작했고 미키 마크라는 듀엣으로 래퍼로도 성공적인 활동을 했었다. 이후 캘빈 클라인의 광고 모델로 활동하며 90년대에 TV 시리즈의 조연배우로 출연하던 월버그는 1994년 으로 영화계에 데뷔한 후 레오나르도 디카프리오 주연의 에 함께 출연했으며 이후 96년도에 제임스 폴리 감독의 에서 처음으로 주연배우로 발탁되었다.이어 70년대 말부터 80년대 초에 성행한 미국 포르노 영화산업의 명암을 그린 폴 토마스 앤더슨 감독의 로 아카데미에 노미네이트 되어 스타성과 연기력을 인정받는다. 그가 처음으로 액션영화에 출연한 는 미 박스오피스 1위에 올랐으며, 주윤발과 함께 출연한 제임스 폴리 감독의 는 그의 연기범위를 폭넓게 했다. 99년작 에서는 아내아 딸은 둔 평범한 출신의 트로우 발로우 하사역을 맡았었고 2000년 여름을 강타한 볼프강 페터슨 감독의 에서 바비 새포드 역을 맡아 열연한 바 있다. 최근에 라는 작품을 선보인 월버그는 현재 에 출연 중이며, 국내배우인 박중훈이 출연한다고 화제를 모은 에 주인공으로 출연 중이다.');
 
 #movie와 actor를 연결하는 테이블
 create table management(
