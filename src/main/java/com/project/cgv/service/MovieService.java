@@ -7,6 +7,8 @@ public interface MovieService {
 	
 	// movie 
 	public List<HashMap<String, Object>> movieList();
+	public HashMap<String, Object> movieAll(int pageNum);
+	public List<HashMap<String, Object>> reserveMoive();
 	public HashMap<String, Object> movieDetail(int m_num);
 	public void likeUp(int m_num);
 	public int likeUpResult(int m_num);

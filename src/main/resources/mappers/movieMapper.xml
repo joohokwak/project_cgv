@@ -6,7 +6,15 @@
 <mapper namespace="com.project.cgv.dao.MovieDao">
 	<!-- movie -->
 	<select id="movieList" resultType="hashmap">
-		select * from movie order by m_like desc
+		select * from movie order by m_like desc limit 7
+	</select>
+	
+	<select id="movieAll" resultType="hashmap" parameterType="hashmap">
+		select * from movie order by m_num desc limit #{start}, #{end}
+	</select>
+	
+	<select id="reserveMoive" resultType="hashmap">
+		select * from movie order by m_num desc
 	</select>
 	
 	<select id="movieDetail" parameterType="int" resultType="hashmap">
@@ -27,6 +35,10 @@
 	
 	<select id="movieEndTime" parameterType="hashmap" resultType="String">
 		select date_format(date_add(time(#{movieStartTime}), interval m_time minute), '%H:%i') from movie where m_num=#{m_num}
+	</select>
+	
+	<select id="movieTotalCount" resultType="int">
+		select count(*) from movie
 	</select>
 	
 	

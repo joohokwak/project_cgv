@@ -29,7 +29,7 @@ public class ReserveController {
 	public ModelAndView ticketSelect(@RequestParam(value="m_num", defaultValue="0") int m_num) {
 		ModelAndView mv = new ModelAndView(".reserve.ticket.main");
 		mv.addObject("imgInfo", "h2_ticket.png");
-		mv.addObject("movieList", mvService.movieList());
+		mv.addObject("movieList", mvService.reserveMoive());
 		mv.addObject("theaterList", mvService.theaterList());
 		if(m_num != 0) {
 			mv.addAllObjects(mvService.movieDetail(m_num));

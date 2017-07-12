@@ -9,6 +9,7 @@ import org.springframework.transaction.annotation.Transactional;
 
 import com.project.cgv.dao.MovieDao;
 import com.project.cgv.service.MovieService;
+import com.project.cgv.util.MoviePaging;
 import com.project.cgv.util.Paging;
 
 @Service
@@ -203,7 +204,6 @@ public class MovieServiceImpl implements MovieService {
 	@Transactional
 	@Override
 	public boolean deleteMovie(int num) {
-		// TODO Auto-generated method stub
 		return false;
 	}
 	
@@ -221,6 +221,32 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public int mrDelete(int mr_num) {
 		return mvDao.mrDelete(mr_num);
+	}
+
+	@Override
+	public HashMap<String, Object> movieAll(int pageNum) {
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		int totalCount = mvDao.movieTotalCount();
+		
+		MoviePaging p = new MoviePaging(totalCount, pageNum);
+		
+		int start = p.getSkip();
+		int end = p.getQty();
+		
+		params.put("start", start);
+		params.put("end", end);
+		
+		HashMap<String, Object> maps = new HashMap<String, Object>();
+		maps.put("p", p);
+		maps.put("mAll", mvDao.movieAll(params));
+		
+		return maps;
+	}
+
+	@Override
+	public List<HashMap<String, Object>> reserveMoive() {
+		return mvDao.reserveMoive();
 	}
 	
 	

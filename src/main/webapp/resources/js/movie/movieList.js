@@ -31,4 +31,8 @@ $(function() {
 		return false;
 	});
 	
+	$(".btn-more-fontbold").click(function(e) {
+		location.href="/movie/movieAll";
+	});
+	
 });

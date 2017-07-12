@@ -17,6 +17,14 @@
 		<table id="movieListTable1">
 			<tr>
 				<td align="left" colspan="4">
+					<div style="width: 930px;">
+						<button class="btn-more-fontbold">전체보기 <i class="link-more">전체보기</i></button>
+					</div>
+				</td>
+			</tr>
+		
+			<tr>
+				<td align="left" colspan="4">
 					<hr style="width: 930px; background-color: black; height: 3px; margin-left: 0px;">
 				</td>
 			</tr>
