@@ -14,6 +14,6 @@ public class BoardController {
 	
 	@RequestMapping("/boardlist")
 	public String boardList() {
-		return ".event.eventPage";
+		return ".board.boardList";
 	}
 }
