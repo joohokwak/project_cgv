@@ -52,6 +52,7 @@
 <body>
 	<div id="boardListWrap">
 		<form method="post" id="boardForm" action="write" enctype="multipart/form-data">
+			<input type= "hidden" name = "id" value = "${member.id}">
 			<table>
 				<tr>
 					<th style="width:100px;">작성자</th>
@@ -65,10 +66,6 @@
 					<th style="width:100px;">내용</th>
 					<td><textarea rows="15" cols="70" id="b_content" name="b_content"></textarea></td>
 				</tr>				
-				<tr>
-					<th>첨부파일</th>
-					<td><input type="file" name="attachfile"></td>
-				</tr>
 			
 			</table>
 			<input type="reset" value="취소" >

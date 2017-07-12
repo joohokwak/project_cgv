@@ -68,13 +68,8 @@
 				</tr>			
 				<tr>
 					<th style="width:100px;">내용</th>
-					<td><textarea rows="15" cols="70" name="b_content" name="b_content">${viewBoard.b_content}</textarea></td>
+					<td><textarea rows="15" cols="70" id="b_content" name="b_content">${viewBoard.b_content}</textarea></td>
 				</tr>				
-				<tr>
-					<th>첨부파일</th>
-					<td><input type="file" name="attachfile"></td>
-				</tr>
-			
 			</table>
 			<input type="reset" value="취소" >
 			<input type="submit" id="boardSubmit" value="등록하기" >				
