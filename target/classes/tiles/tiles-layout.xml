@@ -1,0 +1,52 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE tiles-definitions PUBLIC 
+	"-//Apache Software Foundation//DTD Tiles Configuration 2.1//EN" 
+	"http://tiles.apache.org/dtds/tiles-config_2_1.dtd">
+
+<tiles-definitions>
+	
+	<!-- admin layout -->
+	<definition name=".admin.layout" template="/WEB-INF/views/admin/layout/admin_layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/admin/layout/admin_body.jsp"/>
+		<put-attribute name="side" value="/WEB-INF/views/admin/layout/admin_side.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp"/>
+	</definition>
+	
+	<definition name=".admin.*.*" extends=".admin.layout">
+		<put-attribute name="body" value="/WEB-INF/views/admin/{1}/{2}.jsp"/>
+	</definition>
+	
+	<!-- reserve layout -->
+	<definition name=".reserve.ticket.main" template="/WEB-INF/views/reserve/reserve_layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/reserve/reserveHome.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp"/>
+	</definition>
+	
+	<definition name=".reserve.*.*" extends=".reserve.ticket.main">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
+	</definition>
+	
+	
+	<!-- default -->
+	<definition name=".main.layout" template="/WEB-INF/views/layout.jsp">
+		<put-attribute name="header" value="/WEB-INF/views/header.jsp"/>
+		<put-attribute name="body" value="/WEB-INF/views/body.jsp"/>
+		<put-attribute name="sidemenu" value="/WEB-INF/views/side.jsp"/>
+		<put-attribute name="footer" value="/WEB-INF/views/footer.jsp"/>
+	</definition>
+	
+	<definition name=".*.*.*" extends=".main.layout">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}/{3}.jsp"/>
+	</definition>
+	
+	<definition name=".*.*" extends=".main.layout">
+		<put-attribute name="body" value="/WEB-INF/views/{1}/{2}.jsp"/>
+	</definition>
+	
+	
+	
+	
+	
+</tiles-definitions>
