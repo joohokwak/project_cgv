@@ -49,7 +49,7 @@
 						</a>
 						
 						<span class="boxDate">
-							<strong>${movie.m_start } 개봉</strong>
+							<strong><fmt:formatDate value="${movie.m_start }" pattern="yyyy.MM.dd"/> 개봉</strong>
 						</span>
 						
 						<div class="boxLike">
@@ -83,7 +83,7 @@
 						</a>
 						
 						<span class="boxDate">
-							<strong>${movie.m_start } 개봉</strong>
+							<strong><fmt:formatDate value="${movie.m_start }" pattern="yyyy.MM.dd"/> 개봉</strong>
 						</span>
 						
 						<div class="boxLike">
@@ -117,7 +117,7 @@
 						</a>
 						
 						<span class="boxDate">
-							<strong>${movie.m_start } 개봉</strong>
+							<strong><fmt:formatDate value="${movie.m_start }" pattern="yyyy.MM.dd"/> 개봉</strong>
 						</span>
 						
 						<div class="boxLike">
@@ -175,7 +175,7 @@
 						</a>
 						
 						<span class="boxDate">
-							<strong>${movie.m_start } 개봉</strong>
+							<strong><fmt:formatDate value="${movie.m_start }" pattern="yyyy.MM.dd"/> 개봉</strong>
 						</span>
 						
 						<div class="boxLike">
@@ -209,7 +209,7 @@
 						</a>
 						
 						<span class="boxDate">
-							<strong>${movie.m_start } 개봉</strong>
+							<strong><fmt:formatDate value="${movie.m_start }" pattern="yyyy.MM.dd"/> 개봉</strong>
 						</span>
 						
 						<div class="boxLike">
@@ -243,7 +243,7 @@
 						</a>
 						
 						<span class="boxDate">
-							<strong>${movie.m_start } 개봉</strong>
+							<strong><fmt:formatDate value="${movie.m_start }" pattern="yyyy.MM.dd"/> 개봉</strong>
 						</span>
 						
 						<div class="boxLike">
@@ -277,7 +277,7 @@
 						</a>
 						
 						<span class="boxDate">
-							<strong>${movie.m_start } 개봉</strong>
+							<strong><fmt:formatDate value="${movie.m_start }" pattern="yyyy.MM.dd"/> 개봉</strong>
 						</span>
 						
 						<div class="boxLike">
