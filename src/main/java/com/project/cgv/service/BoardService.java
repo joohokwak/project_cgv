@@ -12,5 +12,6 @@ public interface BoardService {
 	public void updateBoard(HashMap<String, Object> params, MultipartFile attachfile);
 	public HashMap<String, Object> viewBoard(int num);
 	public void deleteBoard(int num);
+	public void addHit (int num);
 
 }

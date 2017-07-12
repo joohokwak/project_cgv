@@ -7,13 +7,193 @@
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 	<title>Insert title here</title>
 	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css">
+	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
 	<link rel="stylesheet" href="/resources/css/event/eventPage.css?ver=1">
 	<style type="text/css">
 		#boardListWrap { position:relative; margin: 0 auto; width: 100%; margin-top: 70px;  }
 		table,td { width:980px; margin:0 auto; text-align: center; }
 		.search { width:500px; position:absolute; left:50%; margin-left:170px; top:0; }
 		.blist { padding-top:40px; }
+		#loginDiv {
+ 			display: none;
+			position: absolute;
+			width: 462px;
+			height: 324px;
+			border: 5px solid #333;
+			top: 200px;
+			left: 35%;
+			z-index: 20000;
+		}
+		
+		#login_hd {
+			width: 462px;
+			height: 51px;
+			background: #333;
+			border-bottom: 5px solid #333;
+		}
+		
+		#login_title {
+			width: 440px;
+			height: 35px;
+			color: #f2f0e5;
+		    padding-top: 14px;
+		    padding-left: 20px;
+			font-family: Nanum Gothic, 나눔고딕, Apple SD Gothic Neo, AppleGothic, 돋움, dotum, Sans-serif;
+		    font-size: 22px;
+		    font-weight: bold;
+		    line-height: 22px;
+		    letter-spacing: -1px;
+			border: 1px solid gray;
+		}
+		
+		#btn_close_x {
+		    display: block;
+		    position: relative;
+		    float: right;
+		    top: -34px;
+		    right: 20px;
+		    width: 18px;
+		    height: 18px;
+		    background: url(/resources/images/reserve/btn_close_x.png) no-repeat;
+		    overflow: hidden;
+		    cursor: pointer;
+		    text-indent: -1000px;
+		}
+		
+		#login_bd {
+			width: 312px;
+			height: 228px;
+		    padding-bottom: 40px;
+		    padding-left: 75px;
+		    padding-right: 75px;
+		    background: #f6f6f4;
+		}
+		
+		#login_bd_form {
+			width: 266px;
+			height: 133px;
+			margin: 0 auto;
+			position: relative;
+			padding-top: 50px;
+		}
+		
+		#login_wrap_id {
+		    width: 212px;
+		    border: 2px solid #b5b5b5;
+		    margin-bottom: 5px;
+		    padding: 8px 10px 8px 40px;
+		    background: url("/resources/images/reserve/login_icon_id.png") no-repeat left center;
+		}
+		
+		#login_wrap_id input[type='text'] {
+			width: 212px;
+			height: 21px;
+			border: none;
+			background: #f6f6f4;
+		}
+		
+		#login_wrap_pw {
+			width: 212px;
+		    border: 2px solid #b5b5b5 !important;
+		    padding-bottom: 7px;
+		    margin-bottom: 5px;
+		    padding: 8px 10px 8px 40px;
+		    background: url("/resources/images/reserve/login_icon_pw.png") no-repeat left center;
+		}
+		
+		#login_wrap_pw input[type='password'] {
+			width: 212px;
+			height: 21px;
+			border: none;
+			background: #f6f6f4;
+		}
+		
+		#login_wrap_btn {
+			width: 262px;
+			height: 42px;
+		    background: #e71a0f;
+		    padding: 2px;
+		}
+		
+		#login_bd_btn {
+			width: 262px;
+		    background: #e71a0f;
+		    color: #f2f0e5;
+		    height: 42px;
+		    line-height: 37px;
+		    font-size: 15px;
+		    font-weight: bold;
+		    font-family: 'NanumBarunGothicBold', 'Nanum Gothic', 'Dotum';
+		    border: 1px solid white;
+		    cursor: pointer;
+		}
 	</style>
+	
+	<script type="text/javascript">
+		$(function() {
+			$("#writeBtn").click(function(e) {
+				$.ajax({
+					url: "/member/loginCheck",
+					type: "post",
+					dataType: "text",
+					success: function(data) {
+						if(data == "login") {
+							location.href='/board/boardwrite';
+						}else if(data == "unlogin") {
+							$("html, body").stop().animate({scrollTop : '0px'});
+							$("#loginDiv").css({display: "block"});
+							$("#boardListWrap").prop('disabled', true).css({"pointer-events": "none", opacity: "0.5"});
+							$("#eventPageWrap").prop('disabled', true).css({"pointer-events": "none", opacity: "0.5"});
+						}
+					}
+				});
+			});
+			
+			
+			// 로그인창 닫기 버튼
+			$("#btn_close_x").click(function(e) {
+				$("#loginDiv").css({display: "none"});
+				$("#boardListWrap").prop('disabled', false).css({"pointer-events": "auto", opacity: "1"});
+				$("#eventPageWrap").prop('disabled', false).css({"pointer-events": "auto", opacity: "1"});
+			});
+			
+			// 비밀번호창에서 엔터키 적용
+			$("#loginDivPw").keyup(function(e) {
+				if(e.keyCode == 13) {
+					$("#login_bd_btn").click();
+				}
+			});
+			
+			// 로그인 버튼 클릭
+			$("#login_bd_btn").click(function(e) {
+				var divId = $.trim($("#loginDivId").val());
+				var divPw = $.trim($("#loginDivPw").val());
+				
+				if(divId.length > 0 && divPw.length >0) {
+					$.ajax({
+						url : "/member/reserveLogin",
+						type : "post",
+						data : {"id": divId, "pass":divPw},
+						dataType : "json",
+						success: function(data) {
+							if(data.result == 'success') {
+								location.href='/board/boardwrite';
+							}else {
+								$.alert({
+									title: '',
+								    content: '<font color="#333"><b>아이디 또는 비밀번호를 확인하세요</b></font>',
+								    boxWidth: '300px',
+								    useBootstrap: false,
+								    type: 'red'
+								});
+							}
+						}
+					});
+				}
+			});
+		});
+	</script>
 </head>
 <body>
 	<!-- boardListWrap 시작 -->
@@ -98,7 +278,8 @@
 					</c:if>
 				</td>
 			</tr>
-			<a href="/board/boardwrite"><input type="button" value="글쓰기" ></a>
+			
+			<input type="button" id="writeBtn" value="글쓰기" >
 		</table>
 		<!-- table 끝 -->
 	</div>
@@ -168,6 +349,32 @@
 		</div>
 	</div>
 	
+	
+	
+	
+	<!-- login -->
+	<div id="loginDiv">
+		<div id="login_hd">
+			<div id="login_title">CGV 회원 로그인</div>
+			<a id="btn_close_x">닫기</a>
+		</div>
+		
+		<div id="login_bd">
+			<div id="login_bd_form">
+				<div id="login_wrap_id">
+					<input type="text" id="loginDivId" tabindex="1">
+				</div>
+				
+				<div id="login_wrap_pw">
+					<input type="password" id="loginDivPw" tabindex="2">
+				</div>
+				
+				<div id="login_wrap_btn">
+					<button id="login_bd_btn" tabindex="3">로그인</button>
+				</div>
+			</div>
+		</div>
+	</div>
 	
 </body>
 </html>
