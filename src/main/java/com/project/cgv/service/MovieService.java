@@ -42,9 +42,12 @@ public interface MovieService {
 	//genre
 	public List<HashMap<String,Object>> showGenreList();
 	
-	public boolean addMovie(HashMap<String,Object> params);
 	
+	//movie crud
 	public HashMap<String,Object> showSearchResult(int page, HashMap<String,Object> option);
+	public boolean addMovie(HashMap<String,Object> params);
+	public boolean modifyMovie(HashMap<String,Object> params);
+	public boolean deleteMovie(int num);
 	
 	
 	// movie_re

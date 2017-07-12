@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.cgv.dao.MovieDao;
 import com.project.cgv.service.MovieService;
@@ -137,25 +138,7 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public boolean addMovie(HashMap<String, Object> params) {
-		
-		if((String)params.get("site") == ""){
-			params.put("site", null);
-		}
-		
-		int result = mvDao.insertMovie(params);
-		
-		if(result == 1){
-			System.out.println("성공");
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-	@Override
 	public HashMap<String, Object> showSearchResult(int page, HashMap<String, Object> option) {
-		
 		
 		HashMap<String,Object> result = new HashMap<String,Object>();
 		
@@ -184,6 +167,46 @@ public class MovieServiceImpl implements MovieService {
 		return result;
 		
 	}
+	
+	@Override
+	public boolean addMovie(HashMap<String, Object> params) {
+		
+		if((String)params.get("site") == ""){
+			params.put("site", null);
+		}
+		
+		int result = mvDao.insertMovie(params);
+		
+		if(result == 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean modifyMovie(HashMap<String, Object> params) {
+		if((String)params.get("site") == ""){
+			params.put("site", null);
+		}
+		
+		System.out.println(params);
+		int result = mvDao.updateMovie(params);
+		
+		if(result == 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Transactional
+	@Override
+	public boolean deleteMovie(int num) {
+		// TODO Auto-generated method stub
+		return false;
+	}
+	
 
 	@Override
 	public int mrInsert(HashMap<String, Object> params) {
