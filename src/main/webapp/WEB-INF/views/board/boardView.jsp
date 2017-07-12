@@ -41,14 +41,12 @@
 						<th style="width:100px;">내용</th>
 						<td>${viewBoard.b_content}</td>
 					</tr>				
-					<tr>
-						<th>첨부파일</th>
-						<td><input type="file" name="attachfile"></td>
-					</tr>
 				
 				</table>
-				<input type="button" value="수정하기" onclick="location.href='boardupdate?num=${viewBoard.b_num}'">
-				<input type="button" value="삭제하기" onclick="location.href='delete?num=${viewBoard.b_num}'">
+				<c:if test="${mine eq true}">
+					<input type="button" value="수정하기" onclick="location.href='boardupdate?num=${viewBoard.b_num}'">
+					<input type="button" value="삭제하기" onclick="location.href='delete?num=${viewBoard.b_num}'">
+				</c:if>
 				<input type="button" value="목록으로" onclick="location.href='boardlist'">				
 			</form>		
 			<!-- Form 끝 -->	
@@ -71,7 +69,6 @@
 					<th style="width:100px;">작성자</th>
 					<td>${viewBoard.b_writer}</td>			
 				</tr>
-				<!-- <input type="text" name="replyer" id="replyer"/> REPLYTEXT -->
 				<tr>
 					<th style="width:100px;">글쓰기</th>
 					<td><input type="text" name="replytext" id="replytext"/></td>	

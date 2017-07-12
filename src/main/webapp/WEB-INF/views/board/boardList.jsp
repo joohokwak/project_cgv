@@ -98,7 +98,7 @@
 					</c:if>
 				</td>
 			</tr>
-			<a href="/board/boardwrite"><input type="button" value="글쓰기"></a>
+			<a href="/board/boardwrite"><input type="button" value="글쓰기" ></a>
 		</table>
 		<!-- table 끝 -->
 	</div>
@@ -167,5 +167,7 @@
 			</div>
 		</div>
 	</div>
+	
+	
 </body>
 </html>
