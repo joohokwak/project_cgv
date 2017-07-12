@@ -16,4 +16,5 @@ public class BoardController {
 	public String boardList() {
 		return ".board.boardList";
 	}
+	
 }
