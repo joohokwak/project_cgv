@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.cgv.dao.ActorDao">
+
+	<select id="selectAllActor" resultType="HashMap" parameterType="HashMap">
+		select * from actor order by a_num desc limit #{skip},#{qty}
+	</select>
+	
+	<select id="selectActor" parameterType="int" resultType="HashMap">
+		select * from actor where a_num = #{num}
+	</select>
+	
+	<select id="getActorCount" resultType="int">
+		select count(*) from actor;
+	</select>
+	
+	<insert id="insertActor" parameterType="HashMap">
+		insert into actor values(0, <include refid="kor_name"/>, <include refid="eng_name"/>, <include refid="birth"/>, 
+			<include refid="nation"/>, <include refid="job"/>, <include refid="edulev"/>, <include refid="site"/>, 
+				<include refid="img"/>, <include refid="biography"/>)
+	</insert>
+	
+	<update id="updateActor" parameterType="HashMap">
+		update actor 
+		set a_kor_name = <include refid="kor_name"/>, a_eng_name = <include refid="eng_name"/>,
+			a_birth = <include refid="birth"/>, a_nation = <include refid="nation"/>, 
+			a_job = <include refid="job"/>, a_edulev = <include refid="edulev"/>,
+			a_site = <include refid="site"/>, a_img = <include refid="img"/>,
+			a_biography = <include refid="biography"/>
+		where  a_num = #{num}
+	</update>
+	
+	<delete id="deleteActor" parameterType="int">
+		delete from actor where a_num=#{num}
+	</delete>
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	
+	<sql id="kor_name">
+		<choose>
+			<when test="kor_name == null">
+				null
+			</when>
+			<otherwise>
+				#{kor_name}
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<sql id="eng_name">
+		<choose>
+			<when test="eng_name == null">
+				null
+			</when>
+			<otherwise>
+				#{eng_name}
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<sql id="birth">
+		<choose>
+			<when test="birth == null">
+				null
+			</when>
+			<otherwise>
+				#{birth}
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<sql id="nation">
+		<choose>
+			<when test="nation == null">
+				null
+			</when>
+			<otherwise>
+				#{nation}
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<sql id="job">
+		<choose>
+			<when test="job == null">
+				null
+			</when>
+			<otherwise>
+				#{job}
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<sql id="edulev">
+		<choose>
+			<when test="edulev == null">
+				null
+			</when>
+			<otherwise>
+				#{edulev}
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<sql id="site">
+		<choose>
+			<when test="site == null">
+				null
+			</when>
+			<otherwise>
+				#{site}
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<sql id="img">
+		<choose>
+			<when test="img == null">
+				'no-pic.jpg'
+			</when>
+			<otherwise>
+				#{img}
+			</otherwise>
+		</choose>
+	</sql>
+	
+	<sql id="biography">
+		<choose>
+			<when test="content == null">
+				null
+			</when>
+			<otherwise>
+				#{"content"}
+			</otherwise>
+		</choose>
+	</sql>
+	
+	
+	
+	
+	
+	
+</mapper>

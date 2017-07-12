@@ -84,8 +84,6 @@
 		select mt_num from movietime where mt_time=#{mt_time} and mt_date=#{mt_date} and s_num=#{s_num}
 	</select>
 	
-	
-	
 	<!-- seat -->
 	<insert id="seatInsert" parameterType="hashmap">
 		insert into seat values(0, #{s_num}, #{mt_num}, #{seat_status})
@@ -124,6 +122,14 @@
 		 			#{made}, #{company}, #{start}, 
 		 				#{end}, <include refid="site"/>, 0, #{content}, 'no-image.jpg', #{genre})
 	</insert>
+	
+	<update id="updateMovie">
+		update movie set m_title1 = #{title_kor}, m_title2 = #{title_eng}, m_producer = #{producer},
+			m_grade = #{grade}, m_time = #{time}, m_made = #{made}, m_company = #{company}, 
+			m_start = #{start}, m_end = #{end}, m_site = <include refid="site"/>, m_content = #{content},
+			m_genre = #{genre}
+			where m_num = #{num}
+	</update>
 	
 	<sql id="site">
 		<choose>

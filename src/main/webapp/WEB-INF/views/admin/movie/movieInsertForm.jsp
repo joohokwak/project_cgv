@@ -13,6 +13,10 @@ var classCnt = 1;
 
 $(function() {
 	
+	$("#test").click(function(){
+		
+	});
+	
 	// 에디터
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
@@ -49,8 +53,31 @@ $(function() {
 			
 			$("#movieForm").submit();
 		}
+	});
+	
 
-
+	$("#grade_select").change(function(){
+		$("#grade_select option").each(function(){
+			if($(this).is(":selected") == true){
+				//alert($(this).text());
+				$("#grade").val($(this).text());
+			}
+		});
+	});
+	
+	$(".genreGroup").change(function(){
+		var arr = [];
+		var genre_count = 0;
+		$(".genreGroup").each(function(){
+			if($(this).is(":checked") == true){
+				arr.push($(this).val());
+				genre_count++;
+			}
+		});
+		
+		if(genre_count != 0){
+			$("#genre").val(arr);
+		}
 	});
 });
 
@@ -68,9 +95,9 @@ function movieCheck(){
 		alert("감독명을 입력하세요!");
 		$("#producer").focus();
 		return false;
-	}else if($("#genre_select").val() == "none"){
-		alert("장르를 선택하세요!");
-		$("#genre_select").focus();
+	}else if($("#genre").val() == ""){
+		alert("하나 이상의 장르를 선택하세요!");
+		$(".genreGroup").focus();
 		return false;
 	}else if($("#grade_select").val() == "none"){
 		alert("관람 등급을 선택하세요!");
@@ -105,34 +132,12 @@ function movieCheck(){
 		$("#end").focus();
 		return false;
 	}
-	
 	return true;
 }
 
 </script>
 </head>
 <body>
-<!-- 
-+------------+--------------+------+-----+---------+----------------+
-| Field      | Type         | Null | Key | Default | Extra          |
-+------------+--------------+------+-----+---------+----------------+
-| m_num      | int(11)      | NO   | PRI | NULL    | auto_increment |
-| m_title1   | varchar(200) | YES  |     | NULL    |                |
-| m_title2   | varchar(200) | YES  |     | NULL    |                |
-| m_producer | varchar(100) | YES  |     | NULL    |                |
-| m_grade    | varchar(30)  | YES  |     | NULL    |                |
-| m_time     | int(11)      | YES  |     | NULL    |                |
-| m_made     | varchar(50)  | YES  |     | NULL    |                |
-| m_company  | varchar(100) | YES  |     | NULL    |                |
-| m_start    | date         | YES  |     | NULL    |                |
-| m_end      | date         | YES  |     | NULL    |                |
-| m_site     | varchar(300) | YES  |     | NULL    |                |
-| m_like     | int(11)      | YES  |     | NULL    |                |
-| m_content  | text         | YES  |     | NULL    |                |
-| m_poster   | varchar(300) | YES  |     | NULL    |                |
-| m_genre    | varchar(300) | YES  |     | NULL    |                |
-+------------+--------------+------+-----+---------+----------------+
- -->
 <div class="movie-wrap">
 	<div class="movie-header">
 		<h1>영화등록</h1>
@@ -162,25 +167,27 @@ function movieCheck(){
 					</tr>
 					<tr>
 						<td>
-							<label for="genre_check">장르</label>
-							<select id="genre_select" name="genre">
-								<option value="none">선택하세요</option>
-								<c:forEach items="${gList}" var="g">
-									<input type="checkbox" name="genre">${g.g_name}
+							<label>장르</label>
+							<div id="genreWrap">
+								<c:forEach items="${gList}" var="g" varStatus="status">
+									<input type="checkbox" class="genreGroup" value='${g.g_name}'>${g.g_name}
+									<c:if test="${status.count%10 == 0}"><br></c:if>
 								</c:forEach>
-							</select>
+								<input type="hidden" id="genre" name="genre">
+							</div>
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<label for="grade_select">관람 등급</label>
-							<select id="grade_select" name="grade">
+							<select id="grade_select">
 								<option value="none">선택하세요</option>
 								<option value="all">전체</option>
 								<option value="12-rating">12세 이상</option>
 								<option value="15-rating">15세 이상</option>
 								<option value="x-rated">청소년 관람불가</option>							
 							</select>
+							<input type="hidden" id="grade" name="grade">
 						</td>
 					</tr>
 					<tr>
