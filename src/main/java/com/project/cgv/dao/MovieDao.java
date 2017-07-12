@@ -43,7 +43,6 @@ public interface MovieDao {
 	
 	public int insertMovie(HashMap<String,Object> params);
 	public int updateMovie(HashMap<String,Object> params);
-	public int updatePoster(HashMap<String,Object> params);
 	public int deleteMovie(int num);
 	
 	public List<HashMap<String,Object>> searchMovieList(HashMap<String,Object> option);
@@ -55,4 +54,26 @@ public interface MovieDao {
 	public List<HashMap<String, Object>> mrList(int m_num);
 	public int mrDelete(int mr_num);
 	
+	//upload
+	public void updatePoster(HashMap<String,Object> inputData);
+	public void insertTrailer(HashMap<String,Object> inputData);
+	public void insertStealCut(HashMap<String,Object> inputData);
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

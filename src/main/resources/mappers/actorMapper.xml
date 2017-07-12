@@ -9,6 +9,10 @@
 		select * from actor order by a_num desc limit #{skip},#{qty}
 	</select>
 	
+	<select id="getActorList" resultType="HashMap">
+		select * from actor order by a_num
+	</select>
+	
 	<select id="selectActor" parameterType="int" resultType="HashMap">
 		select * from actor where a_num = #{num}
 	</select>
@@ -36,6 +40,11 @@
 	<delete id="deleteActor" parameterType="int">
 		delete from actor where a_num=#{num}
 	</delete>
+	
+	<update id="updateActorImage">
+		update actor set a_img=#{image} where a_num=#{num}
+	</update>
+	
 	
 	
 	
