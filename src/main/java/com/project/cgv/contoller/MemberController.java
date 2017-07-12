@@ -1,6 +1,7 @@
 package com.project.cgv.contoller;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -14,12 +15,14 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.cgv.service.MemberService;
+import com.project.cgv.service.MovieService;
 
 @Controller
 @RequestMapping("/member/*")
 public class MemberController {
 	
 	@Autowired private MemberService mService;
+	@Autowired private MovieService mvService;
 	
 	@RequestMapping("/memberJoin")
 	public String memberJoinForm() {
@@ -108,10 +111,11 @@ public class MemberController {
 	
 	@RequestMapping("/favoriteTheaterPop")
 	public String fPopup(Model model,HttpSession session) {
-		HashMap<String, Object> member = (HashMap<String, Object>)session.getAttribute("member");
-		String id = (String)member.get("id");
-		model.addAllAttributes(mService.getMember(id));
+		List<HashMap<String, Object>> tList = mvService.theaterList();
+		model.addAttribute("tList",tList);
 		return "/member/favoriteTheaterPop";
 	}
+	
+	
 	
 }
