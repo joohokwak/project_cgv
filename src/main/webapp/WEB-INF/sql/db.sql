@@ -365,12 +365,12 @@ create table theater(
 insert into theater values(0, 'CGV강남', '서울특별시 강남구 역삼동 814-6 스타플렉스', '서울특별시 강남구 강남대로 438 (역삼동)', '1544-1122', 874, 'CGVgangnam.jpg');
 insert into theater values(0, 'CGV강동', '서울특별시 강동구 성내동 549-1 씨네월드', '서울특별시 강동구 성내로 48 (성내동)', '1544-1122', 1617, 'noimage_final.jpg');
 insert into theater values(0, 'CGV강변', '서울특별시 광진구 구의동 546-4 테크노마트 10층', '서울특별시 광진구 광나루로56길 85 (구의동)', '1544-1122', 1663, 'CGVgangbyeon.jpg');
-insert into theater values(0, 'CGV구로', '서울특별시 구로구 구로5동 573번지 AK플라자(구 애경백화점) 5층', '서울특별시 구로구 구로중앙로 152 (구로동)', '1544-1122', 1900, 'noimage_final.jpg');
+insert into theater values(0, 'CGV구로', '서울특별시 구로구 구로5동 573번지 AK플라자', '서울특별시 구로구 구로중앙로 152 (구로동)', '1544-1122', 1900, 'noimage_final.jpg');
 insert into theater values(0, 'CGV군자', '서울특별시 광진구 군자동 477-12', '서울특별시 광진구 능동로 289 (군자동)', '1544-1122', 1197, 'CGVgunja.jpg');
 
 insert into theater values(0, 'CGV대학로', '서울특별시 종로구 명륜2가 41-9', '서울 종로구 대명길 (명륜동)', '1544-1122', 1184, 'daehakro.jpg');
 insert into theater values(0, 'CGV명동', '서울특별시 중구 명동2가 83-5번지 눈스퀘어 8층', '서울특별시 중구 명동길 14 (명동)', '1544-1122', 736, 'CGVmyeongdong.jpg');
-insert into theater values(0, 'CGV명동역 씨네라이브러리', '서울특별시 중구 충무로2가 65-9 하이해리엇 10,11층', '서울특별시 중구 퇴계로 123 (명동)', '1544-1122', 694, 'LIB.JPG');
+insert into theater values(0, 'CGV명동역 씨네라이브러리', '서울특별시 중구 충무로2가 65-9 하이해리엇', '서울특별시 중구 퇴계로 123 (명동)', '1544-1122', 694, 'LIB.JPG');
 insert into theater values(0, 'CGV목동', '서울특별시 양천구 목동 916번지 현대백화점 지하2층', '서울특별시 양천구 목동로 257, 지하2층(목동)', '1544-1122', 1372, 'noimage_final.jpg');
 insert into theater values(0, 'CGV미아', '서울특별시 강북구 미아동 35-4 트레지오 쇼핑몰 9층', '서울특별시 강북구 도봉로 34, 9층(미아동)', '1544-1122', 721, 'CGVmia.jpg');
 
@@ -378,7 +378,7 @@ insert into theater values(0, 'CGV불광', '서울특별시 은평구 대조동 
 insert into theater values(0, 'CGV상봉', '서울시 중랑구 상봉동 79-9 상봉듀오트리스 B2F', '서울시 중랑구 상봉로 131 (상봉동)', '1544-1122', 1167, 'sangbong_1.jpg');
 insert into theater values(0, 'CGV상암', '서울특별시 마포구 성산동 515번지 월드컵몰 1층', '서울특별시 마포구 월드컵로 240, 1층 (성산동)', '1544-1122', 1691, 'CGVsangam.jpg');
 insert into theater values(0, 'CGV성신여대입구', '서울특별시 성북구 동선동 1가 1-2 10~12층', '서울특별시 성북구 동소문로 106, 10~12층(동선동)', '1544-1122', 908, 'noimage_final.jpg');
-insert into theater values(0, 'CGV송파', '서울특별시 송파구 장지동 201-27 가든파이브 라이프 영관 10층', '서울특별시 송파구 충민로 66, 10층(문정동)', '1544-1122', 1481, 'CGVsongpa.jpg');
+insert into theater values(0, 'CGV송파', '서울특별시 송파구 장지동 201-27 가든파이브', '서울특별시 송파구 충민로 66, 10층(문정동)', '1544-1122', 1481, 'CGVsongpa.jpg');
 
 insert into theater values(0, 'CGV신도림', '서울특별시 구로구 구로동 3-25번지 테크노마트 12층', '서울특별시 구로구 새말로 12층(구로동)', '1544-1122', 1522, 'CGVsindorim.jpg');
 insert into theater values(0, 'CGV신촌아트레온', '서울특별시 서대문구 창천동 20-25 아트레온 2층', '서울특별시 서대문구 신촌로 129 , 2층(창천동)', '1544-1122', 1468, 'CGVsinchonartreon.jpg');

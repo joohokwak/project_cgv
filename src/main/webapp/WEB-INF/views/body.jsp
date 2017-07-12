@@ -56,12 +56,12 @@
 			<td align="center" style="background: url('/resources/images/body/block.png') repeat-x; background-size: 100% 450px;">
 				<div class="slider-wrapper theme-default" style="width: 980px; background: #fdfcf0; border: none; margin-top: 0;">
 		            <div id="slider" class="nivoSlider" style="height: 450px;">
-						<a href="#"><img alt="" src="/resources/images/body/14955234602430.jpg"></a>
-						<a href="#"><img alt="" src="/resources/images/body/14968216653960.jpg"></a>
-						<a href="#"><img alt="" src="/resources/images/body/14979411603010.png"></a>
-						<a href="#"><img alt="" src="/resources/images/body/14984576436440.jpg"></a>
-						<a href="#"><img alt="" src="/resources/images/body/14984476495450.jpg"></a>
-						<a href="#"><img alt="" src="/resources/images/body/mainbig_new_2.jpg"></a>
+						<a href="http://section.cgv.co.kr/event/running/EventZone.aspx?idx=784"><img alt="" src="/resources/images/body/14993927745800.jpg"></a>
+						<a href="http://section.cgv.co.kr/event/running/EventZone.aspx?idx=781"><img alt="" src="/resources/images/body/14988022357050.jpg"></a>
+						<a href="http://section.cgv.co.kr/event/running/eventzone.aspx?idx=771"><img alt="" src="/resources/images/body/14979411603010.png"></a>
+						<a href="http://section.cgv.co.kr/event/running/eventzone.aspx?idx=776"><img alt="" src="/resources/images/body/14984576436440.jpg"></a>
+						<a href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16395&menu=0"><img alt="" src="/resources/images/body/14990741670080.jpg"></a>
+						<a href="http://section.cgv.co.kr/Event/2016/0419_PaconiLetter/Default.aspx"><img alt="" src="/resources/images/body/mainbig_new_2.jpg"></a>
 		            </div>
         		</div>
         		
@@ -77,14 +77,17 @@
 		<!-- 동영상&포스터 -->
 		<tr>
 			<td align="center">
-				<img alt="selection" src="/resources/images/body/h3_movie_selection.gif">
+				<div class="selection">
+					<img alt="selection" src="/resources/images/body/h3_movie_selection.gif">
+				</div>
+				
 				<table style="width: 980px; height: 388px; margin-top: 20px;">
 					<tr>
 						<td width="733">
-							<iframe width="733" height="388" src="https://www.youtube.com/embed/wzdaYNLeGqQ" frameborder="0" allowfullscreen></iframe>
+							<iframe width="733" height="388" src="https://www.youtube.com/embed/w2EwkleWbl4" frameborder="0" allowfullscreen></iframe>
 						</td>
 						<td width="240">
-							<img alt="poster" src="/resources/images/movie/poster/Real.jpg" width="240" height="388">
+							<img alt="poster" src="/resources/images/movie/poster/79826_1000.jpg" width="240" height="388">
 						</td>
 					</tr>
 				</table>
@@ -98,8 +101,37 @@
 		<!-- 이벤트 -->
 		<tr>
 			<td align="center">
-				<div style="width: 980px; height: 50px;">
+				<div class="selection">
 					<img alt="selection" src="resources/images/body/h3_event.gif">
+				</div>
+				
+				<div class="sect-event">
+					<ul>
+						<li><a href="http://section.cgv.co.kr/event/running/EventZone.aspx?idx=781"><img alt="eventImage" src="/resources/images/event/14969966204330.jpg" width="240px" height="200px"></a></li>
+						<li><a href="http://section.cgv.co.kr/event/running/eventzone.aspx?idx=776"><img alt="eventImage" src="/resources/images/event/14984396716630.jpg" width="240px" height="200px"></a></li>
+						<li><a href="http://www.cgv.co.kr/culture-event/event/detail-view.aspx?idx=16124&menu=0"><img alt="eventImage" src="/resources/images/event/14984445219590.jpg" width="240px" height="200px"></a></li>
+						<li><a href="http://section.cgv.co.kr/event/running/eventzone.aspx?idx=771"><img alt="eventImage" src="/resources/images/event/14991573972560.jpg" width="240px" height="200px"></a></li>
+					</ul>
+				</div>
+				
+				<div class="cols-banner">
+					<div class="col-ad">
+						<div class="box-com">
+						    <div class="box-inner">
+				                <a href="http://section.cgv.co.kr/discount/Special/discount/EventDetail.aspx?Idx=15974&amp;pb=Y"><img src="http://img.cgv.co.kr/Front/Main/2017/0515/14948153432980.jpg" alt="위비"></a>
+				            </div>
+						</div>
+					</div>
+					<div class="col-hd">
+						<a href="http://www.cgv.co.kr/arthouse/"><img src="http://img.cgv.co.kr/R2014/images/main/main_moviecollage.jpg" alt="CGV ARTHOUSE, A Good Movie, A Better Life"></a>
+					</div>
+					<div class="col-collage">
+						<div class="box-com">
+						    <div id="Branding_R" class="box-inner">
+				                <iframe src="http://ad.cgv.co.kr/NetInsight/html/CGV/CGV_201401/main@Branding" width="226" height="259" title="기업광고-페이코" frameborder="0" scrolling="no" marginwidth="0" marginheight="0" name="Branding" id="Branding"></iframe>    
+				            </div>
+						</div>
+					</div>
 				</div>
 			</td>
 		</tr>
@@ -117,7 +149,7 @@
 						<ul class="ticker">
 							<c:forEach items="${nList}" var="n">
 								<li>
-									<a href="/notice/view?num=${n.n_num}">${n.n_cate} ${n.n_title}</a> 
+									<a href="/notice/list">${n.n_cate} ${n.n_title}</a> 
 									<span style="float: right;"><fmt:formatDate value="${n.n_regdate}"/></span>
 								</li>
 							</c:forEach>

@@ -1,0 +1,30 @@
+@CHARSET "UTF-8";
+
+#eventPageWrap {
+	width: 820px;
+	height: 856px;
+	margin: 0 auto;
+	margin-top: 30px;
+	margin-bottom: 50px;
+}
+
+.sect-event {
+	position: relative;
+    border-bottom: 0;
+    margin-bottom: 0;
+    padding-bottom: 0;
+    background: url(/resources/images/event/bg_event.gif) repeat-y;
+}
+
+.box-event {
+    background: url(/resources/images/event/bg_event_top.gif) no-repeat;
+    width: 820px;
+    min-height: 181px;
+}
+
+.evt-item-lst {
+    position: relative;
+    background: url(/resources/images/event/bg_event_bottom.gif) no-repeat bottom;
+    width: 820px;
+    min-height: 890px;
+}

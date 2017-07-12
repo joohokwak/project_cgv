@@ -8,7 +8,7 @@ var oEditors = [];
 var classCnt = 1;
 
 $(function() {
-	
+
 	// 에디터
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
@@ -45,35 +45,80 @@ $(function() {
 			
 			$("#movieForm").submit();
 		}
-
-
 	});
-	
 	
 	if($.trim($("#site").val()) == ""){
-		$("#site_check").attr("checked","checked");
+		$("#site_check").attr("checked",true);
 	}
 	
-	$("#genre_select").each(function(){
-		
-		var str = "${m_genre}";
-		if($("#genre_select").text() == "${m_genre}"){
+	var str = "${m.m_genre}";
+	
+	var strArr = str.split(',');
+	
+	$("#grade_select option").each(function(){
+		if($(this).text() == "${m.m_grade}"){
 			$(this).attr("selected","selected");
-			//alert($("#genre_select").text());
-			return;
 		}
-		
 	});
+	
+	$(".genreGroup").each(function(){
+		for(var i = 0; i<strArr.length; i++){
+			if($.trim($(this).val()) == strArr[i]){
+				$(this).attr("checked",true);
+			}
+		}
+	});
+	
+	$("#gen")
+	
+	
+	$("#grade_select").change(function(){
+		$("#grade_select option").each(function(){
+			if($(this).is(":selected") == true){
+				//alert($(this).text());
+				$("#grade").val($(this).text());
+			}
+		});
+	});
+	
+	$(".genreGroup").change(function(){
+		var arr = [];
+		var genre_count = 0;
+		$(".genreGroup").each(function(){
+			if($(this).is(":checked") == true){
+				arr.push($(this).val());
+				genre_count++;
+			}
+		});
+		
+		if(genre_count != 0){
+			$("#genre").val(arr);
+		}
+	});
+	
+	
 	
 	$("#test").click(function(){
-		alert();
+		alert("${m.m_grade}");
+		
+
 	});
-	
-	
-	
 });/////////////////////
 
 function movieCheck(){
+	
+// 	var arr = [];
+// 	var genre_count = 0;
+// 	$(".genreGroup").each(function(){
+// 		if($(this).is(":checked") == true){
+// 			arr.push($(this).val());
+// 			genre_count++;
+// 		}
+// 	});
+	
+// 	if(genre_count != 0){
+// 		$("#genre").val(arr);
+// 	}
 	
 	if($.trim($("#title_kor").val()) == ""){
 		alert("한글 이름을 입력하세요!");
@@ -87,9 +132,9 @@ function movieCheck(){
 		alert("감독명을 입력하세요!");
 		$("#producer").focus();
 		return false;
-	}else if($("#genre_select").val() == "none"){
-		alert("장르를 선택하세요!");
-		$("#genre_select").focus();
+	}else if($("#genre").val() == ""){
+		alert("하나 이상의 장르를 선택하세요!");
+		$(".genreGroup").focus();
 		return false;
 	}else if($("#grade_select").val() == "none"){
 		alert("관람 등급을 선택하세요!");
@@ -123,12 +168,7 @@ function movieCheck(){
 		alert("상영 종료일을 입력하세요!");
 		$("#end").focus();
 		return false;
-	}else if($.trim($("#content").val()) == ""){
-// 		alert("줄거리를 입력하세요!");
-// 		$("#content").focus();
-// 		return false;
 	}
-	
 	return true;
 }
 
@@ -164,12 +204,14 @@ function editorCheck() {
  -->
  
 <div class="movie-wrap">
+	
 	<div class="movie-header">
 		<h1>영화 수정</h1>
 	</div>
 	
 	<div class="movie-body">
-		<form action="/admin/movie/insert" id="movieForm" method="post">
+		<form action="/admin/movie/update" id="movieForm" method="post">
+			<input type="text" name="num" value="${m.m_num}">
 			<div class="movie-table-wrap">
 				<table style="width: 100%">
 					<tr>
@@ -193,24 +235,26 @@ function editorCheck() {
 					<tr>
 						<td>
 							<label for="genre_select">장르</label>
-							<select id="genre_select" name="genre">
-								<option value="none">선택하세요</option>
-								<c:forEach items="${gList}" var="g">
-									<option>${g.g_name}</option>
+							<div id="genreWrap">
+								<c:forEach items="${gList}" var="g" varStatus="status">
+									<input type="checkbox" class="genreGroup" value='${g.g_name}'>${g.g_name}
+									<c:if test="${status.count%10 == 0}"><br></c:if>
 								</c:forEach>
-							</select>
+								<input type="text" id="genre" name="genre" value="${m.m_genre }">
+							</div>
 						</td>
 					</tr>
 					<tr>
 						<td>
 							<label for="grade_select">관람 등급</label>
-							<select id="grade_select" name="grade">
+							<select id="grade_select">
 								<option value="none">선택하세요</option>
 								<option value="all">전체</option>
 								<option value="12-rating">12세 이상</option>
 								<option value="15-rating">15세 이상</option>
 								<option value="x-rated">청소년 관람불가</option>							
 							</select>
+							<input type="text" id="grade" name="grade" value="${m.m_grade}">
 						</td>
 					</tr>
 					<tr>
