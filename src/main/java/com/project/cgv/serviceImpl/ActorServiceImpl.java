@@ -15,6 +15,11 @@ public class ActorServiceImpl implements ActorService{
 	
 	@Autowired
 	private ActorDao aDao;
+	
+	@Override
+	public List<HashMap<String, Object>> showActorList() {
+		return aDao.getActorList();
+	}
 
 	@Override
 	public HashMap<String, Object> showActorList(int page) {

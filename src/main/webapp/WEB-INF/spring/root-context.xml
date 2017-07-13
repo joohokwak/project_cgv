@@ -13,9 +13,15 @@
 	
 	<context:component-scan base-package="com.project.cgv.serviceImpl"/>
 	
-	<tx:annotation-driven transaction-manager="txManager"/>
-	
 	<util:properties id="dbpr" location="classpath:properties/db.properties"/>
+	
+	<!-- 트랜잭션 처리를 위한 빈 등록 -->
+    <bean id="txManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">
+       <property name="dataSource" ref="dataSource"></property>
+    </bean>
+	
+	
+	<tx:annotation-driven transaction-manager="txManager"/>
 	
 	<bean id="multipartResolver" class="org.springframework.web.multipart.commons.CommonsMultipartResolver">
         <property name="maxUploadSize" value="100000000" />

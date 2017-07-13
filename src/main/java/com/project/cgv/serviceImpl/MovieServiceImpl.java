@@ -5,9 +5,11 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.cgv.dao.MovieDao;
 import com.project.cgv.service.MovieService;
+import com.project.cgv.util.MoviePaging;
 import com.project.cgv.util.Paging;
 
 @Service
@@ -137,25 +139,7 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
-	public boolean addMovie(HashMap<String, Object> params) {
-		
-		if((String)params.get("site") == ""){
-			params.put("site", null);
-		}
-		
-		int result = mvDao.insertMovie(params);
-		
-		if(result == 1){
-			System.out.println("성공");
-			return true;
-		}else{
-			return false;
-		}
-	}
-
-	@Override
 	public HashMap<String, Object> showSearchResult(int page, HashMap<String, Object> option) {
-		
 		
 		HashMap<String,Object> result = new HashMap<String,Object>();
 		
@@ -184,6 +168,45 @@ public class MovieServiceImpl implements MovieService {
 		return result;
 		
 	}
+	
+	@Override
+	public boolean addMovie(HashMap<String, Object> params) {
+		
+		if((String)params.get("site") == ""){
+			params.put("site", null);
+		}
+		
+		int result = mvDao.insertMovie(params);
+		
+		if(result == 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean modifyMovie(HashMap<String, Object> params) {
+		if((String)params.get("site") == ""){
+			params.put("site", null);
+		}
+		
+		System.out.println(params);
+		int result = mvDao.updateMovie(params);
+		
+		if(result == 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Transactional
+	@Override
+	public boolean deleteMovie(int num) {
+		return false;
+	}
+	
 
 	@Override
 	public int mrInsert(HashMap<String, Object> params) {
@@ -198,6 +221,32 @@ public class MovieServiceImpl implements MovieService {
 	@Override
 	public int mrDelete(int mr_num) {
 		return mvDao.mrDelete(mr_num);
+	}
+
+	@Override
+	public HashMap<String, Object> movieAll(int pageNum) {
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		int totalCount = mvDao.movieTotalCount();
+		
+		MoviePaging p = new MoviePaging(totalCount, pageNum);
+		
+		int start = p.getSkip();
+		int end = p.getQty();
+		
+		params.put("start", start);
+		params.put("end", end);
+		
+		HashMap<String, Object> maps = new HashMap<String, Object>();
+		maps.put("p", p);
+		maps.put("mAll", mvDao.movieAll(params));
+		
+		return maps;
+	}
+
+	@Override
+	public List<HashMap<String, Object>> reserveMoive() {
+		return mvDao.reserveMoive();
 	}
 	
 	

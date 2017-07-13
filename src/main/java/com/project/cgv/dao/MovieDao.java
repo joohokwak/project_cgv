@@ -7,11 +7,15 @@ public interface MovieDao {
 
 	// movie 
 	public List<HashMap<String, Object>> movieList();
+	public List<HashMap<String, Object>> movieAll(HashMap<String, Object> params);
+	public List<HashMap<String, Object>> reserveMoive();
 	public HashMap<String, Object> movieDetail(int m_num);
 	public void likeUp(int m_num);
 	public int likeUpResult(int m_num);
 	public void likeDown(int m_num);
 	public String movieEndTime(HashMap<String, Object> params);
+	public int movieTotalCount();
+	
 	
 	// stealcut
 	public List<HashMap<String, Object>> stealcutList(int m_num);
@@ -43,7 +47,6 @@ public interface MovieDao {
 	
 	public int insertMovie(HashMap<String,Object> params);
 	public int updateMovie(HashMap<String,Object> params);
-	public int updatePoster(HashMap<String,Object> params);
 	public int deleteMovie(int num);
 	
 	public List<HashMap<String,Object>> searchMovieList(HashMap<String,Object> option);
@@ -55,4 +58,26 @@ public interface MovieDao {
 	public List<HashMap<String, Object>> mrList(int m_num);
 	public int mrDelete(int mr_num);
 	
+	//upload
+	public void updatePoster(HashMap<String,Object> inputData);
+	public void insertTrailer(HashMap<String,Object> inputData);
+	public void insertStealCut(HashMap<String,Object> inputData);
+	
+	
 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

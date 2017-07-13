@@ -6,7 +6,15 @@
 <mapper namespace="com.project.cgv.dao.MovieDao">
 	<!-- movie -->
 	<select id="movieList" resultType="hashmap">
-		select * from movie order by m_like desc
+		select * from movie order by m_like desc limit 7
+	</select>
+	
+	<select id="movieAll" resultType="hashmap" parameterType="hashmap">
+		select * from movie order by m_num desc limit #{start}, #{end}
+	</select>
+	
+	<select id="reserveMoive" resultType="hashmap">
+		select * from movie order by m_num desc
 	</select>
 	
 	<select id="movieDetail" parameterType="int" resultType="hashmap">
@@ -27,6 +35,10 @@
 	
 	<select id="movieEndTime" parameterType="hashmap" resultType="String">
 		select date_format(date_add(time(#{movieStartTime}), interval m_time minute), '%H:%i') from movie where m_num=#{m_num}
+	</select>
+	
+	<select id="movieTotalCount" resultType="int">
+		select count(*) from movie
 	</select>
 	
 	
@@ -114,6 +126,20 @@
 		select * from genre
 	</select>
 	
+	<!-- movie_re -->
+	<insert id="mrInsert" parameterType="hashmap">
+		insert into movie_re(mr_img, id, mr_content, mr_score, m_num) values(#{mr_img}, #{id}, #{mr_content}, #{mr_score}, #{m_num})
+	</insert>
+	
+	<select id="mrList" parameterType="int" resultType="hashmap">
+		select * from movie_re where m_num = #{value} order by mr_num desc
+	</select>
+	
+	<delete id="mrDelete" parameterType="int">
+		delete from movie_re where mr_num = #{value}
+	</delete>
+	
+	<!-- movie crud -->
 	<!-- insertData -->
 	<insert id="insertMovie" parameterType="HashMap">
 		insert into movie 
@@ -131,6 +157,14 @@
 			where m_num = #{num}
 	</update>
 	
+	<select id="searchMovieList" parameterType="HashMap" resultType="HashMap">
+		select * from movie order by m_num limit #{skip},#{qty}
+	</select>
+	
+	<select id="getMovieCount" resultType="int">
+		select count(*) from movie; 
+	</select>
+	
 	<sql id="site">
 		<choose>
 			<when test="site == null">
@@ -142,35 +176,15 @@
 		</choose>
 	</sql>
 	
-	<!-- update poster -->
+	<!-- images -->
 	<update id="updatePoster" parameterType="HashMap">
-		update movie set m_poster=#{poster} where m_num=#{num}
+		update movie set m_poster=#{image} where m_num=#{num}
 	</update>
 	
-	<delete id="deleteMovie" parameterType="int">
-		delete from movie where m_num=#{num}
-	</delete>
-	
-	<select id="searchMovieList" parameterType="HashMap" resultType="HashMap">
-		select * from movie order by m_num limit #{skip},#{qty}
-	</select>
-	
-	<select id="getMovieCount" resultType="int">
-		select count(*) from movie; 
-	</select>
-	
-	
-	<!-- movie_re -->
-	<insert id="mrInsert" parameterType="hashmap">
-		insert into movie_re(mr_img, id, mr_content, mr_score, m_num) values(#{mr_img}, #{id}, #{mr_content}, #{mr_score}, #{m_num})
+	<insert id="insertStealCut">
+		insert into stealcut values(0, #{num}, #{image})
 	</insert>
 	
-	<select id="mrList" parameterType="int" resultType="hashmap">
-		select * from movie_re where m_num = #{value} order by mr_num desc
-	</select>
 	
-	<delete id="mrDelete" parameterType="int">
-		delete from movie_re where mr_num = #{value}
-	</delete>
 	
 </mapper>

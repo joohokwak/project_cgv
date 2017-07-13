@@ -7,6 +7,8 @@ public interface MovieService {
 	
 	// movie 
 	public List<HashMap<String, Object>> movieList();
+	public HashMap<String, Object> movieAll(int pageNum);
+	public List<HashMap<String, Object>> reserveMoive();
 	public HashMap<String, Object> movieDetail(int m_num);
 	public void likeUp(int m_num);
 	public int likeUpResult(int m_num);
@@ -42,9 +44,12 @@ public interface MovieService {
 	//genre
 	public List<HashMap<String,Object>> showGenreList();
 	
-	public boolean addMovie(HashMap<String,Object> params);
 	
+	//movie crud
 	public HashMap<String,Object> showSearchResult(int page, HashMap<String,Object> option);
+	public boolean addMovie(HashMap<String,Object> params);
+	public boolean modifyMovie(HashMap<String,Object> params);
+	public boolean deleteMovie(int num);
 	
 	
 	// movie_re

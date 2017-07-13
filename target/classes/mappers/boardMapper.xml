@@ -4,5 +4,47 @@
     "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
     
 <mapper namespace="com.project.cgv.dao.BoardDao">
+	<insert id="insertBoard" parameterType="HashMap">
+		insert into board(b_writer, b_title, b_content, id) values (#{b_writer},#{b_title},#{b_content},#{id})
+	</insert>
+	<update id="updataBoard" parameterType="HashMap">
+		update board set b_title = #{b_title}, b_content = #{b_content} where b_num = #{b_num}
+	</update>
+	<update id="addHit" parameterType="int">
+		update board set b_hit = b_hit+1 where b_num = #{b_num} 
+	</update>
+	<delete id="deleteBoard" parameterType="int">
+		delete from board where b_num = #{b_num}
+	</delete>
+	<select id="selectOne" resultType="HashMap" parameterType="int">
+		select * from board where b_num = #{b_num}
+	</select>
+	<select id="selectAll" resultType="HashMap" parameterType="HashMap">
+		select * from board order by b_num desc limit #{skip},#{qty}
+	</select>
+	<select id="searchBoard" resultType="HashMap" parameterType="HashMap">
+		select b.* , count(r.b_num) as replyCount from board b left join board_reply r on b.b_num = r.b_num where 1=0
+		<if test="b_writer !=null">
+			or b_writer like '%${b_writer}%'
+		</if>
+		<if test="b_title !=null">
+			or b_title like '%${b_title}%'
+		</if>
+		<if test="b_hit != null">
+			or b_hit like '%${b_hit}%'
+		</if>
+		<if test="b_content !=null">
+			or b_content like '%${b_content}%'
+		</if>
+		<if test="type == 0">
+			or 1=1
+		</if>
+		group by b.b_num
+		order by b_num desc limit #{skip},#{qty}
+	</select>
+	<select id="getCount" resultType="int">
+		select count(*) from board
+	</select>
+
 	
 </mapper>

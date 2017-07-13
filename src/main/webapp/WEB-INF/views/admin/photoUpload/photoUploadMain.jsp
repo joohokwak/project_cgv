@@ -48,16 +48,17 @@
          });
          
          $(document).on("drop",".dragAndDropDiv",function(e){
-             $(this).css('border', '2px dotted #0B85A1');
-             e.preventDefault();
-             if($("#option").val() == "" || $("#num").val() == ""){
-        		 alert("옵션을 선택하세요!");
-        		 return false;
-        	 }else{
-        		 var files = e.originalEvent.dataTransfer.files;
-                 var opt = handleFileUpload(files,objDragAndDrop);
-        	 }
-         });
+			$(this).css('border', '2px dotted #0B85A1');
+				e.preventDefault();
+				if($("#option").val() == "" || $("#num").val() == ""){
+					alert("옵션을 선택하세요!");
+					return false;
+				}else{
+					var files = e.originalEvent.dataTransfer.files;
+					var opt = handleFileUpload(files,objDragAndDrop);
+				}
+				
+		 });
           
          $(document).on('dragenter', function (e){
              e.stopPropagation();
@@ -75,19 +76,33 @@
              e.preventDefault();
          });
           
-         function handleFileUpload(files,obj)
-         {
-        	
-            $("#fileUpload").nextAll().remove();
-            for (var i = 0; i < files.length; i++) 
-            {
-            	alert("진입?")
-                 var fd = new FormData();
-                 fd.append('file', files[i]);
-                 var status = new createStatusbar(obj); //Using this we can set progress.
-                 status.setFileNameSize(files[i].name,files[i].size);
-                 sendFileToServer(fd,status);
-            }
+         function handleFileUpload(files,obj){
+	         $("#fileUpload").nextAll().remove();
+	         
+	         if($("#option").val() != "스틸컷" && files.length>1){
+	        	 alert("하나의 이미지 파일만 업로드 가능합니다!");
+	        	 return false;
+	         }
+	          
+	         if(files.length != 0){
+				 for(var i = 0; i < files.length; i++){
+					 var ext = files[i].name.split('.').pop().toLowerCase();
+					 if($.inArray(ext, ['gif','png','jpg','jpeg']) == -1) {
+						 alert('gif,png,jpg,jpeg 파일만 업로드 할수 있습니다.');
+						 return false;
+				 	 }
+				 }
+			 }
+			 
+			 for (var i = 0; i < files.length; i++) 
+			 {
+				 var fd = new FormData();
+				 fd.append('file', files[i]);
+				 var status = new createStatusbar(obj); //Using this we can set progress.
+				 status.setFileNameSize(files[i].name,files[i].size);
+				 sendFileToServer(fd,status);
+			 }
+			 
          }
           
          var rowCount=0;
@@ -175,10 +190,10 @@
          }    	
          
          $("#otpGroup button").click(function(){
-        	$("#option").val($(this).text());
-        	$("#num").val("");
-        	var opt = $(this).attr("id");
+        	var opt = $.trim($(this).text());
         	var list = $("#infoList");
+        	$("#option").val(opt);
+        	$("#num").val("");
         	list.html("");
         	$.ajax({
         		url : "/admin/photo/infoList",
@@ -192,8 +207,14 @@
         			//table을 그리자
 					$(data).each(function(){
 						var infoDiv = $("<div>");
-        				infoDiv.attr("class","info").data("num",this.m_num);
-						infoDiv.text(this.m_title1);
+						if(opt == "배우"){
+							infoDiv.attr("class","info").data("num",this.a_num);
+							infoDiv.text(this.a_kor_name + "(" + this.a_eng_name + ")");
+						}else{
+							infoDiv.attr("class","info").data("num",this.m_num);
+							infoDiv.text(this.m_title1);	
+						}
+        				
 						infoDiv.appendTo("#infoList");
 					});
 					$(".info").click(function(e) {
@@ -203,14 +224,14 @@
         	});
          });
          
-         function check(){
-        	 if($("#option").val() == "" || $("#num").val() == ""){
-        		 alert("옵션을 선택하세요!");
-        		 return false;
-        	 }else{
-	        	 return;
-        	 }
-         }
+//          function check(){
+//         	 if($("#option").val() == "" || $("#num").val() == ""){
+//         		 alert("옵션을 선택하세요!");
+//         		 return false;
+//         	 }else{
+// 	        	 return;
+//         	 }
+//          }
     });///////////////////////////////////
 </script>
 

@@ -11,7 +11,7 @@
 		<tr>
 			<td align="center">
 				CGV_PROJECT<br>
-				곽주호, 김성광, 이해인, 정희석, 추연대
+				곽주호, 김성광, 이해인, 정희석
 			</td>
 		</tr>
 		

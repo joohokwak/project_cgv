@@ -1,0 +1,159 @@
+@CHARSET "UTF-8";
+
+#movieAllWrap {
+	width: 990px;
+	min-height: 400px;
+	margin: 0 auto;
+	margin-top: 50px;
+	margin-bottom: 50px;
+    border-top: 3px solid #241d1e;
+}
+
+#movieAllWrap ul {
+	width: 1045px;
+	padding-top: 0px;
+	margin-left: -30px;
+}
+
+.box-li {
+    float: left;
+	margin: 0 0 -3px 0;
+    width: 197px;
+    padding: 30px 64px 30px 0px;
+/*     border-bottom: 3px solid #241d1e; */
+}
+
+.box-image {
+    position: relative;
+    width: 197px;
+    min-height: 272px;
+    margin-bottom: 10px;
+}
+
+.box-image img {
+	border: 6px solid #000000;
+}
+
+.box-div {
+    width: 990px;
+    position: relative;
+    top: 410px;
+    left: -10px;
+    border-bottom: 3px solid #241d1e;
+}
+
+.box-div2 {
+	clear: both;
+	width: 990px;
+    border-bottom: 3px solid #241d1e;
+}
+
+.box-contents {
+    height: 93px;
+    display: block;
+}
+
+.title {
+    display: block;
+    color: #333333;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    overflow: hidden;
+    font-size: 15px;
+}
+
+.txt-info {
+	display: block;
+    margin-top: 5px;
+    height: 13px;
+    color: #666666;
+    font-family: 'NanumBarunGothicBold';
+    white-space: nowrap;
+}
+
+.paging {
+	width: 990px;
+	height: 30px;
+	line-height: 30px;
+	margin-top: 20px;
+	text-align: center;
+}
+
+.paging-span1 {
+	display: inline-block;
+	width: 25px;
+	height: 30px;
+	border: 1px solid green;
+	text-align: center;
+	margin-right: 5px;
+	background-color: green;
+	font-size: 15px;
+	font-weight: bold;
+	position: relative;
+	color: #fff;
+}
+
+.paging-span2 {
+	display: inline-block;
+	width: 25px;
+	height: 30px;
+	border: 1px solid green;
+	text-align: center;
+	margin-right: 5px;
+	cursor: pointer;
+}
+
+.paging-span2 a {
+	font-size: 15px;
+	font-weight: bold;
+	position: relative;
+}
+
+.boxLike {
+	margin-top: 10px;
+}
+
+.heart-box {
+	display: inline-block;
+    width: 23px;
+    height: 21px;
+    background: url(/resources/images/login/sprite_icon.png) -60px -65px no-repeat;
+    vertical-align: middle;
+    zoom: 1;
+    cursor: pointer;
+}
+
+.like_count {
+	display: inline-block;
+    width: 52px;
+    height: 25px;
+    margin-right: 4px;
+    line-height: 25px;
+    vertical-align: middle;
+    border: 1px solid #cccccc;
+    border-radius: 7px;
+    text-align: right;
+}
+
+.link-reservation {
+	display: inline-block;
+    width: 57px;
+    position: relative;
+    top: 8px;
+    height: 25px;
+    background: url(/resources/images/movie/sprite_btn.png) 0 0 no-repeat;
+    background-position: -96px 0px;
+}
+
+
+
+
+
+
+
+
+
+
+
+
+

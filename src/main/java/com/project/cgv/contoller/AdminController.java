@@ -21,6 +21,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import com.project.cgv.service.ActorService;
 import com.project.cgv.service.MovieService;
 import com.project.cgv.service.NoticeService;
+import com.project.cgv.service.UploadService;
 
 @Controller
 @RequestMapping("/admin/*")
@@ -39,6 +40,9 @@ public class AdminController {
 	//actor
 	@Autowired
 	private ActorService aService;
+	
+	@Autowired
+	private UploadService upService;
 	
 	
 	@RequestMapping("/main")//.admin.layout.body
@@ -159,8 +163,8 @@ public class AdminController {
 		String opt = (String) params.get("opt");
 		
 		try{
-			if(opt.equals("actorBtn")){
-				entity = new ResponseEntity<List<HashMap<String,Object>>>(HttpStatus.OK);
+			if(opt.equals("배우")){
+				entity = new ResponseEntity<List<HashMap<String,Object>>>(aService.showActorList(),HttpStatus.OK);
 			}else{
 				entity = new ResponseEntity<List<HashMap<String,Object>>>(mService.movieList(),HttpStatus.OK);
 			}
@@ -183,42 +187,21 @@ public class AdminController {
 		
 		String option = multipartRequest.getParameterMap().get("option")[0]; // 버튼
 		String num = multipartRequest.getParameterMap().get("num")[0]; // 선택된 아이템
-		
-		Iterator<String> itr =  multipartRequest.getFileNames();
         
-        String filePath = "C:/test";
+        System.out.println("option : " + option);
+        System.out.println("num : " + num);
+        
+        HashMap<String,Object> params = new HashMap<String,Object>();
+        params.put("option", option);
+        params.put("num", num);
+        params.put("files", multipartRequest);
+        
+        upService.uploadFile(params);
          
-        while (itr.hasNext()) { //받은 파일들을 모두 돌린다.
-            MultipartFile mpf = multipartRequest.getFile(itr.next());
-            
-            //테스트후 지우자
-            String originFileName = mpf.getOriginalFilename();
-            System.out.println("FILE_INFO: "+originFileName); //받은 파일 리스트 출력
-            
-            String saveFileName = makeFileName(originFileName);
-            String fileFullPath = filePath+"/"+saveFileName; //파일 전체 경로
-            
-            try {
-                //파일 저장
-                mpf.transferTo(new File(fileFullPath));
-      
-            } catch (Exception e) {
-                System.out.println("postTempFile_ERROR======>"+fileFullPath);
-                e.printStackTrace();
-                return "fail";
-            }
-       }//while
+        
         return "success";
     }
 	
-	//파일이름, 실제 데이터
-	private String makeFileName(String originalName){
-		//파일 이름이 겹치지 않도록 UUID를 이용.
-		
-		UUID uid = UUID.randomUUID();
-		String savedName = uid.toString() + "_" + originalName;
-		return savedName;
-	}
 	// Photo End //////////////////////////////////////////////////////////////////////////////////////////
 	
 	
@@ -384,7 +367,10 @@ public class AdminController {
 		return "forward:/admin/result";
 	}
 	// Actor End //////////////////////////////////////////////////////////////////////////////////////////
+	
 	// Manage Start //////////////////////////////////////////////////////////////////////////////////////////
+	
+	// Manage End //////////////////////////////////////////////////////////////////////////////////////////
 	
 	
 	
