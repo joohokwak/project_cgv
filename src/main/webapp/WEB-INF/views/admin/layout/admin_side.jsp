@@ -15,9 +15,11 @@
 		<li><a href="#">회원 관리</a></li>
 		<li><a href="#">게시판 관리</a></li>
 		<li><a href="/admin/notice/list">공지사항 관리</a></li>
+		<li><a href="/admin/movie/list">영화 관리</a></li>
+		<li><a href="/admin/actor/list">배우 관리</a></li>
+		<li><a href="/admin/photo/uploadForm">사진 업로드</a></li>
 		<li><a href="#">영화관 관리</a></li>
 		<li><a href="#">상영관 관리</a></li>
-		<li><a href="#">영화 관리</a></li>
 		<li><a href="#">예매 관리</a></li>
 		<li><a href="#">매출 관리</a></li>
 	</ul>

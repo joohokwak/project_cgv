@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.cgv.dao.MemberDao">
+	<select id="getMember" parameterType="String" resultType="hashmap">
+		select * from member where id = #{id}
+	</select>
+	
+	<insert id="setMember" parameterType="hashmap">
+		insert into member(id,pass,name,email,birth,phone) value(#{id},#{pass},#{name},#{email},#{birth},#{phone})
+	</insert>
+	
+	<update id="savePoint" parameterType="hashmap">
+		update member set point = point + #{point} where id = #{id}
+	</update>
+	
+	<update id="updateFTheater" parameterType="hashmap">
+		update member set f1 = #{f1}, f2= #{f2}, f3= #{f3}, f4=#{f4}, f5=#{f5}
+	</update>
+</mapper>

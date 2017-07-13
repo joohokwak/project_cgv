@@ -15,7 +15,7 @@
 				<tiles:insertAttribute name="side"/>
 			</td>
 			
-			<td>
+			<td valign="top">
 				<tiles:insertAttribute name="body"/>
 			</td>
 		</tr>
