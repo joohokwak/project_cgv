@@ -41,6 +41,25 @@
 				window.open("/member/favoriteTheaterPop", "새창", "width=700, height=580, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
 			});
 			
+			// findTheater
+			$(".findTheater").click(function(e) {
+				var t_name = $.trim($(this).text());
+				
+				if(t_name.indexOf('CGV') != -1) {
+					$.ajax({
+						url : "/member/findTheater",
+						type : "post",
+						data : 	{"t_name" : t_name},
+						dataType : "json",
+						success : function(data) {
+							location.replace("/movie/theaterHome?t_num="+data.t_num);
+						}
+					});
+				}
+				
+			});
+			
+			
 		});
 		
 		function initMap(myLoc) {
@@ -68,7 +87,7 @@
 				<div class="sect-favorite">
 		            <h4><img src="/resources/images/theater/h4_favorite_cgv.png" alt="자주가는 CGV"></h4>
 		            <ul id="favoriteTheaters">
-	                    <li>
+	                    <li class="findTheater">
 	                    	<a href="#">
 	                    		<span>
 	                    			<c:choose>
@@ -78,41 +97,41 @@
 	                    		</span>
 	                    	</a>
 	                    </li>
-	                    <li>
+	                    <li class="findTheater">
 	                    	<a href="#">
 	                    		<span>
 	                    			<c:choose>
-	                    				<c:when test="${not empty member.f1 }">${member.f1 }</c:when>
+	                    				<c:when test="${not empty member.f2 }">${member.f2 }</c:when>
 	                    				<c:otherwise>2순위</c:otherwise>
 	                    			</c:choose>
 	                    		</span>
 	                    	</a>
 	                    </li>
-	                    <li>
+	                    <li class="findTheater">
 	                    	<a href="#">
 	                    		<span>
 	                    			<c:choose>
-	                    				<c:when test="${not empty member.f1 }">${member.f1 }</c:when>
+	                    				<c:when test="${not empty member.f3 }">${member.f3 }</c:when>
 	                    				<c:otherwise>3순위</c:otherwise>
 	                    			</c:choose>
 	                    		</span>
 	                    	</a>
 	                    </li>
-	                    <li>
+	                    <li class="findTheater">
 	                    	<a href="#">
 	                    		<span>
 	                    			<c:choose>
-	                    				<c:when test="${not empty member.f1 }">${member.f1 }</c:when>
+	                    				<c:when test="${not empty member.f4 }">${member.f4 }</c:when>
 	                    				<c:otherwise>4순위</c:otherwise>
 	                    			</c:choose>
 	                    		</span>
 	                    	</a>
 	                    </li>
-	                    <li>
+	                    <li class="findTheater">
 	                    	<a href="#">
 	                    		<span>
 	                    			<c:choose>
-	                    				<c:when test="${not empty member.f1 }">${member.f1 }</c:when>
+	                    				<c:when test="${not empty member.f5 }">${member.f6 }</c:when>
 	                    				<c:otherwise>5순위</c:otherwise>
 	                    			</c:choose>
 	                    		</span>
