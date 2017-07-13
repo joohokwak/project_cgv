@@ -10,5 +10,7 @@ public interface MemberDao {
 	
 	public void savePoint(HashMap<String, Object> params);
 	
-	public void updateFTheater(HashMap<String, Object> params);
+	public int updateFTheater(HashMap<String, Object> params);
+	
+	public HashMap<String, Object> findTheater(String t_name);
 }

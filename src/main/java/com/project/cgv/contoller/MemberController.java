@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
+import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitterReturnValueHandler;
 
 import com.project.cgv.service.MemberService;
 import com.project.cgv.service.MovieService;
@@ -116,6 +117,24 @@ public class MemberController {
 		return "/member/favoriteTheaterPop";
 	}
 	
+	@ResponseBody
+	@RequestMapping("/memberFupdate")
+	public String memberFupdate(@RequestParam HashMap<String, Object> params,HttpSession session){
+		int result = mService.memberFupdate(params);
+		HashMap<String, Object> member = (HashMap<String, Object>)session.getAttribute("member");
+		if(result > 0) {
+			session.setAttribute("member", mService.getMember((String)member.get("id")));
+			return "success";
+		}
+		
+		return "fail";
+	}
+	
+	@ResponseBody
+	@RequestMapping(value= "/findTheater" , method=RequestMethod.POST)
+	public HashMap<String, Object> findTheater(@RequestParam("t_name") String t_name){
+		return mService.findTheater(t_name);
+	}
 	
 	
 }

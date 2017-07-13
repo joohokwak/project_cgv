@@ -123,7 +123,37 @@
 				$("#f5").val($("#spanf5").text());
 			}
 		});
+		
+		
+		
+		// submit
+		$(".submit_btn").click(function(e) {
+			
+			$.ajax({
+				url : "/member/memberFupdate",
+				type : "post",
+				data : 	$("#Fform").serialize(),
+				dataType : "text",
+				success : function(data) {
+					if(data == "success") {
+						opener.location.reload();
+						self.close();
+					}
+				}
+			});
+			
+			//$("#Fform").submit();
+		});
+		
+		
+		$(".c_btn").click(function() {
+			self.close();
+		})
 	});
+	
+	
+
+	
 </script>
 </head>
 <body>
@@ -157,13 +187,13 @@
 			</div>
 			<div class=select_choice>
 				<div class="choice_theater">
-				<span>${member.name }( ${member.id } ) 님이 자주가는 CGV</span>
+				<span>${member.name }( ${member.pass } ) 님이 자주가는 CGV</span>
 					<ul>
 						<li class="none">
 							<div class="box-polaroid">
 								<div class="box-inner">
 									<div class="theater">
-										<span id="spanf1">${f1 }</span>
+										<span id="spanf1">${member.f1 }</span>
 									</div>
 									<button class="theater_delete_btn1">
 									</button>
@@ -174,7 +204,7 @@
 							<div class="box-polaroid">
 								<div class="box-inner">
 									<div class="theater">
-										<span id="spanf2">${f2 }</span>
+										<span id="spanf2">${member.f2 }</span>
 									</div>
 									<button class="theater_delete_btn2">
 									</button>
@@ -185,7 +215,7 @@
 							<div class="box-polaroid">
 								<div class="box-inner">
 									<div class="theater">
-										<span id="spanf3">${f3 }</span>
+										<span id="spanf3">${member.f3 }</span>
 									</div>
 									<button class="theater_delete_btn3">
 									</button>
@@ -196,7 +226,7 @@
 							<div class="box-polaroid">
 								<div class="box-inner">
 									<div class="theater">
-										<span id="spanf4">${f4 }</span>
+										<span id="spanf4">${member.f4 }</span>
 									</div>
 									<button class="theater_delete_btn4">
 									</button>
@@ -207,7 +237,7 @@
 							<div class="box-polaroid">
 								<div class="box-inner">
 									<div class="theater">
-										<span id="spanf5">${f5 }</span>
+										<span id="spanf5">${member.f5 }</span>
 									</div>
 									<button class="theater_delete_btn5">
 									</button>
@@ -236,13 +266,13 @@
 							</tr>
 							<tr>
 								<td colspan="3" align="center" style="padding-top: 50px;">
-									<form action="/member/memberFupdate">
-										<input type="hidden" id="f1" name="f1">
-										<input type="hidden" id="f2" name="f2">
-										<input type="hidden" id="f3" name="f3">
-										<input type="hidden" id="f4" name="f4">
-										<input type="hidden" id="f5" name="f5">
-										<input type="submit" class="submit_btn" value="등록">111
+									<form id="Fform" action="/member/memberFupdate">
+										<input type="hidden" id="f1" name="f1" value="${member.f1 }">
+										<input type="hidden" id="f2" name="f2" value="${member.f2 }">
+										<input type="hidden" id="f3" name="f3" value="${member.f3 }">
+										<input type="hidden" id="f4" name="f4" value="${member.f4 }">
+										<input type="hidden" id="f5" name="f5" value="${member.f5 }">
+										<input type="submit" class="submit_btn" value="등록">
 										<button type="button" class="c_btn">취소</button>
 									</form>
 								</td>

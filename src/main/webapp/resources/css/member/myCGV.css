@@ -71,6 +71,11 @@
 	border: 2px dashed #7b6746;
 	height: 37px;
 	cursor: pointer;
+	color: black;
+	font-size: 15px;
+	overflow: hidden;
+	line-height: 37px;
+	text-align: center;
 }
 .favoriteTheaters_update{
 	margin: 5px;

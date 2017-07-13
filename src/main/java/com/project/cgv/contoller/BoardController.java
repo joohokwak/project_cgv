@@ -54,9 +54,7 @@ public class BoardController {
 		return ".board.boardList";
 		
 	}
-<<<<<<< HEAD
-=======
-	
+
 	@RequestMapping("/boardwrite")
 	public String WriteForm(){
 		
@@ -140,5 +138,4 @@ public class BoardController {
 	
 	
 	
->>>>>>> branch 'master' of https://github.com/joohokwak/project_cgv.git
 }

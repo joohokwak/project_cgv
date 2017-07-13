@@ -12,15 +12,36 @@ $(function(){
 	$(".member_data_update_btn").click(function() {
 		window.open("/member/memberUpdatePop", "새창", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
 	});
-});
-$(function(){
+	
 	$(".favoriteTheaters_update").click(function() {
 		window.open("/member/favoriteTheaterPop", "새창", "width=700, height=580, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
 	});
 	$(".theaters_in").click(function() {
-		window.open("/member/favoriteTheaterPop", "새창", "width=700, height=580, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+		if(!$(this).children("span").text()){
+			window.open("/member/favoriteTheaterPop", "새창", "width=700, height=580, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+		}else{
+			
+			$.ajax({
+				url : "/member/findTheater",
+				type : "post",
+				data : 	{"t_name" : $(this).children("span").text()},
+				dataType : "json",
+				success : function(data) {
+					location.replace("/movie/theaterHome?t_num="+data.t_num);
+				}
+			});
+		}
 	});
+	
+	var pre;
+	$(".theaters").hover(function(i) {
+		pre = $(this).css("border");
+		$(this).css("border", "2px solid white");
+	}, function(o) {
+		$(this).css("border", pre);
+	})
 });
+
 </script>
 </head>
 <body>
@@ -41,32 +62,34 @@ $(function(){
 				<ul>
 					<li class="theaters">
 						<div class="theaters_in">
-							
+							<span>${member.f1 }</span>
 						</div>					
 					</li>
 					<li class="theaters">
 						<div class="theaters_in">
-							
+							<span>${member.f2 }</span>
 						</div>		
 					</li>
 					<li class="theaters">
 						<div class="theaters_in">
-							
+							<span>${member.f3 }</span>
 						</div>		
 					</li>
 					<li class="theaters">
 						<div class="theaters_in">
-							
+							<span>${member.f4 }</span>
 						</div>		
 					</li>
 					<li class="theaters">
 						<div class="theaters_in">
-							
+							<span>${member.f5 }</span>
 						</div>		
 					</li>
-					<button class="favoriteTheaters_update">
-						<span>자주가는 CGV<br>설정하기</span>
-					</button>
+					<li>
+						<button class="favoriteTheaters_update">
+							<span>자주가는 CGV<br>설정하기</span>
+						</button>
+					</li>		
 				</ul>
 				</div>
 				
