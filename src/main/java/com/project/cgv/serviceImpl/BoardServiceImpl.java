@@ -59,7 +59,8 @@ public class BoardServiceImpl implements BoardService {
 	public HashMap<String, Object> viewBoard(int num) {
 		
 		HashMap<String, Object> result = bDao.selectOne(num);
-		bDao.addHit(num);
+		
+		//bDao.addHit(num);
 		
 		return result;
 	}
@@ -77,6 +78,11 @@ public class BoardServiceImpl implements BoardService {
 		
 		bDao.updataBoard(params);
 		
+	}
+
+	@Override
+	public void addHit(int num) {
+		bDao.addHit(num);
 	}
 
 

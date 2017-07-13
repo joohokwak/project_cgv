@@ -3,7 +3,7 @@
 #movieListWrap {
 	margin: 0 auto;
 	width: 100%;
-	margin-top: 70px;
+	margin-top: 20px;
 }
 
 #movieListTable1 {
@@ -168,5 +168,27 @@
     text-align: right;
 }
 
+.btn-more-fontbold {
+	height: 20px;
+    font-size: 13px;
+    font-family: 'NanumBarunGothicBold';
+    font-weight: bold;
+    color: #333;
+    line-height: 20px;
+    background-color: transparent;
+    float: right;
+    border: none;
+    cursor: pointer;
+}
+
+.link-more {
+    display: inline-block;
+    width: 20px;
+    height: 19px;
+    background: url(/resources/images/movie/sprite_btn.png) -50px -62px no-repeat;
+    vertical-align: middle;
+    font: 0/0 a;
+    zoom: 1;
+}
 
 

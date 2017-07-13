@@ -118,6 +118,18 @@ public class MovieController {
 		return mv;
 	}
 	
+	@RequestMapping("/movieAll")
+	public ModelAndView movieAll(@RequestParam(defaultValue="1") int pageNum) {
+		ModelAndView mv = new ModelAndView(".movie.movieAll");
+		
+		HashMap<String, Object> params = new HashMap<String, Object>();
+		params.put("pageNum", pageNum);
+		
+		mv.addAllObjects(mvService.movieAll(pageNum));
+		
+		return mv;
+	}
+	
 	
 	
 	public Float[] geoCoding(String location) {

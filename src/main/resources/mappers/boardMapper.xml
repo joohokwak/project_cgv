@@ -5,7 +5,7 @@
     
 <mapper namespace="com.project.cgv.dao.BoardDao">
 	<insert id="insertBoard" parameterType="HashMap">
-		insert into board values ( 0,#{b_writer},#{b_title},#{b_content},now(),0 )
+		insert into board(b_writer, b_title, b_content, id) values (#{b_writer},#{b_title},#{b_content},#{id})
 	</insert>
 	<update id="updataBoard" parameterType="HashMap">
 		update board set b_title = #{b_title}, b_content = #{b_content} where b_num = #{b_num}

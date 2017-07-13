@@ -28,8 +28,10 @@ create table board(
 	b_title varchar(200),
 	b_content text,
 	b_regdate timestamp default now(),
-	b_hit int default 0
+	b_hit int default 0,
+	id varchar(20) not null
 );
+
 
 
 create table board_reply(

@@ -269,6 +269,7 @@ function dateChoice() {
 					var curHour = d.getHours();
 					var curMin = d.getMinutes();
 					
+					
 					var deHour = element.mt_time.split(":")[0];
 					var deMin = element.mt_time.split(":")[1];
 					
@@ -279,6 +280,11 @@ function dateChoice() {
 									" font-weight: bold; text-align: center; cursor: pointer; margin-bottom: 15px;'>"+
 									"<span data-screen='"+element.s_title+"' data-screenNum='"+element.s_num+"' style='display: inline-block; width: 48px; height: 19px; text-decoration: line-through; cursor: auto;'>"+element.mt_time+"</span></span><span style='color: green;'>"
 									+"종료</span>";
+							}else {
+								str += "<span class='timeChoice' style='border: 1px solid #cfcdc3; padding: 2px; display: inline-block; width: 50px; height: 21px; font-size: 14px;"+
+									" font-weight: bold; text-align: center; cursor: pointer; margin-bottom: 15px;'>"+
+									"<span data-screen='"+element.s_title+"' data-screenNum='"+element.s_num+"' style='display: inline-block; width: 48px; height: 19px;'>"+element.mt_time+"</span></span><span style='color: green;'>"
+									+timeInfo+"석</span>";
 							}
 						}else if(curHour - deHour > 0) {
 							str += "<span class='timeChoice' style='border: 1px solid #cfcdc3; padding: 2px; display: inline-block; width: 50px; height: 21px; font-size: 14px; text-decoration: line-through; cursor: auto;"+
