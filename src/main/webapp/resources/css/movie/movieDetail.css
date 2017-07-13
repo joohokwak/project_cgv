@@ -460,6 +460,13 @@
     cursor: pointer;
 }
 
+.actorInfo {
+	cursor: pointer;
+	text-decoration: underline;
+}
 
+#dialog {
+	display: none;
+}
 
 

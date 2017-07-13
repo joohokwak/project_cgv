@@ -170,6 +170,64 @@ $(function() {
 		
 	});
 	
+	// 배우 상세정보
+	$(".actorInfo").click(function(e) {
+		var a_num = $(this).attr("data-anum");
+		
+		var str = "";
+		
+		$.ajax({
+			url : "/movie/actorDetail",
+			type : "post",
+			data : {"a_num" : a_num},
+			dataType : "json",
+			success: function(data) {
+				var a_num = data.a_num;
+				var a_kor_name = data.a_kor_name;
+				var a_eng_name = data.a_eng_name;
+				var a_birth = data.a_birth;
+				var a_nation = data.a_nation;
+				var a_job = data.a_job;
+				var a_edulev = data.a_edulev;
+				var a_site = data.a_site;
+				var a_img = data.a_img;
+				var a_biography = data.a_biography;
+				
+				str += "<div style='width: 604px'>";
+				str += "	<div style='width: 200px; height: 250px; float: left;'>";
+				str += "		<img src='/resources/images/actor/"+a_img+"' width='200px' height='250px'>";
+				str += "	</div>";
+				
+				str += "	<div style='width: 390px; height: 250px; float: right; margin-left: 10px;'>";
+				str += "		<div style='height: 60px; border-bottom: 2px solid #ddd;'>";
+				str += "			<div style='height: 35px; line-height: 35px; font-size:17px; font-weight: bold;'>"+a_kor_name+"</div>";
+				str += "			<div style='height: 20px; line-height: 20px;'>"+a_eng_name+"</div>";
+				str += "		</div>";
+				
+				str += "		<div style='overflow: hidden;'>";
+				str += "			<span style='display: inline-block; width: 60px; margin-top: 5px;'>출생</span>"+a_birth+"<br>";
+				str += "			<span style='display: inline-block; width: 60px; margin-top: 5px;'>국적</span>"+a_nation+"<br>";
+				if(a_job != null) {
+					str += "		<span style='display: inline-block; width: 60px; margin-top: 5px;'>직업</span>"+a_job+"<br>"
+				}
+				if(a_edulev != null) {
+					str += "		<span style='display: inline-block; width: 60px; margin-top: 5px;'>학력</span>"+a_edulev+"<br>";
+				}
+				if(a_site != null) {
+					str += "		<span style='display: inline-block; width: 60px; margin-top: 5px;'>사이트</span>"+
+					"<a href='"+a_site+"' target='_blank' style='text-decoration: underline;'>"+a_site+"</a><br>";
+				}
+				str += "		</div>";
+				str += "	</div>";
+				str += "</div>"
+					
+				$("#dialog").html(str);
+			}
+		});
+		
+		$("#dialog").dialog({width:'620px'});
+	});
+	
 });
 
 

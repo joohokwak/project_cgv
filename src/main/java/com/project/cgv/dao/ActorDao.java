@@ -12,4 +12,5 @@ public interface ActorDao {
 	public int updateActor(HashMap<String,Object> params);
 	public int deleteActor(int num);
 	public void updateActorImage(HashMap<String,Object> inputData);
+	public List<HashMap<String, Object>> getMovieActor(int m_num);
 }

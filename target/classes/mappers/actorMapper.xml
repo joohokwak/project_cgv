@@ -46,6 +46,9 @@
 	</update>
 	
 	
+	<select id="getMovieActor" parameterType="int" resultType="hashmap">
+		select actor.*, a_kor_name from actor join management using(a_num) where m_num = #{value}
+	</select>
 	
 	
 	

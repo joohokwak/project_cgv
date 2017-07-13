@@ -86,4 +86,9 @@ public class ActorServiceImpl implements ActorService{
 			return false;
 		}
 	}
+
+	@Override
+	public List<HashMap<String, Object>> getMovieActor(int m_num) {
+		return aDao.getMovieActor(m_num);
+	}
 }

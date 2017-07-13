@@ -248,6 +248,11 @@ public class MovieServiceImpl implements MovieService {
 	public List<HashMap<String, Object>> reserveMoive() {
 		return mvDao.reserveMoive();
 	}
+
+	@Override
+	public List<HashMap<String, Object>> salseManagement() {
+		return mvDao.salseManagement();
+	}
 	
 	
 }

@@ -15,18 +15,25 @@
 	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 	<script src="/resources/js/jquery.rateyo.js"></script>
 	<link rel="stylesheet" href="/resources/css/jquery.rateyo.css">
+	<link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
 	<script type="text/javascript" src="/resources/js/movie/movieDetail.js"></script>
 	<script type="text/javascript">
 		$(function() {
 			var reCheck = "${reCheck}";
 			
+			//$("#dialog").hide();
+			
 			if(Number(reCheck) == 1) {
 				pageScroll();
 			}
+			
 		});
 	</script>
 </head>
 <body>
+	<div id="dialog" title="인물정보"></div>
+
 	<div id="movieDetailWrap">
 		<hr style="width: 930px; background-color: black; height: 3px; margin-left: 0px; margin-bottom: 30px;">
 	
@@ -43,8 +50,14 @@
 			
 			<div id="detailSpec">
 				감독: ${m_producer }<br>
-				배우: <br>
+				배우: 
+					<c:forEach var="actor" items="${aList }" varStatus="st">
+						<a class="actorInfo" data-anum="${actor.a_num }" data-all="${actor }">${actor.a_kor_name }</a>
+						<c:if test="${not st.last }">, </c:if>
+					</c:forEach>
+				<br>
 				장르: ${m_genre }<br>
+				${m_grade }, ${m_time}분, ${m_made }<br>
 				개봉: ${m_start }<br>
 				공식사이트: <a href="http://${m_site }" target="_blank">${m_site }</a>
 			</div>
@@ -198,5 +211,6 @@
 			</div>
 		</div>
 	</div>
+	
 </body>
 </html>

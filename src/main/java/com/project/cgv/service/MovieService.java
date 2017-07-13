@@ -56,5 +56,9 @@ public interface MovieService {
 	public int mrInsert(HashMap<String, Object> params);
 	public List<HashMap<String, Object>> mrList(int m_num);
 	public int mrDelete(int mr_num);
+	
+	
+	// 매출관리
+	public List<HashMap<String, Object>> salseManagement();
 
 }

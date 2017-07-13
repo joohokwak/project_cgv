@@ -10,5 +10,6 @@ public interface ActorService {
 	public boolean addActor(HashMap<String,Object> params);
 	public boolean modifyActor(HashMap<String,Object> params);
 	public boolean removeActor(int num);
+	public List<HashMap<String, Object>> getMovieActor(int m_num);
 	
 }

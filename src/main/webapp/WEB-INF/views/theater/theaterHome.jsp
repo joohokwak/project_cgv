@@ -36,6 +36,11 @@
 				}
 			});
 			
+			// 자주가는 CGV 등록 팝업
+			$("#btn_set_my_favorite").click(function() {
+				window.open("/member/favoriteTheaterPop", "새창", "width=700, height=580, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+			});
+			
 		});
 		
 		function initMap(myLoc) {
@@ -63,11 +68,56 @@
 				<div class="sect-favorite">
 		            <h4><img src="/resources/images/theater/h4_favorite_cgv.png" alt="자주가는 CGV"></h4>
 		            <ul id="favoriteTheaters">
-	                    <li><a href="#"><span>1순위</span></a></li>
-	                    <li><a href="#"><span>2순위</span></a></li>
-	                    <li><a href="#"><span>3순위</span></a></li>
-	                    <li><a href="#"><span>4순위</span></a></li>
-	                    <li><a href="#"><span>5순위</span></a></li>
+	                    <li>
+	                    	<a href="#">
+	                    		<span>
+	                    			<c:choose>
+	                    				<c:when test="${not empty member.f1 }">${member.f1 }</c:when>
+	                    				<c:otherwise>1순위</c:otherwise>
+	                    			</c:choose>
+	                    		</span>
+	                    	</a>
+	                    </li>
+	                    <li>
+	                    	<a href="#">
+	                    		<span>
+	                    			<c:choose>
+	                    				<c:when test="${not empty member.f1 }">${member.f1 }</c:when>
+	                    				<c:otherwise>2순위</c:otherwise>
+	                    			</c:choose>
+	                    		</span>
+	                    	</a>
+	                    </li>
+	                    <li>
+	                    	<a href="#">
+	                    		<span>
+	                    			<c:choose>
+	                    				<c:when test="${not empty member.f1 }">${member.f1 }</c:when>
+	                    				<c:otherwise>3순위</c:otherwise>
+	                    			</c:choose>
+	                    		</span>
+	                    	</a>
+	                    </li>
+	                    <li>
+	                    	<a href="#">
+	                    		<span>
+	                    			<c:choose>
+	                    				<c:when test="${not empty member.f1 }">${member.f1 }</c:when>
+	                    				<c:otherwise>4순위</c:otherwise>
+	                    			</c:choose>
+	                    		</span>
+	                    	</a>
+	                    </li>
+	                    <li>
+	                    	<a href="#">
+	                    		<span>
+	                    			<c:choose>
+	                    				<c:when test="${not empty member.f1 }">${member.f1 }</c:when>
+	                    				<c:otherwise>5순위</c:otherwise>
+	                    			</c:choose>
+	                    		</span>
+	                    	</a>
+	                    </li>
 		            </ul>
 		            <button id="btn_set_my_favorite" type="button" title="새창"></button>
         		</div>

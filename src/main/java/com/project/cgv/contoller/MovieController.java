@@ -20,6 +20,7 @@ import com.google.code.geocoder.model.GeocoderRequest;
 import com.google.code.geocoder.model.GeocoderResult;
 import com.google.code.geocoder.model.GeocoderStatus;
 import com.google.code.geocoder.model.LatLng;
+import com.project.cgv.service.ActorService;
 import com.project.cgv.service.MemberService;
 import com.project.cgv.service.MovieService;
 
@@ -29,6 +30,7 @@ public class MovieController {
 	
 	@Autowired private MovieService mvService;
 	@Autowired private MemberService mService;
+	@Autowired private ActorService aService;
 	
 	@RequestMapping("/movieList")
 	public ModelAndView movieList() {
@@ -46,6 +48,7 @@ public class MovieController {
 		mv.addObject("trailerList", mvService.trailerList(m_num));
 		mv.addObject("mrList", mvService.mrList(m_num));
 		mv.addAllObjects(mvService.movieDetail(m_num));
+		mv.addObject("aList", aService.getMovieActor(m_num));
 		return mv;
 	}
 	
@@ -128,6 +131,12 @@ public class MovieController {
 		mv.addAllObjects(mvService.movieAll(pageNum));
 		
 		return mv;
+	}
+	
+	@ResponseBody
+	@RequestMapping("/actorDetail")
+	public HashMap<String, Object> actorDetail(int a_num) {
+		return aService.showActor(a_num);
 	}
 	
 	

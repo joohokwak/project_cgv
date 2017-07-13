@@ -63,6 +63,9 @@ public interface MovieDao {
 	public void insertTrailer(HashMap<String,Object> inputData);
 	public void insertStealCut(HashMap<String,Object> inputData);
 	
+	// 매출관리
+	public List<HashMap<String, Object>> salseManagement();
+	
 	
 }
 
