@@ -201,13 +201,6 @@ public class MovieServiceImpl implements MovieService {
 		}
 	}
 
-	@Transactional
-	@Override
-	public boolean deleteMovie(int num) {
-		return false;
-	}
-	
-
 	@Override
 	public int mrInsert(HashMap<String, Object> params) {
 		return mvDao.mrInsert(params);
@@ -250,6 +243,57 @@ public class MovieServiceImpl implements MovieService {
 	}
 
 	@Override
+
+	public List<HashMap<String, Object>> showScreenList() {
+		return mvDao.selectAllScreen();
+	}
+
+	@Override
+	public List<HashMap<String, Object>> showMoviesInfo() {
+		return mvDao.selectMovieView();
+	}
+
+	@Override
+	public boolean addMovieTime(HashMap<String, Object> params) {
+	
+		HashMap<String,Object> screen = new HashMap<String,Object>();
+		HashMap<String,Object> movieTime = new HashMap<String,Object>();
+		
+		screen.put("s_title", params.get("s_title"));
+		screen.put("t_num", params.get("t_num"));
+		screen.put("m_num", params.get("m_num"));
+		screen.put("seat", params.get("seat"));
+		
+		int result1 = mvDao.insertScreen(screen);
+		
+		movieTime.put("mt_date",params.get("mt_date"));
+		movieTime.put("mt_time", params.get("mt_time"));
+		
+		
+		
+		
+		
+		
+		int result = 1;
+		mvDao.insertMovieTime(params);
+		
+		if(result == 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
+
+	@Override
+	public boolean removeMovieTime(int num) {
+		int result = mvDao.deleteMovieTime(num);
+		
+		if(result == 1){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	public List<HashMap<String, Object>> salseManagement() {
 		return mvDao.salseManagement();
 	}

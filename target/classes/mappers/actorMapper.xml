@@ -41,7 +41,7 @@
 		delete from actor where a_num=#{num}
 	</delete>
 	
-	<update id="updateActorImage">
+	<update id="updateActorImage" parameterType="HashMap">
 		update actor set a_img=#{image} where a_num=#{num}
 	</update>
 	

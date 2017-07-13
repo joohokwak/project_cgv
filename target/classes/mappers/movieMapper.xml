@@ -162,7 +162,7 @@
 	</select>
 	
 	<select id="getMovieCount" resultType="int">
-		select count(*) from movie; 
+		select count(*) from movie
 	</select>
 	
 	<sql id="site">
@@ -181,9 +181,30 @@
 		update movie set m_poster=#{image} where m_num=#{num}
 	</update>
 	
-	<insert id="insertStealCut">
+	<insert id="insertStealCut" parameterType="HashMap">
 		insert into stealcut values(0, #{num}, #{image})
 	</insert>
+	
+	<!-- screen -->
+	<select id="selectAllScreen" resultType="HashMap">
+		select * from screen order by s_num asc
+	</select>
+	
+	<select id="selectMovieView" resultType="HashMap">
+		select * from movie_info
+	</select>
+	
+	<insert id="insertMovieTime" parameterType="HashMap">
+		insert into movietime values(0,#{mt_date},#{mt_time},#{s_num})
+	</insert>
+	
+	<insert id="insertScreen">
+		insert into screen values(0,#{s_title},#{t_num},#{m_num},#{seat})
+	</insert>
+	
+	<delete id="deleteMovieTime" parameterType="int">
+		delete from movietime where mt_num=#{num}
+	</delete>
 	
 	
 	<!-- 매출관리 -->

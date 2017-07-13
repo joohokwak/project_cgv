@@ -1,10 +1,7 @@
 package com.project.cgv.contoller;
 
-import java.io.File;
 import java.util.HashMap;
-import java.util.Iterator;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -15,7 +12,6 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
 
 import com.project.cgv.service.ActorService;
@@ -98,7 +94,7 @@ public class AdminController {
 		model.addAttribute("msg",msg);
 		model.addAttribute("loc",loc);
 		
-		return "forward:../result";
+		return "forward:/admin/result";
 	}
 	
 	@RequestMapping("/notice/updateForm")
@@ -125,7 +121,7 @@ public class AdminController {
 		model.addAttribute("msg",msg);
 		model.addAttribute("loc",loc);
 		
-		return "forward:result";
+		return "forward:/admin/result";
 	}
 	
 	@RequestMapping("/notice/delete")
@@ -146,7 +142,7 @@ public class AdminController {
 		model.addAttribute("msg",msg);
 		model.addAttribute("loc",loc);
 		
-		return "forward:result";
+		return "forward:/admin/result";
 	}
 	
 	// Notice end /////////////////////////////////////////////////////////////////////////////////////////
@@ -188,8 +184,6 @@ public class AdminController {
 		String option = multipartRequest.getParameterMap().get("option")[0]; // 버튼
 		String num = multipartRequest.getParameterMap().get("num")[0]; // 선택된 아이템
         
-        System.out.println("option : " + option);
-        System.out.println("num : " + num);
         
         HashMap<String,Object> params = new HashMap<String,Object>();
         params.put("option", option);
@@ -213,7 +207,6 @@ public class AdminController {
 		HashMap<String,Object> viewData = mService.showSearchResult(page, option);
 		
 		model.addAttribute("viewData",viewData);
-		System.out.println(viewData.get("mList"));
 		
 		return ".admin.movie.movieList";
 	}
@@ -369,9 +362,71 @@ public class AdminController {
 	// Actor End //////////////////////////////////////////////////////////////////////////////////////////
 	
 	// Manage Start //////////////////////////////////////////////////////////////////////////////////////////
+	@RequestMapping("/connect/form")
+	public String showConnectionForm(Model model){
+		return ".admin.connection.";
+	}
 	
 	// Manage End //////////////////////////////////////////////////////////////////////////////////////////
 	
+	// MovieTime Start //////////////////////////////////////////////////////////////////////////////////////////
+	
+	@RequestMapping(value="/movie/time", method=RequestMethod.GET)
+	public String setMovieTimeForm(Model model){
+		model.addAttribute("tList", mService.theaterList());
+		model.addAttribute("mList",mService.reserveMoive());
+		model.addAttribute("sList",mService.showScreenList());
+		model.addAttribute("mtList", mService.showMoviesInfo());
+		return ".admin.time.movieTime";
+	}
+	
+	@RequestMapping(value="/movie/timeInsert", method=RequestMethod.POST)
+	public String setMovieTime(Model model, @RequestParam HashMap<String,Object> params){
+		System.out.println(params);
+		
+		boolean result = mService.addMovieTime(params);
+		
+		String msg = "";
+		String loc = "";
+		
+		if(result){
+			msg="정상적으로 등록되었습니다.";
+			loc="/admin/movie/time";
+		}else{
+			msg="실패하였습니다.";
+			loc="javascript:history.back()";
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "forward:/admin/result";
+	}
+	
+	@RequestMapping(value="/movie/timeDel", method=RequestMethod.GET)
+	public String setMovieTime(Model model, int num){
+		
+		boolean result = mService.removeMovieTime(num);
+		
+		String msg = "";
+		String loc = "";
+		
+		if(result){
+			msg="정상적으로 등록되었습니다.";
+			loc="/admin/movie/time";
+		}else{
+			msg="실패하였습니다.";
+			loc="javascript:history.back()";
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "forward:/admin/result";
+	}
+	
+	// MovieTime End //////////////////////////////////////////////////////////////////////////////////////////
+		
 	
 	
 }////////////////////////////////////////

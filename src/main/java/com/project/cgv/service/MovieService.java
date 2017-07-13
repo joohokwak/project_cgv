@@ -49,16 +49,23 @@ public interface MovieService {
 	public HashMap<String,Object> showSearchResult(int page, HashMap<String,Object> option);
 	public boolean addMovie(HashMap<String,Object> params);
 	public boolean modifyMovie(HashMap<String,Object> params);
-	public boolean deleteMovie(int num);
-	
 	
 	// movie_re
 	public int mrInsert(HashMap<String, Object> params);
 	public List<HashMap<String, Object>> mrList(int m_num);
 	public int mrDelete(int mr_num);
 	
+
+	//screen
+	public List<HashMap<String,Object>> showScreenList();
+	public List<HashMap<String,Object>> showMoviesInfo();
+	
+	public boolean addMovieTime(HashMap<String,Object> params);
+	public boolean removeMovieTime(int num);
+
 	
 	// 매출관리
 	public List<HashMap<String, Object>> salseManagement();
+
 
 }

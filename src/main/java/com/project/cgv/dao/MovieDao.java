@@ -60,11 +60,19 @@ public interface MovieDao {
 	
 	//upload
 	public void updatePoster(HashMap<String,Object> inputData);
-	public void insertTrailer(HashMap<String,Object> inputData);
 	public void insertStealCut(HashMap<String,Object> inputData);
 	
+
+	//time insert
+	public List<HashMap<String,Object>> selectAllScreen();
+	public List<HashMap<String,Object>> selectMovieView();
+	public int insertScreen(HashMap<String,Object> params); 
+	public int insertMovieTime(HashMap<String,Object> params);
+	public int deleteMovieTime(int num);
+
 	// 매출관리
 	public List<HashMap<String, Object>> salseManagement();
+
 	
 	
 }
