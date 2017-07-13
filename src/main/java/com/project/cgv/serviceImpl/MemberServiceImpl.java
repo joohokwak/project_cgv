@@ -41,7 +41,6 @@ public class MemberServiceImpl implements MemberService {
 		params.put("phone", phone);
 		params.put("email", email);
 		
-		System.out.println(params.toString());
 		mDao.setMember(params);
 		String id = (String)params.get("id");
 		HashMap<String, Object> member = mDao.getMember(id);
@@ -77,6 +76,16 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void updateFtheater(HashMap<String, Object> params) {
 		mDao.updateFTheater(params);
+	}
+
+	@Override
+	public int memberFupdate(HashMap<String, Object> params) {
+		return mDao.updateFTheater(params);
+	}
+
+	@Override
+	public HashMap<String, Object> findTheater(String t_name) {
+		return mDao.findTheater(t_name);
 	}
 	
 	

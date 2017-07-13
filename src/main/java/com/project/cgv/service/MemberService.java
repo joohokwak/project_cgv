@@ -17,5 +17,7 @@ public interface MemberService {
 	
 	public void updateFtheater(HashMap<String, Object> params);
 	
+	public int memberFupdate(HashMap<String, Object> params);
 	
+	public HashMap<String, Object> findTheater(String t_name);
 }
