@@ -19,9 +19,10 @@ public class NoticeController {
 	private NoticeService nService;
 	
 	@RequestMapping("/list")
-	public String noticeList(Model model,@RequestParam(defaultValue="1")int page) {
+	public String noticeList(Model model,@RequestParam(defaultValue="1")int page,
+			@RequestParam(required=false) HashMap<String,Object> option){
 		
-		HashMap<String,Object> viewData = nService.getAllNotice(page);
+		HashMap<String,Object> viewData = nService.getAllNotice(page, option);
 		
 		model.addAttribute("viewData",viewData);
 		

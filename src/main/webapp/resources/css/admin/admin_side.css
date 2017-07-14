@@ -10,6 +10,7 @@
 }
 
 #sidemenu ul {
+	margin-top: 25px;
 	margin-left: 0px;
 	padding-left: 0px;
 }
@@ -21,24 +22,23 @@
 
 #sidemenu ul li a {
 	background: #fdfcf0;
-	border-bottom: 2px solid #D6D6A8;
-	color: #333;
+	border-bottom: 2px solid #686667;
+	color: #686667;
 	display: block;
 	margin: 0;
-	padding: 20px 40px;
+	padding: 20px 0px;
 	text-decoration: none;
 	font-size: 15px;
 	font-weight: bold;
+	text-align: center;
 }
 
 #sidemenu ul li:first-child {
-	border-top: 2px solid #D6D6A8;
+	border-top: 2px solid #686667;
 }
 
 #sidemenu a:hover {
-	background: #ff0000 url("/resources/images/admin/tri.jpg") left center no-repeat;
+	background: #343132;
 	color: #fff;
-	padding-top:20px;
-	padding-bottom:20px;
 }
 

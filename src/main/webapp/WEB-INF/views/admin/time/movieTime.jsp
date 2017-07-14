@@ -7,12 +7,101 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <style type="text/css">
-.sk-wrap{
-	margin: 30px;
+.time-wrap{
+	position: relative;
+	width: 900px;
+	color: #666666;
 }
-.sk-row{
-	padding: 10px; 
+
+.time-header{
+	position: relative;
+		left: 30px; 
 }
+
+.time-header h1{
+	font-weight: bold;
+	font-size: 25px;
+	color: black;
+}
+
+.time-header p{
+	font-size: 12px;
+}
+
+.time-body{
+	position: relative;
+		left: 30px; 
+		width: 800px;
+}
+
+.time-select{
+	width: 1100px;
+	margin: 5px 0px; 
+}
+
+.time-row{
+	position: relative;
+	top: 5px;
+	left: 0px;
+	
+	float: left; 
+	margin-right: 15px;
+}
+
+.time-row select, input{
+	padding: 5px;
+}
+
+.time-list{
+	width: 820px;
+	margin: 0px auto;"
+}
+
+.time-list .tname{
+	width: 50px;
+	float: left; 
+	margin: 5px 20px 5px 5px;
+}
+
+.time-list .mname{
+	width: 400px;
+	float: left; 
+	margin: 5px 20px 5px 5px;
+}
+
+.time-list .screen{
+	width: 60px;
+	float: left; 
+	margin: 5px 20px 5px 5px;
+}
+
+.time-list .date{
+	width: 65px;
+	float: left; 
+	margin: 5px 20px 5px 5px;
+}
+
+.time-list .time{
+	width: 50px;
+	float: left; 
+	margin: 5px 20px 5px 5px;
+}
+
+.time-list .del{
+	width: 45px;
+	float: left; 
+	margin: 5px 20px 5px 5px;
+}
+
+
+
+.time-clear{
+	clear: both;
+}
+
+
+
+
 </style>
 <script type="text/javascript">
 $(function(){
@@ -97,8 +186,6 @@ $(function(){
 			$("#mt_time").focus();
 			return false;
 		}
-		
-		
 		return;
 	}
 });
@@ -107,66 +194,89 @@ $(function(){
 </script>
 </head>
 <body>
-<div class="sk-wrap" style="min-height: 300px">
-	<div class="sk-header">
+<div class="time-wrap">
+	<div class="time-header">
 		<h1>상영 시간 등록/삭제</h1>
 		<p>각 상영관의 상영시간을 관리하는 페이지 입니다.</p>
 	</div>
-	<div class="sk-body">
-		<form action="/admin/movie/timeInsert" method="post" id="timeForm">
-			<div class="sk-row">
-				<select id="theater_select">
-					<option value="0">Theater</option>
-					<c:forEach items="${tList }" var="t">
-						<option data-theater-num="${t.t_num}">${t.t_name}</option>
-					</c:forEach>
-				</select>
-			</div>
-			<div class="sk-row">
-				<select id="movie_select">
-					<option value="0">Movie</option>
-					<c:forEach items="${mList }" var="m">
-						<option data-movie-num="${m.m_num}">${m.m_title1}</option>
-					</c:forEach>
-				</select>
-			</div>
-			<div class="sk-row">
-				<input type="text" id="screen" name="s_title">
-				<input type="number" id="seat" name="seat" min="80" max="300" >
-			</div>
-			<div class="sk-row">
-				<input type="text" id="theater" name="t_num">
-				<input type="text" id="movie" name="m_num">
+	<div class="time-body">
+		<div class="time-select" style="margin-bottom: 30px">
+			<form action="/admin/movie/timeInsert" method="post" id="timeForm">
+				<div class="time-row">
+					<select id="theater_select">
+						<option value="0">Theater</option>
+						<c:forEach items="${tList}" var="t">
+							<option data-theater-num="${t.t_num}">${t.t_name}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="time-row">
+					<select id="movie_select">
+						<option value="0">Movie</option>
+						<c:forEach items="${mList }" var="m">
+							<option data-movie-num="${m.m_num}">${m.m_title1}</option>
+						</c:forEach>
+					</select>
+				</div>
+				<div class="time-row">
+					<input type="text" id="screen" name="s_title" placeholder="상영관 이름">
+					<input type="number" id="seat" name="seat" min="80" max="300" placeholder="좌석">
+				</div>
+				<div class="time-row">
+					<input type="date" id="mt_date" name="mt_date">
+				</div>
+				<div class="time-row">
+					<input type="time" id="mt_time" name="mt_time">
+				</div>
+				<div class="time-row">
+<!-- 					<input type="submit" value="등록" id="submitBtn"> -->
+					<button type="submit" id="submitBtn">등록</button>
+				</div>
 				
-				<input type="date" id="mt_date" name="mt_date">
-				<input type="time" id="mt_time" name="mt_time">
-				<input type="submit" value="등록" id="submitBtn">
-			</div>
-		</form>
+				<input type="hidden" id="theater" name="t_num">
+				<input type="hidden" id="movie" name="m_num">
+			</form>
+			<div class="time-clear"></div>
+		</div>
 		
-		<div>
+		
+		<div class="time-list">
+			<div class="tname">
+				영화관			
+			</div>
+			<div class="screen">
+				상영관
+			</div>
+			<div class="mname">
+				영화이름
+			</div>
+			<div class="date">
+				상영날짜
+			</div>
+			<div class="time">
+				상영시간
+			</div>			
+			<div class="time-clear"></div>
 			<c:if test="${mtList ne null}">
 				<c:forEach items="${mtList}" var="mt">
 					<div>
-						<div>
-							<div class="sk-row" style="float: left; margin: 5px 20px 5px 5px">${mt.t_name}</div>
-							<div class="sk-row" style="float: left; margin: 5px 20px 5px 5px">${mt.m_title1}(${mt.m_title2})</div>
-							<div class="sk-row" style="float: left; margin: 5px 20px 5px 5px">${mt.s_title}</div>
-							<div class="sk-row" style="float: left; margin: 5px 20px 5px 5px">${mt.mt_date}</div>
-							<div class="sk-row" style="float: left; margin: 5px 20px 5px 5px">${mt.mt_time}</div>
-						</div>
-						<div style="float: left">
-							<button type="button" onclick="location.href='/admin/movie/timeDel?num=${mt.mt_num}'">삭제</button>
-						</div>
+						<div class="tname">${mt.t_name}</div>
+						<div class="screen">${mt.s_title}</div>
+						<div class="mname">${mt.m_title1}(${mt.m_title2})</div>
+						<div class="date">${mt.mt_date}</div>
+						<div class="time">${mt.mt_time}</div>
 					</div>
-					<div style="clear: both">
+					<div>
+						<button type="button" class="del" onclick="location.href='/admin/movie/timeDel?num=${mt.mt_num}'">삭제</button>
+					</div>
+					<div class="time-clear">
 						<hr>
 					</div>
 				</c:forEach>
 			</c:if>
 		</div>
+		</div>
 	</div>	
-</div>
 
 </body>
 </html>

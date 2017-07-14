@@ -268,16 +268,11 @@ public class MovieServiceImpl implements MovieService {
 		
 		movieTime.put("mt_date",params.get("mt_date"));
 		movieTime.put("mt_time", params.get("mt_time"));
+		movieTime.put("s_num", screen.get("num"));
 		
+		int result2 = mvDao.insertMovieTime(movieTime);
 		
-		
-		
-		
-		
-		int result = 1;
-		mvDao.insertMovieTime(params);
-		
-		if(result == 1){
+		if(result1 == 1 && result2 == 1){
 			return true;
 		}else{
 			return false;

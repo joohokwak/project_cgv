@@ -6,13 +6,14 @@
 <style type="text/css">
 	
 	.notice-wrap{
-		margin: 30px auto; 
+		position: relative;
+		width: 900px;
 		color: #666666;
 	}
 	
 	.notice-header{
-		margin: 5px;
-		padding: 10px;
+		position: relative;
+		left: 30px; 
 	}
 	
 	.notice-header h1{
@@ -22,15 +23,14 @@
 	}
 	
 	.notice-body{
-		margin: 5px;
-		padding: 10px;
+		position: relative;
+		left: 30px; 
 		width: 800px;
 	}
 	
 	#category{
 		position: relative;
 		top: 13px;
-		left: 20px;
 		border-bottom: 1px solid #898987;
 	}
 	
@@ -51,11 +51,9 @@
 		background-color: #ea1400;
 	}
 	
-	
 	.notice-table{
 		position: relative;
 		top: 50px;
-		left: 20px;
 		width: 800px;
 		border-collapse: collapse;
 	}
@@ -66,11 +64,24 @@
 		background-color: #edebe1;
 		height: 37px;
 		cursor: default;
+		text-align: center;
 	}
 	
-	.notice-table td{
+	.notice-row:HOVER{
+		background-color: #eae8e1;
+	}
+	
+	.notice-row td{
 		height: 46px;
 		text-align: center;
+		cursor: default;
+	}
+	
+	.notice-row td a{
+		width: 100%;
+		padding: 10px 0px;
+		display: inline-block;
+		text-decoration: none;
 	}
 	
 	.notice-pagenation{
@@ -81,16 +92,17 @@
 	    float: left;
 	    padding: 8px 16px;
 	    text-decoration: none;
+	}
+	
+	.notice-pagenation b{
 	    cursor: default;
-	    transition: background-color .3s;
 	}
 	
 	.notice-pagenation a:HOVER{
 		background-color: #ea1400;
+		transition: background-color .7s;
 		color: white;
 	}
-	
-	
 	
 	.notice-pagenation b{
 		background-color: #ea1400;
@@ -98,24 +110,25 @@
 	}
 	
 	.my-btn{
-		border: none;
-		background-color: #222222;
-		border-radius: 4px;
-		width: 72px;
-		height: 32px;
-		display: inline-block;
-		margin: 0px;
-		padding-bottom: 2px;
-		
-	}
-	.my-btn span{
-		border: 1px solid #5b5b58;
-		border-radius: 4px;
-		text-decoration: none;
-		padding: 4px 14px;
-		font-size: 10px;
-		color: white;
-	}
+      width: 73px;
+      height: 26px;
+      background: url("/resources/images/btn_bg.gif") no-repeat;
+      color:#fff;
+      border: 0;
+      cursor: pointer;
+   }
+   
+   .my-btn span{
+      text-align: center;
+      line-height: 8px;
+      font-size: 12px; 
+      font-weight: bold;
+         
+   }
+   
+   .my-btn:HOVER{
+   	opacity: 0.9;
+   }
 </style>
 
 <div class="notice-wrap">
@@ -139,7 +152,7 @@
 				<th style="width: 56px">조회수</th>
 			</tr>
 			<c:forEach var="list" items="${v.nList}">
-				<tr>
+				<tr class="notice-row">
 					<td>${list.n_num}</td>
 					<td>${list.n_cate}</td><!-- [ ] 넣어야 함. -->
 					<td style="text-align: left;">
@@ -152,14 +165,14 @@
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="5" align="right" style="text-align: center">
-					<button type="button" class="my-btn" onclick="location.href='/admin/notice/insert'">
+				<td colspan="5" align="right" style="text-align: right">
+					<button type="button" class="my-btn" onclick="location.href='/admin/notice/insert'" style="margin-right: 15px;">
 						<span>글쓰기</span>
 					</button>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="5">
+				<td colspan="5" style="text-align: center">
 				<div class="notice-pagenation">
 					<c:if test="${v.start != 1 }">
 						<a href="list?page=1">처음</a>

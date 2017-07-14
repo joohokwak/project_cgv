@@ -6,29 +6,79 @@
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
 <title>Insert title here</title>
 <!-- jQuery library -->
-<link rel="stylesheet" type="text/css" href="/resources/css/photo/photo.css" />
+<link rel="stylesheet" type="text/css" href="/resources/css/admin/photo/photo.css" />
 <style type="text/css">
-	#otpGroup{
-		border: 1px solid black;
-		width: 200px;
-		height: 100px;
-		padding: 20px;
+	#photo-wrap{
+		position: relative;
+		width: 900px;
+		color: #666666;
+	}
+	
+	.photo-header{
+		position: relative;
+		left: 30px; 
+	}
+	
+	.photo-header h1{
+		font-weight: bold;
+		font-size: 25px;
+		color: black;
+	}
+	
+	.photo-header p{
+		font-size: 12px;
+	}
+	
+	.photo-body{
+		position: relative;
+		left: 30px; 
+		width: 800px;
+	}
+	
+	
+	#otpGroup button{
+		margin-right: 20px;
 	}
 	
 	#infoList{
-		border: 1px solid black;
-		width: 500px;
-		min-height: 200px;
-		margin: 10px;
-		padding: 10px;
+		width: 800px;
+		min-height: 50px;
 	}
 
 	.info{
-		border: 1px solid black;
-		margin: 10px;
-		padding: 10px; 
-		height:50px;
+		display: inline-block;
+		margin: 10px auto;
+		padding: 5px; 
+		width: 170px;
+		text-align: center;
+		cursor: pointer;
 	}
+	
+	.info:hover{
+		background: black;
+		font-weight: bold;
+		color: white;
+	}
+	
+	.my-btn{
+      width: 73px;
+      height: 26px;
+      background: url("/resources/images/btn_bg.gif") no-repeat;
+      color:#fff;
+      border: 0;
+      cursor: pointer;
+   }
+   
+   .my-btn span{
+      text-align: center;
+      line-height: 8px;
+      font-size: 12px; 
+      font-weight: bold;
+   }
+   
+   .my-btn:HOVER{
+   	opacity: 0.9;
+   }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -205,11 +255,12 @@
         		success : function(data){
         			
         			//table을 그리자
-					$(data).each(function(){
-						var infoDiv = $("<div>");
+					$(data).each(function(i){
+						var infoDiv = $("<span>");
 						if(opt == "배우"){
 							infoDiv.attr("class","info").data("num",this.a_num);
-							infoDiv.text(this.a_kor_name + "(" + this.a_eng_name + ")");
+							//infoDiv.text(this.a_kor_name + "(" + this.a_eng_name + ")");
+							infoDiv.text(this.a_kor_name);
 						}else{
 							infoDiv.attr("class","info").data("num",this.m_num);
 							infoDiv.text(this.m_title1);	
@@ -223,15 +274,6 @@
         		}
         	});
          });
-         
-//          function check(){
-//         	 if($("#option").val() == "" || $("#num").val() == ""){
-//         		 alert("옵션을 선택하세요!");
-//         		 return false;
-//         	 }else{
-// 	        	 return;
-//         	 }
-//          }
     });///////////////////////////////////
 </script>
 
@@ -248,25 +290,34 @@
 	파일을 드롭했을 때 유효성 체크를 하고 이상이 없으면
 	옵션, List에서 선택된 정보, 파일들을 보내줌.
  -->
-
-<form id="f">
-	<input type="text" id="option" name="option">
-	<input type="text" id="num" name="num">
-</form>
  
-<div id="uploadWrap">
-	<div id="otpGroup">
-		<button type="button" id="movieBtn">영화</button>
-		<button type="button" id="actorBtn">배우</button>
-		<button type="button" id="stealBtn">스틸컷</button>
-	</div>
+<div class="photo-wrap">
+	<div class="photo-header">
+			<h1>상영 시간 등록/삭제</h1>
+			<p>각 상영관의 상영시간을 관리하는 페이지 입니다.</p>
+		</div>
 	
-	<!-- opt선택하면 여기에 필요 정보가 나온다. -->
-	<div id="infoList" style="border: 1px solid black;"></div>
-	<button type="button" id="test">테스트</button>
-
-	<div id="fileUpload" class="dragAndDropDiv">Drag & Drop Files Here</div>
+	<div class="photo-body">
+		<form id="f">
+			<input type="hidden" id="option" name="option">
+			<input type="hidden" id="num" name="num">
+		</form>
+	
+		<div id="otpGroup" >
+			<button type="button" id="movieBtn" class="my-btn"><span>영화</span></button>
+			<button type="button" id="actorBtn" class="my-btn"><span>배우</span></button>
+			<button type="button" id="stealBtn" class="my-btn"><span>스틸컷</span></button>
+		</div>
+	
+		<!-- opt선택하면 여기에 필요 정보가 나온다. -->
+		<div id="infoList"></div>
+		
+		<div style="clear: both"></div>
+		<div id="fileUpload" class="dragAndDropDiv">
+			<p>여기에 파일을 올려주세요</p>
+			<p style="font-size: 15px">이미지 파일(gif, png, jpg, jpeg)만 업로드 가능합니다.</p>
+		</div>
+	</div>
 </div>
-
 </body>
 </html>

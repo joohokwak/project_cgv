@@ -198,7 +198,7 @@
 		insert into movietime values(0,#{mt_date},#{mt_time},#{s_num})
 	</insert>
 	
-	<insert id="insertScreen">
+	<insert id="insertScreen" parameterType="HashMap" useGeneratedKeys="true" keyProperty="num">
 		insert into screen values(0,#{s_title},#{t_num},#{m_num},#{seat})
 	</insert>
 	

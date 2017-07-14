@@ -17,7 +17,7 @@ public class NoticeServiceImpl implements NoticeService {
 	private NoticeDao nDao;
 
 	@Override
-	public HashMap<String, Object> getAllNotice(int page) {
+	public HashMap<String, Object> getAllNotice(int page, HashMap<String,Object> option) {
 		
 		HashMap<String,Object> result = new HashMap<String,Object>();
 		
@@ -32,9 +32,19 @@ public class NoticeServiceImpl implements NoticeService {
 		result.put("end", p.getEndPage());
 		result.put("last", p.getPageTotalCount());
 		
+		if(option.get("keyword") == ""){
+			option.put("keyword", null);
+		}
+		
+		if(option.get("value") == ""){
+			option.put("value", null);
+		}
+		
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("skip", p.getSkip());
 		params.put("qty", p.getQty());
+		params.put("keyword", option.get("keyword"));
+		params.put("value", option.get("value"));
 		
 		List<HashMap<String, Object>> nList = nDao.selectAll(params);
 		result.put("nList", nList);

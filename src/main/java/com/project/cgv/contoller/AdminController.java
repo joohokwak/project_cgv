@@ -54,9 +54,10 @@ public class AdminController {
 	// Notice Start ///////////////////////////////////////////////////////////////////////////////////
 	
 	@RequestMapping("/notice/list")
-	public String showNoticeListForm(Model model, @RequestParam(defaultValue="1")int page){
+	public String showNoticeListForm(Model model, @RequestParam(defaultValue="1")int page
+			, @RequestParam(required=false) HashMap<String,Object> option){
 		
-		HashMap<String,Object> viewData = nService.getAllNotice(page);
+		HashMap<String,Object> viewData = nService.getAllNotice(page, option);
 		
 		model.addAttribute("viewData",viewData);
 		
@@ -71,12 +72,12 @@ public class AdminController {
 		return ".admin.notice.noticeView";
 	}
 	
-	@RequestMapping("/notice/insertForm")
+	@RequestMapping(value="/notice/insert", method=RequestMethod.GET)
 	public String showNoticeInsertForm(){
 		return ".admin.notice.noticeInsertForm";
 	}
 	
-	@RequestMapping("/notice/insert")
+	@RequestMapping(value="/notice/insert", method=RequestMethod.POST)
 	public String insertNotice(Model model,@RequestParam HashMap<String,Object> params){
 		boolean result = nService.addNotice(params);
 		
@@ -97,13 +98,13 @@ public class AdminController {
 		return "forward:/admin/result";
 	}
 	
-	@RequestMapping("/notice/updateForm")
+	@RequestMapping(value="/notice/update", method=RequestMethod.GET)
 	public String showNoticeUpdateForm(Model model, int num){
 		model.addAttribute("notice",nService.getNoticeByNum(num));
 		return ".admin.notice.noticeUpdateForm";
 	}
 	
-	@RequestMapping("/notice/update")
+	@RequestMapping(value="/notice/update", method=RequestMethod.POST)
 	public String updateNotice(Model model, @RequestParam HashMap<String,Object> params){
 		
 		boolean result = nService.addNotice(params);
@@ -162,7 +163,7 @@ public class AdminController {
 			if(opt.equals("배우")){
 				entity = new ResponseEntity<List<HashMap<String,Object>>>(aService.showActorList(),HttpStatus.OK);
 			}else{
-				entity = new ResponseEntity<List<HashMap<String,Object>>>(mService.movieList(),HttpStatus.OK);
+				entity = new ResponseEntity<List<HashMap<String,Object>>>(mService.reserveMoive(),HttpStatus.OK);
 			}
 		}catch (Exception e) {
 			entity = new ResponseEntity<List<HashMap<String,Object>>>(HttpStatus.BAD_REQUEST);
@@ -179,21 +180,32 @@ public class AdminController {
 	
 	@RequestMapping("/photo/upload")
 	@ResponseBody
-	public String uploadPhoto(MultipartHttpServletRequest multipartRequest){
+	public ResponseEntity<String> uploadPhoto(MultipartHttpServletRequest multipartRequest){
+		
+		ResponseEntity<String> entity = null;
 		
 		String option = multipartRequest.getParameterMap().get("option")[0]; // 버튼
 		String num = multipartRequest.getParameterMap().get("num")[0]; // 선택된 아이템
         
         
-        HashMap<String,Object> params = new HashMap<String,Object>();
-        params.put("option", option);
-        params.put("num", num);
-        params.put("files", multipartRequest);
-        
-        upService.uploadFile(params);
+       try{
+    	   HashMap<String,Object> params = new HashMap<String,Object>();
+           params.put("option", option);
+           params.put("num", num);
+           params.put("files", multipartRequest);
+           
+           upService.uploadFile(params);
+           entity = new ResponseEntity<String>("success",HttpStatus.OK);
+           
+           return entity;
+       }catch (Exception e) {
+    	   entity = new ResponseEntity<String>("fail",HttpStatus.BAD_REQUEST);
+    	   
+    	   return entity;
+       }
          
         
-        return "success";
+        
     }
 	
 	// Photo End //////////////////////////////////////////////////////////////////////////////////////////
@@ -241,7 +253,7 @@ public class AdminController {
 		return "forward:/admin/result";
 	}
 	
-	@RequestMapping("/movie/updateForm")
+	@RequestMapping(value="/movie/update", method=RequestMethod.GET)
 	public String showMovieUpdateForm(Model model, int num){
 		
 		model.addAttribute("gList",mService.showGenreList());
@@ -382,7 +394,6 @@ public class AdminController {
 	
 	@RequestMapping(value="/movie/timeInsert", method=RequestMethod.POST)
 	public String setMovieTime(Model model, @RequestParam HashMap<String,Object> params){
-		System.out.println(params);
 		
 		boolean result = mService.addMovieTime(params);
 		

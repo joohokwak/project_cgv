@@ -29,6 +29,9 @@
 </style>
 
 <div id="viewWrap" align="center">
+<div class="">
+
+</div>
 		<table class=".notice-table">
 		<tr id="title">
 			<td style="width: 34px">${notice.n_num}</td>

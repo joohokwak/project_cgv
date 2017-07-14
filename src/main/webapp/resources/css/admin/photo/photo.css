@@ -7,7 +7,7 @@
     vertical-align: middle;
     padding: 10px 0px 10px 10px;
     font-size:200%;
-    display: table-cell;
+    display: block;
 }
 .progressBar {
     width: 200px;
