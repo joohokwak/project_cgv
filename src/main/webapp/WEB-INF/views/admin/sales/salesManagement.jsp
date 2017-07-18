@@ -13,8 +13,8 @@
 			var chart = c3.generate({
 			    data: {
 			        columns: [
-			            ['월별매출1', '${slist}'],
-			            ['월별매출2', '${slist}']
+			            ['월별매출1', ${slist}],
+			            ['월별매출2', ${slist}]
 			        ],
 			        types: {
 			        	월별매출1: 'spline',
