@@ -64,4 +64,5 @@
 		<property name="mapperInterface" value="com.project.cgv.dao.ActorDao"/>
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
+	
 </beans>

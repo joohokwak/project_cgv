@@ -22,6 +22,7 @@
 	<select id="selectAll" resultType="HashMap" parameterType="HashMap">
 		select * from board order by b_num desc limit #{skip},#{qty}
 	</select>
+
 	<select id="searchBoard" resultType="HashMap" parameterType="HashMap">
 		select b.* , count(r.b_num) as replyCount from board b left join board_reply r on b.b_num = r.b_num where 1=0
 		<if test="b_writer !=null">
@@ -45,6 +46,21 @@
 	<select id="getCount" resultType="int">
 		select count(*) from board
 	</select>
-
+	<insert id="insertReply" parameterType="HashMap">
+		insert into board_reply (br_writer, br_content,b_num, br_id) values (#{br_writer},#{br_content},#{b_num},#{id})
+	</insert>
+	<select id="selectAllReply" parameterType="int" resultType="HashMap">
+		select br_num, br_writer ,br_content ,DATE_FORMAT(br_regdate, '%Y-%m-%d') as br_regdate, br_id
+		from board_reply where b_num = #{b_num}
+	</select>
+	<select id="seletOneReply" parameterType="int" resultType="HashMap">
+		select * from board_reply where br_num = #{br_num}	
+	</select>
+	<delete id="deleteReply" parameterType="int">
+		delete from board_reply where br_num = #{br_num}
+	</delete>
+	<delete id="deleteReplyBoard" parameterType="int">
+		delete from board_reply where b_num = #{b_num}
+	</delete>
 	
 </mapper>

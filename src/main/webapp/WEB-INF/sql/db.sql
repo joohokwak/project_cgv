@@ -40,7 +40,9 @@ create table board_reply(
 	br_content varchar(500),
 	br_regdate timestamp default now(),
 	b_num int,
-	foreign key(b_num) references board(b_num)
+	br_id varchar(50),
+	foreign key(b_num) references board(b_num),
+	foreign key(br_id) references member(id)
 );
 
 

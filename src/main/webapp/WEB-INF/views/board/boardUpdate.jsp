@@ -4,18 +4,10 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/resources/css/event/eventPage.css">
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 <script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 </head>
-
-	<style type="text/css">
-		#boardListWrap { position:relative; margin: 0 auto; width: 100%; margin-top: 70px; }
-		table,td { width:980px; margin:0 auto; }
-		.blist { padding-top:40px; }
-		textarea { width:100%; }	
-
-	</style>
 	
 	<script type="text/javascript">
 	var oEditors = [];
@@ -51,29 +43,40 @@
 	</script>
 	
 <body>
-	<div id="boardListWrap">
-		<form method="post" id="boardForm" action="update" enctype="multipart/form-data">
-			<input type= "hidden" name = "b_num" value = "${viewBoard.b_num}">
-		 	<input type= "hidden" name = "b_writer" value = "${viewBoard.b_writer}">
-		 	<input type= "hidden" name = "b_regdate" value = "${viewBoard.b_regdate}">
-		 	<input type= "hidden" name = "b_hit" value = "${viewBoard.b_hit}">
-			<table>
-				<tr>
-					<th style="width:100px;">작성자</th>
-					<td>${viewBoard.b_writer}</td>
-				</tr>
-				<tr>
-					<th style="width:100px;">제목</th>
-					<td><input type="text" name="b_title" value="${viewBoard.b_title}"></td>
-				</tr>			
-				<tr>
-					<th style="width:100px;">내용</th>
-					<td><textarea rows="15" cols="70" id="b_content" name="b_content">${viewBoard.b_content}</textarea></td>
-				</tr>				
-			</table>
-			<input type="reset" value="취소" >
-			<input type="submit" id="boardSubmit" value="등록하기" >				
-		</form>
+	<div id="boardWriteWrap">
+		<div class="list_title">
+			<h2 class="sub_title">이벤트&컬쳐</h2>
+			<p>CGV의 이벤트와 각종 문화소식을 확인할 수 있는 게시판입니다.</p>			
+		</div>	
+		<div class="write_table">	
+			<p class="table_info">체크(<em><img src="/resources/images/event/img_icon_redstar.jpg"></em>)된 항목은 필수 입력 사항입니다.</p>
+			<form method="post" id="boardForm" action="update" enctype="multipart/form-data">
+				<input type= "hidden" name = "b_num" value = "${viewBoard.b_num}">
+			 	<input type= "hidden" name = "b_writer" value = "${viewBoard.b_writer}">
+			 	<input type= "hidden" name = "b_regdate" value = "${viewBoard.b_regdate}">
+			 	<input type= "hidden" name = "b_hit" value = "${viewBoard.b_hit}">
+				<table>
+					<colgroup>
+						<col style="width:140px;">
+						<col style="width:400px;">
+					</colgroup>				
+					<tr>
+						<th scope="row">작성자<em><img src="/resources/images/event/img_icon_redstar2.gif"></em></th>
+						<td colspan="3">${viewBoard.b_writer}</td>
+					</tr>
+					<tr>
+						<th scope="row">제목<em><img src="/resources/images/event/img_icon_redstar2.gif"></em></th>
+						<td colspan="3"><input type="text" name="b_title" value="${viewBoard.b_title}"  class="btitle" style="width:800px;"></td>
+					</tr>			
+					<tr>
+						<th scope="row">내용<em><img src="/resources/images/event/img_icon_redstar2.gif"></em></th>
+						<td colspan="3"><textarea rows="15" cols="70" id="b_content" name="b_content" class="bcontent" stype="width:800px;">${viewBoard.b_content}</textarea></td>
+					</tr>				
+				</table>
+				<input type="reset" value="취소" class="btn_cancel">
+				<input type="submit" id="boardSubmit" value="등록하기" class="btn_write">				
+			</form>
+		</div>
 	</div>
 </body>
 </html>

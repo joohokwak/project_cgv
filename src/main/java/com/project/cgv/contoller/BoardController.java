@@ -7,14 +7,17 @@ import javax.servlet.http.Cookie;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
-import org.springframework.web.multipart.MultipartFile;
 
-import com.mysql.fabric.xmlrpc.base.Params;
 import com.mysql.jdbc.StringUtils;
 import com.project.cgv.service.BoardService;
 
@@ -62,9 +65,9 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/write")
-	public String boardWrite(@RequestParam HashMap<String, Object> params, MultipartFile attachfile){
+	public String boardWrite(@RequestParam HashMap<String, Object> params){
 
-		bService.writeBoard(params,attachfile);
+		bService.writeBoard(params);
 		return "redirect:boardlist";
 		
 	}
@@ -75,7 +78,7 @@ public class BoardController {
 		HashMap<String, Object> member = (HashMap<String, Object>)session.getAttribute("member");
 		HashMap<String, Object> viewBoard = bService.viewBoard(num);
 				
-		if(member != null && viewBoard.get("id") != null && (viewBoard.get("id")).equals(member.get("id"))){
+		if(member != null && viewBoard.get("id") != null && (viewBoard.get("id")).equals(member.get("id")) || (member.get("id")).equals("admin")){
 			model.addAttribute("mine", true);
 			
 		}else {
@@ -105,6 +108,7 @@ public class BoardController {
 		
 		
 		model.addAttribute("viewBoard", viewBoard);
+		
 		return ".board.boardView";
 		
 	}	
@@ -127,15 +131,69 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/update")
-	public String boardUpdate(@RequestParam HashMap<String, Object> params, MultipartFile attachfile){
+	public String boardUpdate(@RequestParam HashMap<String, Object> params){
 		
-		bService.updateBoard(params,attachfile);
+		bService.updateBoard(params);
 		return "redirect:boardlist";
 		
 	}
 
 		
+	@RequestMapping(value = "/replies", method = RequestMethod.POST)
+	public ResponseEntity<String> register(@RequestParam HashMap<String, Object> params, HttpSession session){
+
+		ResponseEntity<String>  entity = null;
+		HashMap<String,Object> member = (HashMap<String,Object>)session.getAttribute("member");
+		
+		try {
+			params.put("id", member.get("id"));
+			bService.writeReply(params);
+			entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	}	
 	
+	
+	@RequestMapping(value = "/replies/all/{num}", method = RequestMethod.GET)
+	public ResponseEntity<List<HashMap<String, Object>>> list(@PathVariable("num") int num){
+
+		ResponseEntity<List<HashMap<String, Object>>> entity = null;
+		try{
+			entity = new ResponseEntity<List<HashMap<String, Object>>>(bService.getReplyList(num),HttpStatus.OK);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			entity = new ResponseEntity<List<HashMap<String, Object>>>(HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	
+	}
+	
+	
+	@RequestMapping(value = "/replies/{rno}", method = RequestMethod.DELETE)
+	public ResponseEntity<String> delete(@PathVariable("rno") int rno){
+	
+		ResponseEntity<String> entity = null;
+		
+		try{
+			bService.deleteReply(rno);
+			entity = new ResponseEntity<String>("SUCCESS",HttpStatus.OK);
+			
+		}catch(Exception e){
+			e.printStackTrace();
+			entity = new ResponseEntity<String>(e.getMessage(),HttpStatus.BAD_REQUEST);
+		}
+		
+		return entity;
+	
+	
+	}
 	
 	
 	

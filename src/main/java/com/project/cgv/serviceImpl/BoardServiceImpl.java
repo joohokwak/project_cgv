@@ -48,7 +48,7 @@ public class BoardServiceImpl implements BoardService {
 	}
 
 	@Override
-	public void writeBoard(HashMap<String, Object> params,  MultipartFile attachfile) {
+	public void writeBoard(HashMap<String, Object> params) {
 		
 		bDao.insertBoard(params);
 		
@@ -59,8 +59,7 @@ public class BoardServiceImpl implements BoardService {
 	public HashMap<String, Object> viewBoard(int num) {
 		
 		HashMap<String, Object> result = bDao.selectOne(num);
-		
-		//bDao.addHit(num);
+
 		
 		return result;
 	}
@@ -69,12 +68,13 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public void deleteBoard(int num) {
 		
+		bDao.deleteReplyBoard(num);
 		bDao.deleteBoard(num);
 		
 	}
 
 	@Override
-	public void updateBoard(HashMap<String, Object> params, MultipartFile attachfile) {
+	public void updateBoard(HashMap<String, Object> params) {
 		
 		bDao.updataBoard(params);
 		
@@ -82,21 +82,40 @@ public class BoardServiceImpl implements BoardService {
 
 	@Override
 	public void addHit(int num) {
+		
 		bDao.addHit(num);
 	}
 
 
-	
-/*	private String uploadFile(String originalName, byte[] fileData) throws Exception {
-
-		UUID uid = UUID.randomUUID();
-		String savedName = uid.toString() + "_" + originalName;
-		File target = new File(UPLOAD_PATH, savedName);
-
-		FileCopyUtils.copy(fileData, target);
-		return savedName;
+	@Override
+	public void writeReply(HashMap<String, Object> params)  throws Exception {
+		bDao.insertReply(params);
 		
-	}*/
+	}
+
+	@Override
+	public List<HashMap<String, Object>> getReplyList(int num) {
+		
+		return bDao.selectAllReply(num);
+	}
+
+
+	@Override
+	public void deleteReply(int rno) {
+		
+		bDao.deleteReply(rno);
+		
+	}
+
+	@Override
+	public HashMap<String, Object> viewReply(int rno) {
+		
+		return bDao.seletOneReply(rno);
+	}
+
+
+	
+
 	
 	
 }

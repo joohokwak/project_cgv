@@ -105,11 +105,7 @@
 			<version>2.1</version>
 			<scope>provided</scope>
 		</dependency>
-		<dependency>
-			<groupId>javax.servlet</groupId>
-			<artifactId>jstl</artifactId>
-			<version>1.2</version>
-		</dependency>
+
 
 		<!-- Test -->
 		<dependency>
@@ -195,7 +191,11 @@
 			<artifactId>geocoder-java</artifactId>
 			<version>0.16</version>
 		</dependency>
-
+		<dependency>
+			<groupId>javax.servlet</groupId>
+			<artifactId>jstl</artifactId>
+			<version>1.2</version>
+		</dependency>
 
 	</dependencies>
 	<build>

@@ -13,5 +13,11 @@ public interface BoardDao {
 	public HashMap<String, Object> selectOne (int num);
 	public void addHit (int num);
 	public int getCount();	
+	
+	public void insertReply(HashMap<String, Object> params);
+	public List<HashMap<String, Object>> selectAllReply(int num);
+	public void deleteReply(int rno);
+	public HashMap<String,Object> seletOneReply(int rno);
+	public void deleteReplyBoard(int num);
 
 }

@@ -4,285 +4,213 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-	<title>Insert title here</title>
-	<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
-	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css">
-	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
-	<link rel="stylesheet" href="/resources/css/event/eventPage.css?ver=1">
-	<style type="text/css">
-		#boardListWrap { position:relative; margin: 0 auto; width: 100%; margin-top: 70px;  }
-		table,td { width:980px; margin:0 auto; text-align: center; }
-		.search { width:500px; position:absolute; left:50%; margin-left:170px; top:0; }
-		.blist { padding-top:40px; }
-		#loginDiv {
- 			display: none;
-			position: absolute;
-			width: 462px;
-			height: 324px;
-			border: 5px solid #333;
-			top: 200px;
-			left: 35%;
-			z-index: 20000;
-		}
-		
-		#login_hd {
-			width: 462px;
-			height: 51px;
-			background: #333;
-			border-bottom: 5px solid #333;
-		}
-		
-		#login_title {
-			width: 440px;
-			height: 35px;
-			color: #f2f0e5;
-		    padding-top: 14px;
-		    padding-left: 20px;
-			font-family: Nanum Gothic, 나눔고딕, Apple SD Gothic Neo, AppleGothic, 돋움, dotum, Sans-serif;
-		    font-size: 22px;
-		    font-weight: bold;
-		    line-height: 22px;
-		    letter-spacing: -1px;
-			border: 1px solid gray;
-		}
-		
-		#btn_close_x {
-		    display: block;
-		    position: relative;
-		    float: right;
-		    top: -34px;
-		    right: 20px;
-		    width: 18px;
-		    height: 18px;
-		    background: url(/resources/images/reserve/btn_close_x.png) no-repeat;
-		    overflow: hidden;
-		    cursor: pointer;
-		    text-indent: -1000px;
-		}
-		
-		#login_bd {
-			width: 312px;
-			height: 228px;
-		    padding-bottom: 40px;
-		    padding-left: 75px;
-		    padding-right: 75px;
-		    background: #f6f6f4;
-		}
-		
-		#login_bd_form {
-			width: 266px;
-			height: 133px;
-			margin: 0 auto;
-			position: relative;
-			padding-top: 50px;
-		}
-		
-		#login_wrap_id {
-		    width: 212px;
-		    border: 2px solid #b5b5b5;
-		    margin-bottom: 5px;
-		    padding: 8px 10px 8px 40px;
-		    background: url("/resources/images/reserve/login_icon_id.png") no-repeat left center;
-		}
-		
-		#login_wrap_id input[type='text'] {
-			width: 212px;
-			height: 21px;
-			border: none;
-			background: #f6f6f4;
-		}
-		
-		#login_wrap_pw {
-			width: 212px;
-		    border: 2px solid #b5b5b5 !important;
-		    padding-bottom: 7px;
-		    margin-bottom: 5px;
-		    padding: 8px 10px 8px 40px;
-		    background: url("/resources/images/reserve/login_icon_pw.png") no-repeat left center;
-		}
-		
-		#login_wrap_pw input[type='password'] {
-			width: 212px;
-			height: 21px;
-			border: none;
-			background: #f6f6f4;
-		}
-		
-		#login_wrap_btn {
-			width: 262px;
-			height: 42px;
-		    background: #e71a0f;
-		    padding: 2px;
-		}
-		
-		#login_bd_btn {
-			width: 262px;
-		    background: #e71a0f;
-		    color: #f2f0e5;
-		    height: 42px;
-		    line-height: 37px;
-		    font-size: 15px;
-		    font-weight: bold;
-		    font-family: 'NanumBarunGothicBold', 'Nanum Gothic', 'Dotum';
-		    border: 1px solid white;
-		    cursor: pointer;
-		}
-	</style>
-	
-	<script type="text/javascript">
-		$(function() {
-			$("#writeBtn").click(function(e) {
-				$.ajax({
-					url: "/member/loginCheck",
-					type: "post",
-					dataType: "text",
-					success: function(data) {
-						if(data == "login") {
-							location.href='/board/boardwrite';
-						}else if(data == "unlogin") {
-							$("html, body").stop().animate({scrollTop : '0px'});
-							$("#loginDiv").css({display: "block"});
-							$("#boardListWrap").prop('disabled', true).css({"pointer-events": "none", opacity: "0.5"});
-							$("#eventPageWrap").prop('disabled', true).css({"pointer-events": "none", opacity: "0.5"});
-						}
+<link rel="stylesheet" href="/resources/css/event/eventPage.css">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css">
+<script src="https://code.jquery.com/jquery-2.2.4.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
+<script type="text/javascript">
+	$(function() {
+		$("#writeBtn").click(function(e) {
+			$.ajax({
+				url : "/member/loginCheck",
+				type : "post",
+				dataType : "text",
+				success : function(data) {
+					if (data == "login") {
+						location.href = '/board/boardwrite';
+					} else if (data == "unlogin") {
+						$("html, body").stop().animate({
+							scrollTop : '0px'
+						});
+						$("#loginDiv").css({
+							display : "block"
+						});
+						$("#boardListWrap").prop('disabled', true).css({
+							"pointer-events" : "none",
+							opacity : "0.5"
+						});
+						$("#eventPageWrap").prop('disabled', true).css({
+							"pointer-events" : "none",
+							opacity : "0.5"
+						});
 					}
-				});
-			});
-			
-			
-			// 로그인창 닫기 버튼
-			$("#btn_close_x").click(function(e) {
-				$("#loginDiv").css({display: "none"});
-				$("#boardListWrap").prop('disabled', false).css({"pointer-events": "auto", opacity: "1"});
-				$("#eventPageWrap").prop('disabled', false).css({"pointer-events": "auto", opacity: "1"});
-			});
-			
-			// 비밀번호창에서 엔터키 적용
-			$("#loginDivPw").keyup(function(e) {
-				if(e.keyCode == 13) {
-					$("#login_bd_btn").click();
-				}
-			});
-			
-			// 로그인 버튼 클릭
-			$("#login_bd_btn").click(function(e) {
-				var divId = $.trim($("#loginDivId").val());
-				var divPw = $.trim($("#loginDivPw").val());
-				
-				if(divId.length > 0 && divPw.length >0) {
-					$.ajax({
-						url : "/member/reserveLogin",
-						type : "post",
-						data : {"id": divId, "pass":divPw},
-						dataType : "json",
-						success: function(data) {
-							if(data.result == 'success') {
-								location.href='/board/boardwrite';
-							}else {
-								$.alert({
-									title: '',
-								    content: '<font color="#333"><b>아이디 또는 비밀번호를 확인하세요</b></font>',
-								    boxWidth: '300px',
-								    useBootstrap: false,
-								    type: 'red'
-								});
-							}
-						}
-					});
 				}
 			});
 		});
-	</script>
+
+		// 로그인창 닫기 버튼
+		$("#btn_close_x").click(function(e) {
+			$("#loginDiv").css({
+				display : "none"
+			});
+			$("#boardListWrap").prop('disabled', false).css({
+				"pointer-events" : "auto",
+				opacity : "1"
+			});
+			$("#eventPageWrap").prop('disabled', false).css({
+				"pointer-events" : "auto",
+				opacity : "1"
+			});
+		});
+
+		// 비밀번호창에서 엔터키 적용
+		$("#loginDivPw").keyup(function(e) {
+			if (e.keyCode == 13) {
+				$("#login_bd_btn").click();
+			}
+		});
+
+		// 로그인 버튼 클릭
+		$("#login_bd_btn")
+				.click(
+						function(e) {
+							var divId = $.trim($("#loginDivId").val());
+							var divPw = $.trim($("#loginDivPw").val());
+
+							if (divId.length > 0 && divPw.length > 0) {
+								$
+										.ajax({
+											url : "/member/reserveLogin",
+											type : "post",
+											data : {
+												"id" : divId,
+												"pass" : divPw
+											},
+											dataType : "json",
+											success : function(data) {
+												if (data.result == 'success') {
+													location.href = '/board/boardwrite';
+												} else {
+													$
+															.alert({
+																title : '',
+																content : '<font color="#333"><b>아이디 또는 비밀번호를 확인하세요</b></font>',
+																boxWidth : '300px',
+																useBootstrap : false,
+																type : 'red'
+															});
+												}
+											}
+										});
+							}
+						});
+	});
+</script>
 </head>
 <body>
 	<!-- boardListWrap 시작 -->
 	<div id="boardListWrap">
+		<div class="list_title">
+			<h2 class="sub_title">이벤트&컬쳐</h2>
+			<p>CGV의 이벤트와 각종 문화소식을 확인할 수 있는 게시판입니다.</p>			
+		</div>	
 		<!-- blist 시작 -->
 		<table class="blist">
 			<!-- search 시작 -->
 			<div class="search">
-				<form action="boardlist">
-					<select name="type">
-					<option value="1">제목</option>
-					<option value="2">내용</option>
-					<option value="3">제목+내용</option>
-					<option value="4">작성자</option>
+				<form action="boardlist" class="select_form">
+					<select name="type" class="s_select" style="width:100px;">
+						<option value="1">제목</option>
+						<option value="2">내용</option>
+						<option value="3">제목+내용</option>
+						<option value="4">작성자</option>
 					</select>
-					<input type="text" name="keyword">
-					<input type="submit" value="검색">
+					<input type="text" name="keyword" class="s_input" style="width:185px;">
+					<input type="submit" value="검색하기" class="btn_search">
 				</form>	
 			</div>
 			<!-- search 끝 -->	
-			<tr>
-				<td colspan="5"></td>
-			</tr>
-			<tr>
-				<th width="5%">번호</th>
-				<th width="60%">제목</th>
-				<th width="20%">작성자</th>
-				<th width="10%">작성일</th>
-				<th width="5%">조회수</th>
-			</tr>
-			
-			<c:forEach var="list" items="${viewData.board}">
+			<colgroup>
+				<col style="width: 70px;"/>
+				<col style="width: 100px;"/>
+				<col style="width: 580px;"/>
+				<col style="width: 140px;"/>
+				<col style="width: 120px;"/>
+			</colgroup>
+			<thead>
 				<tr>
-					<td>${list.b_num}</td>
-					<td><a href="/board/boardview?num=${list.b_num}">${list.b_title}</a></td>
-					<td>${list.b_writer}</td>
-					<td><fmt:formatDate value="${list.b_regdate}" type="date" /></td>
-					<td>${list.b_hit}</td>
+					<th>번호</th>
+					<th scope="col">작성자</th>
+					<th scope="col" class="txt" >제목</th>
+					<th scope="col">작성일</th>
+					<th scope="col">조회수</th>
 				</tr>
-			</c:forEach>
-			
-			<tr>
-				<td colspan="5" align="center">	
-					<c:if test="${viewData.current != 1}">
-						<!-- 첫페이지 -->
-						<a href="/board/boardlist?page=1
-							<c:if test="${type != null}">&type=${type}</c:if>
-							<c:if test="${keyword != null}">&keyword=${keyword}</c:if>
-							">[처음]
-						</a>
-						<!-- 이전페이지 -->
-						<a href="/board/boardlist?page=${viewData.current-1}
-							<c:if test="${type != null}">&type=${type}</c:if>
-							<c:if test="${keyword != null}">&keyword=${keyword}</c:if>
-							">[이전]
-						</a>
-					</c:if>
-					<!-- page numbering 링크x-->
-					<c:forEach var="i" begin="${viewData.start}" end="${viewData.end < viewData.last ? viewData.end : viewData.last}">
-						<c:choose>
-							<c:when test="${i == viewData.current}">
-								<b>[${i}]</b>
-							</c:when>
-							<c:otherwise>
-								<a href="/board/boardlist?page=${i}
-									<c:if test = "${type != null}">&type=${type}</c:if>
-									<c:if test = "${keyword != null}">&keyword=${keyword}</c:if>
-								">[${i}]
-								</a>
-							</c:otherwise>
-						</c:choose>
-					</c:forEach>
-					<c:if test="${viewData.current != viewData.last}">
-						<a href="/board/boardlist?page=${viewData.current+1}
-							<c:if test = "${type != null}">&type=${type}</c:if>
-							<c:if test = "${keyword != null}">&keyword=${keyword}</c:if>						
-						">[다음]</a>
-						<a href="/board/boardlist?page=${viewData.last}
-							<c:if test = "${type != null}">&type=${type}</c:if>
-							<c:if test = "${keyword != null}">&keyword=${keyword}</c:if>						
-						">[마지막]</a>					
-					</c:if>
-				</td>
-			</tr>
-			
-			<input type="button" id="writeBtn" value="글쓰기" >
+			</thead>
+			<tbody>
+				<c:forEach var="list" items="${viewData.board}">
+					<tr>
+						<td>${list.b_num}</td>
+						<td>[&nbsp;${list.b_writer}&nbsp;]</td>					
+						<td class="txt"><a href="/board/boardview?num=${list.b_num}">${list.b_title}</a></td>
+						<td><fmt:formatDate value="${list.b_regdate}" type="date" /></td>
+						<td>${list.b_hit}</td>
+					</tr>
+				</c:forEach>
+			</tbody>
 		</table>
 		<!-- table 끝 -->
+		<!-- paging 시작 -->
+		<div class="paging">
+			<c:if test="${viewData.current != 1}">
+				<!-- 첫페이지 -->
+				<div class="btn_frist">
+					<a href="/board/boardlist?page=1
+								<c:if test="${type != null}">&type=${type}</c:if>
+								<c:if test="${keyword != null}">&keyword=${keyword}</c:if>
+								">
+						<img src="/resources/images/event/btn_paging_first.jpg" alt="첫페이지">
+					</a>
+				</div>
+				<!-- 이전페이지 -->
+				<div class="btn_prev">
+					<a href="/board/boardlist?page=${viewData.current-1}
+								<c:if test="${type != null}">&type=${type}</c:if>
+								<c:if test="${keyword != null}">&keyword=${keyword}</c:if>
+								"><img
+						src="/resources/images/event/btn_paging_prev.jpg" alt="이전페이지">
+					</a>
+				</div>
+			</c:if>
+			<!-- page numbering 시작 -->
+			<ul>
+				<c:forEach var="i" begin="${viewData.start}"
+					end="${viewData.end < viewData.last ? viewData.end : viewData.last}">
+					<c:choose>
+						<c:when test="${i == viewData.current}">
+							<li><b>${i}</b></li>
+						</c:when>
+						<c:otherwise>
+							<li><a
+								href="/board/boardlist?page=${i}
+										<c:if test = "${type != null}">&type=${type}</c:if>
+										<c:if test = "${keyword != null}">&keyword=${keyword}</c:if>
+									">${i}</a></li>
+
+						</c:otherwise>
+					</c:choose>
+				</c:forEach>
+			</ul>
+			<!-- page numbering 끝 -->
+			<c:if test="${viewData.current != viewData.last}">
+				<div class="btn_next">
+					<a href="/board/boardlist?page=${viewData.current+1}
+								<c:if test = "${type != null}">&type=${type}</c:if>
+								<c:if test = "${keyword != null}">&keyword=${keyword}</c:if>						
+					"><img src="/resources/images/event/btn_paging_next.jpg" alt="다음페이지"></a>
+				</div>
+				<div class="btn_end">
+					<a href="/board/boardlist?page=${viewData.last}
+								<c:if test = "${type != null}">&type=${type}</c:if>
+								<c:if test = "${keyword != null}">&keyword=${keyword}</c:if>						
+					"><img src="/resources/images/event/btn_paging_end.jpg" alt="마지막페이지"></a>
+				</div>
+			</c:if>
+		</div>			
+		<!-- paging 끝 -->
+		<!-- 글쓰기버튼 -->
+		<input type="button" id="writeBtn" value="글쓰기" class="btn_write">
 	</div>
+	
 	<!-- boardListWrap 끝 -->
 	
 	
@@ -348,8 +276,6 @@
 			</div>
 		</div>
 	</div>
-	
-	
 	
 	
 	<!-- login -->

@@ -1,7 +1,122 @@
-@CHARSET "UTF-8";
+/* CSS Document */
+
+@import url(http://cdn.jsdelivr.net/font-nanum/1.0/nanumbarungothic/nanumbarungothic.css);
+
+body,ul,ol,dl,h1,h2,h3,h4,h5,li,dl,dt,dd,table,tbody,tfoot,tr,td,th,a,p { font-family: 'nanumbarungothic', "돋움", Dotum, AppleGothic, sans-serif !important; font-size:12px; text-decoration:none; list-style:none; margin:0; padding:0; }
+body,input,textarea,button,table { color:#666; line-height: 1.2; }
+textarea{overflow:auto;} 
+body { background-color: #fdfcf0; }
+table { border-spacing:0; width:980px; }
+select { font-family: Verdana; line-height: 27px; height: 29px; padding: 3px 5px; border: 1px solid #b4b3aa;} 
+input[type='text'], input[type='password'] { disply: inline-block; height: 25px; line-height: 22px; padding-left: 10px; border: 1px solid #b5b5b5; }
+caption, th, td { font-weight: normal; line-height: 1.5em; }
+
+.s_select, .s_input { background-color: #fdfcf0; margin-right: 6px; }
+.txt { padding:13px 0 13px 40px !important;  text-align: left !important;  }
+.txt a:hover { font-weight: bold; text-decoration: underline; }  
+.list_title .sub_title { font-size: 18px; font-weight: bold; }
+.list_title p { padding:4px 0;}
+
+
+/************버튼************/
+
+.btn_search { width: 73px; height: 27px; background: url("/resources/images/event/btn_black.gif") no-repeat; color: #fff; size: 10px !important; font-weight: bold; border:0;   }
+.btn_write { width: 80px; height: 27px; background: url("/resources/images/event/btn_red.gif") no-repeat; color: #fff; size: 10px !important; font-weight: bold; border:0; position:absolute; right:0; bottom:10px;  }
+.btn_cancel { width: 53px; height: 27px; background: url("/resources/images/event/btn_cancel.gif") no-repeat; color: #7b7b7b; size: 10px !important; font-weight: bold; border:0; position:absolute; left:0; bottom:10px;  }
+.btn_reply { width:109px; height:60px;  background: url("/resources/images/event/btn_reply.jpg") no-repeat; border:0; color: #fff; float: left; }
+.btn_vupdate { width: 80px; height: 27px; background: url("/resources/images/event/btn_red.gif") no-repeat; color: #fff; size: 10px !important; font-weight: bold; border:0; float:right; margin:10px 0 0 0; }
+.btn_vdelete { width: 80px; height: 27px; background: url("/resources/images/event/btn_black2.gif") no-repeat; color: #fff; size: 10px !important; font-weight: bold; border:0; float:right; margin:10px 5px 0 0; }
+.btn_vlist { width: 80px; height: 27px; background: url("/resources/images/event/btn_list.gif") no-repeat; color: #7b7b7b; size: 10px !important; font-weight: bold; border:0; float:left; margin:10px 0 0 0; }
+
+
+/**********게시판 리스트**********/
+
+#head { margin-top: 8px; }
+#head h2 { position:absolute; top:56px; width: 428px; left: 50%; margin-left: -210px; }
+#head .gnb { position:absolute; top:99px; width: 376px; left: 50%; margin-left: -194px; }
+
+#boardListWrap { width:980px; position: relative; margin: 0 auto; padding: 50px 0; }
+#boardListWrap .select_form { margin: 20px 0; }
+
+#boardListWrap .blist { width:100%; border-top: solid 1px #d6d4ca; border-bottom: solid 1px #d6d4ca; margin-top: 20px;  }
+#boardListWrap .blist thead th { padding: 10px 0 8px 0px; border-bottom: solid 1px #e1dfd5; text-align: center; background: #edebe1; }
+#boardListWrap .blist tbody tr td { padding: 10px 0 8px 0px; text-align: center; }
+
+
+#boardListWrap .paging { position:absolute; text-align: center; overflow: hidden; left:50%; margin-left: -210px; bottom:0; }
+#boardListWrap .paging .btn_frist { width:27px; height: 28px; float:left; margin-right:5px; }
+#boardListWrap .paging .btn_prev { width:56px; height: 28px; float: left; }
+#boardListWrap .paging .btn_next { float: left; }
+#boardListWrap .paging .btn_end { float: left; margin-left:5px; }
+#boardListWrap .paging ul { float:left; }
+.paging ul li { display: inline-block; padding: 0 8px; color: #333; font-family: Verdana, Geneva, sans-serif; font-size: 14px; font-weight: bold; line-height: 28px; }
+.paging ul li.on, .paging ul li a:hover, .paging ul li a:focus { color: #993333; text-decoration: underline;}
+.btn_write { }
+
+
+/**********게시판 쓰기**********/
+
+#boardWriteWrap { position: relative; width:980px; padding: 50px 0; margin:0 auto 50px auto; }
+
+.write_table { padding-top: 10px; }
+.write_table .table_info { padding: 0 10px; line-height: 30px; border-top: 1px solid #b8b6aa; background-color: #edebe1; text-align: right;}
+.table_info table { width: 980px; }
+.write_table th, .write_table td { line-height: 27px; vertical-align: top; padding:15px 0px 15px 13px; border-top: 1px solid #d6d4ca; text-align: left; }
+.write_table table { border-bottom: 1px solid #d6d4ca; text-align: left; }
+.btitle { background-color: #fdfcf0; width:100%; }
+
+
+
+/**********게시판 읽기**********/
+
+.write_table { overflow: hidden; }
+.write_table .tableview_info { padding: 0 10px; line-height: 30px; border-top: 1px solid #b8b6aa; background-color: #edebe1; text-align: left;}
+.write_table .boardview_content { min-height: 200px;}
+.boardview_content { padding:40px 20px; }
+
+#br_content { padding:0; margin:0;  }
+#replyForm { width:980px; border-bottom: 1px solid #CECCC1; overflow: hidden; padding:40px 0;  }
+#replyForm .icon_reply { width:100%; height: 24px; background: url("/resources/images/event/reply.gif")no-repeat left center ; padding:6px 0 10px 32px; line-height: 26px; }
+
+.replies {}
+#replies .replyLi { width:100%; height: 35px; padding:30px 20px; border-bottom: 1px dashed #cccccc;   }
+
+/**********로그인**********/
+
+#loginDiv { display: none; position: absolute; width: 462px; height: 324px; border: 5px solid #333; top: 200px; left: 35%; z-index: 20000; }
+#login_hd { width: 462px; height: 51px; background: #333; border-bottom: 5px solid #333; }
+#login_title { width: 440px; height: 35px; color: #f2f0e5; padding-top: 14px; padding-left: 20px; 
+			   font-family: Nanum Gothic, 나눔고딕, Apple SD Gothic Neo, AppleGothic, 돋움, dotum, Sans-serif;font-size: 22px;font-weight: bold;line-height: 22px;letter-spacing: -1px;border: 1px solid gray; }
+#btn_close_x { display: block; position: relative; float: right; top: -34px; bright: 20px; width: 18px; height: 18px;
+			   background: url(/resources/images/reserve/btn_close_x.png) no-repeat; overflow: hidden; cursor: pointer;text-indent: -1000px; }
+#login_bd { width: 312px; height: 228px; padding-bottom: 40px; padding-left: 75px; padding-right: 75px; 
+			background: #f6f6f4; }
+#login_bd_form { width: 266px; height: 133px; margin: 0 auto; position: relative; padding-top: 50px; }
+#login_wrap_id { width: 212px; border: 2px solid #b5b5b5; margin-bottom: 5px; padding: 8px 10px 8px 40px; background: url("/resources/images/reserve/login_icon_id.png") no-repeat left center; }
+#login_wrap_id input[type='text'] {	width: 212px; height: 21px; border: none; background: #f6f6f4; }
+
+#login_wrap_pw {width: 212px; border: 2px solid #b5b5b5 !important; padding-bottom: 7px; margin-bottom: 5px; padding: 8px 10px 8px 40px;
+				background: url("/resources/images/reserve/login_icon_pw.png") no-repeat left center; }
+#login_wrap_pw input[type='password'] {
+	width: 212px;
+	height: 21px;
+	border: none;
+	background: #f6f6f4;
+}
+
+#login_wrap_btn {
+	width: 262px;
+	height: 42px;
+	background: #e71a0f;
+	padding: 2px;
+}
+#login_bd_btn { width: 262px; background: #e71a0f; color: #f2f0e5; height: 42px; line-height: 37px; font-size: 15px; font-weight: bold; font-family: 'NanumBarunGothicBold', 'Nanum Gothic', 'Dotum'; border: 1px solid white; cursor: pointer; }
+
+
+/**********이벤트**********/
 
 #eventPageWrap {
-	width: 820px;
+	width: 980px;
 	height: 856px;
 	margin: 0 auto;
 	margin-top: 30px;
@@ -12,21 +127,24 @@
 
 .sect-event {
 	position: relative;
-    border-bottom: 0;
-    margin-bottom: 0;
-    padding-bottom: 0;
-    background: url(/resources/images/event/bg_event.gif) repeat-y;
+	width: 820px;
+	margin: 0 auto; 
+	border-bottom: 0;
+	margin-bottom: 0;
+	padding-bottom: 0;
+	background: url(/resources/images/event/bg_event.gif) repeat-y;
 }
 
 .box-event {
-    background: url(/resources/images/event/bg_event_top.gif) no-repeat;
-    width: 820px;
-    min-height: 181px;
+	background: url(/resources/images/event/bg_event_top.gif) no-repeat;
+	width: 820px;
+	min-height: 181px;
 }
 
 .evt-item-lst {
-    position: relative;
-    background: url(/resources/images/event/bg_event_bottom.gif) no-repeat bottom;
-    width: 820px;
-    min-height: 890px;
+	position: relative;
+	background: url(/resources/images/event/bg_event_bottom.gif) no-repeat
+		bottom;
+	width: 820px;
+	min-height: 890px;
 }
