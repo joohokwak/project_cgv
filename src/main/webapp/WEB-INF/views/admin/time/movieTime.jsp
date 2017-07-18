@@ -1,21 +1,18 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+<link rel="stylesheet" type="text/css" href="/resources/css/admin/mybtn.css" />
 <style type="text/css">
 .time-wrap{
 	position: relative;
-	width: 900px;
+	width: 1200px;
 	color: #666666;
+	cursor: default;
 }
 
 .time-header{
 	position: relative;
-		left: 30px; 
+	left: 70px; 
 }
 
 .time-header h1{
@@ -30,8 +27,8 @@
 
 .time-body{
 	position: relative;
-		left: 30px; 
-		width: 800px;
+	left: 70px; 
+	width: 1150px;
 }
 
 .time-select{
@@ -54,13 +51,14 @@
 
 .time-list{
 	width: 820px;
-	margin: 0px auto;"
+	margin: 0px;
 }
 
 .time-list .tname{
 	width: 50px;
 	float: left; 
 	margin: 5px 20px 5px 5px;
+	text-align: center;
 }
 
 .time-list .mname{
@@ -73,35 +71,34 @@
 	width: 60px;
 	float: left; 
 	margin: 5px 20px 5px 5px;
+	text-align: center;
 }
 
 .time-list .date{
 	width: 65px;
 	float: left; 
 	margin: 5px 20px 5px 5px;
+	text-align: center;
 }
 
 .time-list .time{
 	width: 50px;
 	float: left; 
 	margin: 5px 20px 5px 5px;
+	text-align: center;
 }
 
-.time-list .del{
-	width: 45px;
-	float: left; 
-	margin: 5px 20px 5px 5px;
-}
+ .time-list .del{ 
+ 	width: 45px; 
+ 	float: left;  
+ 	margin: 5px 20px 5px 5px; 
+ } 
 
 
 
 .time-clear{
 	clear: both;
 }
-
-
-
-
 </style>
 <script type="text/javascript">
 $(function(){
@@ -192,8 +189,6 @@ $(function(){
 
 
 </script>
-</head>
-<body>
 <div class="time-wrap">
 	<div class="time-header">
 		<h1>상영 시간 등록/삭제</h1>
@@ -230,7 +225,7 @@ $(function(){
 				</div>
 				<div class="time-row">
 <!-- 					<input type="submit" value="등록" id="submitBtn"> -->
-					<button type="submit" id="submitBtn">등록</button>
+					<button type="submit" id="submitBtn" class="my-btn">등록</button>
 				</div>
 				
 				<input type="hidden" id="theater" name="t_num">
@@ -247,7 +242,7 @@ $(function(){
 			<div class="screen">
 				상영관
 			</div>
-			<div class="mname">
+			<div class="mname" style="text-align: center">
 				영화이름
 			</div>
 			<div class="date">
@@ -266,8 +261,8 @@ $(function(){
 						<div class="date">${mt.mt_date}</div>
 						<div class="time">${mt.mt_time}</div>
 					</div>
-					<div>
-						<button type="button" class="del" onclick="location.href='/admin/movie/timeDel?num=${mt.mt_num}'">삭제</button>
+					<div style="float: right;">
+						<button type="button" class="my-btn" onclick="location.href='/admin/movie/timeDel?num=${mt.mt_num}'">삭제</button>
 					</div>
 					<div class="time-clear">
 						<hr>
@@ -277,6 +272,3 @@ $(function(){
 		</div>
 		</div>
 	</div>	
-
-</body>
-</html>

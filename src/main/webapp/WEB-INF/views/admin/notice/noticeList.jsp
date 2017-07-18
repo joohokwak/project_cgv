@@ -3,17 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="v" value="${viewData}"></c:set>
+<link rel="stylesheet" type="text/css" href="/resources/css/admin/mybtn.css" />
 <style type="text/css">
 	
 	.notice-wrap{
 		position: relative;
 		width: 900px;
+		margin: 0 auto;
 		color: #666666;
+		cursor: default;
 	}
 	
 	.notice-header{
 		position: relative;
-		left: 30px; 
 	}
 	
 	.notice-header h1{
@@ -24,13 +26,36 @@
 	
 	.notice-body{
 		position: relative;
-		left: 30px; 
 		width: 800px;
+	}
+	
+	.notice-search{
+		position: relative;
+		top: 15px;
+	}
+	
+	.notice-search select{
+		margin-right: 5px;
+		padding: 2px 3px 2px 0px;
+		width: 100px;
+		height: 24px;
+		border-color: #e1dfd5;
+		background: #fdfcf0;
+	}
+	
+	.notice-search input{
+		margin-right: 5px;
+		padding-left: 3px;
+		padding: 2px 3px 2px 0px;
+		width: 197px;
+		height: 19px;
+		border: 1px solid #e1dfd5;
+		background: #fdfcf0;
 	}
 	
 	#category{
 		position: relative;
-		top: 13px;
+		top: 40px;
 		border-bottom: 1px solid #898987;
 	}
 	
@@ -44,7 +69,13 @@
 	    text-align: center;
 	    text-decoration: none;
 	    display: inline-block;
-	    font-size: 12px;
+	    font-size: 12px; 
+	    cursor: pointer;
+	}
+	
+	.notice-count{
+		position: relative;
+		top: 60px;
 	}
 	
 	.btn-cate:HOVER{
@@ -53,7 +84,7 @@
 	
 	.notice-table{
 		position: relative;
-		top: 50px;
+		top: 80px;
 		width: 800px;
 		border-collapse: collapse;
 	}
@@ -130,6 +161,62 @@
    	opacity: 0.9;
    }
 </style>
+<script type="text/javascript">
+$(function(){
+	$("#all").click(function(){
+		location.href='/admin/notice/list?keyword=all'
+	});
+	
+	$("#check").click(function(){
+		location.href='/admin/notice/list?keyword=check'
+	});
+	
+	$("#theater").click(function(){
+		location.href='/admin/notice/list?keyword=theater'
+	});
+	
+	$("#etc").click(function(){
+		location.href='/admin/notice/list?keyword=etc'
+	});
+	
+	$("#search").click(function(){
+		search();
+	});
+	
+	$("#search_bar").keypress(function(e){
+		if(e.keyCode == 13){
+			search();
+		}
+	});
+	
+	switch("${keyword}"){
+	case "check" :
+		$("#check").css("background","#ea1400");		
+		break;
+	case "theater" :
+		$("#theater").css("background","#ea1400");
+		break;
+	case "etc" : 
+		$("#etc").css("background","#ea1400");
+		break;
+	
+	default : 
+		$("#all").css("background","#ea1400");
+	}
+	
+});
+
+function search(){
+	var key = $("#search_select").val();
+	var search_val = $.trim($("#search_bar").val());
+	
+	if(search_val == ""){
+		alert("검색할 내용을 입력하세요!");
+		return false;
+	}
+	location.href='/admin/notice/list?keyword='+ key +'&val=' + search_val;
+}
+</script>
 
 <div class="notice-wrap">
 	<div class="notice-header">
@@ -137,11 +224,22 @@
 		<p>공지사항을 관리하는 페이지 입니다.</p>
 	</div>
 	<div class="notice-body">
+		<div class="notice-search">
+			<select id="search_select">
+				<option value="title">제목</option>
+				<option value="content">내용</option>
+			</select>
+			<input type="text" id="search_bar" placeholder="검색어를 입력해주세요.">
+			<button id="search" class="my-btn"><span>검색하기</span></button>
+		</div>
 		<div id="category" align="left">
-			<button type="button" class="btn-cate">전체</button>
-			<button type="button" class="btn-cate">시스템점검</button>
-			<button type="button" class="btn-cate">극장</button>
-			<button type="button" class="btn-cate">기타</button>
+			<button type="button" id="all" class="btn-cate" onclick="">전체</button>
+			<button type="button" id="check" class="btn-cate">시스템점검</button>
+			<button type="button" id="theater" class="btn-cate">극장</button>
+			<button type="button" id="etc" class="btn-cate">기타</button>
+		</div>
+		<div class="notice-count">
+			<span id="cnt_text">총 <strong>${v.nCount}</strong>이 검색되었습니다.</span>
 		</div>
 		<table class="notice-table">
 			<tr>
@@ -154,7 +252,7 @@
 			<c:forEach var="list" items="${v.nList}">
 				<tr class="notice-row">
 					<td>${list.n_num}</td>
-					<td>${list.n_cate}</td><!-- [ ] 넣어야 함. -->
+					<td>[${list.n_cate}]</td>
 					<td style="text-align: left;">
 						<a href="view?num=${list.n_num}">${list.n_title}</a>
 					</td>

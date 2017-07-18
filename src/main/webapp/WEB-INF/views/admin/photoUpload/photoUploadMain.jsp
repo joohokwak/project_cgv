@@ -7,6 +7,7 @@
 <title>Insert title here</title>
 <!-- jQuery library -->
 <link rel="stylesheet" type="text/css" href="/resources/css/admin/photo/photo.css" />
+<link rel="stylesheet" type="text/css" href="/resources/css/admin/mybtn.css" />
 <style type="text/css">
 	#photo-wrap{
 		position: relative;
@@ -16,7 +17,7 @@
 	
 	.photo-header{
 		position: relative;
-		left: 30px; 
+		left: 70px; 
 	}
 	
 	.photo-header h1{
@@ -31,7 +32,8 @@
 	
 	.photo-body{
 		position: relative;
-		left: 30px; 
+		top: 20px;
+		left: 70px; 
 		width: 800px;
 	}
 	
@@ -59,26 +61,6 @@
 		font-weight: bold;
 		color: white;
 	}
-	
-	.my-btn{
-      width: 73px;
-      height: 26px;
-      background: url("/resources/images/btn_bg.gif") no-repeat;
-      color:#fff;
-      border: 0;
-      cursor: pointer;
-   }
-   
-   .my-btn span{
-      text-align: center;
-      line-height: 8px;
-      font-size: 12px; 
-      font-weight: bold;
-   }
-   
-   .my-btn:HOVER{
-   	opacity: 0.9;
-   }
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">

@@ -32,21 +32,19 @@ public class NoticeServiceImpl implements NoticeService {
 		result.put("end", p.getEndPage());
 		result.put("last", p.getPageTotalCount());
 		
-		if(option.get("keyword") == ""){
-			option.put("keyword", null);
-		}
-		
-		if(option.get("value") == ""){
-			option.put("value", null);
-		}
-		
+		System.out.println("option : " + option);
+				
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("skip", p.getSkip());
 		params.put("qty", p.getQty());
 		params.put("keyword", option.get("keyword"));
-		params.put("value", option.get("value"));
+		params.put("val", option.get("val"));
 		
 		List<HashMap<String, Object>> nList = nDao.selectAll(params);
+		result.put("nCount", nDao.getSearchCount(params));
+		
+		System.out.println(params);
+		
 		result.put("nList", nList);
 		
 		return result;

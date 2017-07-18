@@ -149,7 +149,7 @@
 						<ul class="ticker">
 							<c:forEach items="${nList}" var="n">
 								<li>
-									<a href="/notice/list">${n.n_cate} ${n.n_title}</a> 
+									<a href="/notice/list">[${n.n_cate}] ${n.n_title}</a> 
 									<span style="float: right;"><fmt:formatDate value="${n.n_regdate}"/></span>
 								</li>
 							</c:forEach>

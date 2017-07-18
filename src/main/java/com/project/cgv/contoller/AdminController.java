@@ -60,6 +60,7 @@ public class AdminController {
 		HashMap<String,Object> viewData = nService.getAllNotice(page, option);
 		
 		model.addAttribute("viewData",viewData);
+		model.addAttribute("keyword",option.get("keyword"));
 		
 		return ".admin.notice.noticeList";
 	}
@@ -223,7 +224,7 @@ public class AdminController {
 		return ".admin.movie.movieList";
 	}
 	
-	@RequestMapping("/movie/insertForm")
+	@RequestMapping(value="/movie/insert", method=RequestMethod.GET)
 	public String showMovieInsertForm(Model model){
 		
 		model.addAttribute("gList",mService.showGenreList());
@@ -231,7 +232,7 @@ public class AdminController {
 		return ".admin.movie.movieInsertForm";
 	}
 	
-	@RequestMapping("/movie/insert")
+	@RequestMapping(value="/movie/insert", method=RequestMethod.POST)
 	public String insertMovie(Model model, @RequestParam HashMap<String,Object> params){
 		
 		boolean result = mService.addMovie(params);

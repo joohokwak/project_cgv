@@ -3,17 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="v" value="${viewData}"></c:set>
+<link rel="stylesheet" href="/resources/css/admin/mybtn.css">
 <style type="text/css">
 
 	.movie-wrap{
 		position: relative;
 		width: 900px;
 		color: #666666;
+		cursor: default;
 	}
 	
 	.movie-header{
 		position: relative;
-		left: 30px; 
+		left: 70px; 
 	}
 	
 	.movie-header h1{
@@ -22,15 +24,19 @@
 		color: black;
 	}
 	
+	.movie-header p{
+		margin: 2px 0px;
+	}
+	
 	.movie-body{
 		position: relative;
-		left: 30px; 
+		left: 70px; 
 		width: 800px;
 	}
 	
 	.movie-table{
 		position: relative;
-		top: 50px;
+		top: 20px;
 		width: 800px;
 		border-collapse: collapse;
 	}
@@ -111,7 +117,8 @@
 <div class="movie-wrap">
 	<div class="movie-header">
 		<h1>영화 정보</h1>
-		<p>영화의 정보를 확인하는 페이지 입니다. 영화의 제목을 클릭하면 수정, 삭제 페이지로 이동합니다.</p>
+		<p>영화의 정보를 확인하는 페이지 입니다.</p>
+		<p>영화의 제목을 클릭하면 수정, 삭제 페이지로 이동합니다.</p>
 	</div>
 	<div class="movie-body">
 		<table class="movie-table">
@@ -128,6 +135,9 @@
 					<td style="text-align: center;">${list.m_like}</td>
 				</tr>
 			</c:forEach>
+			<tr>
+				<td colspan="3" align="right"><button type="button" class="my-btn" onclick="location.href='/admin/movie/insert'"><span>영화등록</span></button></td>
+			</tr>
 			<tr>
 				<td colspan="3" style="text-align: center;">
 				<div class="movie-pagenation">
