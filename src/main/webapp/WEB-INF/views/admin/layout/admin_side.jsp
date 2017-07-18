@@ -14,6 +14,6 @@
 	<li><a href="/admin/photo/uploadForm">사진 업로드</a></li>
 	<li><a href="/admin/movie/time">상영시간 관리</a></li>
 	<li><a href="#">예매 관리</a></li>
-	<li><a href="#">매출 관리</a></li>
+	<li><a href="/admin/salesmanagement ">매출 관리</a></li>
 </ul>
 </div>

@@ -3,17 +3,19 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 <c:set var="v" value="${viewData}"></c:set>
+<link rel="stylesheet" href="/resources/css/admin/mybtn.css">
 <style type="text/css">
 
 	.actor-wrap{
 		position: relative;
 		width: 900px;
 		color: #666666;
+		cursor: default;
 	}
 	
 	.actor-header{
 		position: relative;
-		left: 30px; 
+		left: 70px; 
 	}
 	
 	.actor-header h1{
@@ -22,15 +24,19 @@
 		color: black;
 	}
 	
+	.actor-header p{
+		margin: 2px 0px;
+	}
+	
 	.actor-body{
 		position: relative;
-		left: 30px; 
+		left: 70px; 
 		width: 800px;
 	}
 	
 	.actor-table{
 		position: relative;
-		top: 50px;
+		top: 20px;
 		width: 500px;
 		border-collapse: collapse;
 	}
@@ -59,6 +65,7 @@
 		padding: 10px 0px;
 		display: inline-block;
 		text-decoration: none;
+		cursor: pointer;
 	}
 	
 	.actor-pagenation{
@@ -85,33 +92,12 @@
 		background-color: #ea1400;
 		color: white;
 	}
-	
-	.my-btn{
-      width: 73px;
-      height: 26px;
-      background: url("/resources/images/btn_bg.gif") no-repeat;
-      color:#fff;
-      border: 0;
-      cursor: pointer;
-   }
-   
-   .my-btn span{
-      text-align: center;
-      line-height: 8px;
-      font-size: 12px; 
-      font-weight: bold;
-         
-   }
-   
-   .my-btn:HOVER{
-   	opacity: 0.9;
-   }
-
 </style>
 <div class="actor-wrap">
 	<div class="actor-header">
 		<h1>배우 관리</h1>
 		<p>배우의 정보를 관리하는 페이지 입니다.</p>
+		<p>배우의 이름을 클릭하면 수정, 삭제 페이지로 이동합니다.</p>
 	</div>
 	<div class="actor-body">
 		<table class="actor-table">
@@ -122,9 +108,15 @@
 			<c:forEach var="list" items="${v.aList}">
 				<tr class="actor-row">
 					<td>${list.a_num}</td>
-					<td style="text-align: left">${list.a_kor_name}</td>
+					<td style="text-align: left">
+					<a href="/admin/actor/update?num=${list.a_num}">${list.a_kor_name}</a></td>
 				</tr>
 			</c:forEach>
+			<tr>
+				<td colspan="2" align="right">
+					<button class="my-btn" onclick="location.href='/admin/actor/insert'"><span>배우 등록</span></button>
+				</td>
+			</tr>
 			<tr>
 				<td colspan="2" style="text-align: center">
 				<div class="actor-pagenation">
