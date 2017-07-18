@@ -9,6 +9,8 @@
 <script type="text/javascript">
 function getAllList(){
 	
+	var member_id = "${member.id}";
+	
 	$.ajax({
 		
 		url:"/board/replies/all/"+$("#b_num").val(),
@@ -17,9 +19,13 @@ function getAllList(){
 		success : function(data){
 		
 			var str = "";
-			
 			$(data).each(function(i,e){
-				str += "<li data-rno='"+e.br_num+" 'class='replyLi'>"+e.br_writer+"&nbsp;&nbsp;"+e.br_regdate+"&nbsp;&nbsp;<c:if test='${member.id eq \"admin\" || member.id eq "+e.br_id+"}'><button>삭제</button></c:if><br/><br/>"+e.br_content+"</li>";
+				
+				if(e.br_id == member_id || member_id == 'admin') {
+					str += "<li data-rno='"+e.br_num+" 'class='replyLi'>"+e.br_writer+"&nbsp;&nbsp;"+e.br_regdate+"&nbsp;&nbsp;<button>삭제</button><br/><br/>"+e.br_content+"</li>";
+				}else {
+					str += "<li data-rno='"+e.br_num+" 'class='replyLi'>"+e.br_writer+"&nbsp;&nbsp;"+e.br_regdate+"&nbsp;&nbsp;<br/><br/>"+e.br_content+"</li>";
+				}
 			});
 			
 			$("#replies").html(str);
@@ -231,6 +237,7 @@ $(function(){
 			
 			<!-- replies에다가 댓글 목록을 출력 -->
 			<ul id="replies">
+				
 			</ul>		
 	</div>	
 	
