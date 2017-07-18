@@ -2,6 +2,61 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <c:set var="m" value="${movie}"/>
+<link rel="stylesheet" href="/resources/css/admin/mybtn.css">
+<style type="text/css">
+	.movie-wrap{
+		position: relative;
+		width: 900px;
+		color: #666666;
+	}
+	
+	.movie-header{
+		position: relative;
+		left: 30px;
+		text-align: left; 
+	}
+	
+	.movie-header h1{
+		font-weight: bold;
+		font-size: 25px;
+		color: black;
+	}
+	
+	.movie-header p{
+		margin: 2px 0px;
+	}
+	
+	.movie-body{
+		position: relative;
+		top: 20px;
+		left: 30px; 
+		width: 850px;
+	}
+	
+	.movie-table{
+		position: relative;
+		width: 830px;
+		border-collapse: collapse;
+		margin-bottom: 20px;
+	}
+	
+	.movie-input{
+		width: 144px;
+		padding: 6px;
+		border: 1px solid #a9a9a9;
+		border-radius:4px;
+	}
+	
+	#grade_select{
+		padding: 5px;
+		border-radius: 4px;
+		vertical-align: middle;
+	}
+	
+	.movie-table td{
+		height: 35px;
+	}
+</style>
 <script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 var oEditors = [];
@@ -107,19 +162,6 @@ $(function() {
 
 function movieCheck(){
 	
-// 	var arr = [];
-// 	var genre_count = 0;
-// 	$(".genreGroup").each(function(){
-// 		if($(this).is(":checked") == true){
-// 			arr.push($(this).val());
-// 			genre_count++;
-// 		}
-// 	});
-	
-// 	if(genre_count != 0){
-// 		$("#genre").val(arr);
-// 	}
-	
 	if($.trim($("#title_kor").val()) == ""){
 		alert("한글 이름을 입력하세요!");
 		$("#title_kor").focus();
@@ -179,134 +221,128 @@ function editorCheck() {
 }
 
 </script>
-</head>
-<body>
-<!-- 
-+------------+--------------+------+-----+---------+----------------+
-| Field      | Type         | Null | Key | Default | Extra          |
-+------------+--------------+------+-----+---------+----------------+
-| m_num      | int(11)      | NO   | PRI | NULL    | auto_increment |
-| m_title1   | varchar(200) | YES  |     | NULL    |                |
-| m_title2   | varchar(200) | YES  |     | NULL    |                |
-| m_producer | varchar(100) | YES  |     | NULL    |                |
-| m_grade    | varchar(30)  | YES  |     | NULL    |                |
-| m_time     | int(11)      | YES  |     | NULL    |                |
-| m_made     | varchar(50)  | YES  |     | NULL    |                |
-| m_company  | varchar(100) | YES  |     | NULL    |                |
-| m_start    | date         | YES  |     | NULL    |                |
-| m_end      | date         | YES  |     | NULL    |                |
-| m_site     | varchar(300) | YES  |     | NULL    |                |
-| m_like     | int(11)      | YES  |     | NULL    |                |
-| m_content  | text         | YES  |     | NULL    |                |
-| m_poster   | varchar(300) | YES  |     | NULL    |                |
-| m_genre    | varchar(300) | YES  |     | NULL    |                |
-+------------+--------------+------+-----+---------+----------------+
- -->
- 
+
 <div class="movie-wrap">
-	
 	<div class="movie-header">
-		<h1>영화 수정</h1>
+		<h1>영화등록</h1>
+		<p>영화를 등록하는 페이지 입니다.</p>
 	</div>
 	
 	<div class="movie-body">
 		<form action="/admin/movie/update" id="movieForm" method="post">
 			<input type="text" name="num" value="${m.m_num}">
-			<div class="movie-table-wrap">
-				<table style="width: 100%">
-					<tr>
-						<td>
-							<label for="title_kor">제목(한글)</label>
-							<input type="text" id="title_kor" name="title_kor" value="${m.m_title1}">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="title_eng">제목(영문)</label>
-							<input type="text" id="title_eng" name="title_eng" value="${m.m_title2}">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="producer">감독</label>
-							<input type="text" id="producer" name="producer" value="${m.m_producer}">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="genre_select">장르</label>
-							<div id="genreWrap">
-								<c:forEach items="${gList}" var="g" varStatus="status">
+			<table class="movie-table">
+				<tr>
+					<td width="90px">
+						<label for="title_kor">제목(한글)</label>
+					</td>
+					<td>
+						<input type="text" id="title_kor" name="title_kor" class="movie-input" style="width: 200px">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="title_eng">제목(영문)</label>
+					</td>
+					<td>
+						<input type="text" id="title_eng" name="title_eng" class="movie-input" style="width: 200px">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="producer">감독</label>
+					</td>
+					<td>
+						<input type="text" id="producer" name="producer" class="movie-input" style="width: 200px">
+					</td>
+				</tr>
+				<tr>
+					<td style="vertical-align: text-top;">
+						<label>장르</label>
+					</td>
+					<td>
+						<div id="genreWrap">
+							<c:forEach items="${gList}" var="g" varStatus="status">
+								<label style="display: inline-block; padding-right: 10px; width: 120px;">
 									<input type="checkbox" class="genreGroup" value='${g.g_name}'>${g.g_name}
-									<c:if test="${status.count%10 == 0}"><br></c:if>
-								</c:forEach>
-								<input type="text" id="genre" name="genre" value="${m.m_genre }">
-							</div>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="grade_select">관람 등급</label>
-							<select id="grade_select">
-								<option value="none">선택하세요</option>
-								<option value="all">전체</option>
-								<option value="12-rating">12세 이상</option>
-								<option value="15-rating">15세 이상</option>
-								<option value="x-rated">청소년 관람불가</option>							
-							</select>
-							<input type="text" id="grade" name="grade" value="${m.m_grade}">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="time">상영시간</label>
-							<input type="text" id="time" name="time" value="${m.m_time}">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="made">제작 국가</label>
-							<input type="text" id="made" name="made" value="${m.m_made}">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for=company>배급사</label>
-							<input type="text" id="company" name="company" value="${m.m_company}">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for=site>사이트</label>
-							<input type="text" id="site" name="site" value="${m.m_site}">&nbsp;
-							<input type="checkbox" id="site_check">사이트 없음
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="start">상영 시작일</label>
-							<input type="date" id="start" name="start" value="${m.m_start}">
-							<span> ~ </span>
-							<label for="end">상영 종료일</label>
-							<input type="date" id="end" name="end" value="${m.m_end}">
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<label for="content">줄거리</label>
-							<textarea rows="30" cols="100" id="content" name="content">${m.m_content}</textarea>
-						</td>
-					</tr>
-					<tr>
-						<td>
-							<input type="button" value="등록" id="movieSubmit">
-							<input type="button" value="test" id="test">
-						</td>
-					</tr>
-				</table>
-			</div>
+								</label>
+<%-- 								<c:if test="${status.count%10 == 0}"><br></c:if> --%>
+							</c:forEach>
+							<input type="hidden" id="genre" name="genre">
+						</div>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="grade_select">관람 등급</label>
+					</td>
+					<td>
+						<select id="grade_select">
+							<option value="none">선택하세요</option>
+							<option value="all">전체</option>
+							<option value="12-rating">12세 이상</option>
+							<option value="15-rating">15세 이상</option>
+							<option value="x-rated">청소년 관람불가</option>							
+						</select>
+						<input type="hidden" id="grade" name="grade">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="time">상영시간</label>
+					</td>
+					<td>
+						<input type="text" id="time" name="time" class="movie-input" width="132px">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="made">제작 국가</label>
+					</td>
+					<td>
+						<input type="text" id="made" name="made" class="movie-input" style="width: 200px">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for=company>배급사</label>
+					</td>
+					<td>
+						<input type="text" id="company" name="company" class="movie-input" style="width: 200px">
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for=site>사이트</label>
+					</td>
+					<td>
+						<input type="text" id="site" name="site" class="movie-input" style="width: 327px">&nbsp;
+						<input type="checkbox" id="site_check">사이트 없음
+					</td>
+				</tr>
+				<tr>
+					<td><label>상영일</label></td>
+					<td>
+						<input type="date" id="start" name="start" class="movie-input">
+						<span style="padding: 0px 5px">~</span>
+						<input type="date" id="end" name="end" class="movie-input">
+					</td>
+				</tr>
+				<tr>
+					<td style="vertical-align: text-top;">
+						<label for="content">줄거리</label>
+					</td>
+					<td>
+						<textarea rows="30" cols="100" id="content" name="content"></textarea>
+					</td>
+				</tr>
+				
+				<tr>
+					<td align="right" colspan="2">
+						<input type="button" value="등록" id="movieSubmit" class="my-btn" style="margin-right: 10px">
+					</td>
+				</tr>
+			</table>
 		</form>
 	</div>
 </div>
-</body>
-</html>

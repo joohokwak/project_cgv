@@ -1,6 +1,9 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="/resources/css/admin/mybtn.css">
+<link rel="stylesheet" href="/resources/css/admin/actor/actor_insert.css">
 <script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 	var oEditors = [];
@@ -41,23 +44,6 @@
 		});
 		
 		clickCheckBox();
-		
-		
-		
-		
-		$("#test").click(function(){
-				
-
-		});
-		
-		
-		
-		
-		
-		
-		
-		
-		
 		
 	});
 	
@@ -182,97 +168,108 @@
 </script>
 </head>
 <body>
-<div id="wrap">
-	<div class="admin-header">
+<div id="actor-wrap">
+	<div class="actor-header">
 		<h1>배우 등록</h1>
-		<p>배우 등록하는 페이지</p>		
+		<p>배우의 정보를 등록하는 페이지 입니다.</p>
+		<p>입력할 내용이 없으면 체크(<i class="fa fa-check" aria-hidden="true"></i>)해주세요.</p>		
 	</div>
 	<form action="/admin/actor/insert" method="post" id="actorForm">
-		<div class="admin-body">
-			<table>
-				<tr>
-					<td></td>
-					<td>내용없음</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="kor_name">이름(한글)</label>
-						<input type="text" id="kor_name" name="kor_name" value="">
-					</td>
-					<td>
-						<input type="checkbox" id="kor_name_check">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="eng_name">이름(영문)</label>
-						<input type="text" id="eng_name" name="eng_name">
-					</td>
-					<td>
-						<input type="checkbox" id="eng_name_check">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="birth">출생</label>
-						<input type="date" id="birth" name="birth" placeholder="생년월일 8글자를 입력하세요('-'제외)">
-					</td>
-					<td>
-						<input type="checkbox" id="birth_check">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="nation">국적</label>
-						<input type="text" id="nation" name="nation">
-					</td>
-					<td>
-						<input type="checkbox" id="nation_check">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="job">직업</label>
-						<input type="text" id="job" name="job">
-					</td>
-					<td>
-						<input type="checkbox" id="job_check">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="edulev">학력</label>
-						<input type="text" id="edulev" name="edulev">
-					</td>
-					<td>
-						<input type="checkbox" id="edulev_check">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="site">사이트</label>
-						<input type="text" id="site" name="site">
-					</td>
-					<td>
-						<input type="checkbox" id="site_check">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="content">바이오그래피</label>
-						<textarea rows="30" cols="100" id="content" name="content"></textarea>
-					</td>
-					<td>
-						<input type="checkbox" id="biography_check">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="button" value="등록" id="actorSubmit">
-						<input type="button" value="test" id="test">
-					</td>
-				</tr>
-			</table>
-		</div>
+		<div class="actor-body">
+			<div class="admin-body">
+				<table class="actor-table">
+					<tr>
+						<td width="90px">
+							<label for="kor_name">이름(한글)</label>
+						</td>
+						<td width="730px">
+							<input type="text" id="kor_name" name="kor_name" class="actor-input">
+						</td>
+						<td>
+							<input type="checkbox" id="kor_name_check">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="eng_name">이름(영문)</label>
+						</td>
+						<td>
+							<input type="text" id="eng_name" name="eng_name" class="actor-input">
+						</td>
+						<td>
+							<input type="checkbox" id="eng_name_check">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="birth">출생</label>
+						</td>
+						<td>
+							<input type="date" id="birth" name="birth" placeholder="생년월일 8글자를 입력하세요('-'제외)" class="actor-input">
+						</td>
+						<td>
+							<input type="checkbox" id="birth_check">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="nation">국적</label>
+						</td>
+						<td>
+							<input type="text" id="nation" name="nation" class="actor-input">
+						</td>
+						<td>
+							<input type="checkbox" id="nation_check">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="job">직업</label>
+						</td>
+						<td>
+							<input type="text" id="job" name="job" class="actor-input">
+						</td>
+						<td>
+							<input type="checkbox" id="job_check">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="edulev">학력</label>
+						</td>
+						<td>
+							<input type="text" id="edulev" name="edulev" class="actor-input">
+						</td>
+						<td>
+							<input type="checkbox" id="edulev_check">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="site">사이트</label>
+						</td>
+						<td>
+							<input type="text" id="site" name="site" class="actor-input">
+						</td>
+						<td>
+							<input type="checkbox" id="site_check">
+						</td>
+					</tr>
+					<tr>
+						<td style="vertical-align: text-top;">
+							<label for="content" style="padding-bottom: 20px">바이오그래피</label>
+						</td>
+						<td colspan="2">
+							<textarea rows="30" cols="100" id="content" name="content" style="text-align: center"></textarea>
+						</td>
+					</tr>
+					<tr style="margin: 20px 0px">
+						<td colspan="3" align="center">
+							<input type="button" value="등록" id="actorSubmit" class="my-btn">
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div><!-- body -->
 	</form>
 </div>

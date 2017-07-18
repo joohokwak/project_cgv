@@ -1,0 +1,57 @@
+.actor-wrap{
+		position: relative;
+		width: 900px;
+		color: #666666;
+	}
+	
+	.actor-header{
+		position: relative;
+		left: 30px;
+		text-align: left; 
+	}
+	
+	.actor-header h1{
+		font-weight: bold;
+		font-size: 25px;
+		color: black;
+	}
+	
+	.actor-header p{
+		margin: 2px 0px;
+	}
+	
+	.actor-body{
+		position: relative;
+		left: 30px; 
+		width: 850px;
+	}
+	
+	.actor-table{
+		position: relative;
+		top: 30px;
+		width: 830px;
+		border-collapse: collapse;
+		margin-bottom: 20px;
+	}
+	
+	
+	.actor-input{
+		width: 144px;
+		padding: 5px;
+		border-style: none;
+		border: 1px solid red;
+		border-radius:4px;
+	}
+	
+	.actor-table td{
+		height: 30px;
+	}
+	
+	
+	#edulev{
+		width: 200px;
+	}
+	
+	#site{
+		width: 250px;
+	}

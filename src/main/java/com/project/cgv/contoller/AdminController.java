@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.multipart.MultipartHttpServletRequest;
+import org.springframework.web.servlet.ModelAndView;
 
 import com.project.cgv.service.ActorService;
 import com.project.cgv.service.MovieService;
@@ -60,6 +61,7 @@ public class AdminController {
 		HashMap<String,Object> viewData = nService.getAllNotice(page, option);
 		
 		model.addAttribute("viewData",viewData);
+		model.addAttribute("keyword",option.get("keyword"));
 		
 		return ".admin.notice.noticeList";
 	}
@@ -223,7 +225,7 @@ public class AdminController {
 		return ".admin.movie.movieList";
 	}
 	
-	@RequestMapping("/movie/insertForm")
+	@RequestMapping(value="/movie/insert", method=RequestMethod.GET)
 	public String showMovieInsertForm(Model model){
 		
 		model.addAttribute("gList",mService.showGenreList());
@@ -231,7 +233,7 @@ public class AdminController {
 		return ".admin.movie.movieInsertForm";
 	}
 	
-	@RequestMapping("/movie/insert")
+	@RequestMapping(value="/movie/insert", method=RequestMethod.POST)
 	public String insertMovie(Model model, @RequestParam HashMap<String,Object> params){
 		
 		boolean result = mService.addMovie(params);
@@ -437,7 +439,37 @@ public class AdminController {
 	}
 	
 	// MovieTime End //////////////////////////////////////////////////////////////////////////////////////////
+	
+	
+	// 매출관리
+	@RequestMapping("/salesManagement")
+	public ModelAndView salse() {
+		ModelAndView mv = new ModelAndView(".admin.sales.salesManagement");
 		
+		List<HashMap<String, Object>> list = mService.salseManagement();
+		
+		String sales = "";
+		
+		for(int i = 0; i < list.size(); i++) {
+			sales += ((Double)list.get(i).get("sales")).intValue() + ", ";
+		}
+		
+		sales = sales.substring(0, sales.length()-2);
+		
+		String tlist = "";
+		
+		for(int i = 0; i < list.size(); i++) {
+			tlist += "'" + list.get(i).get("t_name") + "', ";
+		}
+		
+		tlist = tlist.substring(1, tlist.length()-3);
+		
+		mv.addObject("slist", sales);
+		mv.addObject("tlist", tlist);
+		mv.addObject("size", list.size());
+		
+		return mv;
+	}
 	
 	
 }////////////////////////////////////////

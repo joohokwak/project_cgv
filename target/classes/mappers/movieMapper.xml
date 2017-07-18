@@ -209,7 +209,7 @@
 	
 	<!-- 매출관리 -->
 	<select id="salseManagement" resultType="hashmap">
-		select t_name, ifnull(sum(rv_pay),0) as sales from reserve right join theater using(t_num) group by t_num order by t_name
+		select substring(t_name, 4) as t_name, ifnull(sum(rv_pay),0) as sales from reserve right join theater using(t_num) group by t_num order by t_name
 	</select>
 	
 </mapper>
