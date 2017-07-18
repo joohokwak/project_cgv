@@ -7,12 +7,12 @@
 	.movie-wrap{
 		position: relative;
 		width: 900px;
+		margin: 0 auto;
 		color: #666666;
 	}
 	
 	.movie-header{
 		position: relative;
-		left: 30px;
 		text-align: left; 
 	}
 	
@@ -29,7 +29,6 @@
 	.movie-body{
 		position: relative;
 		top: 20px;
-		left: 30px; 
 		width: 850px;
 	}
 	
@@ -63,6 +62,11 @@ var oEditors = [];
 var classCnt = 1;
 
 $(function() {
+	
+	$("#movie_menu").css({
+		background : "#343132",
+		color: "#fff"		
+	});
 
 	// 에디터
 	nhn.husky.EZCreator.createInIFrame({
@@ -102,6 +106,15 @@ $(function() {
 		}
 	});
 	
+	$("#site_check").change(function(){
+		if($("#site_check").is(":checked") == true){
+			$("#site").val("").attr("disabled",true);
+			
+		}else{
+			$("#site").val("").attr("disabled",false);
+		}
+	});
+	
 	if($.trim($("#site").val()) == ""){
 		$("#site_check").attr("checked",true);
 	}
@@ -118,19 +131,16 @@ $(function() {
 	
 	$(".genreGroup").each(function(){
 		for(var i = 0; i<strArr.length; i++){
-			if($.trim($(this).val()) == strArr[i]){
+			if($.trim($(this).val()) == $.trim(strArr[i])){
 				$(this).attr("checked",true);
 			}
 		}
 	});
 	
-	$("#gen")
-	
-	
 	$("#grade_select").change(function(){
 		$("#grade_select option").each(function(){
 			if($(this).is(":selected") == true){
-				//alert($(this).text());
+				alert($(this).text());
 				$("#grade").val($(this).text());
 			}
 		});
@@ -150,14 +160,7 @@ $(function() {
 			$("#genre").val(arr);
 		}
 	});
-	
-	
-	
-	$("#test").click(function(){
-		alert("${m.m_grade}");
-		
 
-	});
 });/////////////////////
 
 function movieCheck(){
@@ -224,20 +227,20 @@ function editorCheck() {
 
 <div class="movie-wrap">
 	<div class="movie-header">
-		<h1>영화등록</h1>
-		<p>영화를 등록하는 페이지 입니다.</p>
+		<h1>영화 수정</h1>
+		<p>영화의 정보를 수정하는 페이지 입니다.</p>
 	</div>
 	
 	<div class="movie-body">
 		<form action="/admin/movie/update" id="movieForm" method="post">
-			<input type="text" name="num" value="${m.m_num}">
+			<input type="hidden" name="num" value="${m.m_num}">
 			<table class="movie-table">
 				<tr>
 					<td width="90px">
 						<label for="title_kor">제목(한글)</label>
 					</td>
 					<td>
-						<input type="text" id="title_kor" name="title_kor" class="movie-input" style="width: 200px">
+						<input type="text" id="title_kor" name="title_kor" class="movie-input" style="width: 200px" value="${m.m_title1}">
 					</td>
 				</tr>
 				<tr>
@@ -245,7 +248,7 @@ function editorCheck() {
 						<label for="title_eng">제목(영문)</label>
 					</td>
 					<td>
-						<input type="text" id="title_eng" name="title_eng" class="movie-input" style="width: 200px">
+						<input type="text" id="title_eng" name="title_eng" class="movie-input" style="width: 200px" value="${m.m_title2}">
 					</td>
 				</tr>
 				<tr>
@@ -253,7 +256,7 @@ function editorCheck() {
 						<label for="producer">감독</label>
 					</td>
 					<td>
-						<input type="text" id="producer" name="producer" class="movie-input" style="width: 200px">
+						<input type="text" id="producer" name="producer" class="movie-input" style="width: 200px" value="${m.m_producer}">
 					</td>
 				</tr>
 				<tr>
@@ -266,9 +269,8 @@ function editorCheck() {
 								<label style="display: inline-block; padding-right: 10px; width: 120px;">
 									<input type="checkbox" class="genreGroup" value='${g.g_name}'>${g.g_name}
 								</label>
-<%-- 								<c:if test="${status.count%10 == 0}"><br></c:if> --%>
 							</c:forEach>
-							<input type="hidden" id="genre" name="genre">
+							<input type="hidden" id="genre" name="genre" value="${m.m_genre}">
 						</div>
 					</td>
 				</tr>
@@ -292,7 +294,7 @@ function editorCheck() {
 						<label for="time">상영시간</label>
 					</td>
 					<td>
-						<input type="text" id="time" name="time" class="movie-input" width="132px">
+						<input type="text" id="time" name="time" class="movie-input" width="132px" value="${m.m_time}">
 					</td>
 				</tr>
 				<tr>
@@ -300,7 +302,7 @@ function editorCheck() {
 						<label for="made">제작 국가</label>
 					</td>
 					<td>
-						<input type="text" id="made" name="made" class="movie-input" style="width: 200px">
+						<input type="text" id="made" name="made" class="movie-input" style="width: 200px" value="${m.m_made}"> 
 					</td>
 				</tr>
 				<tr>
@@ -308,7 +310,7 @@ function editorCheck() {
 						<label for=company>배급사</label>
 					</td>
 					<td>
-						<input type="text" id="company" name="company" class="movie-input" style="width: 200px">
+						<input type="text" id="company" name="company" class="movie-input" style="width: 200px" value="${m.m_company}">
 					</td>
 				</tr>
 				<tr>
@@ -316,16 +318,16 @@ function editorCheck() {
 						<label for=site>사이트</label>
 					</td>
 					<td>
-						<input type="text" id="site" name="site" class="movie-input" style="width: 327px">&nbsp;
+						<input type="text" id="site" name="site" class="movie-input" style="width: 327px" value="${m.m_site}">&nbsp;
 						<input type="checkbox" id="site_check">사이트 없음
 					</td>
 				</tr>
 				<tr>
 					<td><label>상영일</label></td>
 					<td>
-						<input type="date" id="start" name="start" class="movie-input">
+						<input type="date" id="start" name="start" class="movie-input" value="${m.m_start}">
 						<span style="padding: 0px 5px">~</span>
-						<input type="date" id="end" name="end" class="movie-input">
+						<input type="date" id="end" name="end" class="movie-input" value="${m.m_end}">
 					</td>
 				</tr>
 				<tr>
@@ -333,13 +335,15 @@ function editorCheck() {
 						<label for="content">줄거리</label>
 					</td>
 					<td>
-						<textarea rows="30" cols="100" id="content" name="content"></textarea>
+						<textarea rows="30" cols="100" id="content" name="content">${m.m_content}</textarea>
 					</td>
 				</tr>
 				
 				<tr>
 					<td align="right" colspan="2">
-						<input type="button" value="등록" id="movieSubmit" class="my-btn" style="margin-right: 10px">
+						<button class="my-btn" type="button" onclick="location.href='/admin/movie/list'"><span>목록</span></button>
+						<button id="movieSubmit" class="my-btn" type="button"><span>수정</span></button>
+						<button class="my-btn" type="button" onclick="location.href='/admin/movie/delete?num=${m.m_num}'" style="margin-right: 10px"><span>삭제</span></button>
 					</td>
 				</tr>
 			</table>

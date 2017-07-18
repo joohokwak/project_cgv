@@ -72,6 +72,9 @@ public interface MovieDao {
 
 	// 매출관리
 	public List<HashMap<String, Object>> salseManagement();
+	
+	//영화와 배우를 연결시킴.
+	public void attachInfo(HashMap<String,Object> params);
 
 	
 	

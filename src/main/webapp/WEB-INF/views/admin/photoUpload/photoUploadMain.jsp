@@ -1,17 +1,11 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
-<!DOCTYPE html>
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
-<!-- jQuery library -->
 <link rel="stylesheet" type="text/css" href="/resources/css/admin/photo/photo.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/admin/mybtn.css" />
 <style type="text/css">
 	#photo-wrap{
 		position: relative;
-		width: 900px;
+		margin: 0 auto;
 		color: #666666;
 	}
 	
@@ -66,6 +60,12 @@
 <script type="text/javascript">
 
     $(function(){
+    	
+    	$("#photo_menu").css({
+    		background : "#343132",
+    		color: "#fff"		
+    	});
+    	
     	 var objDragAndDrop = $(".dragAndDropDiv");
          
          $(document).on("dragenter",".dragAndDropDiv",function(e){
@@ -259,20 +259,6 @@
     });///////////////////////////////////
 </script>
 
-
-</head>
-<body>
-<!-- 
-	영화 포스터, 배우 얼굴, 스틸컷
-	옵션을 버튼으로 선택하자.
-
-	버튼을 클릭하면
-	필요한 정보를 List로 받아옴(ajax)
-	
-	파일을 드롭했을 때 유효성 체크를 하고 이상이 없으면
-	옵션, List에서 선택된 정보, 파일들을 보내줌.
- -->
- 
 <div class="photo-wrap">
 	<div class="photo-header">
 			<h1>상영 시간 등록/삭제</h1>
@@ -301,5 +287,3 @@
 		</div>
 	</div>
 </div>
-</body>
-</html>

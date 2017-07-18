@@ -2,6 +2,65 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="a" value="${actor}"/>
+<link rel="stylesheet" href="/resources/css/admin/mybtn.css">
+<style type="text/css">
+	.actor-wrap{
+		position: relative;
+		width: 900px;
+		margin: 0 auto;
+		color: #666666;
+	}
+	
+	.actor-header{
+		position: relative;
+		text-align: left; 
+	}
+	
+	.actor-header h1{
+		font-weight: bold;
+		font-size: 25px;
+		color: black;
+	}
+	
+	.actor-header p{
+		margin: 2px 0px;
+	}
+	
+	.actor-body{
+		position: relative;
+		width: 850px;
+	}
+	
+	.actor-table{
+		position: relative;
+		top: 30px;
+		width: 830px;
+		border-collapse: collapse;
+		margin-bottom: 20px;
+	}
+	
+	
+	.actor-input{
+		width: 144px;
+		padding: 5px;
+		border-style: none;
+		border: 1px solid #a9a9a9;
+		border-radius:4px;
+	}
+	
+	.actor-table td{
+		height: 30px;
+	}
+	
+	
+	#edulev{
+		width: 200px;
+	}
+	
+	#site{
+		width: 250px;
+	}
+</style>
 <script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 	var oEditors = [];
@@ -214,100 +273,110 @@
 	
 	
 </script>
-</head>
-<body>
-<div id="wrap">
-	<div class="admin-header">
-		<h1>배우 등록</h1>
-		<p>배우 등록하는 페이지</p>		
+
+<div class="actor-wrap">
+	<div class="actor-header">
+		<h1>배우 수정</h1>
+		<p>배우의 정보를 수정하는 페이지 입니다.</p>
+		<p>입력할 내용이 없으면 체크(<i class="fa fa-check" aria-hidden="true"></i>)해주세요.</p>		
 	</div>
 	<form action="/admin/actor/update" method="post" id="actorForm">
-		<input type="hidden" name="num" value="${a.a_num }">
-		<div class="admin-body">
-			<table>
-				<tr>
-					<td></td>
-					<td>내용없음</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="kor_name">이름(한글)</label>
-						<input type="text" id="kor_name" name="kor_name" value="${a.a_kor_name}">
-					</td>
-					<td>
-						<input type="checkbox" id="kor_name_check">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="eng_name">이름(영문)</label>
-						<input type="text" id="eng_name" name="eng_name" value="${a.a_eng_name}">
-					</td>
-					<td>
-						<input type="checkbox" id="eng_name_check">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="birth">출생</label>
-						<input type="date" id="birth" name="birth" placeholder="생년월일 8글자를 입력하세요('-'제외)" value="${a.a_birth}">
-					</td>
-					<td>
-						<input type="checkbox" id="birth_check">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="nation">국적</label>
-						<input type="text" id="nation" name="nation" value="${a.a_nation}">
-					</td>
-					<td>
-						<input type="checkbox" id="nation_check">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="job">직업</label>
-						<input type="text" id="job" name="job" value="${a.a_job}">
-					</td>
-					<td>
-						<input type="checkbox" id="job_check">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="edulev">학력</label>
-						<input type="text" id="edulev" name="edulev" value="${a.a_edulev}">
-					</td>
-					<td>
-						<input type="checkbox" id="edulev_check">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="site">사이트</label>
-						<input type="text" id="site" name="site" value="${a.a_site}">
-					</td>
-					<td>
-						<input type="checkbox" id="site_check">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<label for="content">바이오그래피</label>
-						<textarea rows="30" cols="100" id="content" name="content">${a.a_biography}</textarea>
-					</td>
-					<td>
-						<input type="checkbox" id="biography_check">
-					</td>
-				</tr>
-				<tr>
-					<td>
-						<input type="button" value="등록" id="actorSubmit">
-						<input type="button" value="test" id="test">
-					</td>
-				</tr>
-			</table>
-		</div>
+	<input type="hidden" name="num" value="${a.a_num }">
+		<div class="actor-body">
+			<div class="admin-body">
+				<table class="actor-table">
+					<tr>
+						<td width="90px">
+							<label for="kor_name">이름(한글)</label>
+						</td>
+						<td width="730px">
+							<input type="text" id="kor_name" name="kor_name" class="actor-input" value="${a.a_kor_name}">
+						</td>
+						<td>
+							<input type="checkbox" id="kor_name_check">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="eng_name">이름(영문)</label>
+						</td>
+						<td>
+							<input type="text" id="eng_name" name="eng_name" class="actor-input" value="${a.a_eng_name}">
+						</td>
+						<td>
+							<input type="checkbox" id="eng_name_check">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="birth">출생</label>
+						</td>
+						<td>
+							<input type="date" id="birth" name="birth" placeholder="생년월일 8글자를 입력하세요('-'제외)" class="actor-input" value="${a.a_birth}">
+						</td>
+						<td>
+							<input type="checkbox" id="birth_check">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="nation">국적</label>
+						</td>
+						<td>
+							<input type="text" id="nation" name="nation" class="actor-input" value="${a.a_nation}">
+						</td>
+						<td>
+							<input type="checkbox" id="nation_check">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="job">직업</label>
+						</td>
+						<td>
+							<input type="text" id="job" name="job" class="actor-input" value="${a.a_job}">
+						</td>
+						<td>
+							<input type="checkbox" id="job_check">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="edulev">학력</label>
+						</td>
+						<td>
+							<input type="text" id="edulev" name="edulev" class="actor-input" ${a.a_edulev}>
+						</td>
+						<td>
+							<input type="checkbox" id="edulev_check">
+						</td>
+					</tr>
+					<tr>
+						<td>
+							<label for="site">사이트</label>
+						</td>
+						<td>
+							<input type="text" id="site" name="site" class="actor-input" value="${a.a_site}">
+						</td>
+						<td>
+							<input type="checkbox" id="site_check">
+						</td>
+					</tr>
+					<tr>
+						<td style="vertical-align: text-top;">
+							<label for="content" style="padding-bottom: 20px">바이오그래피</label>
+						</td>
+						<td colspan="2">
+							<textarea rows="30" cols="100" id="content" name="content" style="text-align: center">${a.a_content}</textarea>
+						</td>
+					</tr>
+					<tr style="margin: 20px 0px">
+						<td colspan="3" align="center">
+							<input type="button" value="등록" id="actorSubmit" class="my-btn">
+						</td>
+					</tr>
+				</table>
+			</div>
+		</div><!-- body -->
 	</form>
 </div>

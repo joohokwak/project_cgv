@@ -6,12 +6,12 @@
 	.notice-wrap{
 		position: relative;
 		width: 900px;
+		margin: 0 auto;
 		color: #666666;
 	}
 	
 	.notice-header{
 		position: relative;
-		left: 30px;
 		text-align: left; 
 	}
 	
@@ -28,7 +28,6 @@
 	.notice-body{
 		position: relative;
 		top: 20px;
-		left: 30px; 
 		width: 850px;
 	}
 	
@@ -67,6 +66,12 @@
 	var classCnt = 1;
 
 	$(function() {
+		
+		$("#notice_menu").css({
+			background : "#343132",
+			color: "#fff"		
+		});
+		
 		// 에디터
 		nhn.husky.EZCreator.createInIFrame({
 			oAppRef: oEditors,
@@ -131,11 +136,12 @@
 
 <div class="notice-wrap">
 	<div class="notice-header">
-		<h1>공지사항 등록</h1>
-		<p>공지사항을 등록하는 페이지 입니다.</p>
+		<h1>공지사항 수정</h1>
+		<p>공지사항을 수정하는 페이지 입니다.</p>
 	</div>
 	<div class="notice-body">
 		<form action="/admin/notice/update" id="noticeForm" method="post">
+		<input type="hidden" name="num" value="${notice.n_num }">
 			<table class="notice-table">
 				<tr>
 					<td width="90px">

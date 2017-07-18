@@ -109,13 +109,13 @@ public class AdminController {
 	@RequestMapping(value="/notice/update", method=RequestMethod.POST)
 	public String updateNotice(Model model, @RequestParam HashMap<String,Object> params){
 		
-		boolean result = nService.addNotice(params);
+		boolean result = nService.modifyNotice(params);
 		String msg = "";
 		String loc = "";
 		
 		if(result){
 			msg="정상적으로 수정되었습니다.";
-			loc="/notice/list";
+			loc="/admin/notice/list";
 		}else{
 			msg="실패하였습니다.";
 			loc="javascript:history.back()";
@@ -243,7 +243,7 @@ public class AdminController {
 		
 		if(result){
 			msg="정상적으로 등록되었습니다.";
-			loc="/admin/main";
+			loc="/admin/movie/list";
 		}else{
 			msg="실패하였습니다.";
 			loc="javascript:history.back()";
@@ -274,7 +274,7 @@ public class AdminController {
 		
 		if(result){
 			msg="정상적으로 수정되었습니다.";
-			loc="/admin/main";
+			loc="/admin/movie/list";
 		}else{
 			msg="실패하였습니다.";
 			loc="javascript:history.back()";
@@ -471,10 +471,22 @@ public class AdminController {
 		return mv;
 	}
 	
+	@RequestMapping(value="/manage/joinForm", method=RequestMethod.GET)
+	public String showMatchForm(){
+		
+		return ".admin.manage.manageForm";
+	}
+	
+	@RequestMapping(value="/manage/join", method=RequestMethod.POST)
+	public String matchInfo(HashMap<String,Object> params){
+		
+		return "";
+	}
+	
 	
 }////////////////////////////////////////
 
-
+	
 
 
 
