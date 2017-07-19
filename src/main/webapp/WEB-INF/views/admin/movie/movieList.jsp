@@ -9,13 +9,13 @@
 	.movie-wrap{
 		position: relative;
 		width: 900px;
+		margin: 0 auto;
 		color: #666666;
 		cursor: default;
 	}
 	
 	.movie-header{
 		position: relative;
-		left: 70px; 
 	}
 	
 	.movie-header h1{
@@ -30,7 +30,6 @@
 	
 	.movie-body{
 		position: relative;
-		left: 70px; 
 		width: 800px;
 	}
 	
@@ -113,7 +112,14 @@
    }
 
 </style>
-
+<script type="text/javascript">
+$(function(){
+	$("#movie_menu").css({
+		background : "#343132",
+		color: "#fff"		
+	});
+});
+</script>
 <div class="movie-wrap">
 	<div class="movie-header">
 		<h1>영화 정보</h1>

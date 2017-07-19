@@ -163,6 +163,12 @@
 </style>
 <script type="text/javascript">
 $(function(){
+	
+	$("#notice_menu").css({
+		background : "#343132",
+		color: "#fff"		
+	});
+	
 	$("#all").click(function(){
 		location.href='/admin/notice/list?keyword=all'
 	});

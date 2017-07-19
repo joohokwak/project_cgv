@@ -9,13 +9,13 @@
 	.actor-wrap{
 		position: relative;
 		width: 900px;
+		margin: 0 auto;
 		color: #666666;
 		cursor: default;
 	}
 	
 	.actor-header{
 		position: relative;
-		left: 70px; 
 	}
 	
 	.actor-header h1{
@@ -30,7 +30,6 @@
 	
 	.actor-body{
 		position: relative;
-		left: 70px; 
 		width: 800px;
 	}
 	
@@ -93,6 +92,14 @@
 		color: white;
 	}
 </style>
+<script type="text/javascript">
+$(function(){
+	$("#actor_menu").css({
+		background : "#343132",
+		color: "#fff"		
+	});
+});
+</script>
 <div class="actor-wrap">
 	<div class="actor-header">
 		<h1>배우 관리</h1>

@@ -6,12 +6,12 @@
 	.movie-wrap{
 		position: relative;
 		width: 900px;
+		margin: 0 auto;
 		color: #666666;
 	}
 	
 	.movie-header{
 		position: relative;
-		left: 30px;
 		text-align: left; 
 	}
 	
@@ -28,7 +28,6 @@
 	.movie-body{
 		position: relative;
 		top: 20px;
-		left: 30px; 
 		width: 850px;
 	}
 	
@@ -63,8 +62,18 @@ var classCnt = 1;
 
 $(function() {
 	
-	$("#test").click(function(){
-		
+	$("#movie_menu").css({
+		background : "#343132",
+		color: "#fff"		
+	});
+	
+	$("#site_check").change(function(){
+		if($("#site_check").is(":checked") == true){
+			$("#site").val("").attr("disabled",true);
+			
+		}else{
+			$("#site").val("").attr("disabled",false);
+		}
 	});
 	
 	// 에디터
@@ -188,8 +197,8 @@ function movieCheck(){
 </script>
 <div class="movie-wrap">
 	<div class="movie-header">
-		<h1>영화등록</h1>
-		<p>영화를 등록하는 페이지 입니다.</p>
+		<h1>영화 등록</h1>
+		<p>영화의 정보를 등록하는 페이지 입니다.</p>
 	</div>
 	
 	<div class="movie-body">
@@ -302,6 +311,7 @@ function movieCheck(){
 				
 				<tr>
 					<td align="right" colspan="2">
+						<button class="my-btn" type="button" onclick="location.href='/admin/movie/list'"><span>목록</span></button>
 						<input type="button" value="등록" id="movieSubmit" class="my-btn" style="margin-right: 10px">
 					</td>
 				</tr>

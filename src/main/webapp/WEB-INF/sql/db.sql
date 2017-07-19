@@ -278,26 +278,28 @@ create table notice(
 );
 
 insert into notice values(0,'극장','[CGV용산아이파크몰] 4관 SKYBOX 온라인 예매 이용 제한 안내','내용',now(),0);
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징1','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징2','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징3','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징4','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징5','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징6','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징7','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징8','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징9','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징10','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징11','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징12','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징13','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징14','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징15','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징16','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징17','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징18','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징19','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'[테스트]','페이징20','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징1','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징2','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징3','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징4','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징5','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징6','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징7','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징8','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징9','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징10','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징11','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징12','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징13','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징14','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징15','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징16','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징17','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징18','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징19','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징20','내용없음');
+
+
 
 #은 주석. 지우지 않아도 됨.
 

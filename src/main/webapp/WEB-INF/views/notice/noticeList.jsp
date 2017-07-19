@@ -9,6 +9,7 @@
 	.notice-wrap{
 		position: relative;
 		width: 900px;
+		margin: 0 auto;
 		min-height: 900px;
 		color: #666666;
 		cursor: default;
@@ -16,7 +17,6 @@
 	
 	.notice-header{
 		position: relative;
-		left: 320px; 
 	}
 	
 	.notice-header h1{
@@ -32,7 +32,6 @@
 	
 	.notice-body{
 		position: relative;
-		left: 320px; 
 		width: 800px;
 	}
 	
@@ -254,13 +253,6 @@ function search(){
 					<td>${list.n_hit}</td>
 				</tr>
 			</c:forEach>
-			<tr>
-				<td colspan="5" align="right" style="text-align: right">
-					<button type="button" class="my-btn" onclick="location.href='/admin/notice/insert'" style="margin-right: 15px;">
-						<span>글쓰기</span>
-					</button>
-				</td>
-			</tr>
 			<tr>
 				<td colspan="5" style="text-align: center">
 				<div class="notice-pagenation">

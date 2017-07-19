@@ -45,7 +45,6 @@
 		update actor set a_img=#{image} where a_num=#{num}
 	</update>
 	
-	
 	<select id="getMovieActor" parameterType="int" resultType="hashmap">
 		select actor.*, a_kor_name from actor join management using(a_num) where m_num = #{value}
 	</select>
@@ -143,7 +142,7 @@
 	<sql id="img">
 		<choose>
 			<when test="img == null">
-				'no-pic.jpg'
+				'no_pic.png'
 			</when>
 			<otherwise>
 				#{img}
