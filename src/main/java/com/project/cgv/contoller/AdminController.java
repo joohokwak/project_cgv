@@ -471,19 +471,6 @@ public class AdminController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/manage/joinForm", method=RequestMethod.GET)
-	public String showMatchForm(){
-		
-		return ".admin.manage.manageForm";
-	}
-	
-	@RequestMapping(value="/manage/join", method=RequestMethod.POST)
-	public String matchInfo(HashMap<String,Object> params){
-		
-		return "";
-	}
-	
-	
 }////////////////////////////////////////
 
 	
