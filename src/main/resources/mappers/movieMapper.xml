@@ -141,7 +141,7 @@
 	
 	<!-- movie crud -->
 	<!-- insertData -->
-	<insert id="insertMovie" parameterType="HashMap">
+	<insert id="insertMovie" parameterType="HashMap" useGeneratedKeys="true" keyProperty="m_num">
 		insert into movie 
 			values(0, #{title_kor}, #{title_eng},
 		 		#{producer}, #{grade}, #{time}, 
@@ -185,6 +185,10 @@
 		insert into stealcut values(0, #{num}, #{image})
 	</insert>
 	
+	<delete id="deleteStealCut" parameterType="String">
+		delete from stealcut where m_num=#{num}
+	</delete>
+	
 	<!-- screen -->
 	<select id="selectAllScreen" resultType="HashMap">
 		select * from screen order by s_num asc
@@ -216,5 +220,12 @@
 	<insert id="attachInfo" parameterType="HashMap">
 		insert into management values(0,"#{a_num},#{m_num});
 	</insert>
+	
+	<!-- trailer -->
+<!-- 	<insert id="insertVideo" parameterType="HashMap"> -->
+<!-- 		insert into video values() -->
+<!-- 	</insert> -->
+	
+	
 	
 </mapper>

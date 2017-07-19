@@ -61,6 +61,7 @@ public interface MovieDao {
 	//upload
 	public void updatePoster(HashMap<String,Object> inputData);
 	public void insertStealCut(HashMap<String,Object> inputData);
+	public int deleteStealCut(String num);
 	
 
 	//time insert
@@ -75,6 +76,11 @@ public interface MovieDao {
 	
 	//영화와 배우를 연결시킴.
 	public void attachInfo(HashMap<String,Object> params);
+	
+	//트레일러 등록
+	public int insertVideo(HashMap<String, Object> video);
+	
+	
 
 	
 	

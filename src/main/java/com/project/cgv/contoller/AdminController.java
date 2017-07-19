@@ -192,9 +192,10 @@ public class AdminController {
 		
 		ResponseEntity<String> entity = null;
 		
+		System.out.println("여기몇번??");
+		
 		String option = multipartRequest.getParameterMap().get("option")[0]; // 버튼
 		String num = multipartRequest.getParameterMap().get("num")[0]; // 선택된 아이템
-        
         
        try{
     	   HashMap<String,Object> params = new HashMap<String,Object>();

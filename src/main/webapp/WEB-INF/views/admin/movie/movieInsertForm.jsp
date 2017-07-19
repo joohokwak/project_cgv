@@ -76,6 +76,33 @@ $(function() {
 		}
 	});
 	
+	$("#video_check1").change(function(){
+		if($("#video_check1").is(":checked") == true){
+			$("#video1").val("").attr("disabled",true);
+			
+		}else{
+			$("#video1").val("").attr("disabled",false);
+		}
+	});
+	
+	$("#video_check2").change(function(){
+		if($("#video_check2").is(":checked") == true){
+			$("#video2").val("").attr("disabled",true);
+			
+		}else{
+			$("#video2").val("").attr("disabled",false);
+		}
+	});
+	
+	$("#video_check3").change(function(){
+		if($("#video_check3").is(":checked") == true){
+			$("#video3").val("").attr("disabled",true);
+			
+		}else{
+			$("#video3").val("").attr("disabled",false);
+		}
+	});
+	
 	// 에디터
 	nhn.husky.EZCreator.createInIFrame({
 		oAppRef: oEditors,
@@ -182,6 +209,18 @@ function movieCheck(){
 		alert("사이트를 입력하세요!");
 		$("#site").focus();
 		return false;
+	}else if($("#video_check1").is(":checked") == false && $.trim($("#video1").val()) == ""){
+		alert("사이트를 입력하세요!");
+		$("#video1").focus();
+		return false;
+	}else if($("#video_check2").is(":checked") == false && $.trim($("#video_check2").val()) == ""){
+		alert("사이트를 입력하세요!");
+		$("#video2").focus();
+		return false;
+	}else if($("#video_check3").is(":checked") == false && $.trim($("#video3").val()) == ""){
+		alert("사이트를 입력하세요!");
+		$("#video3").focus();
+		return false;
 	}else if($("#start").val() == ""){
 		alert("상영 시작일을 입력하세요!");
 		$("#start").focus();
@@ -277,7 +316,7 @@ function movieCheck(){
 				</tr>
 				<tr>
 					<td>
-						<label for=company>배급사</label>
+						<label for="company">배급사</label>
 					</td>
 					<td>
 						<input type="text" id="company" name="company" class="movie-input" style="width: 200px">
@@ -285,11 +324,24 @@ function movieCheck(){
 				</tr>
 				<tr>
 					<td>
-						<label for=site>사이트</label>
+						<label for="site">사이트</label>
 					</td>
 					<td>
 						<input type="text" id="site" name="site" class="movie-input" style="width: 327px">&nbsp;
 						<input type="checkbox" id="site_check">사이트 없음
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="video1">트레일러</label>
+					</td>
+					<td>
+						<input type="text" id="video1" name="video1" class="movie-input" style="width: 327px; margin-bottom: 3px">
+						&nbsp;<input type="checkbox" id="video_check1">트레일러 없음<br>
+						<input type="text" id="video2" name="video2" class="movie-input" style="width: 327px; margin-bottom: 3px">
+						&nbsp;<input type="checkbox" id="video_check2"><br>
+						<input type="text" id="video3" name="video3" class="movie-input" style="width: 327px; margin-bottom: 1px">
+						&nbsp;<input type="checkbox" id="video_check3">
 					</td>
 				</tr>
 				<tr>

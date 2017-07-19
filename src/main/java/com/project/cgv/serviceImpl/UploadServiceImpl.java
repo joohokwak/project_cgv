@@ -29,7 +29,6 @@ public class UploadServiceImpl implements UploadService {
 	public void uploadFile(HashMap<String,Object> params) {
 		
 		MultipartHttpServletRequest multipartRequest = (MultipartHttpServletRequest) params.get("files"); 
-		
 		Iterator<String> itr =  multipartRequest.getFileNames();
 		//test 경로. 실제 경로 주입할 때는 option마다 따로 주어야 함.
         String filePath = "";
@@ -49,7 +48,6 @@ public class UploadServiceImpl implements UploadService {
 		while (itr.hasNext()) { //받은 파일들을 모두 돌린다.
             MultipartFile mpf = multipartRequest.getFile(itr.next());
             
-            //테스트후 지우자
             String originFileName = mpf.getOriginalFilename();
             
             String saveFileName = makeFileName(originFileName);
@@ -76,6 +74,12 @@ public class UploadServiceImpl implements UploadService {
        }//while	
 		
 	}
+	
+	@Override
+	public int removeStealCut(String num) {
+		return mDao.deleteStealCut((String) num);
+	}
+	
 	
 	//파일 이름을 생성
 	private String makeFileName(String originalName){
