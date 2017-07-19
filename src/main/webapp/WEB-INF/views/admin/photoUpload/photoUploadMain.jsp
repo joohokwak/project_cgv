@@ -252,6 +252,16 @@
 					});
 					$(".info").click(function(e) {
 						$("#num").val($(this).data("num"));
+						
+						$(".info").css({
+							background: "none",
+							color: "#666666"
+						});
+						
+						$(this).css({
+							background: "black",
+							color: "white"
+						});
 					});
         		}
         	});

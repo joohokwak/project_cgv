@@ -65,4 +65,9 @@
 		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
 	</bean>
 	
+	<bean class="org.mybatis.spring.mapper.MapperFactoryBean" id="manageDao">
+		<property name="mapperInterface" value="com.project.cgv.dao.ManageDao"/>
+		<property name="sqlSessionFactory" ref="sqlSessionFactory"/>
+	</bean>
+	
 </beans>

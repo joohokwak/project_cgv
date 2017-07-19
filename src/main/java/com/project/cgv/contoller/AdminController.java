@@ -16,6 +16,7 @@ import org.springframework.web.multipart.MultipartHttpServletRequest;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.project.cgv.service.ActorService;
+import com.project.cgv.service.ManageService;
 import com.project.cgv.service.MovieService;
 import com.project.cgv.service.NoticeService;
 import com.project.cgv.service.UploadService;
@@ -40,6 +41,9 @@ public class AdminController {
 	
 	@Autowired
 	private UploadService upService;
+	
+	@Autowired
+	private ManageService mgService;
 	
 	
 	@RequestMapping("/main")//.admin.layout.body
@@ -70,6 +74,8 @@ public class AdminController {
 	public String showNoticeView(Model model, int num){
 		
 		model.addAttribute("notice",nService.getNoticeByNum(num));
+		model.addAttribute("prevInfo",nService.getNoticeByNum(num+1));
+		model.addAttribute("nextInfo",nService.getNoticeByNum(num-1));
 		
 		return ".admin.notice.noticeView";
 	}
@@ -471,16 +477,61 @@ public class AdminController {
 		return mv;
 	}
 	
-	@RequestMapping(value="/manage/joinForm", method=RequestMethod.GET)
-	public String showMatchForm(){
+	@RequestMapping(value="/manage/connection", method=RequestMethod.GET)
+	public String showMatchForm(Model model, 
+			@RequestParam(defaultValue="1")int page, 
+				@RequestParam(required=false)HashMap<String,Object> option){
+		
+		model.addAttribute("viewData", mgService.showConnectionList(page, option));
+		model.addAttribute("mList", mService.reserveMoive());
+		model.addAttribute("aList", aService.showActorList());
 		
 		return ".admin.manage.manageForm";
 	}
 	
-	@RequestMapping(value="/manage/join", method=RequestMethod.POST)
-	public String matchInfo(HashMap<String,Object> params){
+	@RequestMapping(value="/manage/connection", method=RequestMethod.POST)
+	public String matchInfo(Model model, @RequestParam HashMap<String,Object> params){
 		
-		return "";
+		System.out.println(params);
+		
+		boolean result = mgService.addConnection(params);
+		
+		String msg = "";
+		String loc = "";
+		
+		if(result){
+			msg="정상적으로 등록되었습니다.";
+			loc="/admin/manage/connection";
+		}else{
+			msg="실패하였습니다.";
+			loc="javascript:history.back()";
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "forward:/admin/result";
+	}
+	
+	@RequestMapping(value="/manage/connectionDel", method=RequestMethod.GET)
+	public String matchInfo(Model model, int num){
+		boolean result = mgService.removeConnection(num);
+		
+		String msg = "";
+		String loc = "";
+		
+		if(result){
+			msg="정상적으로 삭제되었습니다.";
+			loc="/admin/manage/connection";
+		}else{
+			msg="실패하였습니다.";
+			loc="javascript:history.back()";
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "forward:/admin/result";
 	}
 	
 }////////////////////////////////////////

@@ -71,8 +71,9 @@
 	
 	.movie-pagenation a, b{
 	    float: left;
-	    padding: 8px 16px;
+	    padding: 8px 13px;
 	    text-decoration: none;
+	    border-radius: 50px;
 	}
 	
 	.movie-pagenation b{
@@ -89,28 +90,6 @@
 		background-color: #ea1400;
 		color: white;
 	}
-	
-	.my-btn{
-      width: 73px;
-      height: 26px;
-      background: url("/resources/images/btn_bg.gif") no-repeat;
-      color:#fff;
-      border: 0;
-      cursor: pointer;
-   }
-   
-   .my-btn span{
-      text-align: center;
-      line-height: 8px;
-      font-size: 12px; 
-      font-weight: bold;
-         
-   }
-   
-   .my-btn:HOVER{
-   	opacity: 0.9;
-   }
-
 </style>
 <script type="text/javascript">
 $(function(){

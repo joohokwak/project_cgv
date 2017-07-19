@@ -121,8 +121,9 @@
 	
 	.notice-pagenation a, b{
 	    float: left;
-	    padding: 8px 16px;
+	    padding: 8px 13px;
 	    text-decoration: none;
+	    border-radius: 50px;
 	}
 	
 	.notice-pagenation b{

@@ -51,11 +51,9 @@ public class UploadServiceImpl implements UploadService {
             
             //테스트후 지우자
             String originFileName = mpf.getOriginalFilename();
-            System.out.println("FILE_INFO: "+originFileName); //받은 파일 리스트 출력
             
             String saveFileName = makeFileName(originFileName);
             String fileFullPath = multipartRequest.getServletContext().getRealPath(filePath)+"/"+saveFileName; //파일 전체 경로
-            System.out.println("실제 경로 : " + fileFullPath);
             
             inputData.put("num", num);
             inputData.put("image", saveFileName);

@@ -215,17 +215,17 @@ insert into actor(a_num,a_kor_name,a_eng_name,a_birth,a_nation,a_site,a_img,a_bi
 
 #movie와 actor를 연결하는 테이블
 create table management(
-	mg_num int primary key auto_increment,
 	a_num int not null,
 	m_num int not null,
 	foreign key(a_num) references actor(a_num),
-	foreign key(m_num) references movie(m_num)	
+	foreign key(m_num) references movie(m_num),
+	primary key(a_num, m_num) 
 );
 
-insert into management values(0, 1, 1);
-insert into management values(0, 2, 1);
-insert into management values(0, 3, 1);
-insert into management values(0, 4, 2);
+insert into management values(1, 1);
+insert into management values(2, 1);
+insert into management values(3, 1);
+insert into management values(4, 2);
 
 
 create table video(
@@ -278,9 +278,9 @@ create table notice(
 );
 
 insert into notice values(0,'극장','[CGV용산아이파크몰] 4관 SKYBOX 온라인 예매 이용 제한 안내','내용',now(),0);
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징1','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징2','내용없음');
-insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징3','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'이벤트','페이징1','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'행사','페이징2','내용없음');
+insert into notice(n_num,n_cate,n_title,n_content) values(0,'극장','페이징3','내용없음');
 insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징4','내용없음');
 insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징5','내용없음');
 insert into notice(n_num,n_cate,n_title,n_content) values(0,'시스템점검','페이징6','내용없음');

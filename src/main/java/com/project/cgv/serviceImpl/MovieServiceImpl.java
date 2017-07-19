@@ -145,7 +145,6 @@ public class MovieServiceImpl implements MovieService {
 		
 		//paging 
 		int totalCount = mvDao.getMovieCount();
-		System.out.println("total Count : " + totalCount);
 		int currentPageNumber = page;
 				
 		Paging p = new Paging(totalCount,currentPageNumber);
@@ -191,7 +190,6 @@ public class MovieServiceImpl implements MovieService {
 			params.put("site", null);
 		}
 		
-		System.out.println(params);
 		int result = mvDao.updateMovie(params);
 		
 		if(result == 1){

@@ -32,7 +32,6 @@ public class NoticeServiceImpl implements NoticeService {
 		result.put("end", p.getEndPage());
 		result.put("last", p.getPageTotalCount());
 		
-		System.out.println("option : " + option);
 				
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("skip", p.getSkip());
@@ -43,7 +42,6 @@ public class NoticeServiceImpl implements NoticeService {
 		List<HashMap<String, Object>> nList = nDao.selectAll(params);
 		result.put("nCount", nDao.getSearchCount(params));
 		
-		System.out.println(params);
 		
 		result.put("nList", nList);
 		

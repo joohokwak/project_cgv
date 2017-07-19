@@ -304,8 +304,8 @@ function movieCheck(){
 					<td style="vertical-align: text-top;">
 						<label for="content">줄거리</label>
 					</td>
-					<td>
-						<textarea rows="30" cols="100" id="content" name="content"></textarea>
+					<td style="background: #fff;">
+						<textarea rows="30" cols="100" id="content" name="content" style="width: 100%"></textarea>
 					</td>
 				</tr>
 				

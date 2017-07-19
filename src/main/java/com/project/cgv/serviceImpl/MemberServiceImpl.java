@@ -127,8 +127,6 @@ public class MemberServiceImpl implements MemberService {
 
 		String real_path = session.getServletContext().getRealPath("/resources/upload");
 		
-		System.out.println(real_path);
-		
 		UUID uid = UUID.randomUUID();
 		String savedName = uid.toString() + "_" + originalName;
 		File target = new File(real_path, savedName);
