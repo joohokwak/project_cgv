@@ -1,9 +1,16 @@
 package com.project.cgv.serviceImpl;
 
+import java.io.File;
+import java.io.IOException;
 import java.util.HashMap;
+import java.util.UUID;
+
+import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.util.FileCopyUtils;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.project.cgv.dao.MemberDao;
 import com.project.cgv.service.MemberService;
@@ -87,7 +94,47 @@ public class MemberServiceImpl implements MemberService {
 	public HashMap<String, Object> findTheater(String t_name) {
 		return mDao.findTheater(t_name);
 	}
+
+	@Override
+	public String memberUpdate(HashMap<String, Object> params, HttpSession session, MultipartFile file) {
+		HashMap<String, Object> member = (HashMap<String, Object>)session.getAttribute("member");
+		
+		try {
+			String fullname = uploadFile(file.getOriginalFilename(),file.getBytes(),session);
+			
+			params.put("pic", fullname);
+			
+			String origin = (String)member.get("pic");
+			File f = new File(session.getServletContext().getRealPath("/resources/upload") + File.separator + origin);
+			if(f.exists()) {
+				f.delete();
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(file.getOriginalFilename().equals("")){
+			params.put("pic", member.get("pic"));
+		}
+		
+		mDao.memberUpdate(params);
+		
+		return "success";
+	}
 	
-	
+	private String uploadFile(String originalName, byte[] fileData,  HttpSession session ) throws Exception {
+
+		String real_path = session.getServletContext().getRealPath("/resources/upload");
+		
+		System.out.println(real_path);
+		
+		UUID uid = UUID.randomUUID();
+		String savedName = uid.toString() + "_" + originalName;
+		File target = new File(real_path, savedName);
+		FileCopyUtils.copy(fileData, target);
+		
+		return savedName;
+	}
 	
 }

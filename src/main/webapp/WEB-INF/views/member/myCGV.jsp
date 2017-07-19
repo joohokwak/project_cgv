@@ -10,15 +10,15 @@
 <script type="text/javascript">
 $(function(){
 	$(".member_data_update_btn").click(function() {
-		window.open("/member/memberUpdatePop", "새창", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+		window.open("/member/memberUpdatePop", "새창", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=no" );  
 	});
 	
 	$(".favoriteTheaters_update").click(function() {
-		window.open("/member/favoriteTheaterPop", "새창", "width=700, height=580, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+		window.open("/member/favoriteTheaterPop", "새창", "width=700, height=580, toolbar=no, menubar=no, scrollbars=no, resizable=no" );  
 	});
 	$(".theaters_in").click(function() {
 		if(!$(this).children("span").text()){
-			window.open("/member/favoriteTheaterPop", "새창", "width=700, height=580, toolbar=no, menubar=no, scrollbars=no, resizable=yes" );  
+			window.open("/member/favoriteTheaterPop", "새창", "width=700, height=580, toolbar=no, menubar=no, scrollbars=no, resizable=no" );  
 		}else{
 			
 			$.ajax({
@@ -39,7 +39,12 @@ $(function(){
 		$(this).css("border", "2px solid white");
 	}, function(o) {
 		$(this).css("border", pre);
-	})
+	});
+	
+	
+	if("${member.pic}"!="no_pic.png"){
+		$(".member_img").css({background: "url(/resources/upload/${member.pic})",backgroundSize: "cover",backgroundRepeat: "no-repeat" , borderRadius: "50%"});
+	}
 });
 
 </script>

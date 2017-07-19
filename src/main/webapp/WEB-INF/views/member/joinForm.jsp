@@ -54,14 +54,14 @@
 							<a class="check_img"></a>표시는 필수 입력 사항 입니다
 						</div>
 					</div>
-					<form action="/member/memberJoinsubmit" method="post">
+					<form action="/member/memberJoinsubmit" method="post" id="foinform">
 						<table>
 							<tr>
 								<td class="member_data_td1">
 									<a class="check_img"></a>이름
 								</td>
 								<td align="left">
-									<input name="name" type="text" class="member_data_name" required style="width: 200px; height: 25px; padding-left: 10px;">
+									<input name="name" type="text" class="member_data_name" style="width: 200px; height: 25px; padding-left: 10px;">
 									<span class="member_data_name_span" style="display: none; font-size: 13px; color: #ee6900;">이름을 확인해 주세요.</span>
 								</td>
 							</tr>
@@ -70,7 +70,7 @@
 									<a class="check_img"></a>아이디
 								</td>
 								<td align="left">
-									<input name="id" class="member_data_id" type="text" required placeholder="아이디를 입력해주세요." style="width: 200px; height: 25px; padding-left: 10px;">
+									<input name="id" class="member_data_id" type="text" placeholder="아이디를 입력해주세요." style="width: 200px; height: 25px; padding-left: 10px;">
 									<button type="button" class="id_check_btn">중복확인</button>
 									<span class="member_data_id_span" style="display: none; color: #ee6900; font-size: 13px;">아이디를 확인해주세요(영문자, 숫자 조합하여 8~12자리)</span>
 									<span class="member_data_idcheck_span" style="display: none; color: #ee6900; font-size: 13px;">중복 여부를 확인해 주세요.</span>
@@ -84,7 +84,7 @@
 									<a class="check_img"></a>비밀번호
 								</td>
 								<td align="left">
-									<input name="pass" class="member_data_password" required type="password" placeholder="비밀번호를 입력해주세요."  style="width: 200px; height: 25px; padding-left: 10px;"><br>
+									<input name="pass" class="member_data_password" type="password" placeholder="비밀번호를 입력해주세요."  style="width: 200px; height: 25px; padding-left: 10px;"><br>
 									<span class="member_data_password_span" style="font-size: 13px;">영문자,숫자,특수문자 조합하여 8~12자리, 아이디와 4자리이상 동일,반복 문자 숫자 불가<br>
 									사용가능 특수 문자 : !"#$%&'()*+,-./:;<=>?@[]^_'{|}~</span>
 								</td>
@@ -94,7 +94,7 @@
 									<a class="check_img"></a>비밀번호 확인
 								</td>
 								<td align="left">
-									<input class="member_data_repassword" required type="password" placeholder="비밀번호를 재입력해주세요."  style="width: 200px; height: 25px; padding-left: 10px;">
+									<input class="member_data_repassword" type="password" placeholder="비밀번호를 재입력해주세요."  style="width: 200px; height: 25px; padding-left: 10px;">
 									<span class="member_data_repassword_span" style="color: #ee6900; display: none; font-size: 13px;">비밀번호가 동일하지 않습니다.</span>
 								</td>
 							</tr>
@@ -118,7 +118,7 @@
 									<a class="check_img"></a>휴대전화
 								</td>
 								<td class="member_data_phon" align="left">
-									<input name="phone1" class="member_data_phon_num1" type="text" required > - <input name="phone2" type="text" class="member_data_phon_num2" required> - <input name="phone3" required type="text" maxlength="4" class="member_data_phon_num3">
+									<input name="phone1" class="member_data_phon_num1" type="text" > - <input name="phone2" type="text" class="member_data_phon_num2" > - <input name="phone3"  type="text" maxlength="4" class="member_data_phon_num3">
 									<span class="member_data_phon_span"  style="color: #ee6900; display: none; font-size: 13px;">휴대전화 번호를 확인해주세요.</span>
 									<br>
 									<span style="font-size: 13px;">주문 및 배송, 쿠폰, 이벤트 정보 등을 제공 받으실 수 있습니다.</span>
@@ -129,19 +129,19 @@
 									<a class="check_img"></a>이메일
 								</td>
 								<td class="member_data_email" align="left">
-									<input name="email_id" required class="email_id" type="text" placeholder="이메일 아이디"> @ 
-									<input name="email_domain" required class="domain_text" type="text" placeholder="이메일 도메인">
+									<input name="email_id"  class="email_id" type="text" placeholder="이메일 아이디"> @ 
+									<input name="email_domain"  class="domain_text" type="text" placeholder="이메일 도메인">
 									<select class="email_domain">
 									</select>
-									<span class="member_data_email_span" style="color: #ee6900; display: none; font-size: 13px;">이메일을 확인해주세.요</span>
+									<span class="member_data_email_span" style="color: #ee6900; display: none; font-size: 13px;">이메일을 확인해주세요.</span>
 									<br>
 									<span style="font-size: 13px;">이메일 주소 입력 시 사용 가능 특수 문자 : - . _</span>
 								</td>
 							</tr>						
 						</table>
 							<div class="submit_wrap">
-								<input class="c_btn" type="button" value="취소">
-								<input class="submit_btn" type="submit" value="등록">
+								<input class="c_btn" type="button" value="취소" onclick="location.href='/'">
+								<input class="submit_btn" type="button" value="등록">
 							</div>
 							<div class="member_join_notice" >
 								<p style="font-size:20px;">이용안내</p>

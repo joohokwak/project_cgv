@@ -13,4 +13,6 @@ public interface MemberDao {
 	public int updateFTheater(HashMap<String, Object> params);
 	
 	public HashMap<String, Object> findTheater(String t_name);
+	
+	public void memberUpdate(HashMap<String, Object> params);
 }

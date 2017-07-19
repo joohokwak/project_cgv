@@ -12,8 +12,8 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 import org.springframework.web.servlet.ModelAndView;
-import org.springframework.web.servlet.mvc.method.annotation.ResponseBodyEmitterReturnValueHandler;
 
 import com.project.cgv.service.MemberService;
 import com.project.cgv.service.MovieService;
@@ -134,6 +134,29 @@ public class MemberController {
 	@RequestMapping(value= "/findTheater" , method=RequestMethod.POST)
 	public HashMap<String, Object> findTheater(@RequestParam("t_name") String t_name){
 		return mService.findTheater(t_name);
+	}
+	
+	@ResponseBody
+	@RequestMapping(value= "/memberUpdate" , method=RequestMethod.POST)
+	public HashMap<String, String> memberUpdate(@RequestParam HashMap<String, Object> params, HttpSession session, @RequestParam MultipartFile file){
+		HashMap<String, Object> member = (HashMap<String, Object>)session.getAttribute("member");
+		String id = (String)member.get("id");
+		String phone = (String)params.get("num1")+"-"+(String)params.get("num2")+"-"+(String)params.get("num3");
+		String email = (String)params.get("emailId")+"@"+(String)params.get("emailDomain");
+		params.put("id", id);
+		params.put("phone", phone);
+		params.put("email", email);
+		
+		String str = mService.memberUpdate(params,session,file);
+		
+		member = mService.loginCheck(params);
+		session.setAttribute("member", member);
+		
+		HashMap<String, String> result = new HashMap<String, String>();
+		result.put("result", str);
+		
+		return result;
+		
 	}
 	
 	
