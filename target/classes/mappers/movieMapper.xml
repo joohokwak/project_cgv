@@ -213,9 +213,8 @@
 	</select>
 	
 	<!-- join -->
-	<insert id="attachInfo" parameterType="">
+	<insert id="attachInfo" parameterType="HashMap">
 		insert into management values(0,"#{a_num},#{m_num});
 	</insert>
-	
 	
 </mapper>
