@@ -27,4 +27,9 @@
 	<update id="memberUpdate" parameterType="hashmap">
 		update member set pass=#{pass} , phone = #{phone}, email = #{email}, pic=#{pic}  where id=#{id}
 	</update>
+	
+	<select id="reserveList" parameterType="hashmap" resultType="hashmap">
+		select rv.* , m.* from reserve rv join movie m using(m_num) where rv.id=#{id} order by rv.rv_num desc
+	</select>
+	
 </mapper>

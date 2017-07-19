@@ -1,6 +1,7 @@
 package com.project.cgv.service;
 
 import java.util.HashMap;
+import java.util.List;
 
 import javax.servlet.http.HttpSession;
 
@@ -26,4 +27,6 @@ public interface MemberService {
 	public HashMap<String, Object> findTheater(String t_name);
 	
 	public String memberUpdate(HashMap<String, Object> params, HttpSession session, MultipartFile file);
+	
+	public List<HashMap<String, Object>> reserveList(HashMap<String, Object> params);
 }

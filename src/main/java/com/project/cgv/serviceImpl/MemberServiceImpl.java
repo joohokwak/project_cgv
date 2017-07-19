@@ -3,6 +3,7 @@ package com.project.cgv.serviceImpl;
 import java.io.File;
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.UUID;
 
 import javax.servlet.http.HttpSession;
@@ -136,5 +137,13 @@ public class MemberServiceImpl implements MemberService {
 		
 		return savedName;
 	}
-	
+
+	@Override
+	public List<HashMap<String, Object>> reserveList(HashMap<String, Object> params) {
+		List<HashMap<String, Object>> result = mDao.reserveList(params);
+		
+		System.out.println(result);
+		
+		return result;
+	}
 }
