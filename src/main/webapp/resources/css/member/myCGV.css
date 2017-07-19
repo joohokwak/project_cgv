@@ -1,14 +1,13 @@
 @CHARSET "UTF-8";
 .myCGVFormWrap{
-	width: 980px;
-	margin: 0 auto;
 	background-color: #fdfcf0;
 }
 .myCGVheard{
-	display: inline-block;
+	position: relative;
 	background: url(/resources/images/myCGV/myCGVheaderBG.gif) no-repeat;
-	width: 100%;
+	width: 980px;
 	height: 450px;
+	margin: 0 auto;
 }
 .member_img{
 	background: url(/resources/images/join/no_pic.png) no-repeat;
@@ -105,13 +104,6 @@
 	left: -7px;
 	cursor: pointer;
 }
-.myCGVbody{
-	clear: both;
-	display: inline-block;
-	width: 100%;
-	height: 500px;
-	border: 1px solid red;
-}
 .member_data_update_btn{
 	border: none;
 	position: relative;
@@ -130,4 +122,94 @@
     background-origin: initial;
     background-clip: initial;
     background-color: initial;
+}
+.myCGVbody{
+	margin: 30px auto;
+	clear: both;
+	position: relative;
+
+	width: 980px;
+	height: 800px;
+}
+.myCGVbody_type2{
+	display: inline-block;
+	width: 100%;
+	height: 35px;
+	border-bottom: 2px solid black;
+	font-size: 20px;
+	font-weight: bold;
+}
+.myCGVbody_type2_block{
+	border-bottom: 1px solid gray;
+	display: inline-block;
+	padding-top: 20px;
+	width: 100%;
+}
+.img_box{
+	position:relative;
+	height: 250px;
+	width: 20%;
+	float: left;
+}
+.img_box > a{
+	margin: 35px;
+}
+.contents_box{
+	position:relative;
+	height: 250px;
+	width: 30%;
+	float: left;
+}
+.contents_box_detail > span{
+	margin: 5px;
+	margin-left: 15px;
+}
+.contents_box_detail_title{
+	margin-bottom: 18px;
+    color: #222;
+    font-family: 'NanumBarunGothicBold', '맑은 고딕', '돋움', Dotum, sans-serif;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.contents_box_detail dd{
+	display: block;
+	margin-top: 8px;
+}
+.contents_box_detail em{
+	display: inline-block;
+    width: 50px;
+	font-style: normal;
+}
+.detail_box{
+	position:relative;
+	height: 250px;
+	width: 25%;
+	float: left;
+	margin-left: 80px;
+}
+.detail_box_div{
+	border: 1px dashed gray;
+	display: inline-block;
+	position: relative;
+	margin-top: 5px;
+	width: 250px;
+	background-color: white;
+	padding: 10px;
+	padding-top: 30px;	
+	padding-bottom: 30px;	
+	font-size: 13px;
+	
+}
+.detail_box_div td{
+	text-align: right;
+	width: 140px;
+}
+.detail_box_div th, td{
+	padding-bottom: 20px;
+	padding-top: 20px;
+}
+
+dl{
+	display: block;
 }

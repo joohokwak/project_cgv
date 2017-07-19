@@ -101,8 +101,11 @@ public class MemberController {
 		
 		HashMap<String, Object> member = (HashMap<String, Object>)session.getAttribute("member");
 		model.addAllAttributes(mService.getMember((String)member.get("id")));
+		model.addAttribute("reserve",mService.reserveList(member));
 		
-		return ".reserve.member.myCGV";
+		
+		
+		return ".member.myCGV";
 	}
 	
 	@RequestMapping("/memberUpdatePop")
