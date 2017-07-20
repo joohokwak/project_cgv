@@ -88,7 +88,10 @@ $(function(){
 		$(".cancle_btn").eq(i).click(function(e) {
 			var rv_num = $(".rvNum").eq(i).text();
 			var s_num = $(".sNum").eq(i).text();
-			var rv_date = $("rvDate").eq(i).text().split('[');
+			var rv_date = $(".rvDate").eq(i).text().split('[')[0];
+			var rv_time = $(".rvTime").eq(i).text().split(' ')[0];
+			var rvSeat = $(".rvSeat").text();
+			
 			$.confirm({
 		          title: '예매취소',
 		          content: '해당 영화 예매를 취소 하시겠습니까?',
@@ -101,7 +104,7 @@ $(function(){
 				$.ajax({
 					url : "/member/deleteReserve",
 					type : "post",
-					data : 	{"rv_num" : rv_num , "s_num" : s_num , "rv_date" : rv_date},
+					data : 	{"rv_num" : rv_num , "s_num" : s_num , "rv_date" : rv_date, "rv_time" : rv_time, "rvSeat" : rvSeat},
 					dataType : "text",
 					success : function(data) {
 						location.reload();
@@ -210,7 +213,7 @@ $(function(){
 								</dd>
 								<dd>
 									<em>관람좌석</em>
-									<strong>${i.rv_seat }</strong>
+									<strong class="rvSeat">${i.rv_seat }</strong>
 									<i class="rvNum" style="display: none;">${i.rv_num }</i>
 									<i class="sNum" style="display: none;">${i.s_num }</i>
 								</dd>

@@ -24,4 +24,8 @@ public interface MemberDao {
 	public List<HashMap<String, Object>> selectAllMember(HashMap<String, Object> params);
 	
 	public int deleteReserve(int rv_num);
+	
+	public int findMtNum(HashMap<String, Object> params);
+	
+	public void deleteSeat(HashMap<String, Object> params);
 }

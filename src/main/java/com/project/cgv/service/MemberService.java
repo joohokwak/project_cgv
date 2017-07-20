@@ -35,5 +35,8 @@ public interface MemberService {
 	public HashMap<String,Object> showMembers(int page);
 
 	public int deleteReserve(int rv_num);
-
+	
+	public int findMtNum(HashMap<String, Object> params);
+	
+	public void deleteSeat(HashMap<String, Object> params);
 }

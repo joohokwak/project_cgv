@@ -33,7 +33,7 @@
 	</select>
 	
 	<select id="getMemberCount" resultType="int">
-		select count(*) from member;
+		select count(*) from member
 	</select>
 	
 	<select id="selectAllMember" parameterType="HashMap" resultType="HashMap">
@@ -42,6 +42,14 @@
 	
 	<delete id="deleteReserve" parameterType="int">
 		delete from reserve where rv_num = #{value}
+	</delete>
+	
+	<select id="findMtNum" parameterType="hashmap" resultType="int">
+		select mt_num from movieTime where mt_date= #{rv_date} and mt_time=#{rv_time} and s_num = #{s_num}
+	</select>
+	
+	<delete id="deleteSeat" parameterType="hashmap">
+		delete from seat where mt_num=#{mt_num} and s_num = #{s_num} and seat_status like #{seat_status}
 	</delete>
 	
 </mapper>

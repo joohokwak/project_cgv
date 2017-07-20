@@ -166,8 +166,22 @@ public class MemberController {
 	
 	@ResponseBody
 	@RequestMapping(value="/deleteReserve", method=RequestMethod.POST)
-	public String deleteReserve(@RequestParam("rv_num") int rv_num){
-		int result = mService.deleteReserve(rv_num);
+	public String deleteReserve(@RequestParam HashMap<String, Object> params){
+		int result = mService.deleteReserve(Integer.parseInt((String)params.get("rv_num")));
+		int findMtNum = mService.findMtNum(params);
+		
+		params.put("mt_num", findMtNum);
+		
+		
+		String seat = (String)params.get("rvSeat");
+		String[] seatArray = seat.split(",");
+		
+		for(String str : seatArray ){
+			String seat_status = str.trim();
+			params.put("seat_status", seat_status);
+			mService.deleteSeat(params);
+		}
+		
 		
 		if(result > 0) {
 			return "success";
