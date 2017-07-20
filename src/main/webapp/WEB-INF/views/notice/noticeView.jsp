@@ -159,7 +159,7 @@
 						<span class="prev-title">이전 글이 없습니다.</span>
 					</c:when>
 					<c:otherwise>
-						<a class="prev-title" href="/admin/notice/view?num=${prevInfo.n_num}">${prevInfo.n_title}</a>
+						<a class="prev-title" href="/notice/view?num=${prevInfo.n_num}">${prevInfo.n_title}</a>
 						<span class="prev-date">등록일&nbsp;&nbsp; <fmt:formatDate value="${prevInfo.n_regdate}"/></span>
 					</c:otherwise>
 				</c:choose>
@@ -174,7 +174,7 @@
 						<span class="prev-title">다음 글이 없습니다.</span>
 					</c:when>
 					<c:otherwise>
-						<a class="next-title" href="/admin/notice/view?num=${nextInfo.n_num}">${nextInfo.n_title}</a>
+						<a class="next-title" href="/notice/view?num=${nextInfo.n_num}">${nextInfo.n_title}</a>
 						<span class="next-date">등록일&nbsp;&nbsp; <fmt:formatDate value="${nextInfo.n_regdate}"/></span>
 					</c:otherwise>
 				</c:choose>
@@ -185,3 +185,4 @@
 			<button class="my-btn" type="button" onclick="location.href='/notice/list'"><span>목록</span></button>
 		</div>
 	</div>
+</div>

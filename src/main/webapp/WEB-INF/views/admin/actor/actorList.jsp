@@ -121,12 +121,12 @@ $(function(){
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="2" align="right">
+				<td colspan="2" align="right" style="padding-top: 20px; padding-bottom: 20px;">
 					<button class="my-btn" onclick="location.href='/admin/actor/insert'"><span>배우 등록</span></button>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" style="text-align: center">
+				<td colspan="2" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
 				<div class="actor-pagenation">
 					<c:if test="${v.start != 1 }">
 						<a href="list?page=1">처음</a>

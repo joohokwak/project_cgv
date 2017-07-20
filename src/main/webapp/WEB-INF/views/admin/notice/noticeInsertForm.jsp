@@ -150,13 +150,13 @@
 					<td style="vertical-align: text-top;">
 						<label for="content">내용</label>
 					</td>
-					<td>
-						<textarea rows="30" cols="100" id="content" name="content"></textarea>
+					<td style="background: #fff;">
+						<textarea rows="30" cols="100" id="content" name="content" style="width: 100%"></textarea>
 					</td>
 				</tr>
 				<tr>
 					<td colspan="2" align="right">
-						<input type="button" id="noticeSubmit" class="my-btn" value="등록" style="margin-right: 9px;">
+						<input type="button" id="noticeSubmit" class="my-btn" value="등록">
 					</td>
 				</tr>
 			</table>

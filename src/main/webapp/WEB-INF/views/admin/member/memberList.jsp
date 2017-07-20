@@ -8,7 +8,7 @@
 
 	.member-wrap{
 		position: relative;
-		width: 900px;
+		width: 800px;
 		margin: 0 auto;
 		color: #666666;
 		cursor: default;
@@ -36,7 +36,7 @@
 	.member-table{
 		position: relative;
 		top: 20px;
-		width: 500px;
+		width: 600px;
 		border-collapse: collapse;
 	}
 	
@@ -117,6 +117,7 @@ $(function(){
 			<tr>
 				<th>아이디</th>
 				<th>이름</th>
+				<th>수정</th>
 				<th>삭제</th>
 			</tr>
 			<c:forEach var="list" items="${v.mList}">
@@ -134,12 +135,7 @@ $(function(){
 				</c:if>
 			</c:forEach>
 			<tr>
-				<td colspan="4" align="right">
-					<button class="my-btn" onclick="location.href='/admin/member/memberJoin'"><span>회원가입</span></button>
-				</td>
-			</tr>
-			<tr>
-				<td colspan="4" style="text-align: center" >
+				<td colspan="4" style="text-align: center; padding-top: 10px; padding-bottom: 10px;" >
 				<div class="member-pagenation">
 					<c:if test="${v.start != 1 }">
 						<a href="list?page=1">처음</a>

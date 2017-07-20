@@ -8,11 +8,23 @@
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css">
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
+
 <script type="text/javascript">
 
 	if("${msg}" != ""){
 		
-		alert("${msg}");	
+		//alert("${msg}");	
+		$.alert({
+			title: '수행결과',
+		    content: '<font color="#333"><b>${msg}</b></font>',
+		    boxWidth: '400px',
+		    useBootstrap: false,
+		    icon: 'icon-check',
+		    type: 'red'
+		});
 	}
 	
 	$(function() {

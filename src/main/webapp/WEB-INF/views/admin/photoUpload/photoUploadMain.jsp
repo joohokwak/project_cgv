@@ -47,13 +47,30 @@
 		width: 170px;
 		text-align: center;
 		cursor: pointer;
+		background-color: #fdfcf0;
 	}
 	
-	.info:hover{
-		background: black;
+	.info-click{
+		display: inline-block;
+		margin: 10px auto;
+		padding: 5px; 
+		width: 170px;
+		text-align: center;
+		cursor: pointer;
+		
+		background-color: black;
 		font-weight: bold;
 		color: white;
 	}
+	
+	.info:hover{
+		background-color: black;
+		font-weight: bold;
+		color: white;
+	}
+	
+	
+
 </style>
 <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -271,19 +288,29 @@
         				
 						infoDiv.appendTo("#infoList");
 					});
+        			
 					$(".info").click(function(e) {
 						$("#num").val($(this).data("num"));
+
 						
-						$(".info").css({
-							background: "none",
-							color: "#666666"
-						});
+// 						$("#infoList span").css({
+// 							background: "none",
+// 							color: "#666"
+// 						});
 						
-						$(this).css({
-							background: "black",
-							color: "white"
-						});
-					});
+						
+// 						$(this).css({
+// 							background: "black",
+// 							color: "white"
+// 						});
+						
+						$("#infoList span").removeClass();
+						$("#infoList span").addClass("info");
+						
+						$(this).addClass("info-click");
+
+								
+					});//click event
         		}
         	});
          });

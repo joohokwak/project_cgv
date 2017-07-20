@@ -2,6 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <c:set var="a" value="${actor}"/>
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/resources/css/admin/mybtn.css">
 <style type="text/css">
 	.actor-wrap{
@@ -33,7 +34,7 @@
 	
 	.actor-table{
 		position: relative;
-		top: 30px;
+		margin-top: 20px;
 		width: 830px;
 		border-collapse: collapse;
 		margin-bottom: 20px;
@@ -366,13 +367,14 @@
 						<td style="vertical-align: text-top;">
 							<label for="content" style="padding-bottom: 20px">바이오그래피</label>
 						</td>
-						<td colspan="2">
-							<textarea rows="30" cols="100" id="content" name="content" style="text-align: center">${a.a_content}</textarea>
+						<td style="background: #fff;">
+							<textarea rows="30" cols="100" id="content" name="content" style="width: 100%">${a.a_content}</textarea>
 						</td>
 					</tr>
-					<tr style="margin: 20px 0px">
-						<td colspan="3" align="center">
-							<input type="button" value="등록" id="actorSubmit" class="my-btn">
+					<tr style="margin: 20px 0px" style="padding-top: 10px">
+						<td colspan="3" align="right">
+							<button type="button" class="my-btn" onclick="location.href='/admin/actor/list'"><span>목록</span></button>
+							<input type="button" value="수정" id="actorSubmit" class="my-btn">
 						</td>
 					</tr>
 				</table>

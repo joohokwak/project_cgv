@@ -10,6 +10,13 @@
 <script type="text/javascript">
 	$(function() {
 		var selectbtn = $(".selectLoc_btn");
+		
+		for(var i = 1; i < 6; i++) {
+			if($("#spanf"+i).text()) {
+				$("#spanf"+i).parent().parent().parent().css("border", "2px solid #333");
+			}
+		}
+		
 		selectbtn.click(function() {
 			if($(".selectCGV").val()=="CGV선택"){
 				alert("CGV를 선택하세요.");			

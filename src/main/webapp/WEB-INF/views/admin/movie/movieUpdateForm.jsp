@@ -183,7 +183,6 @@ $(function() {
 	$("#grade_select").change(function(){
 		$("#grade_select option").each(function(){
 			if($(this).is(":selected") == true){
-				alert($(this).text());
 				$("#grade").val($(this).text());
 			}
 		});
@@ -341,7 +340,7 @@ function editorCheck() {
 							<option value="15-rating">15세 이상</option>
 							<option value="x-rated">청소년 관람불가</option>							
 						</select>
-						<input type="hidden" id="grade" name="grade">
+						<input type="hidden" id="grade" name="grade" value="${movie.m_grade}">
 					</td>
 				</tr>
 				<tr>
@@ -383,11 +382,11 @@ function editorCheck() {
 					</td>
 					<td>
 						<input type="text" id="video1" name="video1" class="movie-input" style="width: 327px; margin-bottom: 3px" value="${video1.v_addr}">
-						&nbsp;<label><input type="checkbox" id="video_check1">트레일러 없음</label><br>
+						&nbsp;<label><input type="checkbox" id="video_check1">트레일러1 없음</label><br>
 						<input type="text" id="video2" name="video2" class="movie-input" style="width: 327px; margin-bottom: 3px" value="${video2.v_addr}">
-						&nbsp;<input type="checkbox" id="video_check2"><br>
+						&nbsp;<label><input type="checkbox" id="video_check2">트레일러2 없음</label><br>
 						<input type="text" id="video3" name="video3" class="movie-input" style="width: 327px; margin-bottom: 1px" value="${video3.v_addr}">
-						&nbsp;<input type="checkbox" id="video_check3">
+						&nbsp;<label><input type="checkbox" id="video_check3">트레일러3 없음</label>
 						<input type="hidden" name="video1_num" value="${video1.v_num}">
 						<input type="hidden" name="video2_num" value="${video2.v_num}">
 						<input type="hidden" name="video3_num" value="${video3.v_num}">
@@ -405,16 +404,15 @@ function editorCheck() {
 					<td style="vertical-align: text-top;">
 						<label for="content">줄거리</label>
 					</td>
-					<td>
-						<textarea rows="30" cols="100" id="content" name="content">${m.m_content}</textarea>
+					<td style="background: #fff;">
+						<textarea rows="30" cols="100" id="content" name="content" style="width: 100%">${m.m_content}</textarea>
 					</td>
 				</tr>
 				
 				<tr>
-					<td align="right" colspan="2">
+					<td align="right" colspan="2" style="padding-top: 10px">
 						<button class="my-btn" type="button" onclick="location.href='/admin/movie/list'"><span>목록</span></button>
 						<button id="movieSubmit" class="my-btn" type="button"><span>수정</span></button>
-						<button class="my-btn" type="button" onclick="location.href='/admin/movie/delete?num=${m.m_num}'" style="margin-right: 10px"><span>삭제</span></button>
 					</td>
 				</tr>
 			</table>

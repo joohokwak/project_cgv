@@ -262,6 +262,11 @@
 <script type="text/javascript">
 	$(function(){
 		
+		$("#manage_menu").css({
+    		background : "#343132",
+    		color: "#fff"		
+    	});
+		
 		if("${keyword}" == "downcate"){
 			$("#down_btn").css("background","#ea1400");
 		}else{
@@ -432,11 +437,11 @@ function searchOption(){
 					<tr class="manage-row">
 						<td data-movie-num="${list.m_num}">${list.m_title1}</td>
 						<td data-actor-num="${list.a_num}">${list.a_kor_name}</td>
-						<td><button type="button" onclick="location.href='/admin/manage/connectionDel?a_num=${list.a_num}&m_num=${list.m_num}'">삭제</button></td>
+						<td style="padding-left: 0px; text-align: center;"><button type="button" onclick="location.href='/admin/manage/connectionDel?a_num=${list.a_num}&m_num=${list.m_num}'">삭제</button></td>
 					</tr>
 				</c:forEach>
 				<tr>
-					<td colspan="3" style="text-align: center;">
+					<td colspan="3" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
 					<div class="manage-pagenation">
 						<c:if test="${viewData.start != 1 }">
 							<a href="/admin/manage/connection?page=1">처음</a>

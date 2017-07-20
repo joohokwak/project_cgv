@@ -145,7 +145,6 @@ $(function() {
 	$("#grade_select").change(function(){
 		$("#grade_select option").each(function(){
 			if($(this).is(":selected") == true){
-				//alert($(this).text());
 				$("#grade").val($(this).text());
 			}
 		});
@@ -337,11 +336,11 @@ function movieCheck(){
 					</td>
 					<td>
 						<input type="text" id="video1" name="video1" class="movie-input" style="width: 327px; margin-bottom: 3px">
-						&nbsp;<label><input type="checkbox" id="video_check1">트레일러 없음</label><br>
+						&nbsp;<label><input type="checkbox" id="video_check1">트레일러1 없음</label><br>
 						<input type="text" id="video2" name="video2" class="movie-input" style="width: 327px; margin-bottom: 3px">
-						&nbsp;<input type="checkbox" id="video_check2"><br>
+						&nbsp;<label><input type="checkbox" id="video_check2">트레일러2 없음</label><br>
 						<input type="text" id="video3" name="video3" class="movie-input" style="width: 327px; margin-bottom: 1px">
-						&nbsp;<input type="checkbox" id="video_check3">
+						&nbsp;<label><input type="checkbox" id="video_check3">트레일러3 없음</label>
 					</td>
 				</tr>
 				<tr>
@@ -362,9 +361,9 @@ function movieCheck(){
 				</tr>
 				
 				<tr>
-					<td align="right" colspan="2">
+					<td align="right" colspan="2" style="padding-top: 10px">
 						<button class="my-btn" type="button" onclick="location.href='/admin/movie/list'"><span>목록</span></button>
-						<input type="button" value="등록" id="movieSubmit" class="my-btn" style="margin-right: 10px">
+						<input type="button" value="등록" id="movieSubmit" class="my-btn">
 					</td>
 				</tr>
 			</table>
