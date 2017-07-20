@@ -124,7 +124,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		return "success";
 	}
-	
+	 
 	@Override
 	public String memberUpdateAdmin(HashMap<String, Object> params, HttpSession session, MultipartFile file) {
 		
