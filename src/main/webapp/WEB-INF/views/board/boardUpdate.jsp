@@ -66,11 +66,11 @@
 					</tr>
 					<tr>
 						<th scope="row">제목<em><img src="/resources/images/event/img_icon_redstar2.gif"></em></th>
-						<td colspan="3"><input type="text" name="b_title" value="${viewBoard.b_title}"  class="btitle" style="width:800px;"></td>
+						<td colspan="3"><input type="text" name="b_title" value="${viewBoard.b_title}"  class="btitle" style="width:810px;"></td>
 					</tr>			
 					<tr>
 						<th scope="row">내용<em><img src="/resources/images/event/img_icon_redstar2.gif"></em></th>
-						<td colspan="3"><textarea rows="15" cols="70" id="b_content" name="b_content" class="bcontent" stype="width:800px;">${viewBoard.b_content}</textarea></td>
+						<td colspan="3"><textarea rows="15" cols="70" id="b_content" name="b_content" class="bcontent" style="width:820px;">${viewBoard.b_content}</textarea></td>
 					</tr>				
 				</table>
 				<input type="reset" value="취소" class="btn_cancel">

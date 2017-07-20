@@ -22,7 +22,7 @@ function getAllList(){
 			$(data).each(function(i,e){
 				
 				if(e.br_id == member_id || member_id == 'admin') {
-					str += "<li data-rno='"+e.br_num+" 'class='replyLi'>"+e.br_writer+"&nbsp;&nbsp;"+e.br_regdate+"&nbsp;&nbsp;<button>삭제</button><br/><br/>"+e.br_content+"</li>";
+					str += "<li data-rno='"+e.br_num+" 'class='replyLi'>"+e.br_writer+"&nbsp;&nbsp;"+e.br_regdate+"&nbsp;&nbsp;<input type='button' class='btn_replyLi'/><br/><br/>"+e.br_content+"</li>";
 				}else {
 					str += "<li data-rno='"+e.br_num+" 'class='replyLi'>"+e.br_writer+"&nbsp;&nbsp;"+e.br_regdate+"&nbsp;&nbsp;<br/><br/>"+e.br_content+"</li>";
 				}
@@ -74,7 +74,7 @@ $(function(){
 	
 	
 	
-	$("#replies").on("click",".replyLi button",function(){
+	$("#replies").on("click",".btn_replyLi",function(){
 		
 		$.ajax({
 			type : "delete",
@@ -184,16 +184,6 @@ $(function(){
 	});
 </script>
 
-
-<style type="text/css">
-		#boardListWrap { position:relative; margin: 0 auto; width: 100%; margin-top: 70px;  }
-		#boardWrite {  width:980px; margin:0 auto; }
-		table,td { width:980px; margin:0 auto; }
-		.blist { padding-top:40px; }
-		textarea { width:100%; }	
-
-	</style>
-
 </head>
 <body>
 	<div id="boardWriteWrap">
@@ -202,18 +192,19 @@ $(function(){
 			<p>CGV의 이벤트와 각종 문화소식을 확인할 수 있는 게시판입니다.</p>			
 		</div>		
 		<div class="write_table">
-			<!-- Form 시작 -->
-			
+			<!-- Form 시작 -->			
 			<form method="post" action="boardview" enctype="multipart/form-data">
-				<table>
-					<div class="tableview_info">
-					<em class="vwriter">${viewBoard.b_writer}</em>${viewBoard.b_title}<em>2017-07-18 오후 2:15:00</em>
-					
-					</div>
-					<div class="boardview_content">
-						${viewBoard.b_content}
-					</div>			
-				</table>
+				<ul class="tableview_info">
+					<li class="tableview_title">${viewBoard.b_title}</li>
+					<li class="tableview_date">
+						<span class="tableview_date01">등록일<em class="regist_day">
+							<fmt:formatDate value="${viewBoard.b_regdate}" pattern="yyyy-MM-dd"/>
+						</em></span>
+						<span class="tableview_date02">조회수 <em class="title_check">${viewBoard.b_hit}</em></span>
+					</li>
+				</ul>
+				<div class="boardview_content">${viewBoard.b_content}</div>
+
 				<c:if test="${mine eq true}">
 					<input type="button" value="수정하기" class="btn_vupdate" onclick="location.href='boardupdate?num=${viewBoard.b_num}'" >
 					<input type="button" value="삭제하기" class="btn_vdelete" onclick="location.href='delete?num=${viewBoard.b_num}'" >
@@ -227,7 +218,7 @@ $(function(){
 		<!-- boardWrite 끝 -->
 			<!-- 댓글쓰기 -->
 			<form name="replyForm" id="replyForm">
-				<div class="icon_reply">163개의 댓글이 있습니다.</div>
+				<div class="icon_reply">총 ${countReply}개의 댓글이 있습니다.</div>
 				<input type= "hidden" name ="b_num" id="b_num" value = "${viewBoard.b_num}"/>
 				<input type= "hidden" name ="br_id" id="id" value = "${member.id}"/>
 				<input type="hidden" name="br_writer" id="br_writer" value="${member.name}"/>

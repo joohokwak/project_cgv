@@ -24,7 +24,7 @@
 	</select>
 
 	<select id="searchBoard" resultType="HashMap" parameterType="HashMap">
-		select b.* , count(r.b_num) as replyCount from board b left join board_reply r on b.b_num = r.b_num where 1=0
+		select * from board where 1=0 
 		<if test="b_writer !=null">
 			or b_writer like '%${b_writer}%'
 		</if>
@@ -40,12 +40,35 @@
 		<if test="type == 0">
 			or 1=1
 		</if>
-		group by b.b_num
+		group by b_num
 		order by b_num desc limit #{skip},#{qty}
 	</select>
+	
+	<select id="selectCount" parameterType="HashMap" resultType="int">
+		select count(*) from board where 1=0 
+		<if test="b_writer !=null">
+			or b_writer like '%${b_writer}%'
+		</if>
+		<if test="b_title !=null">
+			or b_title like '%${b_title}%'
+		</if>
+		<if test="b_hit != null">
+			or b_hit like '%${b_hit}%'
+		</if>
+		<if test="b_content !=null">
+			or b_content like '%${b_content}%'
+		</if>
+		<if test="type == 0">
+			or 1=1
+		</if>
+	</select>
+	
 	<select id="getCount" resultType="int">
 		select count(*) from board
 	</select>
+	<select id="getCountReply" resultType="int" parameterType="int">
+		select count(*) from board_reply where b_num = #{b_num}
+	</select>	
 	<insert id="insertReply" parameterType="HashMap">
 		insert into board_reply (br_writer, br_content,b_num, br_id) values (#{br_writer},#{br_content},#{b_num},#{id})
 	</insert>

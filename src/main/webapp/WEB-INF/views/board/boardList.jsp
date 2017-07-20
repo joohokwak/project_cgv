@@ -9,6 +9,12 @@
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
 <script type="text/javascript">
+
+	if("${msg}" != ""){
+		
+		alert("${msg}");	
+	}
+	
 	$(function() {
 		$("#writeBtn").click(function(e) {
 			$.ajax({
@@ -123,9 +129,9 @@
 			<colgroup>
 				<col style="width: 70px;"/>
 				<col style="width: 100px;"/>
-				<col style="width: 580px;"/>
-				<col style="width: 140px;"/>
-				<col style="width: 120px;"/>
+				<col style="width: 620px;"/>
+				<col style="width: 100px;"/>
+				<col style="width: 80px;"/>
 			</colgroup>
 			<thead>
 				<tr>
@@ -151,12 +157,13 @@
 		<!-- table 끝 -->
 		<!-- paging 시작 -->
 		<div class="paging">
+			<ul>
 			<c:if test="${viewData.current != 1}">
 				<!-- 첫페이지 -->
 				<div class="btn_frist">
 					<a href="/board/boardlist?page=1
-								<c:if test="${type != null}">&type=${type}</c:if>
-								<c:if test="${keyword != null}">&keyword=${keyword}</c:if>
+								<c:if test="${param.type != null}">&type=${param.type}</c:if>
+								<c:if test="${param.keyword != null}">&keyword=${param.keyword}</c:if>
 								">
 						<img src="/resources/images/event/btn_paging_first.jpg" alt="첫페이지">
 					</a>
@@ -164,15 +171,15 @@
 				<!-- 이전페이지 -->
 				<div class="btn_prev">
 					<a href="/board/boardlist?page=${viewData.current-1}
-								<c:if test="${type != null}">&type=${type}</c:if>
-								<c:if test="${keyword != null}">&keyword=${keyword}</c:if>
+								<c:if test="${param.type != null}">&type=${param.type}</c:if>
+								<c:if test="${param.keyword != null}">&keyword=${param.keyword}</c:if>
 								"><img
 						src="/resources/images/event/btn_paging_prev.jpg" alt="이전페이지">
 					</a>
 				</div>
 			</c:if>
 			<!-- page numbering 시작 -->
-			<ul>
+			
 				<c:forEach var="i" begin="${viewData.start}"
 					end="${viewData.end < viewData.last ? viewData.end : viewData.last}">
 					<c:choose>
@@ -182,29 +189,30 @@
 						<c:otherwise>
 							<li><a
 								href="/board/boardlist?page=${i}
-										<c:if test = "${type != null}">&type=${type}</c:if>
-										<c:if test = "${keyword != null}">&keyword=${keyword}</c:if>
+										<c:if test = "${param.type != null}">&type=${param.type}</c:if>
+										<c:if test = "${param.keyword != null}">&keyword=${param.keyword}</c:if>
 									">${i}</a></li>
 
 						</c:otherwise>
 					</c:choose>
 				</c:forEach>
-			</ul>
+			
 			<!-- page numbering 끝 -->
 			<c:if test="${viewData.current != viewData.last}">
 				<div class="btn_next">
 					<a href="/board/boardlist?page=${viewData.current+1}
-								<c:if test = "${type != null}">&type=${type}</c:if>
-								<c:if test = "${keyword != null}">&keyword=${keyword}</c:if>						
+								<c:if test = "${param.type != null}">&type=${param.type}</c:if>
+								<c:if test = "${param.keyword != null}">&keyword=${param.keyword}</c:if>						
 					"><img src="/resources/images/event/btn_paging_next.jpg" alt="다음페이지"></a>
 				</div>
 				<div class="btn_end">
 					<a href="/board/boardlist?page=${viewData.last}
-								<c:if test = "${type != null}">&type=${type}</c:if>
-								<c:if test = "${keyword != null}">&keyword=${keyword}</c:if>						
+								<c:if test = "${param.type != null}">&type=${param.type}</c:if>
+								<c:if test = "${param.keyword != null}">&keyword=${param.keyword}</c:if>						
 					"><img src="/resources/images/event/btn_paging_end.jpg" alt="마지막페이지"></a>
 				</div>
 			</c:if>
+			</ul>
 		</div>			
 		<!-- paging 끝 -->
 		<!-- 글쓰기버튼 -->
