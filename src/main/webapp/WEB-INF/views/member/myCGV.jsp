@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/functions" prefix="fn" %>
 <!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
 <html>
 <head>
@@ -9,7 +10,10 @@
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 <link rel="stylesheet" href="/resources/css/member/myCGV.css?ver=1">
 <link rel="stylesheet" href="/resources/css/jquery.mCustomScrollbar.css" />
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
 <script src="/resources/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 <script type="text/javascript">
 $(function(){
 	$(".scroll").mCustomScrollbar({theme:"rounded-dark"});
@@ -49,8 +53,68 @@ $(function(){
 	if("${member.pic}"!="no_pic.png"){
 		$(".member_img").css({background: "url(/resources/upload/${member.pic})",backgroundSize: "cover",backgroundRepeat: "no-repeat" , borderRadius: "50%"});
 	}
+	
+	var now = new Date();
+	var rv;
+	var rvDate;
+	var rvDateArray;
+	var rvYear;
+	var rvMonth;
+	var rvDay;
+	
+	var rvTime;
+	var rvTimeArray;
+	$(".rvDate").each(function(i, el) {
+		rvDate = $(".rvDate").eq(i).text();
+		rvDateArray = rvDate.split('.');
+		rvYear = rvDateArray[0];
+		rvMonth = rvDateArray[1];
+		rvDay = rvDateArray[2].split("[")[0];
+		rvTime = $(".rvTime").eq(i).text();
+		
+		rvTimeArray = rvTime.split('~')[0];
+		rvTimeArray = rvTimeArray.split(':');
+		
+		rv = new Date(rvYear+"-"+rvMonth+"-"+rvDay);
+		rv.setHours(rvTimeArray[0]);
+		rv.setMinutes(rvTimeArray[1]);
+		
+		if(rv < (new Date(Date.parse(now) + 1000*60*30))) {
+			$(".cancle_btn").eq(i).css("display","none");
+		}
+	});
+	
+	$(".cancle_btn").each(function(i, el) {
+		$(".cancle_btn").eq(i).click(function(e) {
+			var rv_num = $(".rvNum").eq(i).text();
+			$.confirm({
+		          title: '예매취소',
+		          content: '해당 영화 예매를 취소 하시겠습니까?',
+		          boxWidth: '300px',
+		          useBootstrap: false,
+		          type: 'red',
+		          icon: 'icon-remove',
+		          buttons: {
+		              예매취소: function () {
+				$.ajax({
+					url : "/member/deleteReserve",
+					type : "post",
+					data : 	{"rv_num" : rv_num},
+					dataType : "text",
+					success : function(data) {
+						location.reload();
+					}
+				});
+		              },
+		              닫기: function () {
+		                  
+		              }
+		          }
+		    });
+		});
+	});
+	
 });
-
 </script>
 </head>
 <body>
@@ -131,7 +195,8 @@ $(function(){
 								</dd>
 								<dd>
 									<em>관람일시</em>
-									<strong style="color: red;">${i.rv_time }</strong>
+									<strong class="rvDate" style="color: red;">${i.rv_date }</strong>
+									<strong class="rvTime" style="color: red;">${i.rv_time }</strong>
 								</dd>
 								<dd>
 									<em>상영관</em>
@@ -144,6 +209,7 @@ $(function(){
 								<dd>
 									<em>관람좌석</em>
 									<strong>${i.rv_seat }</strong>
+									<i class="rvNum" style="display: none;">${i.rv_num }</i>
 								</dd>
 							</dl>
 						</div>
@@ -161,6 +227,10 @@ $(function(){
 								</tr>
 							</table>
 						</div>
+					</div>
+					<div class="cancle">
+					<span>예매 취소는 상연시간 기준 <strong style="color: red;">30분</strong>전 까지만 가능합니다.</span>
+					<button class="cancle_btn">예매취소</button>
 					</div>
 				</div>
 			</c:forEach>

@@ -124,7 +124,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		return "success";
 	}
-	
+	 
 	@Override
 	public String memberUpdateAdmin(HashMap<String, Object> params, HttpSession session, MultipartFile file) {
 		
@@ -199,5 +199,10 @@ public class MemberServiceImpl implements MemberService {
 		result.put("mList", mList);
 		
 		return result;
+	}
+
+	@Override
+	public int deleteReserve(int rv_num) {
+		return mDao.deleteReserve(rv_num);
 	}
 }

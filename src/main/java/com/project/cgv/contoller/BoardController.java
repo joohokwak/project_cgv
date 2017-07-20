@@ -78,18 +78,7 @@ public class BoardController {
 	@RequestMapping("/boardview")
 	public String ViewForm(Model model, @RequestParam int num, HttpSession session, HttpServletRequest request, HttpServletResponse response){
 
-		HashMap<String, Object> member = (HashMap<String, Object>)session.getAttribute("member");
-		HashMap<String, Object> viewBoard = bService.viewBoard(num);
-		int countReply = bService.countReply(num);
-		
-		
-		if(member != null && (viewBoard.get("id") != null && (viewBoard.get("id")).equals(member.get("id")) || (member.get("id")).equals("admin"))){
-			model.addAttribute("mine", true);
-			
-		}else {
-			model.addAttribute("mine", false);
-		}
-		
+
 		Cookie[] cookies = request.getCookies();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
@@ -109,6 +98,22 @@ public class BoardController {
 			
 			bService.addHit(num);
 		}
+		
+		
+		
+		HashMap<String, Object> member = (HashMap<String, Object>)session.getAttribute("member");				
+		HashMap<String, Object> viewBoard = bService.viewBoard(num);
+		int countReply = bService.countReply(num);	
+		
+		
+		if(member != null && (viewBoard.get("id") != null && (viewBoard.get("id")).equals(member.get("id")) || (member.get("id")).equals("admin"))){
+			model.addAttribute("mine", true);
+			
+		}else {
+			model.addAttribute("mine", false);
+		}
+		
+
 		
 		
 		model.addAttribute("viewBoard", viewBoard);

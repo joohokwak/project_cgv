@@ -144,7 +144,7 @@
 		<div id="movie-reply-mrList">
 			<c:forEach var="mr" items="${mrList }" varStatus="st">
 				<div class="mr-box">
-					<img class="mr-img" alt="userImage" src="/resources/images/join/${mr.mr_img }">
+					<img class="mr-img" alt="userImage" src="/resources/upload/${mr.mr_img }">
 					
 					<div class="mr_userInfo">
 						<span>${mr.id }</span>

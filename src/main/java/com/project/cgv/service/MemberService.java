@@ -1,5 +1,5 @@
 package com.project.cgv.service;
-
+ 
 import java.util.HashMap;
 import java.util.List;
 
@@ -34,6 +34,6 @@ public interface MemberService {
 	
 	public HashMap<String,Object> showMembers(int page);
 
-	
+	public int deleteReserve(int rv_num);
 
 }

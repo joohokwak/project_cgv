@@ -100,6 +100,9 @@ public class MemberController {
 		model.addAttribute("imgInfo", "h2_mycgv.png");
 		
 		HashMap<String, Object> member = (HashMap<String, Object>)session.getAttribute("member");
+		
+		
+		
 		model.addAllAttributes(mService.getMember((String)member.get("id")));
 		model.addAttribute("reserve",mService.reserveList(member));
 		
@@ -160,6 +163,17 @@ public class MemberController {
 		
 		return result;
 		
+	}
+	@ResponseBody
+	@RequestMapping(value="/deleteReserve", method=RequestMethod.POST)
+	public String deleteReserve(@RequestParam("rv_num") int rv_num){
+		int result = mService.deleteReserve(rv_num);
+		
+		if(result > 0) {
+			return "success";
+		}
+		
+		return "failed";
 	}
 	
 	
