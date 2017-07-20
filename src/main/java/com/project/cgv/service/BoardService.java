@@ -18,6 +18,6 @@ public interface BoardService {
 	public List<HashMap<String, Object>> getReplyList(int num) throws Exception;
 	public void deleteReply(int rno) throws Exception;
 	public HashMap<String, Object> viewReply(int rno);
-	
+	public int countReply(int num);
 
 }

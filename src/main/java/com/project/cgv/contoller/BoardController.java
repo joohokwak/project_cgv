@@ -17,6 +17,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import com.mysql.jdbc.StringUtils;
 import com.project.cgv.service.BoardService;
@@ -53,6 +54,7 @@ public class BoardController {
 		
 		HashMap<String,Object> viewData = bService.getBoardList(params, page); 		
 
+		
 		model.addAttribute("viewData", viewData);
 		return ".board.boardList";
 		
@@ -65,9 +67,10 @@ public class BoardController {
 	}
 	
 	@RequestMapping("/write")
-	public String boardWrite(@RequestParam HashMap<String, Object> params){
+	public String boardWrite(@RequestParam HashMap<String, Object> params, RedirectAttributes r_attr){
 
 		bService.writeBoard(params);
+		r_attr.addFlashAttribute("msg","등록되었습니다");
 		return "redirect:boardlist";
 		
 	}
@@ -77,15 +80,16 @@ public class BoardController {
 
 		HashMap<String, Object> member = (HashMap<String, Object>)session.getAttribute("member");
 		HashMap<String, Object> viewBoard = bService.viewBoard(num);
-				
-		if(member != null && viewBoard.get("id") != null && (viewBoard.get("id")).equals(member.get("id")) || (member.get("id")).equals("admin")){
+		int countReply = bService.countReply(num);
+		
+		
+		if(member != null && (viewBoard.get("id") != null && (viewBoard.get("id")).equals(member.get("id")) || (member.get("id")).equals("admin"))){
 			model.addAttribute("mine", true);
 			
 		}else {
 			model.addAttribute("mine", false);
 		}
 		
-		// 조회수
 		Cookie[] cookies = request.getCookies();
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		
@@ -108,15 +112,18 @@ public class BoardController {
 		
 		
 		model.addAttribute("viewBoard", viewBoard);
+		model.addAttribute("countReply",countReply);
 		
 		return ".board.boardView";
 		
 	}	
 	
 	@RequestMapping("/delete")
-	public String boardDelete(@RequestParam int num){
+	public String boardDelete(@RequestParam int num, RedirectAttributes r_attr){
 		
 		bService.deleteBoard(num);
+		r_attr.addFlashAttribute("msg", "삭제되었습니다.");
+		
 		return "redirect:boardlist";
 		
 	}
@@ -126,14 +133,17 @@ public class BoardController {
 		
 		HashMap<String, Object> viewBoard = bService.viewBoard(num);
 		model.addAttribute("viewBoard", viewBoard);
+		
 		return ".board.boardUpdate";
 		
 	}
 	
 	@RequestMapping("/update")
-	public String boardUpdate(@RequestParam HashMap<String, Object> params){
+	public String boardUpdate(@RequestParam HashMap<String, Object> params, RedirectAttributes r_attr){
 		
 		bService.updateBoard(params);
+		r_attr.addFlashAttribute("msg", "수정되였습니다.");
+		
 		return "redirect:boardlist";
 		
 	}
@@ -164,6 +174,7 @@ public class BoardController {
 
 		ResponseEntity<List<HashMap<String, Object>>> entity = null;
 		try{
+			
 			entity = new ResponseEntity<List<HashMap<String, Object>>>(bService.getReplyList(num),HttpStatus.OK);
 			
 		}catch(Exception e){

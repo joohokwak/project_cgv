@@ -1,16 +1,11 @@
 package com.project.cgv.serviceImpl;
 
-import java.io.File;
-import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
-import java.util.UUID;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
-import org.springframework.util.FileCopyUtils;
-import org.springframework.web.multipart.MultipartFile;
 
 import com.project.cgv.dao.BoardDao;
 import com.project.cgv.service.BoardService;
@@ -26,17 +21,20 @@ public class BoardServiceImpl implements BoardService {
 		
 		HashMap<String,Object> result = new HashMap<String,Object>();
 		
-		int totalCount = bDao.getCount();		
-		Paging paging = new Paging(totalCount, page);	
-		int last = paging.getPageTotalCount();
-		int start = paging.getStartPage();//page : 1일떄  (board table에 있는)1번째글  / page : 2일때 11번째글  / page : 3일때 21번째 글
-		int end = paging.getEndPage();//qty -> 페이지에 보여줄 글의 개수 -> paging객체에 있는 countPerPage와 같음.
+//		int totalCount = bDao.getCount();
 		
+		int totalCount = bDao.selectCount(params);
+		
+		Paging paging = new Paging(totalCount, page);	
 		params.put("skip", paging.getSkip());
 		params.put("qty", paging.getQty());//qty -> 페이지에 보여줄 글의 개수 -> paging객체에 있는 countPerPage와 같음.		
 		
 		List<HashMap<String,Object>> boardList = bDao.searchBoard(params);
-				
+		
+		int last = paging.getPageTotalCount();
+		int start = paging.getStartPage();//page : 1일떄  (board table에 있는)1번째글  / page : 2일때 11번째글  / page : 3일때 21번째 글
+		int end = paging.getEndPage();//qty -> 페이지에 보여줄 글의 개수 -> paging객체에 있는 countPerPage와 같음.
+		
 		result.put("current", page);//현재 페이지 번호
 		result.put("last", last);//페이지의 총 개수
 		result.put("board", boardList);//board
@@ -97,6 +95,7 @@ public class BoardServiceImpl implements BoardService {
 	@Override
 	public List<HashMap<String, Object>> getReplyList(int num) {
 		
+		bDao.getCountReply(num);
 		return bDao.selectAllReply(num);
 	}
 
@@ -112,6 +111,13 @@ public class BoardServiceImpl implements BoardService {
 	public HashMap<String, Object> viewReply(int rno) {
 		
 		return bDao.seletOneReply(rno);
+	}
+
+	@Override
+	public int countReply(int num) {
+		
+		return bDao.getCountReply(num);
+	
 	}
 
 

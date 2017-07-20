@@ -19,5 +19,8 @@ public interface BoardDao {
 	public void deleteReply(int rno);
 	public HashMap<String,Object> seletOneReply(int rno);
 	public void deleteReplyBoard(int num);
+	public int getCountReply(int num);
+	
+	public int selectCount(HashMap<String, Object> params);
 
 }
