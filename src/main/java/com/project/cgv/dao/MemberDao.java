@@ -18,4 +18,8 @@ public interface MemberDao {
 	public void memberUpdate(HashMap<String, Object> params);
 	
 	public List<HashMap<String, Object>> reserveList(HashMap<String, Object> params);
+
+	public int getMemberCount();
+
+	public List<HashMap<String, Object>> selectAllMember(HashMap<String, Object> params);
 }

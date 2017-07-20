@@ -9,7 +9,12 @@
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
 <script type="text/javascript">
-
+$(function(){
+	$("#board_menu").css({
+		background : "#343132",
+		color: "#fff"		
+	});
+});
 </script>
 </head>
 <body>
@@ -56,7 +61,7 @@
 					<tr>
 						<td>${list.b_num}</td>
 						<td>[&nbsp;${list.b_writer}&nbsp;]</td>					
-						<td class="txt"><a href="/board/boardview?num=${list.b_num}">${list.b_title}</a></td>
+						<td class="txt"><a href="/admin/board/boardview?num=${list.b_num}">${list.b_title}</a></td>
 						<td><fmt:formatDate value="${list.b_regdate}" type="date" /></td>
 						<td>${list.b_hit}</td>
 					</tr>
@@ -78,7 +83,7 @@
 				</div>
 				<!-- 이전페이지 -->
 				<div class="btn_prev">
-					<a href="/board/boardlist?page=${viewData.current-1}
+					<a href="/admin/board/boardlist?page=${viewData.current-1}
 								<c:if test="${type != null}">&type=${type}</c:if>
 								<c:if test="${keyword != null}">&keyword=${keyword}</c:if>
 								"><img
@@ -96,7 +101,7 @@
 						</c:when>
 						<c:otherwise>
 							<li><a
-								href="/board/boardlist?page=${i}
+								href="/admin/board/boardlist?page=${i}
 										<c:if test = "${type != null}">&type=${type}</c:if>
 										<c:if test = "${keyword != null}">&keyword=${keyword}</c:if>
 									">${i}</a></li>
@@ -108,13 +113,13 @@
 			<!-- page numbering 끝 -->
 			<c:if test="${viewData.current != viewData.last}">
 				<div class="btn_next">
-					<a href="/board/boardlist?page=${viewData.current+1}
+					<a href="/admin/board/boardlist?page=${viewData.current+1}
 								<c:if test = "${type != null}">&type=${type}</c:if>
 								<c:if test = "${keyword != null}">&keyword=${keyword}</c:if>						
 					"><img src="/resources/images/event/btn_paging_next.jpg" alt="다음페이지"></a>
 				</div>
 				<div class="btn_end">
-					<a href="/board/boardlist?page=${viewData.last}
+					<a href="/admin/board/boardlist?page=${viewData.last}
 								<c:if test = "${type != null}">&type=${type}</c:if>
 								<c:if test = "${keyword != null}">&keyword=${keyword}</c:if>						
 					"><img src="/resources/images/event/btn_paging_end.jpg" alt="마지막페이지"></a>
@@ -123,5 +128,5 @@
 		</div>			
 		<!-- paging 끝 -->
 		<!-- 글쓰기버튼 -->
-		<input type="button" id="writeBtn" value="글쓰기" class="btn_write">
+		<input type="button" id="writeBtn" value="글쓰기" class="btn_write" onclick="location.href='/admin/board/boardwrite'">
 	</div>

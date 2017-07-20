@@ -3,15 +3,15 @@
 <link rel="stylesheet" type="text/css" href="/resources/css/admin/photo/photo.css" />
 <link rel="stylesheet" type="text/css" href="/resources/css/admin/mybtn.css" />
 <style type="text/css">
-	#photo-wrap{
+	.photo-wrap{
 		position: relative;
+		width: 800px;;
 		margin: 0 auto;
 		color: #666666;
 	}
 	
 	.photo-header{
 		position: relative;
-		left: 70px; 
 	}
 	
 	.photo-header h1{
@@ -26,8 +26,7 @@
 	
 	.photo-body{
 		position: relative;
-		top: 20px;
-		left: 70px; 
+		margin-top: 20px;
 		width: 800px;
 	}
 	
@@ -66,6 +65,29 @@
     		color: "#fff"		
     	});
     	
+    	$("#stealcut_del_btn").click(function(){
+    		
+    		var s_num = $("#num").val();
+    		var opt = $("#option").val();
+    		
+    		if(opt != "스틸컷"){
+    			alert("스틸컷을 선택해주세요!");
+    			return false;
+    		}
+    		
+    		$.ajax({
+    			url: "/admin/photo/stealCutDelete?num="+s_num,
+    			type: "GET",
+    			success: function(){
+    				alert("정상적으로 처리되었습니다.");
+    			},
+    			error: function(){
+    				alert("실패하였습니다.");
+    			}
+  
+    		});
+    	});
+    	
     	 var objDragAndDrop = $(".dragAndDropDiv");
          
          $(document).on("dragenter",".dragAndDropDiv",function(e){
@@ -89,7 +111,6 @@
 					var files = e.originalEvent.dataTransfer.files;
 					var opt = handleFileUpload(files,objDragAndDrop);
 				}
-				
 		 });
           
          $(document).on('dragenter', function (e){
@@ -291,9 +312,16 @@
 		<div id="infoList"></div>
 		
 		<div style="clear: both"></div>
+		<button type="button" id="stealcut_del_btn" class="my-btn" style="float: right; margin-right: 105px; margin-top: 20px"><span style="font-size: 10px;">스틸컷 삭제</span></button>
+		<div style="clear: both"></div>
+		
 		<div id="fileUpload" class="dragAndDropDiv">
 			<p>여기에 파일을 올려주세요</p>
 			<p style="font-size: 15px">이미지 파일(gif, png, jpg, jpeg)만 업로드 가능합니다.</p>
 		</div>
 	</div>
+
+	
 </div>
+
+

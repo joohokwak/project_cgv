@@ -6,41 +6,41 @@
 <link rel="stylesheet" href="/resources/css/admin/mybtn.css">
 <style type="text/css">
 
-	.actor-wrap{
+	.member-wrap{
 		position: relative;
-		width: 800px;
+		width: 900px;
 		margin: 0 auto;
 		color: #666666;
 		cursor: default;
 	}
 	
-	.actor-header{
+	.member-header{
 		position: relative;
 	}
 	
-	.actor-header h1{
+	.member-header h1{
 		font-weight: bold;
 		font-size: 25px;
 		color: black;
 	}
 	
-	.actor-header p{
+	.member-header p{
 		margin: 2px 0px;
 	}
 	
-	.actor-body{
+	.member-body{
 		position: relative;
 		width: 800px;
 	}
 	
-	.actor-table{
+	.member-table{
 		position: relative;
 		top: 20px;
 		width: 500px;
 		border-collapse: collapse;
 	}
 	
-	.actor-table th{
+	.member-table th{
 		border-top: 1px solid #e1dfd5;
 		border-bottom: 1px solid #e1dfd5;
 		background-color: #edebe1;
@@ -49,17 +49,17 @@
 		text-align: center;
 	}
 	
-	.actor-row:HOVER{
+	.member-row:HOVER{
 		background-color: #eae8e1;
 	}
 	
-	.actor-row td{
+	.member-row td{
 		height: 46px;
 		text-align: center;
 		cursor: default;
 	}
 	
-	.actor-row td a{
+	.member-row td a{
 		width: 100%;
 		padding: 10px 0px;
 		display: inline-block;
@@ -67,67 +67,71 @@
 		cursor: pointer;
 	}
 	
-	.actor-pagenation{
+	.member-pagenation{
 		display: inline-block;
 	}
 	
-	.actor-pagenation a, b{
+	.member-pagenation a, b{
 	    float: left;
 	    padding: 8px 13px;
 	    text-decoration: none;
 	    border-radius: 50px;
 	}
 	
-	.actor-pagenation b{
+	.member-pagenation b{
 		cursor: default;
 	}
 	
-	.actor-pagenation a:HOVER{
+	.member-pagenation a:HOVER{
 		background-color: #ea1400;
 		transition: background-color .7s;
 		color: white;
 	}
 	
-	.actor-pagenation b{
+	.member-pagenation b{
 		background-color: #ea1400;
 		color: white;
 	}
 </style>
 <script type="text/javascript">
 $(function(){
-	$("#actor_menu").css({
+	$("#member_menu").css({
 		background : "#343132",
 		color: "#fff"		
 	});
 });
 </script>
-<div class="actor-wrap">
-	<div class="actor-header">
-		<h1>배우 관리</h1>
-		<p>배우의 정보를 관리하는 페이지 입니다.</p>
-		<p>배우의 이름을 클릭하면 수정, 삭제 페이지로 이동합니다.</p>
+<div class="member-wrap">
+	<div class="member-header">
+		<h1>회원 관리</h1>
+		<p>회원의 정보를 관리하는 페이지 입니다.</p>
 	</div>
-	<div class="actor-body">
-		<table class="actor-table">
+	<div class="member-body">
+		<table class="member-table">
 			<tr>
-				<th>번호</th>
+				<th>아이디</th>
 				<th>이름</th>
+				<th>삭제</th>
 			</tr>
-			<c:forEach var="list" items="${v.aList}">
-				<tr class="actor-row">
-					<td>${list.a_num}</td>
-					<td style="text-align: left">
-					<a href="/admin/actor/update?num=${list.a_num}">${list.a_kor_name}</a></td>
-				</tr>
+			<c:forEach var="list" items="${v.mList}">
+				<c:if test="${list.id != 'admin' }">
+					<tr class="member-row">
+						<td>${list.id}</td>
+						<td><a href="/admin/member/mycgv?id=${list.id}">${list.name}</a></td>
+						<td>
+							<button type="button" onclick="location.href='/admin/member/delete?id=${list.id}'">제명</button>
+						</td>	
+					</tr>
+				</c:if>
 			</c:forEach>
 			<tr>
-				<td colspan="2" align="right">
-					<button class="my-btn" onclick="location.href='/admin/actor/insert'"><span>배우 등록</span></button>
+				<td colspan="4" align="right">
+					<button class="my-btn" onclick="location.href='/admin/member/memberJoin'"><span>회원가입</span></button>
 				</td>
 			</tr>
 			<tr>
-				<td colspan="2" style="text-align: center">
-				<div class="actor-pagenation">
+				<td colspan="4" style="text-align: center" >
+				<div class="member-pagenation">
 					<c:if test="${v.start != 1 }">
 						<a href="list?page=1">처음</a>
 						<a href="list?page=${viewData.start-1 }">이전</a>

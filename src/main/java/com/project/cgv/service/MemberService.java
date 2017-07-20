@@ -28,5 +28,12 @@ public interface MemberService {
 	
 	public String memberUpdate(HashMap<String, Object> params, HttpSession session, MultipartFile file);
 	
+	String memberUpdateAdmin(HashMap<String, Object> params, HttpSession session, MultipartFile file);
+	
 	public List<HashMap<String, Object>> reserveList(HashMap<String, Object> params);
+	
+	public HashMap<String,Object> showMembers(int page);
+
+	
+
 }
