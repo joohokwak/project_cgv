@@ -6,12 +6,12 @@
 	.movie-wrap{
 		position: relative;
 		width: 900px;
+		margin: 0 auto;
 		color: #666666;
 	}
 	
 	.movie-header{
 		position: relative;
-		left: 30px;
 		text-align: left; 
 	}
 	
@@ -28,7 +28,6 @@
 	.movie-body{
 		position: relative;
 		top: 20px;
-		left: 30px; 
 		width: 850px;
 	}
 	
@@ -63,8 +62,45 @@ var classCnt = 1;
 
 $(function() {
 	
-	$("#test").click(function(){
-		
+	$("#movie_menu").css({
+		background : "#343132",
+		color: "#fff"		
+	});
+	
+	$("#site_check").change(function(){
+		if($("#site_check").is(":checked") == true){
+			$("#site").val("").attr("disabled",true);
+			
+		}else{
+			$("#site").val("").attr("disabled",false);
+		}
+	});
+	
+	$("#video_check1").change(function(){
+		if($("#video_check1").is(":checked") == true){
+			$("#video1").val("").attr("disabled",true);
+			
+		}else{
+			$("#video1").val("").attr("disabled",false);
+		}
+	});
+	
+	$("#video_check2").change(function(){
+		if($("#video_check2").is(":checked") == true){
+			$("#video2").val("").attr("disabled",true);
+			
+		}else{
+			$("#video2").val("").attr("disabled",false);
+		}
+	});
+	
+	$("#video_check3").change(function(){
+		if($("#video_check3").is(":checked") == true){
+			$("#video3").val("").attr("disabled",true);
+			
+		}else{
+			$("#video3").val("").attr("disabled",false);
+		}
 	});
 	
 	// 에디터
@@ -173,6 +209,18 @@ function movieCheck(){
 		alert("사이트를 입력하세요!");
 		$("#site").focus();
 		return false;
+	}else if($("#video_check1").is(":checked") == false && $.trim($("#video1").val()) == ""){
+		alert("사이트를 입력하세요!");
+		$("#video1").focus();
+		return false;
+	}else if($("#video_check2").is(":checked") == false && $.trim($("#video_check2").val()) == ""){
+		alert("사이트를 입력하세요!");
+		$("#video2").focus();
+		return false;
+	}else if($("#video_check3").is(":checked") == false && $.trim($("#video3").val()) == ""){
+		alert("사이트를 입력하세요!");
+		$("#video3").focus();
+		return false;
 	}else if($("#start").val() == ""){
 		alert("상영 시작일을 입력하세요!");
 		$("#start").focus();
@@ -188,8 +236,8 @@ function movieCheck(){
 </script>
 <div class="movie-wrap">
 	<div class="movie-header">
-		<h1>영화등록</h1>
-		<p>영화를 등록하는 페이지 입니다.</p>
+		<h1>영화 등록</h1>
+		<p>영화의 정보를 등록하는 페이지 입니다.</p>
 	</div>
 	
 	<div class="movie-body">
@@ -268,7 +316,7 @@ function movieCheck(){
 				</tr>
 				<tr>
 					<td>
-						<label for=company>배급사</label>
+						<label for="company">배급사</label>
 					</td>
 					<td>
 						<input type="text" id="company" name="company" class="movie-input" style="width: 200px">
@@ -276,11 +324,24 @@ function movieCheck(){
 				</tr>
 				<tr>
 					<td>
-						<label for=site>사이트</label>
+						<label for="site">사이트</label>
 					</td>
 					<td>
 						<input type="text" id="site" name="site" class="movie-input" style="width: 327px">&nbsp;
 						<input type="checkbox" id="site_check">사이트 없음
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="video1">트레일러</label>
+					</td>
+					<td>
+						<input type="text" id="video1" name="video1" class="movie-input" style="width: 327px; margin-bottom: 3px">
+						&nbsp;<input type="checkbox" id="video_check1">트레일러 없음<br>
+						<input type="text" id="video2" name="video2" class="movie-input" style="width: 327px; margin-bottom: 3px">
+						&nbsp;<input type="checkbox" id="video_check2"><br>
+						<input type="text" id="video3" name="video3" class="movie-input" style="width: 327px; margin-bottom: 1px">
+						&nbsp;<input type="checkbox" id="video_check3">
 					</td>
 				</tr>
 				<tr>
@@ -295,13 +356,14 @@ function movieCheck(){
 					<td style="vertical-align: text-top;">
 						<label for="content">줄거리</label>
 					</td>
-					<td>
-						<textarea rows="30" cols="100" id="content" name="content"></textarea>
+					<td style="background: #fff;">
+						<textarea rows="30" cols="100" id="content" name="content" style="width: 100%"></textarea>
 					</td>
 				</tr>
 				
 				<tr>
 					<td align="right" colspan="2">
+						<button class="my-btn" type="button" onclick="location.href='/admin/movie/list'"><span>목록</span></button>
 						<input type="button" value="등록" id="movieSubmit" class="my-btn" style="margin-right: 10px">
 					</td>
 				</tr>

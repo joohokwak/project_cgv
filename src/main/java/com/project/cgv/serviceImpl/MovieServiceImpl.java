@@ -145,7 +145,6 @@ public class MovieServiceImpl implements MovieService {
 		
 		//paging 
 		int totalCount = mvDao.getMovieCount();
-		System.out.println("total Count : " + totalCount);
 		int currentPageNumber = page;
 				
 		Paging p = new Paging(totalCount,currentPageNumber);
@@ -169,6 +168,7 @@ public class MovieServiceImpl implements MovieService {
 		
 	}
 	
+	@Transactional
 	@Override
 	public boolean addMovie(HashMap<String, Object> params) {
 		
@@ -176,9 +176,38 @@ public class MovieServiceImpl implements MovieService {
 			params.put("site", null);
 		}
 		
-		int result = mvDao.insertMovie(params);
+		if((String)params.get("video1") == ""){
+			params.put("video1", null);
+		}
 		
-		if(result == 1){
+		if((String)params.get("video2") == ""){
+			params.put("video2", null);
+		}
+		
+		if((String)params.get("video3") == ""){
+			params.put("video3", null);
+		}
+		
+		HashMap<String,Object> video = new HashMap<String,Object>();
+		
+		video.put("video1", params.get("video"));
+		video.put("video2", params.get("video2"));
+		video.put("video3", params.get("video3"));
+		
+		int result = mvDao.insertMovie(params);
+		video.put("m_num", params.get("m_num"));
+		int result2 = 0;
+		
+		for(int i = 0; i < video.size(); i++){
+			if(i>0 && result != 1){
+				break;
+			}else{
+				result2 = mvDao.insertVideo(video); 
+			}
+		}
+		
+		
+		if(result == 1 && result2 == 1){
 			return true;
 		}else{
 			return false;
@@ -191,7 +220,6 @@ public class MovieServiceImpl implements MovieService {
 			params.put("site", null);
 		}
 		
-		System.out.println(params);
 		int result = mvDao.updateMovie(params);
 		
 		if(result == 1){

@@ -39,6 +39,8 @@
 
 #sidemenu a:hover {
 	background: #343132;
+/* 	background: #215165 url(/resources/images/admin/tri.jpg) no-repeat left; */
+/* 	background-size: 40px 100%; */
 	color: #fff;
 }
 

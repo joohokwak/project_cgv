@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper
+    PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+    "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+    
+<mapper namespace="com.project.cgv.dao.ManageDao">
+	<!-- join -->
+	<insert id="insertConnection" parameterType="HashMap">
+		insert into management values(#{a_num},#{m_num});
+	</insert>
+	
+<!-- 	<delete id="deleteConnection" parameterType="int"> -->
+<!-- 		delete from management where mg_num = #{num}  -->
+<!-- 	</delete> -->
+	
+	<select id="getConnectionList" parameterType="HashMap" resultType="HashMap">
+		select * from connectionInfo order by m_title1 desc limit #{skip},#{qty}
+	</select>
+	
+	<select id="getConnectionCount" resultType="int">
+		select count(*) from connectionInfo
+	</select>
+	
+	
+	
+</mapper>

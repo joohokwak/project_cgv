@@ -1,6 +1,7 @@
 package com.project.cgv.dao;
 
 import java.util.HashMap;
+import java.util.List;
 
 public interface MemberDao {
 	
@@ -13,4 +14,8 @@ public interface MemberDao {
 	public int updateFTheater(HashMap<String, Object> params);
 	
 	public HashMap<String, Object> findTheater(String t_name);
+	
+	public void memberUpdate(HashMap<String, Object> params);
+	
+	public List<HashMap<String, Object>> reserveList(HashMap<String, Object> params);
 }

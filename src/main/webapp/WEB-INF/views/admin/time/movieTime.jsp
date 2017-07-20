@@ -6,13 +6,13 @@
 .time-wrap{
 	position: relative;
 	width: 1200px;
+	margin: 0 auto;
 	color: #666666;
 	cursor: default;
 }
 
 .time-header{
 	position: relative;
-	left: 70px; 
 }
 
 .time-header h1{
@@ -27,7 +27,6 @@
 
 .time-body{
 	position: relative;
-	left: 70px; 
 	width: 1150px;
 }
 
@@ -51,7 +50,7 @@
 
 .time-list{
 	width: 820px;
-	margin: 0px;
+	margin: 0px auto;
 }
 
 .time-list .tname{
@@ -102,6 +101,11 @@
 </style>
 <script type="text/javascript">
 $(function(){
+	
+	$("#time_menu").css({
+		background : "#343132",
+		color: "#fff"		
+	});
 	
 	$("#theater_select").change(function(){
 		$(this).find("option").each(function(){

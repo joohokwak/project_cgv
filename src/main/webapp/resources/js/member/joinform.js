@@ -1,5 +1,4 @@
 $(function() {
-			$(".member_data_name").focus();
 			var toDay = new Date();
 			var year  = toDay.getFullYear();
 			var month = (toDay.getMonth()+1);
@@ -65,199 +64,185 @@ $(function() {
 			
 			///////////////////////////////////////////////////////////////
 			
+			var validationName = false;
+			var validationPw = false;
+			var validationRPw = false;
+			var validationId = false;
+			var validationPhone = false;
+			var validationEmail = false;
+			
+//			(validationName&&validationPw&&validationRPw&&validationId&&validationPhone&&validationEmail)
+			
 			//이름 체크
 			var re_name = /^[가-힣]+$/;
-			$(".member_data_name").focusout(function(e) {
-				var nameStr = $(this).val();
-				if(!re_name.test(nameStr)||nameStr.length<2){
-					$(this).focus();
-				}
-			});
 			$(".member_data_name").keyup(function() {
 				$(".member_data_name_span").css("display", "none");
+				validationName = true;
 				var nameStr = $(this).val();
 				if(!re_name.test(nameStr)||nameStr.length<2){
 					$(".member_data_name_span").css("display", "inline");
+					validationName = false;
 				}
 			});
-			
-			
-			
 			
 			//pw 유효성
 			var re_pw = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,12}$/;
-			$(".member_data_password").focusout(function(e) {
-				var pwStr = $(this).val();
-				if($(".member_data_repassword").focus){
-					$(".member_data_repassword").focus();
-				}else{
-					$(".member_data_password").focus();
-				}
-				if(!re_pw.test(pwStr)){
-					$(this).focus;
-				}
-			});
 			$(".member_data_password").keyup(function() {
 				$(".member_data_password_span").css("color", "black");
+				validationPw = true;
 				var pwStr = $(this).val();
 				if(!re_pw.test(pwStr)){
 					$(".member_data_password_span").css("color", "#ee6900");
+					validationPw = false;
 				}
 			});
 			
 			var pwRStr;
 			$(".member_data_repassword").keyup(function() {
 				$(".member_data_repassword_span").css("display", "none");
+				validationRPw=true;
 				pwRStr = $(this).val();
 				if($(".member_data_password").val()!=pwRStr){
 					$(".member_data_repassword_span").css("display", "inline");
+					validationRPw=false;
 				}
 			});
-			$(".member_data_repassword").focusout(function() {
-				if($(".member_data_password").val()!=pwRStr){
-					if($(".member_data_password").focus){
-						$(".member_data_password").focus();
-					}else{
-						$(".member_data_repassword").focus();
-					}
-				}
-			});
+			
 			//아이디 유효성
-			var re_id = /^[a-zA-Z0-9]{8,12}$/;
+			//var re_id = /^[a-zA-Z0-9]{8,12}$/;
+			var re_id = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,12}$/;
 			var idStr;
 			var isIdCheck = false;
 			$(".member_data_id").focusout(function() {
 				idStr = $.trim($(this).val());
-				if(!re_id.test(idStr)){
-					$(this).focus();
-				}else if(!isIdCheck){
+				if(!isIdCheck){
 					$(".member_data_idcheck_span").css("display", "inline");
-					$(this).focus();
+					validationId = false;
 				}
 			});
 			$(".member_data_id").keyup(function() {
 				isIdCheck = false;
 				$(".member_data_id_span").css("display", "none");
+				validationId = true;
 				var idStr = $(this).val();
 				if(!re_id.test(idStr)){
 					$(".member_data_id_span").css("display", "inline");
+					validationId = false;
 				}
 			});
 			
+			
+			
+			
 			//휴대폰 번호 focus 이동
 			var re_num = /^[0-9]+$/;
-			var num1focus = false;
 			$(".member_data_phon_num1").keyup(function(){
 				$(".member_data_phon_span").css("display", "none");
-				num1focus = true;
+				validationPhone = true;
 				var num1 = $(this).val();
-				$(".member_data_phon_span").css("display", "inline");
 				if((num1.charAt(0)!=0||num1.charAt(1)!=1)||(!re_num.test(num1))){
 					$(".member_data_phon_span").css("display", "inline");
-					num1focus = false;
+					validationPhone = false;
 				}else if(num1.length>2){
 					$(".member_data_phon_span").css("display", "none");
+					validationPhone = true;
 					$(".member_data_phon_num2").focus();
 				}
 			});
 			
-			$(".member_data_phon_num1").focusout(function() {
-				if(!num1focus){
-					$(this).focus();
-				}
-			}); 
-			
-			var num2focus = false;
 			$(".member_data_phon_num2").keyup(function(){
 				$(".member_data_phon_span").css("display", "none");
-				num2focus = true;
-				if(!$(".member_data_phon_num1").val()){
-					$(".member_data_phon_num2").val("");
-					$(".member_data_phon_num1").focus();
-				}
+				validationPhone = true;
 				if(($(this).val().length>3)&&(re_num.test($(this).val()))){
 					$(".member_data_phon_num3").focus();
 				}else{
 					$(".member_data_phon_span").css("display", "inline");
-					num2focus = false;
+					validationPhone = false;
+				}
+				if($(".member_data_phon_num1").val().length!=3){
+					$(".member_data_phon_span").css("display", "inline");
+					validationPhone = false;
+				}else if($(".member_data_phon_num3").val().length!=4){
+					$(".member_data_phon_span").css("display", "inline");
+					validationPhone = false;
 				}
 			});
-			$(".member_data_phon_num2").focusout(function() {
-				if(!num2focus){
-					$(this).focus();
-				}
-			}); 
 			
-			var num3focus = false;
 			$(".member_data_phon_num3").keyup(function(){
 				$(".member_data_phon_span").css("display", "none");
-				num3focus = true;
-				if(!$(".member_data_phon_num2").val()){
-					if(!$(".member_data_phon_num1").val()){
-						$(".member_data_phon_num3").val("");
-						$(".member_data_phon_num1").focus();
-					}else{
-						$(".member_data_phon_num3").val("");
-						$(".member_data_phon_num2").focus();
-					}
-				}
+				validationPhone = true;
 				if(($(this).val().length>3)&&(re_num.test($(this).val()))){
 				}else{
 					$(".member_data_phon_span").css("display", "inline");
-					num3focus = false;
+					validationPhone = false;
+				}
+				if($(".member_data_phon_num1").val().length!=3){
+					$(".member_data_phon_span").css("display", "inline");
+					validationPhone = false;
+				}else if($(".member_data_phon_num2").val().length!=4){
+					$(".member_data_phon_span").css("display", "inline");
+					validationPhone = false;
 				}
 			});
 			
-			$(".member_data_phon_num3").focusout(function() {
-				if(!num3focus){
-					$(this).focus();
-				}
-			}); 
 			
 			//이메일 아이디 유효성
 			var re_emailId = /^[a-zA-Z0-9_-]+$/;
-			var emailIdfocus = false;
 			$(".email_id").keyup(function() {
 				$(".member_data_email_span").css("display","none");
-				emailIdfocus = true;
+				validationEmail = true;
 				var emailId = $(this).val();
 				
 				if(!re_emailId.test(emailId)){
 					$(".member_data_email_span").css("display","inline");
-					emailIdfocus = false;
-				}
-			})
-			
-			$(".email_id").focusout(function() {
-				if(!emailIdfocus){
-					$(this).focus();
+					validationEmail = false;
 				}
 			})
 			
 			var re_domain = /^[0-9a-zA-Z]([-_\.]?[0-9a-zA-Z])+$/;
-			var emailDomainfocus = false;
 			$(".domain_text").keyup(function() {
 				$(".member_data_email_span").css("display","none");
-				emailDomainfocus = true;
-				
-				if(!$(".email_id").val()){
-					$(".domain_text").val("");
-					$(".email_id").focus();
-				}
+				validationEmail = true;
 				
 				var emailDomain = $(this).val();
 				
 				if(!re_domain.test(emailDomain)){
 					$(".member_data_email_span").css("display","inline");
-					emailDomainfocus = false;
+					validationEmail = false;
 				}
 			})
 			
-			$(".domain_text").focusout(function() {
-				if(!emailDomainfocus){
-					$(this).focus();
+			
+			////////////////// 
+			
+			$(".submit_btn").click(function() {
+				if(($(".member_data_phon_num1").val().length==0||$(".member_data_phon_num2").val().length==0)||$(".member_data_phon_num1").val().length==0){
+					validationPhone=false;
 				}
-			});
+				if(((validationName&&validationPw)&&(validationRPw&&validationId))&&(validationPhone&&validationEmail)){
+					$("#foinform").submit();
+				}else{
+					if(!validationName){
+						alert("이름을 확인하세요.");
+						$(".member_data_name").focus();
+					}else if(!validationId){
+						alert("아이디를 확인하세요.");
+						$(".member_data_id").focus();	
+					}else if(!validationPw){
+						alert("비밀번호를 확인하세요.");
+						$(".member_data_password").focus();	
+					}else if(!validationRPw){
+						alert("비밀번호를 확인하세요.");
+						$(".member_data_repassword").focus();	
+					}else if(!validationPhone){
+						alert("휴대전화를 확인하세요.");
+						$(".member_data_phon_num1").focus();	
+					}else if(!validationEmail){
+						alert("Email을 확인하세요.");
+						$(".email_id").focus();	
+					}
+				};
+			})
 			
 			
 			////////////////////
@@ -272,6 +257,7 @@ $(function() {
 							if(data=="0"){
 								//사용가능
 								isIdCheck = true;
+								validationId = true;
 								$(".member_data_idcheck_span").css("display","none")
 								$.alert({
 								    useBootstrap: false,

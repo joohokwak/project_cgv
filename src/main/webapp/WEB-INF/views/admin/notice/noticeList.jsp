@@ -121,8 +121,9 @@
 	
 	.notice-pagenation a, b{
 	    float: left;
-	    padding: 8px 16px;
+	    padding: 8px 13px;
 	    text-decoration: none;
+	    border-radius: 50px;
 	}
 	
 	.notice-pagenation b{
@@ -163,6 +164,12 @@
 </style>
 <script type="text/javascript">
 $(function(){
+	
+	$("#notice_menu").css({
+		background : "#343132",
+		color: "#fff"		
+	});
+	
 	$("#all").click(function(){
 		location.href='/admin/notice/list?keyword=all'
 	});

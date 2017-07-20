@@ -23,4 +23,13 @@
 	<select id="findTheater" parameterType="String" resultType="hashmap">
 		select t_num from theater where t_name=#{t_name}
 	</select>
+	
+	<update id="memberUpdate" parameterType="hashmap">
+		update member set pass=#{pass} , phone = #{phone}, email = #{email}, pic=#{pic}  where id=#{id}
+	</update>
+	
+	<select id="reserveList" parameterType="hashmap" resultType="hashmap">
+		select rv.* , m.* from reserve rv join movie m using(m_num) where rv.id=#{id} order by rv.rv_num desc
+	</select>
+	
 </mapper>

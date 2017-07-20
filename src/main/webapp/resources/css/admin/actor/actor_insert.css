@@ -1,12 +1,12 @@
 .actor-wrap{
 		position: relative;
 		width: 900px;
+		margin: 0 auto;
 		color: #666666;
 	}
 	
 	.actor-header{
 		position: relative;
-		left: 30px;
 		text-align: left; 
 	}
 	
@@ -22,7 +22,6 @@
 	
 	.actor-body{
 		position: relative;
-		left: 30px; 
 		width: 850px;
 	}
 	
@@ -39,7 +38,7 @@
 		width: 144px;
 		padding: 5px;
 		border-style: none;
-		border: 1px solid red;
+		border: 1px solid #a9a9a9;
 		border-radius:4px;
 	}
 	

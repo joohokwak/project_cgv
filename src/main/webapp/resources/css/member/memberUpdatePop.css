@@ -33,7 +33,7 @@ body{
 	font-weight: bold;
 }
 .content{
-	background-color: #e9e9e8;
+	background-color: white;
 	margin: 30px;
 	margin-top: 0px;
 	height: 470px;
@@ -54,15 +54,18 @@ body{
 	position: relative;
 	top: -100px;
 	margin-left: 20px;
+	background-color: white;
 }
 .input_uproad{
 	display: inline-block;
 	position: relative;
 	top: -100px;
 	margin-left: 20px;
+	width: 200px;
 }
 .member_data{
 	padding-left: 20px;
+	background-color: white;
 }
 
 .member_data input{
@@ -97,15 +100,41 @@ body{
 	font-size: 15px;
 }
 .member_data_input > div {
-	border: 1px solid red;
 	height: 50px;
 }
 .member_data_input div span{
-	border: 1px solid red;
 	display: inline-block;
 	width: 150px;
+	font-weight: bold;
+}
+.member_data_input div strong{
+
+	margin-left: 150px;
+	font-size: 13px;
+	color: #ee6900;
+	display: none;
 }
 .member_data_text{
-	border: 1px solid green;
 	height: 30px;
+}
+
+.member_email select {
+	width: 120px;
+	padding: .5em .5em;
+	font-family: inherit;
+	background-color: white;
+	background:
+		url(https://farm1.staticflickr.com/379/19928272501_4ef877c265_t.jpg)
+		no-repeat 95% 50%;
+	border: 1px solid #999;
+	border-radius: 0px; iOS 둥근모서리 제거
+	-webkit-appearance: none; 네이티브 외형 감추기
+	-moz-appearance: none;
+	appearance: none;
+}
+
+input{
+	width: 100px;
+	padding: 5px;
+	padding-left: 10px;
 }

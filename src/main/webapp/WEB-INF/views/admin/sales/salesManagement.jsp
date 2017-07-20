@@ -10,6 +10,12 @@
 	<script src="/resources/js/c3.min.js"></script>
 	<script type="text/javascript">
 		$(function() {
+			
+			$("#sales_menu").css({
+				background : "#343132",
+				color: "#fff"		
+			});
+			
 			var chart = c3.generate({
 			    data: {
 			        columns: [

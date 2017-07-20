@@ -66,6 +66,8 @@ public interface MovieService {
 	
 	// 매출관리
 	public List<HashMap<String, Object>> salseManagement();
+	
+	
 
 
 }

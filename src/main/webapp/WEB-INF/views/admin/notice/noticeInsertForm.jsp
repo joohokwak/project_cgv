@@ -6,12 +6,12 @@
 	.notice-wrap{
 		position: relative;
 		width: 900px;
+		margin: 0 auto;
 		color: #666666;
 	}
 	
 	.notice-header{
 		position: relative;
-		left: 30px;
 		text-align: left; 
 	}
 	
@@ -28,7 +28,6 @@
 	.notice-body{
 		position: relative;
 		top: 20px;
-		left: 30px; 
 		width: 850px;
 	}
 	
@@ -63,6 +62,12 @@
 	var classCnt = 1;
 
 	$(function() {
+		
+		$("#notice_menu").css({
+			background : "#343132",
+			color: "#fff"		
+		});
+		
 		// 에디터
 		nhn.husky.EZCreator.createInIFrame({
 			oAppRef: oEditors,

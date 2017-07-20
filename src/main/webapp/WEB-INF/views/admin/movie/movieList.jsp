@@ -9,13 +9,13 @@
 	.movie-wrap{
 		position: relative;
 		width: 900px;
+		margin: 0 auto;
 		color: #666666;
 		cursor: default;
 	}
 	
 	.movie-header{
 		position: relative;
-		left: 70px; 
 	}
 	
 	.movie-header h1{
@@ -30,7 +30,6 @@
 	
 	.movie-body{
 		position: relative;
-		left: 70px; 
 		width: 800px;
 	}
 	
@@ -72,8 +71,9 @@
 	
 	.movie-pagenation a, b{
 	    float: left;
-	    padding: 8px 16px;
+	    padding: 8px 13px;
 	    text-decoration: none;
+	    border-radius: 50px;
 	}
 	
 	.movie-pagenation b{
@@ -90,30 +90,15 @@
 		background-color: #ea1400;
 		color: white;
 	}
-	
-	.my-btn{
-      width: 73px;
-      height: 26px;
-      background: url("/resources/images/btn_bg.gif") no-repeat;
-      color:#fff;
-      border: 0;
-      cursor: pointer;
-   }
-   
-   .my-btn span{
-      text-align: center;
-      line-height: 8px;
-      font-size: 12px; 
-      font-weight: bold;
-         
-   }
-   
-   .my-btn:HOVER{
-   	opacity: 0.9;
-   }
-
 </style>
-
+<script type="text/javascript">
+$(function(){
+	$("#movie_menu").css({
+		background : "#343132",
+		color: "#fff"		
+	});
+});
+</script>
 <div class="movie-wrap">
 	<div class="movie-header">
 		<h1>영화 정보</h1>

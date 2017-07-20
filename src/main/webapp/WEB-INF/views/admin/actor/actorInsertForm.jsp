@@ -3,13 +3,76 @@
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" href="/resources/css/admin/mybtn.css">
-<link rel="stylesheet" href="/resources/css/admin/actor/actor_insert.css">
+<style type="text/css">
+	.actor-wrap{
+		position: relative;
+		width: 900px;
+		margin: 0 auto;
+		color: #666666;
+	}
+	
+	.actor-header{
+		position: relative;
+		text-align: left; 
+	}
+	
+	.actor-header h1{
+		font-weight: bold;
+		font-size: 25px;
+		color: black;
+	}
+	
+	.actor-header p{
+		margin: 2px 0px;
+	}
+	
+	.actor-body{
+		position: relative;
+		width: 850px;
+	}
+	
+	.actor-table{
+		position: relative;
+		top: 30px;
+		width: 830px;
+		border-collapse: collapse;
+		margin-bottom: 20px;
+	}
+	
+	
+	.actor-input{
+		width: 144px;
+		padding: 5px;
+		border-style: none;
+		border: 1px solid #a9a9a9;
+		border-radius:4px;
+	}
+	
+	.actor-table td{
+		height: 30px;
+	}
+	
+	
+	#edulev{
+		width: 200px;
+	}
+	
+	#site{
+		width: 250px;
+	}
+</style>
 <script type="text/javascript" src="/resources/se2/js/HuskyEZCreator.js" charset="utf-8"></script>
 <script type="text/javascript">
 	var oEditors = [];
 	var classCnt = 1;
 
 	$(function() {
+		
+		$("#actor_menu").css({
+			background : "#343132",
+			color: "#fff"		
+		});
+		
 		// 에디터
 		nhn.husky.EZCreator.createInIFrame({
 			oAppRef: oEditors,
@@ -168,7 +231,7 @@
 </script>
 </head>
 <body>
-<div id="actor-wrap">
+<div class="actor-wrap">
 	<div class="actor-header">
 		<h1>배우 등록</h1>
 		<p>배우의 정보를 등록하는 페이지 입니다.</p>
