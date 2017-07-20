@@ -14,7 +14,9 @@
 		$(function() {
 			
 			if(navigator.geolocation) {
-				navigator.geolocation.getCurrentPosition(success, fail, {timeout:6000, enableHighAccuracy:true});
+				//navigator.geolocation.getCurrentPosition(success, fail, {timeout:6000, enableHighAccuracy:true});
+				
+				navigator.geolocation.getCurrentPosition(success,fail,{maximumAge: 50000, timeout: 20000, enableHighAccuracy: true});
 				
 				function success(pos) {
 					myLoc = {lat:Number("${lat}"), lng:Number("${lng}")};
@@ -23,7 +25,9 @@
 				
 				function fail() {
 					// 1:권한없음 , 2:위치 확인불가, 3:시간초과
-					alert("현재위치 사용 불가");
+					myLoc = {lat:Number("${lat}"), lng:Number("${lng}")};
+					initMap(myLoc);
+					//alert("현재위치 사용 불가");
 				}
 			}
 			
