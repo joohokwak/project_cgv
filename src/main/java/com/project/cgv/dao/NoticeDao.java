@@ -12,4 +12,5 @@ public interface NoticeDao {
 	public int insertNotice(HashMap<String,Object> params);
 	public int updateNotice(HashMap<String,Object> params);
 	public int deleteNotice(int num);
+	public int updateHit(int num);
 }

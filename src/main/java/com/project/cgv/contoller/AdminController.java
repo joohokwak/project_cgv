@@ -619,28 +619,6 @@ public class AdminController {
 			model.addAttribute("mine", false);
 		}
 		
-		// 조회수
-		Cookie[] cookies = request.getCookies();
-		HashMap<String, Object> map = new HashMap<String, Object>();
-		
-		if(cookies != null) {
-			for(int i = 0; i < cookies.length; i++) {
-				Cookie cookie = cookies[i];
-				map.put(cookie.getName(), cookie.getValue());
-			}
-		}
-		
-		String readCount = (String)map.get("readCount");
-		String newReadCount = "|" + num;
-		
-		if(StringUtils.indexOfIgnoreCase(readCount, newReadCount) == -1) {
-			Cookie cookie = new Cookie("readCount", readCount + newReadCount);
-			response.addCookie(cookie);
-			
-			bService.addHit(num);
-		}
-		
-		
 		model.addAttribute("viewBoard", viewBoard);
 		
 		return ".admin.board.boardView";

@@ -10,4 +10,5 @@ public interface NoticeService {
 	public boolean modifyNotice(HashMap<String,Object> params);
 	public boolean remove(int num);
 	public List<HashMap<String,Object>> getMainNotice();
+	public void upCountHit(int num);
 }

@@ -36,7 +36,11 @@
 	
 	<delete id="deleteNotice" parameterType="int">
 		delete from notice where n_num = #{num} 
-	</delete>	
+	</delete>
+	
+	<update id="updateHit" parameterType="int">
+		update notice set n_hit = n_hit+1 where n_num=#{num};
+	</update>
 	
 	<sql id="category">
 		<choose>

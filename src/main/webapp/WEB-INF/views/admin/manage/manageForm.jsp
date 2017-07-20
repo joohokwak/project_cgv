@@ -436,7 +436,7 @@ function searchOption(){
 					</tr>
 				</c:forEach>
 				<tr>
-					<td colspan="2" style="text-align: center;">
+					<td colspan="3" style="text-align: center;">
 					<div class="manage-pagenation">
 						<c:if test="${viewData.start != 1 }">
 							<a href="/admin/manage/connection?page=1">처음</a>

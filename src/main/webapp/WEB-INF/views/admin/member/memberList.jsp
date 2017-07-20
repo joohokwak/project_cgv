@@ -100,8 +100,9 @@ $(function(){
 		color: "#fff"		
 	});
 	
-	$("#update_btn").click(function() {
-		window.open("/admin/member/memberUpdatePop?id=${member.id}", "새창", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=no" );  
+	$(".update_btn").click(function() {
+		var m_id = $(this).attr("data-id");
+		window.open("/admin/member/memberUpdatePop?id="+m_id, "새창", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=no" );  
 	});
 	
 });
@@ -124,7 +125,7 @@ $(function(){
 						<td>${list.id}</td>
 						<td><a href="/admin/member/mycgv?id=${list.id}">${list.name}</a></td>
 						<td>
-							<button type="button" id="update_btn" onclick="location.href='/admin/member/delete?id=${list.id}'">수정</button>
+							<button type="button" class="update_btn" data-id="${list.id }">수정</button>
 						</td>
 						<td>
 							<button type="button" onclick="location.href='/admin/member/delete?id=${list.id}'">삭제</button>

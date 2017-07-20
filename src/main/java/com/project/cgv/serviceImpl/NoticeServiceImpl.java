@@ -96,4 +96,9 @@ public class NoticeServiceImpl implements NoticeService {
 		return nDao.bodyNoticeList();
 	}
 
+	@Override
+	public void upCountHit(int num) {
+		nDao.updateHit(num);
+	}
+
 }
