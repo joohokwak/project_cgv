@@ -14,6 +14,12 @@
 	var classCnt = 1;
 
 	$(function() {
+		
+		$("#board_menu").css({
+    		background : "#343132",
+    		color: "#fff"		
+    	});
+		
 		// 에디터
 		nhn.husky.EZCreator.createInIFrame({
 			oAppRef: oEditors,
@@ -50,7 +56,7 @@
 		</div>		
 		<div class="write_table">
 			<p class="table_info">체크(<em><img src="/resources/images/event/img_icon_redstar.jpg"></em>)된 항목은 필수 입력 사항입니다.</p>
-			<form method="post" id="boardForm" action="write" enctype="multipart/form-data">
+			<form method="post" id="boardForm" action="/admin/board/write" enctype="multipart/form-data">
 				<input type= "hidden" name = "id" value = "${member.id}">
 				<table>
 					<colgroup>

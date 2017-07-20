@@ -13,7 +13,7 @@ function getAllList(){
 	
 	$.ajax({
 		
-		url:"/board/replies/all/"+$("#b_num").val(),
+		url:"/admin/replies/all/"+$("#b_num").val(),
 		type:"GET",
 		dataType:"json",
 		success : function(data){
@@ -40,6 +40,12 @@ function getAllList(){
 
 
 $(function(){
+	
+	$("#board_menu").css({
+		background : "#343132",
+		color: "#fff"		
+	});
+	
 	getAllList(); 
 	
 	$("#replyForm").on("submit",function(){
@@ -50,7 +56,7 @@ $(function(){
 		var rno = $("#br_num").val();	
 		
 		$.ajax({
-			url : "/board/replies",
+			url : "/admin/replies",
 			type : "POST",
 			data : {
 				b_num : num,
@@ -78,7 +84,7 @@ $(function(){
 		
 		$.ajax({
 			type : "delete",
-			url : "/board/replies/"+$(this).parent().attr("data-rno"),
+			url : "/admin/replies/"+$(this).parent().attr("data-rno"),
 			dataType : "text",
 			success : function(result){
 				if(result == "SUCCESS"){
@@ -96,103 +102,6 @@ $(function(){
 	
 });
 </script>
-<script type="text/javascript">
-	$(function() {
-		
-		$("#br_content").click(function(e) {
-			$.ajax({
-				url : "/member/loginCheck",
-				type : "post",
-				dataType : "text",
-				success : function(data) {
-					if (data == "unlogin") {
-						$("html, body").stop().animate({
-							scrollTop : '0px'
-						});
-						$("#loginDiv").css({
-							display : "block"
-						});
-						$("#boardListWrap").prop('disabled', true).css({
-							"pointer-events" : "none",
-							opacity : "0.5"
-						});
-						$("#eventPageWrap").prop('disabled', true).css({
-							"pointer-events" : "none",
-							opacity : "0.5"
-						});
-					}
-				}
-			});
-		});
-
-		// 로그인창 닫기 버튼
-		$("#btn_close_x").click(function(e) {
-			$("#loginDiv").css({
-				display : "none"
-			});
-			$("#boardListWrap").prop('disabled', false).css({
-				"pointer-events" : "auto",
-				opacity : "1"
-			});
-			$("#eventPageWrap").prop('disabled', false).css({
-				"pointer-events" : "auto",
-				opacity : "1"
-			});
-		});
-
-		// 비밀번호창에서 엔터키 적용
-		$("#loginDivPw").keyup(function(e) {
-			if (e.keyCode == 13) {
-				$("#login_bd_btn").click();
-			}
-		});
-
-		// 로그인 버튼 클릭
-		$("#login_bd_btn")
-				.click(
-						function(e) {
-							var divId = $.trim($("#loginDivId").val());
-							var divPw = $.trim($("#loginDivPw").val());
-
-							if (divId.length > 0 && divPw.length > 0) {
-								$
-										.ajax({
-											url : "/member/reserveLogin",
-											type : "post",
-											data : {
-												"id" : divId,
-												"pass" : divPw
-											},
-											dataType : "json",
-											success : function(data) {
-												if (data.result == 'success') {
-													location.reload();
-												} else {
-													$
-															.alert({
-																title : '',
-																content : '<font color="#333"><b>아이디 또는 비밀번호를 확인하세요</b></font>',
-																boxWidth : '300px',
-																useBootstrap : false,
-																type : 'red'
-															});
-												}
-											}
-										});
-							}
-						});
-	});
-</script>
-
-
-<style type="text/css">
-		#boardListWrap { position:relative; margin: 0 auto; width: 100%; margin-top: 70px;  }
-		#boardWrite {  width:980px; margin:0 auto; }
-		table,td { width:980px; margin:0 auto; }
-		.blist { padding-top:40px; }
-		textarea { width:100%; }	
-
-	</style>
 
 </head>
 <body>
@@ -215,11 +124,11 @@ $(function(){
 					</div>			
 				</table>
 				<c:if test="${mine eq true}">
-					<input type="button" value="수정하기" class="btn_vupdate" onclick="location.href='boardupdate?num=${viewBoard.b_num}'" >
-					<input type="button" value="삭제하기" class="btn_vdelete" onclick="location.href='delete?num=${viewBoard.b_num}'" >
+					<input type="button" value="수정하기" class="btn_vupdate" onclick="location.href='/admin/board/boardupdate?num=${viewBoard.b_num}'" >
+					<input type="button" value="삭제하기" class="btn_vdelete" onclick="location.href='/admin/board/delete?num=${viewBoard.b_num}'" >
 				</c:if>	
 				
-				<input type="button" value="목록으로" 	onclick="location.href='boardlist'" class="btn_vlist">				
+				<input type="button" value="목록으로" 	onclick="location.href='/admin/board/boardlist'" class="btn_vlist">				
 			</form>			
 			<!-- Form 끝 -->
 
@@ -240,31 +149,3 @@ $(function(){
 				
 			</ul>		
 	</div>	
-	
-	<!-- login -->
-	<div id="loginDiv">
-		<div id="login_hd">
-			<div id="login_title">CGV 회원 로그인</div>
-			<a id="btn_close_x">닫기</a>
-		</div>
-		
-		<div id="login_bd">
-			<div id="login_bd_form">
-				<div id="login_wrap_id">
-					<input type="text" id="loginDivId" tabindex="1">
-				</div>
-				
-				<div id="login_wrap_pw">
-					<input type="password" id="loginDivPw" tabindex="2">
-				</div>
-				
-				<div id="login_wrap_btn">
-					<button id="login_bd_btn" tabindex="3">로그인</button>
-				</div>
-			</div>
-		</div>
-	</div>	
-	
-	
-</body>
-</html>

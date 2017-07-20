@@ -23,7 +23,7 @@ public class ActorServiceImpl implements ActorService{
 
 	@Override
 	public HashMap<String, Object> showActorList(int page) {
-		//aDao.getActorList();
+		
 		HashMap<String,Object> result = new HashMap<String,Object>();
 		
 		//paging

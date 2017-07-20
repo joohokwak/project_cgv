@@ -32,4 +32,12 @@
 		select rv.* , m.* from reserve rv join movie m using(m_num) where rv.id=#{id} order by rv.rv_num desc
 	</select>
 	
+	<select id="getMemberCount" resultType="int">
+		select count(*) from member;
+	</select>
+	
+	<select id="selectAllMember" parameterType="HashMap" resultType="HashMap">
+		select * from member limit #{skip},#{qty}
+	</select>
+	
 </mapper>

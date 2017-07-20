@@ -5,6 +5,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
 
 import com.project.cgv.dao.BoardDao;
 import com.project.cgv.service.BoardService;
@@ -62,7 +63,7 @@ public class BoardServiceImpl implements BoardService {
 		return result;
 	}
 
-	
+	@Transactional
 	@Override
 	public void deleteBoard(int num) {
 		

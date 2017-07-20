@@ -15,6 +15,7 @@ import org.springframework.web.multipart.MultipartFile;
 
 import com.project.cgv.dao.MemberDao;
 import com.project.cgv.service.MemberService;
+import com.project.cgv.util.Paging;
 
 @Service
 public class MemberServiceImpl implements MemberService {
@@ -124,6 +125,37 @@ public class MemberServiceImpl implements MemberService {
 		return "success";
 	}
 	
+	@Override
+	public String memberUpdateAdmin(HashMap<String, Object> params, HttpSession session, MultipartFile file) {
+		
+		
+		HashMap<String, Object> member = this.getMember((String) params.get("id"));
+		
+		
+		try {
+			String fullname = uploadFile(file.getOriginalFilename(),file.getBytes(),session);
+			
+			params.put("pic", fullname);
+			
+			String origin = (String)member.get("pic");
+			File f = new File(session.getServletContext().getRealPath("/resources/upload") + File.separator + origin);
+			if(f.exists()) {
+				f.delete();
+			}
+			
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		
+		if(file.getOriginalFilename().equals("")){
+			params.put("pic", member.get("pic"));
+		}
+		
+		mDao.memberUpdate(params);
+		
+		return "success";
+	}
+	
 	private String uploadFile(String originalName, byte[] fileData,  HttpSession session ) throws Exception {
 
 		String real_path = session.getServletContext().getRealPath("/resources/upload");
@@ -140,7 +172,31 @@ public class MemberServiceImpl implements MemberService {
 	public List<HashMap<String, Object>> reserveList(HashMap<String, Object> params) {
 		List<HashMap<String, Object>> result = mDao.reserveList(params);
 		
-		System.out.println(result);
+		return result;
+	}
+
+	@Override
+	public HashMap<String, Object> showMembers(int page) {
+		
+		HashMap<String,Object> result = new HashMap<String,Object>();
+		
+		//paging
+		int totalCount = mDao.getMemberCount();
+		int currentPageNumber = page;
+				
+		Paging p = new Paging(totalCount,currentPageNumber);
+		
+		result.put("current", currentPageNumber);
+		result.put("start", p.getStartPage());
+		result.put("end", p.getEndPage());
+		result.put("last", p.getPageTotalCount());
+		
+		HashMap<String,Object> params = new HashMap<String,Object>();
+		params.put("skip", p.getSkip());
+		params.put("qty", p.getQty());
+		
+		List<HashMap<String, Object>> mList = mDao.selectAllMember(params);
+		result.put("mList", mList);
 		
 		return result;
 	}

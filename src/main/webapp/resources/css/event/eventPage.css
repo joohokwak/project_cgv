@@ -8,6 +8,7 @@ textarea{overflow:auto;}
 em { font-style:normal; }
 body { background-color: #fdfcf0; }
 table { border-spacing:0; width:980px; }
+
 select { font-family: Verdana; line-height: 27px; height: 29px; padding: 3px 5px; border: 1px solid #b4b3aa;} 
 input[type='text'], input[type='password'] { disply: inline-block; height: 25px; line-height: 22px; padding-left: 10px; border: 1px solid #b5b5b5; }
 caption, th, td { font-weight: normal; line-height: 1.5em; }

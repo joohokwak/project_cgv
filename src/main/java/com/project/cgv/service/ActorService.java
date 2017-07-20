@@ -12,4 +12,5 @@ public interface ActorService {
 	public boolean removeActor(int num);
 	public List<HashMap<String, Object>> getMovieActor(int m_num);
 	
+	
 }
