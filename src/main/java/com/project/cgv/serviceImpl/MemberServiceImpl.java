@@ -216,4 +216,14 @@ public class MemberServiceImpl implements MemberService {
 	public int deleteReserve(int rv_num) {
 		return mDao.deleteReserve(rv_num);
 	}
+
+	@Override
+	public int findMtNum(HashMap<String, Object> params) {
+		return mDao.findMtNum(params);
+	}
+
+	@Override
+	public void deleteSeat(HashMap<String, Object> params) {
+		mDao.deleteSeat(params);
+	}
 }
