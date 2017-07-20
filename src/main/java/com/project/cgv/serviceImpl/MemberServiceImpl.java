@@ -200,4 +200,9 @@ public class MemberServiceImpl implements MemberService {
 		
 		return result;
 	}
+
+	@Override
+	public int deleteReserve(int rv_num) {
+		return mDao.deleteReserve(rv_num);
+	}
 }

@@ -22,4 +22,6 @@ public interface MemberDao {
 	public int getMemberCount();
 
 	public List<HashMap<String, Object>> selectAllMember(HashMap<String, Object> params);
+	
+	public int deleteReserve(int rv_num);
 }

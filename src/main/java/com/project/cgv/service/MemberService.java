@@ -34,6 +34,6 @@ public interface MemberService {
 	
 	public HashMap<String,Object> showMembers(int page);
 
-	
+	public int deleteReserve(int rv_num);
 
 }
