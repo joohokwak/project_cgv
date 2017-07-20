@@ -48,15 +48,6 @@
 		select * from stealcut where m_num = #{value}
 	</select>
 	
-	
-	
-	<!-- video -->
-	<select id="trailerList" parameterType="int" resultType="hashmap">
-		select * from video where m_num = #{value}
-	</select>
-	
-	
-	
 	<!-- theater -->
 	<select id="theaterList" resultType="hashmap">
 		select * from theater order by t_name
@@ -123,7 +114,7 @@
 	
 	<!-- genreList -->
 	<select id="getGenreList" resultType="HashMap">
-		select * from genre
+		select * from genre order by g_name asc
 	</select>
 	
 	<!-- movie_re -->
@@ -141,7 +132,7 @@
 	
 	<!-- movie crud -->
 	<!-- insertData -->
-	<insert id="insertMovie" parameterType="HashMap" useGeneratedKeys="true" keyProperty="m_num">
+	<insert id="insertMovie" parameterType="HashMap" useGeneratedKeys="true" keyProperty="num">
 		insert into movie 
 			values(0, #{title_kor}, #{title_eng},
 		 		#{producer}, #{grade}, #{time}, 
@@ -218,13 +209,21 @@
 	
 	<!-- join -->
 	<insert id="attachInfo" parameterType="HashMap">
-		insert into management values(0,"#{a_num},#{m_num});
+		insert into management values(0,"#{a_num},#{m_num})
 	</insert>
 	
 	<!-- trailer -->
-<!-- 	<insert id="insertVideo" parameterType="HashMap"> -->
-<!-- 		insert into video values() -->
-<!-- 	</insert> -->
+	<select id="trailerList" parameterType="int" resultType="hashmap">
+		select * from video where m_num = #{value} order by v_num asc
+	</select>
+	
+	<insert id="insertVideo" parameterType="HashMap">
+		insert into video values(0, #{addr}, #{num})
+	</insert>
+	
+	<update id="updateVideo" parameterType="HashMap">
+		update video set v_addr = #{addr} where v_num = #{v_num}
+	</update>
 	
 	
 	

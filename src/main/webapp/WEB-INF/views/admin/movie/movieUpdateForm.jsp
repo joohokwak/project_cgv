@@ -115,8 +115,51 @@ $(function() {
 		}
 	});
 	
+	$("#video_check1").change(function(){
+		if($("#video_check1").is(":checked") == true){
+			$("#video1").val("").attr("disabled",true);
+			
+		}else{
+			$("#video1").val("").attr("disabled",false);
+		}
+	});
+	
+	$("#video_check2").change(function(){
+		if($("#video_check2").is(":checked") == true){
+			$("#video2").val("").attr("disabled",true);
+			
+		}else{
+			$("#video2").val("").attr("disabled",false);
+		}
+	});
+	
+	$("#video_check3").change(function(){
+		if($("#video_check3").is(":checked") == true){
+			$("#video3").val("").attr("disabled",true);
+			
+		}else{
+			$("#video3").val("").attr("disabled",false);
+		}
+	});
+	
 	if($.trim($("#site").val()) == ""){
 		$("#site_check").attr("checked",true);
+		$("#site").attr("disabled",true);
+	}
+	
+	if($.trim($("#video1").val()) == ""){
+		$("#video_check1").attr("checked",true);
+		$("#video1").attr("disabled",true);
+	}
+	
+	if($.trim($("#video2").val()) == ""){
+		$("#video_check2").attr("checked",true);
+		$("#video2").attr("disabled",true);
+	}
+	
+	if($.trim($("#video3").val()) == ""){
+		$("#video_check3").attr("checked",true);
+		$("#video3").attr("disabled",true);
 	}
 	
 	var str = "${m.m_genre}";
@@ -204,6 +247,18 @@ function movieCheck(){
 	}else if($("#site_check").is(":checked") == false && $.trim($("#site").val()) == ""){
 		alert("사이트를 입력하세요!");
 		$("#site").focus();
+		return false;
+	}else if($("#video_check1").is(":checked") == false && $.trim($("#video1").val()) == ""){
+		alert("사이트를 입력하세요!");
+		$("#video1").focus();
+		return false;
+	}else if($("#video_check2").is(":checked") == false && $.trim($("#video_check2").val()) == ""){
+		alert("사이트를 입력하세요!");
+		$("#video2").focus();
+		return false;
+	}else if($("#video_check3").is(":checked") == false && $.trim($("#video3").val()) == ""){
+		alert("사이트를 입력하세요!");
+		$("#video3").focus();
 		return false;
 	}else if($("#start").val() == ""){
 		alert("상영 시작일을 입력하세요!");
@@ -318,8 +373,24 @@ function editorCheck() {
 						<label for=site>사이트</label>
 					</td>
 					<td>
-						<input type="text" id="site" name="site" class="movie-input" style="width: 327px" value="${m.m_site}">&nbsp;
-						<input type="checkbox" id="site_check">사이트 없음
+						<input type="text" id="site" name="site" class="movie-input" style="width: 327px">&nbsp;
+						<label><input type="checkbox" id="site_check">사이트 없음</label>
+					</td>
+				</tr>
+				<tr>
+					<td>
+						<label for="video1">트레일러</label>
+					</td>
+					<td>
+						<input type="text" id="video1" name="video1" class="movie-input" style="width: 327px; margin-bottom: 3px" value="${video1.v_addr}">
+						&nbsp;<label><input type="checkbox" id="video_check1">트레일러 없음</label><br>
+						<input type="text" id="video2" name="video2" class="movie-input" style="width: 327px; margin-bottom: 3px" value="${video2.v_addr}">
+						&nbsp;<input type="checkbox" id="video_check2"><br>
+						<input type="text" id="video3" name="video3" class="movie-input" style="width: 327px; margin-bottom: 1px" value="${video3.v_addr}">
+						&nbsp;<input type="checkbox" id="video_check3">
+						<input type="hidden" name="video1_num" value="${video1.v_num}">
+						<input type="hidden" name="video2_num" value="${video2.v_num}">
+						<input type="hidden" name="video3_num" value="${video3.v_num}">
 					</td>
 				</tr>
 				<tr>

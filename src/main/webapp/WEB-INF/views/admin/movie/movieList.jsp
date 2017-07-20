@@ -128,7 +128,7 @@ $(function(){
 				<div class="movie-pagenation">
 					<c:if test="${v.start != 1 }">
 						<a href="list?page=1">처음</a>
-						<a href="list?page=${viewData.start-1 }">이전</a>
+						<a href="list?page=${v.start-1 }">이전</a>
 					</c:if>
 					
 					<c:forEach begin="${v.start}" end="${v.end<v.last ? v.end:v.last }" var="i">

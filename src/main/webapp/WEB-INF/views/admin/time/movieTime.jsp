@@ -1,11 +1,13 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
+<link rel="stylesheet" href="/resources/css/jquery.mCustomScrollbar.css"/>
+<script src="/resources/js/jquery.mCustomScrollbar.concat.min.js"></script>
 <link rel="stylesheet" type="text/css" href="/resources/css/admin/mybtn.css" />
 <style type="text/css">
 .time-wrap{
 	position: relative;
-	width: 1200px;
+	width: 1110px;
 	margin: 0 auto;
 	color: #666666;
 	cursor: default;
@@ -32,14 +34,13 @@
 
 .time-select{
 	width: 1100px;
-	margin: 5px 0px; 
+	margin: 5px auto; 
 }
 
 .time-row{
 	position: relative;
 	top: 5px;
 	left: 0px;
-	
 	float: left; 
 	margin-right: 15px;
 }
@@ -49,8 +50,13 @@
 }
 
 .time-list{
-	width: 820px;
+	width: 1000px;
+	height: 400px;
 	margin: 0px auto;
+}
+
+.time-list .list-wrap{
+
 }
 
 .time-list .tname{
@@ -101,6 +107,8 @@
 </style>
 <script type="text/javascript">
 $(function(){
+	
+	$(".time-list").mCustomScrollbar({theme:"rounded-dark"});
 	
 	$("#time_menu").css({
 		background : "#343132",
@@ -258,14 +266,15 @@ $(function(){
 			<div class="time-clear"></div>
 			<c:if test="${mtList ne null}">
 				<c:forEach items="${mtList}" var="mt">
-					<div>
+					<div class="list-wrap">
 						<div class="tname">${mt.t_name}</div>
 						<div class="screen">${mt.s_title}</div>
 						<div class="mname">${mt.m_title1}(${mt.m_title2})</div>
 						<div class="date">${mt.mt_date}</div>
 						<div class="time">${mt.mt_time}</div>
 					</div>
-					<div style="float: right;">
+					
+					<div style="float: right; margin-bottom: 10px" class="list-wrap">
 						<button type="button" class="my-btn" onclick="location.href='/admin/movie/timeDel?num=${mt.mt_num}'">삭제</button>
 					</div>
 					<div class="time-clear">

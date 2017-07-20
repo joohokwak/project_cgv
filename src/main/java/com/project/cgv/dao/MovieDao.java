@@ -79,6 +79,7 @@ public interface MovieDao {
 	
 	//트레일러 등록
 	public int insertVideo(HashMap<String, Object> video);
+	public int updateVideo(HashMap<String, Object> video);
 	
 	
 

@@ -293,6 +293,9 @@ public class AdminController {
 		
 		model.addAttribute("gList",mService.showGenreList());
 		model.addAttribute("movie",mService.movieDetail(num));
+		model.addAttribute("video1",mService.trailerList(num).get(0));
+		model.addAttribute("video2",mService.trailerList(num).get(1));
+		model.addAttribute("video3",mService.trailerList(num).get(2));
 		
 		return ".admin.movie.movieUpdateForm";
 	}

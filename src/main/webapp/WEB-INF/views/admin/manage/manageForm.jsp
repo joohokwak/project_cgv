@@ -5,6 +5,9 @@
 <html>
 <head>
 <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+<link rel="stylesheet" href="/resources/css/jquery.mCustomScrollbar.css"/>
+<script src="/resources/js/jquery.mCustomScrollbar.concat.min.js"></script>
+<link rel="stylesheet" href="/resources/css/admin/mybtn.css">
 <title>Insert title here</title>
 <style type="text/css">
 
@@ -35,10 +38,16 @@
 		width: 800px;
 	}
 	
+	.manage-list{
+		margin: 0 auto;
+	}
+	
 	.manage-table{
 		position: relative;
 		top: 20px;
 		width: 400px;
+		min-height: 400px;
+		margin: 0 auto;
 		border-collapse: collapse;
 	}
 	
@@ -57,6 +66,7 @@
 	
 	.manage-row td{
 		height: 30px;
+		padding-left: 20px;
 	}
 
 	.manage-pagenation{
@@ -65,8 +75,11 @@
 	
 	.manage-pagenation a, b{
 	    float: left;
-	    padding: 8px 16px;
+	    margin-top: 2px;
+	    margin-bottom: 2px;
+	    padding: 8px 13px;
 	    text-decoration: none;
+	    border-radius: 50px;
 	}
 	
 	.manage-pagenation b{
@@ -85,29 +98,133 @@
 	}
 
 	.manage-info{
-		margin-top: 20px;
-		width: 700px
+		margin: 0 auto;
+		width: 800px;
 	}
 
 	.manage-info h2{
 		text-align: center;
+		margin-top: 0px;
+		margin-bottom: 15px;
 	}
 	
 	.manage-info .movie-info{
-		margin-left: 20px;
+		margin-right: 20px;
 	}
 	
 	.manage-info .actor-info{
-		margin-right: 20px;
+
 	}
+	
+	.movie-info-head{
+		width: 400px;
+	}
+	
+	.movie-info-head h2{
+		text-align: center;
+	}
+	
+	.movie-info-head .movie-num{
+		float: left;
+		width: 50px;
+		font-size: 12px;
+		font-weight: bold;
+		text-align: center;
+	}
+	
+	.movie-info-head .movie-title{
+		float: left;
+		width: 300px;
+		font-size: 12px;
+		font-weight: bold;
+		overflow: hidden;
+		text-align: center;
+	}
+	
+	.movie-info-body{
+		height: 200px;
+	}
+	
+	.movie-info-body .movie-num{
+		float: left;
+		width: 50px;
+		font-size: 12px;
+		text-align: center;
+		padding: 3px 0px;
+		margin: 2px 0px;
+	}
+	
+	.movie-info-body .movie-title{
+		width: 300px;
+		float: left;
+		text-align: center;
+		font-size: 12px;
+		overflow: hidden;
+		padding: 3px 0px;
+		margin: 2px 0px;
+	}
+	
+	.actor-info-head{
+		width: 280px;
+	}
+	
+	.actor-info-head h2{
+		text-align: center;
+	}
+	
+	.actor-info-head .actor-num{
+		float: left;
+		width: 50px;
+		font-size: 12px;
+		font-weight: bold;
+		text-align: center;
+	}
+	
+	.actor-info-head .actor-title{
+		float: left;
+		width: 200px;
+		text-align: center;
+		font-size: 12px;
+		font-weight: bold;
+		overflow: hidden;
+		text-align: center;
+	}
+	
+	.actor-info-body{
+		height: 200px;
+	}
+	
+	.actor-info-body .actor-num{
+		float: left;
+		width: 50px;
+		font-size: 12px;
+		text-align: center;
+		padding: 3px 0px;
+		margin: 2px 0px;
+	}
+	
+	.actor-info-body .actor-title{
+		float: left;
+		width: 200px;
+		text-align: center;
+		font-size: 12px;
+		overflow: hidden;
+		padding: 3px 0px;
+		margin: 2px 0px;
+	}
+	
+	
+	
 </style>
 <script type="text/javascript">
 	$(function(){
+		$(".movie-info-body").mCustomScrollbar({theme:"rounded-dark"});
+		$(".actor-info-body").mCustomScrollbar({theme:"rounded-dark"});
 		
-		$(".movie-title").click(function(){
+		$(".movie-info-body .movie-title").click(function(){
 
 			$("#m_num").val($(this).data("movie-num"));
-			$(".movie-title").css({
+			$(".movie-info-body .movie-title").css({
 				background: "none",
 				color: "#666666"
 			});
@@ -119,10 +236,10 @@
 			
 		});
 		
-		$(".actor-title").click(function(){
+		$(".actor-info-body .actor-title").click(function(){
 			$("#a_num").val($(this).data("actor-num"));
 		
-			$(".actor-title").css({
+			$(".actor-info-body .actor-title").css({
 				background: "none",
 				color: "#666666"
 			});
@@ -144,7 +261,7 @@
 function check(){
 	
 	if($("#m_num").val() == ""){
-		alert("영화를 선택하세요!")
+		alert("영화를 선택하세요!");
 		return false;
 	}
 	
@@ -166,6 +283,7 @@ function check(){
 	
 	<div class="manage-body">
 		<div class="manage-list">
+			<h2 align="center" style="margin: 0px;">등록 현황</h2>
 			<table class="manage-table">
 				<tr>
 					<th>영화</th>
@@ -178,47 +296,80 @@ function check(){
 						<td data-actor-num="${list.a_num}">${list.a_kor_name}</td>
 					</tr>
 				</c:forEach>
+				<tr>
+					<td colspan="2" style="text-align: center;">
+					<div class="manage-pagenation">
+						<c:if test="${viewData.start != 1 }">
+							<a href="/admin/manage/connection?page=1">처음</a>
+							<a href="/admin/manage/connection?page=${viewData.start-1 }">이전</a>
+						</c:if>
+						
+						<c:forEach begin="${viewData.start}" end="${viewData.end<viewData.last ? viewData.end:viewData.last }" var="i">
+							<c:choose>
+								<c:when test="${i==viewData.current }">
+									<b>${i}</b>
+								</c:when>
+								<c:otherwise>
+									<a href="/admin/manage/connection?page=${i}">${i}</a>
+								</c:otherwise>
+							</c:choose>
+						</c:forEach> 
+						
+						<c:if test="${viewData.end < viewData.last }">
+							<a href="/admin/manage/connection?page=${viewData.end+1}">다음</a>	
+							<a href="/admin/manage/connection?page=${viewData.last}">마지막</a>					
+						</c:if>
+					</div>
+					</td>
+				</tr>
 			</table>
 		</div>
+		
+		<hr style="margin: 50px 0px 30px;">
+		
 		<div class="manage-info">
 			<div class="movie-info" style="float: left;">
-				<h2>영화정보</h2>
-				<table class="movie-table">
-					<tr>
-						<th>번호</th>
-						<th>제목</th>
-					</tr>
-					<!-- forEach -->
+				<div class="movie-info-head">
+					<h2>영화 정보</h2>
+					<div class="movie-num">번호</div>
+					<div class="movie-title">제목</div>
+				</div>
+				
+				<div style="clear: both;"></div>
+				
+				<div class="movie-info-body">
 					<c:forEach items="${mList}" var = "list">
-						<tr class="movie-row">
-							<td>${list.m_num}</td>
-							<td class="movie-title" data-movie-num="${list.m_num}">${list.m_title1}(${list.m_title2})</td>
-						</tr>
+						<div class="movie-num">${list.m_num}</div>
+						<div class="movie-title" data-movie-num="${list.m_num}" style="text-align: left;">${list.m_title1}(${list.m_title2})</div>
+						<div style="clear: both;"></div>
 					</c:forEach>
-				</table>
+				</div>
 			</div>
+			
 			<div class="actor-info" style="float: right;">
-				<h2>배우정보</h2>
-				<table class="actor-table">
-					<tr>
-						<th>번호</th>
-						<th>이름</th>
-					</tr>
-					<c:forEach var="list" items="${aList}">
-						<tr class="actor-row">
-							<td>${list.a_num}</td>
-							<td class="actor-title" data-actor-num="${list.a_num}">${list.a_kor_name}</td>
-						</tr>
+				<div class="actor-info-head">
+					<h2>배우 정보</h2>
+					<div class="actor-num">번호</div>
+					<div class="actor-title">제목</div>
+				</div>
+				
+				<div style="clear: both;"></div>
+				
+				<div class="actor-info-body">
+					<c:forEach items="${aList}" var = "list">
+						<div class="actor-num">${list.a_num}</div>
+						<div class="actor-title" data-actor-num="${list.a_num}" style="text-align: left;">${list.a_kor_name}</div>
+						<div style="clear: both;"></div>
 					</c:forEach>
-				</table>
+				</div>
 			</div>
 		</div>
 		
-		<div class="manage-insert" style="clear: both;">
+		<div class="manage-insert" style="clear: both; text-align: right; margin: 20px 0px">
 			<form action="/admin/manage/connection" method="post" id="manageForm">
 				<input type="hidden" id="m_num" name="m_num">
 				<input type="hidden" id="a_num" name="a_num">
-				<button type="submit"><span>등록</span></button>
+				<button type="submit" class="my-btn"><span>등록</span></button>
 			</form>		
 		</div>
 	</div>

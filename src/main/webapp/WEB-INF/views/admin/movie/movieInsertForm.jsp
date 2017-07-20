@@ -303,7 +303,7 @@ function movieCheck(){
 						<label for="time">상영시간</label>
 					</td>
 					<td>
-						<input type="text" id="time" name="time" class="movie-input" width="132px">
+						<input type="number" id="time" name="time" class="movie-input" width="132px">
 					</td>
 				</tr>
 				<tr>
@@ -328,7 +328,7 @@ function movieCheck(){
 					</td>
 					<td>
 						<input type="text" id="site" name="site" class="movie-input" style="width: 327px">&nbsp;
-						<input type="checkbox" id="site_check">사이트 없음
+						<label><input type="checkbox" id="site_check">사이트 없음</label>
 					</td>
 				</tr>
 				<tr>
@@ -337,7 +337,7 @@ function movieCheck(){
 					</td>
 					<td>
 						<input type="text" id="video1" name="video1" class="movie-input" style="width: 327px; margin-bottom: 3px">
-						&nbsp;<input type="checkbox" id="video_check1">트레일러 없음<br>
+						&nbsp;<label><input type="checkbox" id="video_check1">트레일러 없음</label><br>
 						<input type="text" id="video2" name="video2" class="movie-input" style="width: 327px; margin-bottom: 3px">
 						&nbsp;<input type="checkbox" id="video_check2"><br>
 						<input type="text" id="video3" name="video3" class="movie-input" style="width: 327px; margin-bottom: 1px">

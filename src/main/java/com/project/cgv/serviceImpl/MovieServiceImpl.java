@@ -1,5 +1,6 @@
 package com.project.cgv.serviceImpl;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
@@ -188,24 +189,28 @@ public class MovieServiceImpl implements MovieService {
 			params.put("video3", null);
 		}
 		
-		HashMap<String,Object> video = new HashMap<String,Object>();
 		
-		video.put("video1", params.get("video"));
-		video.put("video2", params.get("video2"));
-		video.put("video3", params.get("video3"));
+		List<String> addr = new ArrayList<String>();
+		
+		addr.add((String)params.get("video1"));
+		addr.add((String)params.get("video2"));
+		addr.add((String)params.get("video3"));
 		
 		int result = mvDao.insertMovie(params);
-		video.put("m_num", params.get("m_num"));
 		int result2 = 0;
 		
-		for(int i = 0; i < video.size(); i++){
-			if(i>0 && result != 1){
+		HashMap<String,Object> video = new HashMap<String,Object>();
+		video.put("num", params.get("num"));
+		for(int i = 0; i < addr.size(); i++){
+			
+			if(i != 0 && result2 < 1){
 				break;
-			}else{
-				result2 = mvDao.insertVideo(video); 
 			}
+			
+			video.put("addr", addr.get(i));
+			result2 = mvDao.insertVideo(video);
+			
 		}
-		
 		
 		if(result == 1 && result2 == 1){
 			return true;
@@ -214,15 +219,56 @@ public class MovieServiceImpl implements MovieService {
 		}
 	}
 
+	@Transactional
 	@Override
 	public boolean modifyMovie(HashMap<String, Object> params) {
 		if((String)params.get("site") == ""){
 			params.put("site", null);
 		}
 		
-		int result = mvDao.updateMovie(params);
+		if((String)params.get("video1") == ""){
+			params.put("video1", null);
+		}
 		
-		if(result == 1){
+		if((String)params.get("video2") == ""){
+			params.put("video2", null);
+		}
+		
+		if((String)params.get("video3") == ""){
+			params.put("video3", null);
+		}
+		
+		
+		List<String> addr = new ArrayList<String>();
+		List<Integer> addr_num = new ArrayList<Integer>(); 
+		
+		addr.add((String)params.get("video1"));
+		addr.add((String)params.get("video2"));
+		addr.add((String)params.get("video3"));
+		
+		addr_num.add(Integer.parseInt((String) params.get("video1_num")));
+		addr_num.add(Integer.parseInt((String) params.get("video2_num")));
+		addr_num.add(Integer.parseInt((String) params.get("video3_num")));
+		
+		int result = mvDao.updateMovie(params);
+		int result2 = 0;
+		
+		HashMap<String,Object> video = new HashMap<String,Object>();
+		video.put("num", params.get("num"));
+		for(int i = 0; i < addr.size(); i++){
+			
+			if(i != 0 && result2 < 1){
+				break;
+			}
+			
+			video.put("addr", addr.get(i));
+			video.put("v_num", addr_num.get(i));
+			
+			result2 = mvDao.updateVideo(video);
+			
+		}
+		
+		if(result == 1 && result2 == 1){
 			return true;
 		}else{
 			return false;
