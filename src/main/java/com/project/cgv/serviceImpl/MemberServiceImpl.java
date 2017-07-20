@@ -113,10 +113,10 @@ public class MemberServiceImpl implements MemberService {
 			mvDao.mrUpdate(maps); 
 			
 			String origin = (String)member.get("pic");
-			File f = new File(session.getServletContext().getRealPath("/resources/upload") + File.separator + origin);
-			if(f.exists()) {
-				f.delete();
-			}
+//			File f = new File(session.getServletContext().getRealPath("/resources/upload") + File.separator + origin);
+//			if(f.exists()) {
+//				f.delete();
+//			}
 			
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -225,5 +225,10 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public void deleteSeat(HashMap<String, Object> params) {
 		mDao.deleteSeat(params);
+	}
+
+	@Override
+	public void deleteMember(String id) {
+		mDao.deleteMember(id);
 	}
 }

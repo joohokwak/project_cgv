@@ -28,4 +28,6 @@ public interface MemberDao {
 	public int findMtNum(HashMap<String, Object> params);
 	
 	public void deleteSeat(HashMap<String, Object> params);
+	
+	public void deleteMember(String id);
 }

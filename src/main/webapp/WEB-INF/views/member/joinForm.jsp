@@ -9,6 +9,7 @@
 	<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css">
 	<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
 	<link rel="stylesheet" href="/resources/css/member/joinform.css">
+	<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 	<script type="text/javascript" src="/resources/js/member/joinform.js"></script>
 </head>
 <body>
@@ -72,7 +73,7 @@
 								<td align="left">
 									<input name="id" class="member_data_id" type="text" placeholder="아이디를 입력해주세요." style="width: 200px; height: 25px; padding-left: 10px;">
 									<button type="button" class="id_check_btn">중복확인</button>
-									<span class="member_data_id_span" style="display: none; color: #ee6900; font-size: 13px;">아이디를 확인해주세요(영문자, 숫자 조합하여 8~12자리)</span>
+									<span class="member_data_id_span" style="display: none; color: #ee6900; font-size: 13px;">아이디를 확인해주세요(영문자, 숫자 조합하여 6~12자리)</span>
 									<span class="member_data_idcheck_span" style="display: none; color: #ee6900; font-size: 13px;">중복 여부를 확인해 주세요.</span>
 									<br>
 									<span style="font-size: 13px;">CGV,CJmall, Mnet등 기존의 CJ ONE 제휴 브랜드 회원님의 경우는 사용하고 계신 아이디가 새롭게 생성하신<br>

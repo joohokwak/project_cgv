@@ -190,5 +190,14 @@ public class MemberController {
 		return "failed";
 	}
 	
+	@ResponseBody
+	@RequestMapping(value="/deleteMember", method=RequestMethod.POST)
+	public String deleteMember(@RequestParam("id") String id){
+		
+		mService.deleteMember(id);
+		
+		System.out.println(id);
+		return "success";
+	}
 	
 }

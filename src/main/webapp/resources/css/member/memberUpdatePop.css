@@ -36,7 +36,8 @@ body{
 	background-color: white;
 	margin: 30px;
 	margin-top: 0px;
-	height: 470px;
+	position: relative;
+    top: -30px;
 }
 .profile_img{
 	background: url(/resources/images/join/no_pic.png) no-repeat;
@@ -79,21 +80,21 @@ body{
 }
 .submit_btn {
 	background-color: #333;
-	border: none;
+	border: 1px solid #333;
 	border-radius: 3px;
 	color: white;
-	padding: 10px 40px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
 	font-size: 15px;
+	width: 50px;
 }
 .c_btn {
+	width: 50px;
 	background-color: #fff;
 	border: 1px solid black;
 	border-radius: 3px;
 	color: black;
-	padding: 10px 40px;
 	text-align: center;
 	text-decoration: none;
 	display: inline-block;
@@ -137,4 +138,18 @@ input{
 	width: 100px;
 	padding: 5px;
 	padding-left: 10px;
+}
+
+.deletebtn{
+	background-color: #333;
+	border: 1px solid #333;
+	border-radius: 3px;
+	color: white;
+	text-align: center;
+	text-decoration: none;
+	display: inline-block;
+	font-size: 10px;
+	width: 60px;
+	position: relative;
+	left: 400px;
 }

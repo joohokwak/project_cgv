@@ -6,6 +6,9 @@
 <title>Insert title here</title>
 <script src="https://code.jquery.com/jquery-2.2.4.js"></script>
 <link rel="stylesheet" href="/resources/css/member/memberUpdatePop.css?ver=1">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.css">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery-confirm/3.2.3/jquery-confirm.min.js"></script>
+<link href="//netdna.bootstrapcdn.com/font-awesome/3.2.1/css/font-awesome.css" rel="stylesheet">
 <script type="text/javascript">
 	$(document).ready(function(){
 		var phone = "${member.phone}";
@@ -153,6 +156,26 @@
 			self.close();
 		});
 		
+		$(".deletebtn").click(function() {
+			var id = "${member.id}";
+			$.confirm({
+		          title: '회원 탈퇴',
+		          content: 'CGV 회원정보, 포인트 내역이 삭제됩니다. ',
+		          boxWidth: '400px',
+		          useBootstrap: false,
+		          type: 'dark',
+		          icon: 'icon-spinner icon-spin icon-large',
+		          buttons: {
+		        	확인: {
+		                  action: function(){}
+		            },
+		           	취소: {
+		                  btnClass: 'btn-dark',
+		            }
+		          }
+		    });
+		});
+		
 	});
 </script>
 </head>
@@ -164,6 +187,7 @@
 		<div class="body">
 			<div class="name">
 				<span>${member.name } 님 </span><strong>( ${member.id } )</strong>
+				<button class="deletebtn">회원탈퇴</button>
 			</div>
 			<div class="content">
 				<form id="Uform" action="/member/memberUpdate" method="post" enctype="multipart/form-data">
@@ -195,8 +219,8 @@
 								<select class="DomainSelect"></select><br>
 								<strong>이메일 주소 입력 시 사용 가능 특수 문자 : - . _</strong>
 							</div>
-							<div style="text-align: right;">
-								<input class="submit_btn" type="button" value="등록"> <button class="c_btn" type="button">취소</button><br>
+							<div style="text-align: right; padding-right: 30px;">
+								<button class="submit_btn">수정</button> <button class="c_btn">취소</button>
 							</div>	
 						</div>
 					</div>

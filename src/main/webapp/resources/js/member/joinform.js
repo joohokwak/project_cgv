@@ -71,7 +71,6 @@ $(function() {
 			var validationPhone = false;
 			var validationEmail = false;
 			
-//			(validationName&&validationPw&&validationRPw&&validationId&&validationPhone&&validationEmail)
 			
 			//이름 체크
 			var re_name = /^[가-힣]+$/;
@@ -110,7 +109,8 @@ $(function() {
 			
 			//아이디 유효성
 			//var re_id = /^[a-zA-Z0-9]{8,12}$/;
-			var re_id = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{8,12}$/;
+			var re_id = /^(?=.*[a-zA-Z])((?=.*\d)|(?=.*\W)).{6,12}$/;
+			
 			var idStr;
 			var isIdCheck = false;
 			$(".member_data_id").focusout(function() {
@@ -216,6 +216,7 @@ $(function() {
 			////////////////// 
 			
 			$(".submit_btn").click(function() {
+				var msg ;
 				if(($(".member_data_phon_num1").val().length==0||$(".member_data_phon_num2").val().length==0)||$(".member_data_phon_num1").val().length==0){
 					validationPhone=false;
 				}
@@ -223,24 +224,32 @@ $(function() {
 					$("#foinform").submit();
 				}else{
 					if(!validationName){
-						alert("이름을 확인하세요.");
+						msg = "이름을 확인하세요.";
 						$(".member_data_name").focus();
 					}else if(!validationId){
-						alert("아이디를 확인하세요.");
+						msg = "아이디를 확인하세요.";
 						$(".member_data_id").focus();	
 					}else if(!validationPw){
-						alert("비밀번호를 확인하세요.");
+						msg = "비밀번호를 확인하세요.";
 						$(".member_data_password").focus();	
 					}else if(!validationRPw){
-						alert("비밀번호를 확인하세요.");
+						msg = "비밀번호를 확인하세요.";
 						$(".member_data_repassword").focus();	
 					}else if(!validationPhone){
-						alert("휴대전화를 확인하세요.");
+						msg = "휴대전화를 확인하세요.";
 						$(".member_data_phon_num1").focus();	
 					}else if(!validationEmail){
-						alert("Email을 확인하세요.");
+						msg = "Email을 확인하세요.";
 						$(".email_id").focus();	
 					}
+					$.alert({
+					    useBootstrap: false,
+					    title: '입력값을 확인하세요.',
+						content: msg,
+						icon: 'icon-exclamation-sign icon-large',
+						type: 'orange',
+					    boxWidth: '300px'
+					});
 				};
 			})
 			
@@ -258,11 +267,17 @@ $(function() {
 								//사용가능
 								isIdCheck = true;
 								validationId = true;
+								
+								
+								
+								
 								$(".member_data_idcheck_span").css("display","none")
 								$.alert({
 								    useBootstrap: false,
 								    title: '아이디 중복 여부',
-									content: '사용 가능',
+									content: '사용 가능한 아이디 입니다.',
+									icon: 'icon-ok-sign icon-large',
+									type: 'orange',
 								    boxWidth: '300px'
 								});
 							}else{
@@ -270,9 +285,11 @@ $(function() {
 								$(".member_data_id").val("");
 								$(".member_data_id").focus();
 								$.alert({
-								    useBootstrap: false,
-									 title: '아이디 중복 여부',
-									content: '사용 불가 , 다시 입력해 주세요.',
+									useBootstrap: false,
+								    title: '아이디 중복 여부',
+									content: '사용 불가, 다시 입력해주세요',
+									type: 'orange',
+									icon: 'icon-remove icon-large',
 								    boxWidth: '300px'
 								});
 							}
