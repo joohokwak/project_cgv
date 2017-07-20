@@ -99,6 +99,11 @@ $(function(){
 		background : "#343132",
 		color: "#fff"		
 	});
+	
+	$("#update_btn").click(function() {
+		window.open("/admin/member/memberUpdatePop?id=${member.id}", "새창", "width=800, height=700, toolbar=no, menubar=no, scrollbars=no, resizable=no" );  
+	});
+	
 });
 </script>
 <div class="member-wrap">
@@ -119,7 +124,10 @@ $(function(){
 						<td>${list.id}</td>
 						<td><a href="/admin/member/mycgv?id=${list.id}">${list.name}</a></td>
 						<td>
-							<button type="button" onclick="location.href='/admin/member/delete?id=${list.id}'">제명</button>
+							<button type="button" id="update_btn" onclick="location.href='/admin/member/delete?id=${list.id}'">수정</button>
+						</td>
+						<td>
+							<button type="button" onclick="location.href='/admin/member/delete?id=${list.id}'">삭제</button>
 						</td>	
 					</tr>
 				</c:if>

@@ -1,11 +1,8 @@
 <%@ page language="java" contentType="text/html; charset=UTF-8"
     pageEncoding="UTF-8"%>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+
 <link rel="stylesheet" type="text/css" href="/resources/css/admin/mybtn.css" />
 <style type="text/css">
 	
@@ -77,21 +74,61 @@
 		min-height: 316px;
 	}
 	
+	.notice-navi{
+		margin-top: 30px;
+		min-height: 50px;
+	}
+	
+	.notice-navi span, a{
+		padding: 7px 0px; 
+	}
+	
+	.notice-navi .notice-prev{
+		margin: 10px 0px;
+		padding: 7px 0px;
+		border-top: 1px solid #e1dfd5;
+		border-bottom: 1px solid #e1dfd5;
+	}
+	
+	.notice-navi .prev-text{
+		display: inline-block;
+		margin-right: 15px;
+	}
+	
+	.notice-navi .prev-title{
+		display: inline-block;
+	}
+	
+	.notice-navi .prev-date{
+		display: inline-block;
+		float: right;
+	}
+	
+	.notice-navi .notice-next{
+		margin: 10px 0px;
+		padding: 3px 0px 7px 0px;
+		border-bottom: 1px solid #e1dfd5;
+	}
+	
+	.notice-navi .next-text{
+		display: inline-block;
+		margin-right: 15px;
+	}
+	
+	.notice-navi .next-title{
+		display: inline-block;
+	}
+	
+	.notice-navi .next-date{
+		display: inline-block;
+		float: right;
+	}
+
 	.notice-footer{
 		margin-top: 10px;
 	}
-	
-	
-	
-	
-	
-	
-	
-	
 
 </style>
-</head>
-<body>
 <div class="notice-wrap">
 	<div class="notice-header">
 		<h1>공지사항</h1>
@@ -110,14 +147,41 @@
 		<div class="notice-content">
 			${notice.n_content}
 		</div>
+		
+		<div class="notice-navi">
+			<div class="notice-prev">
+				<span class="prev-text">
+					<i class="fa fa-arrow-circle-up" aria-hidden="true"></i>
+					이전글
+				</span>
+				<c:choose>
+					<c:when test="${prevInfo eq null }">
+						<span class="prev-title">이전 글이 없습니다.</span>
+					</c:when>
+					<c:otherwise>
+						<a class="prev-title" href="/admin/notice/view?num=${prevInfo.n_num}">${prevInfo.n_title}</a>
+						<span class="prev-date">등록일&nbsp;&nbsp; <fmt:formatDate value="${prevInfo.n_regdate}"/></span>
+					</c:otherwise>
+				</c:choose>
+			</div>
+			<div class="notice-next">
+				<span class="next-text">
+					<i class="fa fa-arrow-circle-down" aria-hidden="true"></i>
+					다음글
+				</span>
+				<c:choose>
+					<c:when test="${nextInfo eq null }">
+						<span class="prev-title">다음 글이 없습니다.</span>
+					</c:when>
+					<c:otherwise>
+						<a class="next-title" href="/admin/notice/view?num=${nextInfo.n_num}">${nextInfo.n_title}</a>
+						<span class="next-date">등록일&nbsp;&nbsp; <fmt:formatDate value="${nextInfo.n_regdate}"/></span>
+					</c:otherwise>
+				</c:choose>
+			</div>
+		</div>
+		
 		<div class="notice-footer" align="right">
 			<button class="my-btn" type="button" onclick="location.href='/notice/list'"><span>목록</span></button>
 		</div>
 	</div>
-	
-	
-	
-	
-</div>
-</body>
-</html>

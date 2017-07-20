@@ -170,6 +170,22 @@
 </style>
 <script type="text/javascript">
 $(function(){
+	
+	switch("${keyword}"){
+	case "check" :
+		$("#check").css("background","#ea1400");		
+		break;
+	case "theater" :
+		$("#theater").css("background","#ea1400");
+		break;
+	case "etc" : 
+		$("#etc").css("background","#ea1400");
+		break;
+	
+	default : 
+		$("#all").css("background","#ea1400");
+	}
+	
 	$("#all").click(function(){
 		location.href='/admin/notice/list?keyword=all'
 	});
@@ -225,7 +241,7 @@ function search(){
 			<button id="search" class="my-btn"><span>검색하기</span></button>
 		</div>
 		<div id="category" align="left">
-			<button type="button" id="all" class="btn-cate" onclick="">전체</button>
+			<button type="button" id="all" class="btn-cate">전체</button>
 			<button type="button" id="check" class="btn-cate">시스템점검</button>
 			<button type="button" id="theater" class="btn-cate">극장</button>
 			<button type="button" id="etc" class="btn-cate">기타</button>

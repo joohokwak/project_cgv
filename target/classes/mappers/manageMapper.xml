@@ -9,18 +9,36 @@
 		insert into management values(#{a_num},#{m_num});
 	</insert>
 	
-<!-- 	<delete id="deleteConnection" parameterType="int"> -->
-<!-- 		delete from management where mg_num = #{num}  -->
-<!-- 	</delete> -->
+	<delete id="deleteConnection" parameterType="HashMap">
+		delete from management where a_num = #{a_num} and m_num = #{m_num} 
+	</delete>
 	
 	<select id="getConnectionList" parameterType="HashMap" resultType="HashMap">
-		select * from connectionInfo order by m_title1 desc limit #{skip},#{qty}
+		select * from connectionInfo 
+		<include refid="search_option"/> 
+		limit #{skip},#{qty}
 	</select>
 	
 	<select id="getConnectionCount" resultType="int">
 		select count(*) from connectionInfo
 	</select>
 	
+	<sql id="search_option">
+		<choose>
+			<when test="keyword == 'upcate'">
+				order by m_title1 asc 
+			</when>
+			<when test="keyword == 'downcate'">
+				order by m_title1 desc
+			</when>
+			<when test="keyword == 'search'">
+				where m_title1 like '%${val}%' order by m_title1 asc
+			</when>
+			<otherwise>
+				order by m_title1 asc
+			</otherwise>
+		</choose>
+	</sql>
 	
 	
 </mapper>

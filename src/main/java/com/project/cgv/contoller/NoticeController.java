@@ -33,6 +33,8 @@ public class NoticeController {
 	public String noticeView(Model model, int num){
 		
 		model.addAttribute("notice",nService.getNoticeByNum(num));
+		model.addAttribute("prevInfo",nService.getNoticeByNum(num+1));
+		model.addAttribute("nextInfo",nService.getNoticeByNum(num-1));
 		
 		return ".notice.noticeView";
 	}

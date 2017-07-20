@@ -412,9 +412,60 @@ public class AdminController {
 	// Actor End //////////////////////////////////////////////////////////////////////////////////////////
 	
 	// Manage Start //////////////////////////////////////////////////////////////////////////////////////////
-	@RequestMapping("/connect/form")
-	public String showConnectionForm(Model model){
-		return ".admin.connection.";
+	@RequestMapping(value="/manage/connection", method=RequestMethod.GET)
+	public String showMatchForm(Model model, 
+			@RequestParam(defaultValue="1")int page, 
+				@RequestParam(required=false)HashMap<String,Object> option){
+		
+		model.addAttribute("viewData", mgService.showConnectionList(page, option));
+		model.addAttribute("mList", mService.reserveMoive());
+		model.addAttribute("aList", aService.showActorList());
+		model.addAttribute("keyword",option.get("keyword"));
+		
+		return ".admin.manage.manageForm";
+	}
+	
+	@RequestMapping(value="/manage/connection", method=RequestMethod.POST)
+	public String matchInfo(Model model, @RequestParam HashMap<String,Object> params){
+		
+		boolean result = mgService.addConnection(params);
+		
+		String msg = "";
+		String loc = "";
+		
+		if(result){
+			msg="정상적으로 등록되었습니다.";
+			loc="/admin/manage/connection";
+		}else{
+			msg="실패하였습니다.";
+			loc="javascript:history.back()";
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "forward:/admin/result";
+	}
+	
+	@RequestMapping(value="/manage/connectionDel", method=RequestMethod.GET)
+	public String deleteInfo(Model model, @RequestParam HashMap<String,Object> num){
+		boolean result = mgService.removeConnection(num);
+		
+		String msg = "";
+		String loc = "";
+		
+		if(result){
+			msg="정상적으로 삭제되었습니다.";
+			loc="/admin/manage/connection";
+		}else{
+			msg="실패하였습니다.";
+			loc="javascript:history.back()";
+		}
+		
+		model.addAttribute("msg",msg);
+		model.addAttribute("loc",loc);
+		
+		return "forward:/admin/result";
 	}
 	
 	// Manage End //////////////////////////////////////////////////////////////////////////////////////////
@@ -506,61 +557,8 @@ public class AdminController {
 		
 		return mv;
 	}
+	/////////////////////////////////////////////////////////////////////
 	
-	@RequestMapping(value="/manage/connection", method=RequestMethod.GET)
-	public String showMatchForm(Model model, 
-			@RequestParam(defaultValue="1")int page, 
-				@RequestParam(required=false)HashMap<String,Object> option){
-		
-		model.addAttribute("viewData", mgService.showConnectionList(page, option));
-		model.addAttribute("mList", mService.reserveMoive());
-		model.addAttribute("aList", aService.showActorList());
-		
-		return ".admin.manage.manageForm";
-	}
-	
-	@RequestMapping(value="/manage/connection", method=RequestMethod.POST)
-	public String matchInfo(Model model, @RequestParam HashMap<String,Object> params){
-		
-		boolean result = mgService.addConnection(params);
-		
-		String msg = "";
-		String loc = "";
-		
-		if(result){
-			msg="정상적으로 등록되었습니다.";
-			loc="/admin/manage/connection";
-		}else{
-			msg="실패하였습니다.";
-			loc="javascript:history.back()";
-		}
-		
-		model.addAttribute("msg",msg);
-		model.addAttribute("loc",loc);
-		
-		return "forward:/admin/result";
-	}
-	
-	@RequestMapping(value="/manage/connectionDel", method=RequestMethod.GET)
-	public String matchInfo(Model model, int num){
-		boolean result = mgService.removeConnection(num);
-		
-		String msg = "";
-		String loc = "";
-		
-		if(result){
-			msg="정상적으로 삭제되었습니다.";
-			loc="/admin/manage/connection";
-		}else{
-			msg="실패하였습니다.";
-			loc="javascript:history.back()";
-		}
-		
-		model.addAttribute("msg",msg);
-		model.addAttribute("loc",loc);
-		
-		return "forward:/admin/result";
-	}
 	
 	// Board Start ///////////////////////////////////////////////////////
 	

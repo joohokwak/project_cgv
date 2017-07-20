@@ -3,7 +3,8 @@
 #sidemenu {
 	width: 230px;
 	min-height: 800px;
-s	background-color: #fdfcf0;
+	max-height: 2000px;
+	background-color: #fdfcf0;
 	list-style: none;
 	margin: 0;
 	padding: 0;

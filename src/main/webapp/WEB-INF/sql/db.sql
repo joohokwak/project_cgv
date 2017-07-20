@@ -504,12 +504,16 @@ create table movie_re(
 
 #어디 극장 어떤 스크린 몇일 몇시에 어떤 영화가 나오는지 조회하는 뷰
 create view movie_info as
-select mt_num, mt.mt_date, mt.mt_time , s.s_num, s.s_title, t.t_num, t.t_name, m.m_num, m.m_title1, m.m_title2 
+ select mt_num, mt.mt_date, mt.mt_time , s.s_num, s.s_title, t.t_num, t.t_name, m.m_num, m.m_title1, m.m_title2 
  from movietime mt left join screen s on mt.s_num = s.s_num 
  left join theater t on s.t_num = t.t_num 
  left join movie m on s.m_num = m.m_num
  order by mt_date desc;
 
+ #연결정보 확인
+ create view connectionInfo as 
+  select a.*, m.* from management mg left join actor a on mg.a_num = a.a_num
+  left join movie m on mg.m_num = m.m_num;
 
 
 

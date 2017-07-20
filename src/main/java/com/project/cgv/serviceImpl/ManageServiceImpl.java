@@ -35,6 +35,8 @@ public class ManageServiceImpl implements ManageService {
 		HashMap<String,Object> params = new HashMap<String,Object>();
 		params.put("skip", p.getSkip());
 		params.put("qty", p.getQty());
+		params.put("keyword", option.get("keyword"));
+		params.put("val", option.get("val"));
 		
 		List<HashMap<String, Object>> mgList = mgDao.getConnectionList(params);
 		result.put("mgList", mgList);
@@ -58,7 +60,7 @@ public class ManageServiceImpl implements ManageService {
 	}
 
 	@Override
-	public boolean removeConnection(int num) {
+	public boolean removeConnection(HashMap<String,Object> num) {
 		int delete = mgDao.deleteConnection(num);
 		
 		if(delete == 1){

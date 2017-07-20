@@ -2,11 +2,7 @@
     pageEncoding="UTF-8"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c"%>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/fmt" prefix="fmt" %>
-<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
-<html>
-<head>
-<meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
-<title>Insert title here</title>
+
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
 <link rel="stylesheet" type="text/css" href="/resources/css/admin/mybtn.css" />
 <style type="text/css">
@@ -90,6 +86,9 @@
 	
 	.notice-navi .notice-prev{
 		margin: 10px 0px;
+		padding: 7px 0px;
+		border-top: 1px solid #e1dfd5;
+		border-bottom: 1px solid #e1dfd5;
 	}
 	
 	.notice-navi .prev-text{
@@ -108,6 +107,8 @@
 	
 	.notice-navi .notice-next{
 		margin: 10px 0px;
+		padding: 3px 0px 7px 0px;
+		border-bottom: 1px solid #e1dfd5;
 	}
 	
 	.notice-navi .next-text{
@@ -129,8 +130,7 @@
 	}
 
 </style>
-</head>
-<body>
+
 <div class="notice-wrap">
 	<div class="notice-header">
 		<h1>공지사항</h1>
@@ -186,10 +186,4 @@
 			<button class="my-btn" type="button" onclick="location.href='/admin/notice/list'"><span>목록</span></button>
 		</div>
 	</div>
-	
-	
-	
-	
 </div>
-</body>
-</html>

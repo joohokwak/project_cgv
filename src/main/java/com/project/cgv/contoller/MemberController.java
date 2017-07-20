@@ -132,7 +132,6 @@ public class MemberController {
 			session.setAttribute("member", mService.getMember((String)member.get("id")));
 			return "success";
 		}
-		
 		return "fail";
 	}
 	
