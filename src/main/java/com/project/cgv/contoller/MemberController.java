@@ -164,6 +164,7 @@ public class MemberController {
 		return result;
 		
 	}
+	
 	@ResponseBody
 	@RequestMapping(value="/deleteReserve", method=RequestMethod.POST)
 	public String deleteReserve(@RequestParam("rv_num") int rv_num){
