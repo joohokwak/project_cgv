@@ -35,8 +35,9 @@
 	
 	.movie-table{
 		position: relative;
-		top: 20px;
+		margin-top: 20px;
 		width: 800px;
+		min-height: 650px;
 		border-collapse: collapse;
 	}
 	
@@ -121,10 +122,12 @@ $(function(){
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="3" align="right"><button type="button" class="my-btn" onclick="location.href='/admin/movie/insert'"><span>영화등록</span></button></td>
+				<td colspan="3" align="right" style="padding-top: 20px; padding-bottom: 20px;">
+					<button type="button" class="my-btn" onclick="location.href='/admin/movie/insert'"><span>영화등록</span></button>
+				</td>
 			</tr>
 			<tr>
-				<td colspan="3" style="text-align: center;">
+				<td colspan="3" style="text-align: center; padding-top: 10px; padding-bottom: 10px;">
 				<div class="movie-pagenation">
 					<c:if test="${v.start != 1 }">
 						<a href="list?page=1">처음</a>
