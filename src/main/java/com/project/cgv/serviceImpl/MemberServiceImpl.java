@@ -14,6 +14,7 @@ import org.springframework.util.FileCopyUtils;
 import org.springframework.web.multipart.MultipartFile;
 
 import com.project.cgv.dao.MemberDao;
+import com.project.cgv.dao.MovieDao;
 import com.project.cgv.service.MemberService;
 import com.project.cgv.util.Paging;
 
@@ -21,6 +22,7 @@ import com.project.cgv.util.Paging;
 public class MemberServiceImpl implements MemberService {
 	
 	@Autowired private MemberDao mDao;
+	@Autowired private MovieDao mvDao;
 
 	@Override
 	public HashMap<String, Object> loginCheck(HashMap<String, Object> params) {
@@ -100,11 +102,15 @@ public class MemberServiceImpl implements MemberService {
 	@Override
 	public String memberUpdate(HashMap<String, Object> params, HttpSession session, MultipartFile file) {
 		HashMap<String, Object> member = (HashMap<String, Object>)session.getAttribute("member");
+		HashMap<String, Object> maps = new HashMap<String, Object>();
 		
 		try {
 			String fullname = uploadFile(file.getOriginalFilename(),file.getBytes(),session);
 			
 			params.put("pic", fullname);
+			maps.put("mr_img", fullname);
+			maps.put("id", member.get("id"));
+			mvDao.mrUpdate(maps); 
 			
 			String origin = (String)member.get("pic");
 			File f = new File(session.getServletContext().getRealPath("/resources/upload") + File.separator + origin);
@@ -122,6 +128,7 @@ public class MemberServiceImpl implements MemberService {
 		
 		mDao.memberUpdate(params);
 		
+		
 		return "success";
 	}
 	 
@@ -130,12 +137,16 @@ public class MemberServiceImpl implements MemberService {
 		
 		
 		HashMap<String, Object> member = this.getMember((String) params.get("id"));
-		
+		HashMap<String, Object> maps = new HashMap<String, Object>();
 		
 		try {
 			String fullname = uploadFile(file.getOriginalFilename(),file.getBytes(),session);
 			
 			params.put("pic", fullname);
+			
+			maps.put("mr_img", fullname);
+			maps.put("id", member.get("id"));
+			mvDao.mrUpdate(maps);
 			
 			String origin = (String)member.get("pic");
 			File f = new File(session.getServletContext().getRealPath("/resources/upload") + File.separator + origin);
