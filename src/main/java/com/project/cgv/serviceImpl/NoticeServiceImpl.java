@@ -21,8 +21,16 @@ public class NoticeServiceImpl implements NoticeService {
 		
 		HashMap<String,Object> result = new HashMap<String,Object>();
 		
+		HashMap<String,Object> cParams = new HashMap<String,Object>();
+		
+		
+		cParams.put("keyword", option.get("keyword"));
+		cParams.put("val", option.get("val"));
+		
 		//paging
-		int totalCount = nDao.getCount();
+		int totalCount = 0;
+		totalCount = nDao.getSearchCount(cParams);	
+
 		int currentPageNumber = page;
 				
 		Paging p = new Paging(totalCount,currentPageNumber);

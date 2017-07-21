@@ -10,7 +10,6 @@
 		position: relative;
 		width: 900px;
 		margin: 0 auto;
-		min-height: 900px;
 		color: #666666;
 		cursor: default;
 	}
@@ -21,13 +20,8 @@
 	
 	.notice-header h1{
 		font-weight: bold;
-		font-size: 20px;
-		margin-bottom: 2px;
-	}
-	
-	.notice-header p{
-		margin-top: 0px;
-		font-size: 15px;
+		font-size: 25px;
+		color: black;
 	}
 	
 	.notice-body{
@@ -90,7 +84,7 @@
 	
 	.notice-table{
 		position: relative;
-		top: 80px;
+		margin-top: 80px;
 		width: 800px;
 		border-collapse: collapse;
 	}
@@ -126,10 +120,10 @@
 	}
 	
 	.notice-pagenation a, b{
-		float: left;
-		padding: 8px 13px;
-		text-decoration: none;
-		border-radius: 50px;
+	    float: left;
+	    padding: 8px 13px;
+	    text-decoration: none;
+	    border-radius: 50px;
 	}
 	
 	.notice-pagenation b{
@@ -171,6 +165,37 @@
 <script type="text/javascript">
 $(function(){
 	
+	$("#notice_menu").css({
+		background : "#343132",
+		color: "#fff"		
+	});
+	
+	$("#all").click(function(){
+		location.href='/notice/list?keyword=all'
+	});
+	
+	$("#check").click(function(){
+		location.href='/notice/list?keyword=check'
+	});
+	
+	$("#theater").click(function(){
+		location.href='/notice/list?keyword=theater'
+	});
+	
+	$("#etc").click(function(){
+		location.href='/notice/list?keyword=etc'
+	});
+	
+	$("#search").click(function(){
+		search();
+	});
+	
+	$("#search_bar").keypress(function(e){
+		if(e.keyCode == 13){
+			search();
+		}
+	});
+	
 	switch("${keyword}"){
 	case "check" :
 		$("#check").css("background","#ea1400");		
@@ -186,32 +211,6 @@ $(function(){
 		$("#all").css("background","#ea1400");
 	}
 	
-	$("#all").click(function(){
-		location.href='/admin/notice/list?keyword=all'
-	});
-	
-	$("#check").click(function(){
-		location.href='/admin/notice/list?keyword=check'
-	});
-	
-	$("#theater").click(function(){
-		location.href='/admin/notice/list?keyword=theater'
-	});
-	
-	$("#etc").click(function(){
-		location.href='/admin/notice/list?keyword=etc'
-	});
-	
-	$("#search").click(function(){
-		search();
-	});
-	
-	$("#search_bar").keypress(function(e){
-		if(e.keyCode == 13){
-			search();
-		}
-	});
-	
 });
 
 function search(){
@@ -222,14 +221,14 @@ function search(){
 		alert("검색할 내용을 입력하세요!");
 		return false;
 	}
-	location.href='/admin/notice/list?keyword='+ key +'&val=' + search_val;
+	location.href='/notice/list?keyword='+ key +'&val=' + search_val;
 }
 </script>
 
 <div class="notice-wrap">
 	<div class="notice-header">
 		<h1>공지사항</h1>
-		<p>CGV의 주요한 이슈 및 여러가지 소식들을 확인하실 수 있습니다.</p>
+		<p>공지사항을 관리하는 페이지 입니다.</p>
 	</div>
 	<div class="notice-body">
 		<div class="notice-search">
@@ -271,7 +270,14 @@ function search(){
 				</tr>
 			</c:forEach>
 			<tr>
-				<td colspan="5" style="text-align: center">
+				<td colspan="5" align="right" style="text-align: right; padding-top: 20px; padding-bottom: 20px;" >
+					<button type="button" class="my-btn" onclick="location.href='/notice/insert'" style="margin-right: 15px;">
+						<span>글쓰기</span>
+					</button>
+				</td>
+			</tr>
+			<tr>
+				<td colspan="5" style="text-align: center; padding-top: 10px; padding-bottom: 10px;" >
 				<div class="notice-pagenation">
 					<c:if test="${v.start != 1 }">
 						<a href="list?page=1">처음</a>

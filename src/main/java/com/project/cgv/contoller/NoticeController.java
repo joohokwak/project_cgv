@@ -30,6 +30,7 @@ public class NoticeController {
 		HashMap<String,Object> viewData = nService.getAllNotice(page, option);
 		
 		model.addAttribute("viewData",viewData);
+		model.addAttribute("keyword",option.get("keyword"));
 		
 		return ".notice.noticeList";
 	}
