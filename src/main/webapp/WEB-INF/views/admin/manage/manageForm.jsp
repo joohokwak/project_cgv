@@ -262,6 +262,11 @@
 <script type="text/javascript">
 	$(function(){
 		
+		$("#manage_menu").css({
+    		background : "#343132",
+    		color: "#fff"		
+    	});
+		
 		if("${keyword}" == "downcate"){
 			$("#down_btn").css("background","#ea1400");
 		}else{
