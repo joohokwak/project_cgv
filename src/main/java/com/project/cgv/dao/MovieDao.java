@@ -57,6 +57,7 @@ public interface MovieDao {
 	public int mrInsert(HashMap<String, Object> params);
 	public List<HashMap<String, Object>> mrList(int m_num);
 	public int mrDelete(int mr_num);
+	public void mrUpdate(HashMap<String, Object> params);
 	
 	//upload
 	public void updatePoster(HashMap<String,Object> inputData);

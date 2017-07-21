@@ -130,6 +130,10 @@
 		delete from movie_re where mr_num = #{value}
 	</delete>
 	
+	<update id="mrUpdate" parameterType="hashmap">
+		update movie_re set mr_img = #{mr_img} where id = #{id}
+	</update>
+	
 	<!-- movie crud -->
 	<!-- insertData -->
 	<insert id="insertMovie" parameterType="HashMap" useGeneratedKeys="true" keyProperty="num">
