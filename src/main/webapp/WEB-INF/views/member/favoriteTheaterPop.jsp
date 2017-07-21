@@ -20,6 +20,7 @@
 						check = true;
 					}
 				}
+				
 				if(check){
 					alert("이미 등록된 CGV입니다.")
 				} else if(!$("#spanf1").text()){
@@ -37,6 +38,12 @@
 				} else if(!$("#spanf5").text()){
 					$("#spanf5").text($(".selectCGV").val());
 					$("#f5").val($(".selectCGV").val());
+				}
+				
+				for(var i = 1; i < 6; i++) {
+					if($("#spanf"+i).text()) {
+						$("#spanf"+i).parent().parent().parent().css("border", "2px solid #333");
+					}
 				}
 			}
 		});
@@ -61,6 +68,12 @@
 				
 				$("#spanf5").text("");
 				$("#f5").val($("#spanf5").text());
+				
+				for(var i = 1; i < 6; i++) {
+					if(!$("#spanf"+i).text()) {
+						$("#spanf"+i).parent().parent().parent().css("border", "2px dashed #333");
+					}
+				}
 			}
 		});
 		
@@ -80,6 +93,12 @@
 				
 				$("#spanf5").text("");
 				$("#f5").val($("#spanf5").text());
+				
+				for(var i = 1; i < 6; i++) {
+					if(!$("#spanf"+i).text()) {
+						$("#spanf"+i).parent().parent().parent().css("border", "2px dashed #333");
+					}
+				}
 			}
 		});
 		
@@ -98,6 +117,12 @@
 				
 				$("#spanf5").text("");
 				$("#f5").val($("#spanf5").text());
+				
+				for(var i = 1; i < 6; i++) {
+					if(!$("#spanf"+i).text()) {
+						$("#spanf"+i).parent().parent().parent().css("border", "2px dashed #333");
+					}
+				}
 			}
 		});
 		
@@ -111,6 +136,12 @@
 				
 				$("#spanf5").text("");
 				$("#f5").val($("#spanf5").text());
+				
+				for(var i = 1; i < 6; i++) {
+					if(!$("#spanf"+i).text()) {
+						$("#spanf"+i).parent().parent().parent().css("border", "2px dashed #333");
+					}
+				}
 			}
 		});
 		
@@ -121,6 +152,12 @@
 			}else{
 				$("#spanf5").text("");
 				$("#f5").val($("#spanf5").text());
+				
+				for(var i = 1; i < 6; i++) {
+					if(!$("#spanf"+i).text()) {
+						$("#spanf"+i).parent().parent().parent().css("border", "2px dashed #333");
+					}
+				}
 			}
 		});
 		
@@ -187,7 +224,7 @@
 			</div>
 			<div class=select_choice>
 				<div class="choice_theater">
-				<span>${member.name }( ${member.pass } ) 님이 자주가는 CGV</span>
+				<span>${member.name }( ${member.id } ) 님이 자주가는 CGV</span>
 					<ul>
 						<li class="none">
 							<div class="box-polaroid">
