@@ -156,7 +156,7 @@
 				null
 			</when>
 			<otherwise>
-				#{"content"}
+				#{content}
 			</otherwise>
 		</choose>
 	</sql>

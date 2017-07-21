@@ -368,7 +368,7 @@
 							<label for="content" style="padding-bottom: 20px">바이오그래피</label>
 						</td>
 						<td style="background: #fff;">
-							<textarea rows="30" cols="100" id="content" name="content" style="width: 100%">${a.a_content}</textarea>
+							<textarea rows="30" cols="100" id="content" name="content" style="width: 100%">${a.a_biography}</textarea>
 						</td>
 					</tr>
 					<tr style="margin: 20px 0px" style="padding-top: 10px">
